@@ -6,7 +6,7 @@ body {
 	width:100%;
 	color:#aeaeae;
 	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
-	background:#e7e7e7 url(../images/main_bg.jpg) repeat-x left top;
+	background:#e7e7e7 url(../images/main_bg.png) repeat-x left top;
 }
 html, .main {
 	padding:0;
@@ -50,6 +50,7 @@ a {
 	width:960px;
 }
 .logo {
+	background-color:rgb(237, 28, 36);
 	margin:0;
 	padding:0;
 	float:none;
