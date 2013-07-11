@@ -76,10 +76,10 @@ $(document).ready(function() {
       <div class="clr"></div>
       <div class="slider">
         <div id="coin-slider">
-        <a href="#"><img src="images/slide1.jpg" width="960" height="360" alt="" /><span></span></a>
-        <a href="#"><img src="images/slide2.jpg" width="960" height="360" alt="" /><span></span></a>
-        <a href="#"><img src="images/slide3.jpg" width="960" height="360" alt="" /><span></span></a> 
-        <a href="#"><img src="images/slide3.jpg" width="960" height="360" alt="" /><span></span></a> 
+        <a href="#"><img src="images/MC_Gold.jpg" width="960" height="360" alt="" /><span></span></a>
+        <a href="#"><img src="images/MC_Platinum.jpg" width="960" height="360" alt="" /><span></span></a>
+        <a href="#"><img src="images/MC_Superior.jpg" width="960" height="360" alt="" /><span></span></a> 
+        <a href="#"><img src="images/MC_Ultra.jpg" width="960" height="360" alt="" /><span></span></a> 
         </div>
         <div class="clr"></div>
       </div>
