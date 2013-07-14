@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <title>NoQueue</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,41 +12,34 @@
 	src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/coin-slider.min.js"></script>
-
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#loginButton').click(function() {
-
-			//Getting the variable's value from a link 
-			var loginBox = $(this).attr('href');
-
-			//Fade in the Popup
-			$(loginBox).fadeIn(300);
-
-			//Set the center alignment padding + border see css style
-			var popMargTop = ($(loginBox).height() + 24) / 2;
-			var popMargLeft = ($(loginBox).width() + 24) / 2;
-
-			$(loginBox).css({
-				'margin-top' : -popMargTop,
-				'margin-left' : -popMargLeft
-			});
-
-			// Add the mask to body
-			$('body').append('<div id="mask"></div>');
-			$('#mask').fadeIn(300);
-
-			return false;
-		});
-
-		// When clicking on the button close or the mask layer the popup closed
-		$('a.close, #mask').live('click', function() {
-			$('#mask , .login-popup').fadeOut(300, function() {
-				$('#mask').remove();
-			});
-			return false;
-		});
+	$(document).ready(function (){
+		setActivePage();
 	});
+	
+	function setActivePage() {
+		var path = $(location).attr('href');
+		var urlLength = $(location).attr('hostname').length + $(location).attr('port').length + $(location).attr('protocol').length + 4;
+		var page = path.substring(urlLength, path.length);
+		
+		if(page != 'index.jsp' && page != 'movie.jsp' && page != 'about.jsp' && page != 'contact.jsp') { 
+			$('.active').attr('class','');
+		}
+	}
+	
+	function validate(id,type){
+		var result ;
+		
+		switch(type) {
+		
+			case "email":
+				var re = /\S+@\S+\.\S+/;
+				result = re.test($("#" + id).val());
+				break;
+		}
+		
+		return result;
+	}
 </script>
 
 </head>
@@ -57,7 +51,7 @@
 				<div class="menu_nav">
 					<div>
 						<ul>
-							<li class="active"><a href="index.html"><span>Home
+							<li class="active"><a href="index.jsp"><span>Home
 										Page</span></a></li>
 							<li><a href="movies.html"><span>Movie Details</span></a></li>
 							<li><a href="about.html"><span>About Us</span></a></li>
