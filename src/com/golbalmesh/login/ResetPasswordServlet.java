@@ -12,9 +12,9 @@ public class ResetPasswordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.getSession().setAttribute("hasReset", "true");
-//		resp.sendRedirect("resetPassword.jsp");
-		req.getRequestDispatcher("resetPassword.jsp").forward(req, resp);
+		req.setAttribute("hasReset", "true");
+		System.out.println("done");
+		req.getRequestDispatcher("/resetPassword.jsp").forward(req, resp);
 	}
 	
 }
