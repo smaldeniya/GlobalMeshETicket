@@ -162,6 +162,8 @@ h1 small {
 	padding:18px 0 32px;
 	width:960px;
 	background:#f0f0f0 repeat-x left bottom;
+	overflow: auto;
+	height: 500px;
 }
 .content .mainbar {
 	margin:0;
@@ -704,4 +706,7 @@ span.errorMessage {
 div.reset_password p {
 	color: #3f3f3f;
 	font-size: 16px;
+}
+.forgot {
+	clear: both;
 }

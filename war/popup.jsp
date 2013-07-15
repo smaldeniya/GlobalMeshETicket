@@ -45,8 +45,8 @@
 				id="password" name="password" value="" type="password" />
 			</label>
 			<button class="submit button" type="button">Sign in</button>
-			<p>
-				<a class="forgot" href="resetPassword.jsp">Forgot your password?</a>
+			<p class="forgot">
+				<a  href="resetPassword.jsp">Forgot your password?</a>
 			</p>
 		</fieldset>
 	</form>
