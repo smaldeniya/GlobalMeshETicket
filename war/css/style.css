@@ -592,6 +592,9 @@ form.signin .textbox span {
 	font-size: 25px;
 	font-family: sans-serif;
     display: block;
+    float: left;
+    margin-top: 5px;
+    clear: both;
 }
 
 form.signin p, form.signin span {
@@ -618,6 +621,7 @@ form.signin .textbox input {
 	padding: 11px 25px;
 	padding-left: 55px;
     width: 300px;
+    clear: left;
 }
 
 form.signin input:-moz-placeholder {

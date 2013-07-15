@@ -20,7 +20,7 @@
 			<span class="heading">Reset your password.</span>
 			<form id="resetForm" method="post" class="signin" action="/reset.do">
 				<fieldset class="textbox">
-					<label class="username" style="margin-bottom: 5px"> <span>Email</span>
+					<label class="username" style="margin-bottom: 5px;"> <span>Email</span>
 						<input id="resetEmale" name="resetEmale" type="text" /> <span
 						class="errorMessage"></span>
 					</label>
