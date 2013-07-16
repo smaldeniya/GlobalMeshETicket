@@ -7,7 +7,7 @@
 			function submitReset(input) {
 				if (validate(input, 'email')) {
 					$("#resetForm").attr("action", "/reset.do");
-					$("form")[1].submit();
+					$("form")[2].submit();
 				} else {
 					$("#resetEmale").parent().children(
 							"span[class=errorMessage]").text(
@@ -21,7 +21,7 @@
 			<form id="resetForm" method="post" class="signin" action="/reset.do">
 				<fieldset class="textbox">
 					<label class="username" style="margin-bottom: 5px;"> <span>Email</span>
-						<input id="resetEmale" name="resetEmale" type="text" /> <span
+						<input id="resetEmale" name="resetEmale" type="text" onblur="validate('resetEmale', 'email')"/> <span
 						class="errorMessage"></span>
 					</label>
 					<button id="butReset" class="submit button" type="button"

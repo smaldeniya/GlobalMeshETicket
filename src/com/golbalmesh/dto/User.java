@@ -16,17 +16,17 @@ import javax.persistence.Id;
 public class User {
 
 	@Id
-	private String userId;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String password;
-	private char gender;//M-Male F-Female
-	private Date dob;	
-	private String nicNo;	
-	private String country;
-	private String address;
-	private String mobileNo;	
+	private String userId; //set by db
+	private String firstName; // set when register
+	private String lastName; // set when register
+	private String email; // set when register
+	private String password; // set when register
+	private char gender;//M-Male F-Female // set when register
+	private Date dob; // set when register
+	private String nicNo; // set when register	
+	private String country; // set after register
+	private String address; // set after register
+	private String mobileNo; // set when register
 	/**
 	 * 
 	 */

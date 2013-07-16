@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -33,17 +33,63 @@
 	}
 	
 	function validate(id,type){
-		var result ;
+		var result = false ;
+		var message = "";
+		var value = $("#" + id).val();
 		
-		switch(type) {
+		if(!isEmpty(value)){
+			switch(type) {
+			
+				case "email":
+					var re = /\S+@\S+\.\S+/;
+					result = re.test(value);
+					message = "Please enter a valid Email address";
+					break;
+					
+				case "password":
+					var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+					result = re.test(value);
+					message = "Password length should be between 6 to 20 and include atleast one lowercase and uppercase character and a number.";
+					break;
+					
+				case "text":
+					var re = /^[a-zA-z]+$/;
+					result = re.test(value);
+					message = "Name should only contain text characters";
+					break;
+					
+				case "gender":
+					result = true;
+					break;
+					
+				case "mobile":
+					var re = /^\d{10}$/;
+					result = re.test(value);
+					message = "Mobile number shoiuld only contain numbers";
+					break;
+					
+				case "nic":
+					var re = /^\d{9}\S{1}$/;
+					result = re.test(value);
+					message = "Please enter a valid nic number.";
+					break;
+			}
+			
+		} else {
+			message = "Field should not be empty";
+		}
 		
-			case "email":
-				var re = /\S+@\S+\.\S+/;
-				result = re.test($("#" + id).val());
-				break;
+		if(!result){
+			$("#"+id).parent().children("span[class=errorMessage]").text(message);
+		} else {
+			$("#"+id).parent().children("span[class=errorMessage]").html("<img src='../images/ok.png' height='16' width='16'/>");
 		}
 		
 		return result;
+	}
+	
+	function isEmpty(str) {
+	    return (!str || 0 === str.length);
 	}
 </script>
 
@@ -92,5 +138,5 @@
 				<div class="clr"></div>
 			</div>
 		</div>
-		
-<div class="content_resize">
+
+		<div class="content_resize">
