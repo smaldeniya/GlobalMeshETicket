@@ -24,8 +24,8 @@ public class LoginUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String userId = req.getParameter("userId");
-		String pwd = req.getParameter("pwd");
+		String userId = req.getParameter("username");
+		String pwd = req.getParameter("password");
 		
 		try {
 			String encryptPwd = MD5HashGenerator.md5(pwd);

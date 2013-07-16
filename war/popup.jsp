@@ -58,7 +58,15 @@
 	});
 	
 	function loginOnClick() {
-		alert("login");
+		if(validate('username','email') && validate('password', 'loginPass')){
+			$("#loginForm").attr("action", "/login.do");
+			
+			$('#mask , .login-popup').fadeOut(300, function() {
+				$('#mask').remove();
+			});
+			
+			$("form")[0].submit();	
+		}
 	}
 		
 	function retypePasswordValidate(password, retypePass){
@@ -87,7 +95,7 @@
 	}
 	
 	function registerOnClick(){
-		if(validate('email','email') && validate('regpassword','password') && retypePasswordValidate('regpassword','repassword')
+		if(validate('email','regEmail') && validate('regpassword','password') && retypePasswordValidate('regpassword','repassword')
 				&& validate('firstName','text') && validate('lastName','text') && validate('nic','nic') && validate('mobile','mobile') && validate('gender','gender')) {
 			$("#registerForm").attr("action", "/reset.do");
 			
@@ -104,12 +112,14 @@
 <div id="login-box" class="login-popup">
 	<a href="#" class="close"><img src="images/close_pop.png"
 		class="btn_close" title="Close Window" alt="Close" /></a>
-	<form method="post" class="signin" action="#">
+	<form method="post" class="signin" action="/login.do" id="loginForm">
 		<fieldset class="textbox">
-			<label class="username"> <span>Username or email</span> <input
-				id="username" name="username" value="" type="text" />
+			<label class="username"> <span>Email</span> <input
+				id="username" name="username" value="" type="text" onblur="validate('username','email')"/>
+				<span class="errorMessage"></span>
 			</label> <label class="password"> <span>Password</span> <input
 				id="password" name="password" value="" type="password" />
+				<span class="errorMessage"></span>
 			</label>
 			<button class="submit button" type="button" onclick="loginOnClick()">Sign in</button>
 			<p class="forgot">
@@ -126,7 +136,7 @@
 	<form method="post" class="signin" action="/reset.do" id="registerForm">
 		<fieldset class="textbox">
 			<label class="username" style="float:left; width:250px; clear:both" > <span>Email</span> <input
-				id="email" name="email" value="" type="text" style="width: 218px; height: 18px;" onblur="validate('email','email')" /> <span
+				id="email" name="email" value="" type="text" style="width: 218px; height: 18px;" onblur="validate('email','regEmail')" /> <span
 						class="errorMessage"></span>
 			</label>
 			<label class="username" style="float:left; width:200px; clear:left; margin-right: 50px;" > <span>Password</span> <input

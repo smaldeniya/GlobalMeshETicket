@@ -73,6 +73,16 @@
 					result = re.test(value);
 					message = "Please enter a valid nic number.";
 					break;
+					
+				case "regEmail":
+					var re = /\S+@\S+\.\S+/;
+					result = re.test(value);
+					message = "Please enter a valid Email address";
+					break;
+					
+				case "loginPass":
+					result = true;
+					break;
 			}
 			
 		} else {

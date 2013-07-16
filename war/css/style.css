@@ -634,7 +634,7 @@ a {
 /* You can customize to your needs  */
 .login-popup {
 	width: 500px;
-	height: 300px;
+	height: 360px;
 	display: none;
 	background: #333;
 	padding: 10px;
@@ -771,7 +771,7 @@ span.errorMessage {
 
 .button {
 	height: 2em;
-	margin-top: 20px;
+	margin-top: 15px;
 	clear: both;
 	padding: 0 1em;
 	border: 1px solid;
