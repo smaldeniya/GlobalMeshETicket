@@ -25,6 +25,7 @@ public class UserGetAction extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String userId = req.getParameter("id");
+		userId = "userId";
 		User user = null;
 		try {
 			user = UserDAO.INSTANCE.getUserById(userId);

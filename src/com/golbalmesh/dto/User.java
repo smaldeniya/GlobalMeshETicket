@@ -5,28 +5,44 @@ package com.golbalmesh.dto;
 
 import java.util.Date;
 
+import javax.annotation.Nonnull;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author Dil
  *
  */
 @Entity
+@Table( name = "User" )
 public class User {
 
-	@Id
-	private String userId; //set by db
-	private String firstName; // set when register
-	private String lastName; // set when register
-	private String email; // set when register
-	private String password; // set when register
-	private char gender;//M-Male F-Female // set when register
-	private Date dob; // set when register
-	private String nicNo; // set when register	
-	private String country; // set after register
-	private String address; // set after register
-	private String mobileNo; // set when register
+	@Id	
+	@Column(name = "UserId", nullable = false,length = 50)
+	private String userId;
+	@Column(name = "FirstName", nullable = false,length = 50)
+	private String firstName;
+	@Column(name = "LastName", nullable = false,length = 50)
+	private String lastName;
+	@Column(name = "Email", nullable = false,length = 50)
+	private String email;
+	@Column(name = "Password", nullable = false,length = 50)
+	private String password;
+	@Column(name = "Gender", nullable = false,length = 1)
+	private String gender;//M-Male F-Female
+	@Column(name = "DOB", nullable = false)
+	private Date dob;
+	@Column(name = "NICNo", nullable = false,length = 50)
+	private String nicNo;
+	@Column(name = "Country", nullable = false,length = 50)
+	private String country;
+	@Column(name = "Address", nullable = false,length = 50)
+	private String address;
+	@Column(name = "MobileNo", nullable = false,length = 50)
+	private String mobileNo;	
 	/**
 	 * 
 	 */
@@ -46,9 +62,9 @@ public class User {
 	 * @param address
 	 * @param mobileNo
 	 */
-	public User(String userId, String firstName, String lastName, String email,
-			String password, char gender, Date dob, String nicNo,
-			String country, String address, String mobileNo) {
+	public User(final String userId,final String firstName,final String lastName,final String email,
+			final String password, final String gender, Date dob, final String nicNo,
+			final String country, final String address, final String mobileNo) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -65,133 +81,134 @@ public class User {
 	/**
 	 * @return the userId
 	 */
+	@Id
 	public String getUserId() {
 		return userId;
 	}	
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(String userId) {
+	public void setUserId( final String userId) {
 		this.userId = userId;
 	}
 	/**
 	 * @return the firstName
-	 */
+	 */	
 	public String getFirstName() {
 		return firstName;
 	}
 	/**
 	 * @param firstName the firstName to set
 	 */
-	public void setFirstName(String firstName) {
+	public  void setFirstName( final String firstName) {
 		this.firstName = firstName;
 	}
 	/**
 	 * @return the lastName
-	 */
-	public String getLastName() {
+	 */	
+	public  String getLastName() {
 		return lastName;
 	}
 	/**
 	 * @param lastName the lastName to set
 	 */
-	public void setLastName(String lastName) {
+	public  void setLastName( final String lastName) {
 		this.lastName = lastName;
 	}
 	/**
 	 * @return the email
-	 */
-	public String getEmail() {
+	 */	
+	public  String getEmail() {
 		return email;
 	}
 	/**
 	 * @param email the email to set
 	 */
-	public void setEmail(String email) {
+	public  void setEmail( final String email) {
 		this.email = email;
 	}
 	/**
 	 * @return the password
-	 */
-	public String getPassword() {
+	 */	
+	public  String getPassword() {
 		return password;
 	}
 	/**
 	 * @param password the password to set
 	 */
-	public void setPassword(String password) {
+	public  void setPassword( final String password) {
 		this.password = password;
 	}
 	/**
 	 * @return the gender
-	 */
-	public char getGender() {
+	 */	
+	public  String getGender() {
 		return gender;
 	}
 	/**
 	 * @param gender the gender to set
 	 */
-	public void setGender(char gender) {
+	public  void setGender( final String gender) {
 		this.gender = gender;
 	}
 	/**
 	 * @return the dob
-	 */
-	public Date getDob() {
+	 */	
+	public  Date getDob() {
 		return dob;
 	}
 	/**
 	 * @param dob the dob to set
 	 */
-	public void setDob(Date dob) {
+	public  void setDob( final Date dob) {
 		this.dob = dob;
 	}
 	/**
 	 * @return the nicNo
-	 */
-	public String getNicNo() {
+	 */	
+	public  String getNicNo() {
 		return nicNo;
 	}
 	/**
 	 * @param nicNo the nicNo to set
 	 */
-	public void setNicNo(String nicNo) {
+	public  void setNicNo( final String nicNo) {
 		this.nicNo = nicNo;
 	}
 	/**
 	 * @return the country
-	 */
-	public String getCountry() {
+	 */	
+	public  String getCountry() {
 		return country;
 	}
 	/**
 	 * @param country the country to set
 	 */
-	public void setCountry(String country) {
+	public  void setCountry( final String country) {
 		this.country = country;
 	}
 	/**
 	 * @return the address
-	 */
-	public String getAddress() {
+	 */	
+	public  String getAddress() {
 		return address;
 	}
 	/**
 	 * @param address the address to set
 	 */
-	public void setAddress(String address) {
+	public  void setAddress( final String address) {
 		this.address = address;
 	}
 	/**
 	 * @return the mobileNo
-	 */
-	public String getMobileNo() {
+	 */	
+	public  String getMobileNo() {
 		return mobileNo;
 	}
 	/**
 	 * @param mobileNo the mobileNo to set
 	 */
-	public void setMobileNo(String mobileNo) {
+	public  void setMobileNo( final String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 	

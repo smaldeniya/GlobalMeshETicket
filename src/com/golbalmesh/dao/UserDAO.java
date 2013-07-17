@@ -17,6 +17,7 @@ import com.golbalmesh.util.EMFService;
  */
 public enum UserDAO {
 
+	//Creates an instance
 	INSTANCE;
 
 	public List<User> listUsers() throws Exception{
@@ -30,17 +31,30 @@ public enum UserDAO {
 
 	public void add(User user)  throws Exception{
 		synchronized (this) {
-			EntityManager em = EMFService.get().createEntityManager();
-			em.persist(user);
-			em.close();
+			
+			try
+			{
+				
+				EntityManager em = EMFService.get().createEntityManager();
+				em.getTransaction().begin();
+				em.persist(user);
+				em.getTransaction().commit();
+				em.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				
+			}
+			
 		}
 	}
 
 	public User getUserById(String userId)  throws Exception{
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em
-				.createQuery("select t from User t where t.userId = :userId");
-		q.setParameter("userId", userId);		
+		Query q = em.createQuery("select t from User t");
+				//.createQuery("select t from User t where t.userId = :userId");
+		//q.setParameter("userId", userId);		
 		User user = (User)q.getResultList().get(0);
 		return user;
 	}
@@ -49,7 +63,9 @@ public enum UserDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
 			User user = em.find(User.class, userId);
+			em.getTransaction().begin();
 			em.remove(user);
+			em.getTransaction().commit();
 		} finally {
 			em.close();
 		}

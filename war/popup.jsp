@@ -97,7 +97,7 @@
 	function registerOnClick(){
 		if(validate('email','regEmail') && validate('regpassword','password') && retypePasswordValidate('regpassword','repassword')
 				&& validate('firstName','text') && validate('lastName','text') && validate('nic','nic') && validate('mobile','mobile') && validate('gender','gender')) {
-			$("#registerForm").attr("action", "/reset.do");
+			$("#registerForm").attr("action", "/useri.do");
 			
 			$('#mask , .login-popup').fadeOut(300, function() {
 				$('#mask').remove();
@@ -133,7 +133,7 @@
 <div id="register-box" class="login-popup" style="width: 650px; height:580px;">
 	<a href="#" class="close"><img src="images/close_pop.png"
 		class="btn_close" title="Close Window" alt="Close" /></a>
-	<form method="post" class="signin" action="/reset.do" id="registerForm">
+	<form method="post" class="signin" action="/useri.do" id="registerForm">
 		<fieldset class="textbox">
 			<label class="username" style="float:left; width:250px; clear:both" > <span>Email</span> <input
 				id="email" name="email" value="" type="text" style="width: 218px; height: 18px;" onblur="validate('email','regEmail')" /> <span
