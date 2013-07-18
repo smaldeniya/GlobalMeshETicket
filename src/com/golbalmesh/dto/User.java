@@ -21,28 +21,28 @@ import javax.persistence.Table;
 public class User {
 
 	@Id	
-	@Column(name = "UserId", nullable = false,length = 50)
+	@Column(name = "UserId", nullable = false,length = 11) //NIC is the user id.
 	private String userId;
-	@Column(name = "FirstName", nullable = false,length = 50)
+	@Column(name = "FirstName", nullable = false,length = 20)
 	private String firstName;
-	@Column(name = "LastName", nullable = false,length = 50)
+	@Column(name = "LastName", nullable = false,length = 30)
 	private String lastName;
 	@Column(name = "Email", nullable = false,length = 50)
 	private String email;
-	@Column(name = "Password", nullable = false,length = 50)
+	@Column(name = "Password", nullable = false,length = 20)
 	private String password;
 	@Column(name = "Gender", nullable = false,length = 1)
 	private String gender;//M-Male F-Female
-	@Column(name = "DOB", nullable = false)
+	@Column(name = "DOB", nullable = true)
 	private Date dob;
-	@Column(name = "NICNo", nullable = false,length = 50)
-	private String nicNo;
-	@Column(name = "Country", nullable = false,length = 50)
+	@Column(name = "Country", nullable = true ,length = 20)
 	private String country;
-	@Column(name = "Address", nullable = false,length = 50)
+	@Column(name = "Address", nullable = true,length = 80)
 	private String address;
-	@Column(name = "MobileNo", nullable = false,length = 50)
+	@Column(name = "MobileNo", nullable = false,length = 12)
 	private String mobileNo;	
+	@Column(name = "Verification", nullable = false, length = 50)
+	private String verified;
 	/**
 	 * 
 	 */
@@ -73,7 +73,6 @@ public class User {
 		this.password = password;
 		this.gender = gender;
 		this.dob = dob;
-		this.nicNo = nicNo;
 		this.country = country;
 		this.address = address;
 		this.mobileNo = mobileNo;
@@ -164,18 +163,6 @@ public class User {
 		this.dob = dob;
 	}
 	/**
-	 * @return the nicNo
-	 */	
-	public  String getNicNo() {
-		return nicNo;
-	}
-	/**
-	 * @param nicNo the nicNo to set
-	 */
-	public  void setNicNo( final String nicNo) {
-		this.nicNo = nicNo;
-	}
-	/**
 	 * @return the country
 	 */	
 	public  String getCountry() {
@@ -210,6 +197,12 @@ public class User {
 	 */
 	public  void setMobileNo( final String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+	public String getVerified() {
+		return verified;
+	}
+	public void setVerified(String verified) {
+		this.verified = verified;
 	}
 	
 	

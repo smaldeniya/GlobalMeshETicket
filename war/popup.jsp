@@ -140,7 +140,7 @@
 						class="errorMessage"></span>
 			</label>
 			<label class="username" style="float:left; width:200px; clear:left; margin-right: 50px;" > <span>Password</span> <input
-				id="regpassword" name="password" value="" type="password" style="width: 150px; height: 18px;" onblur="validate('regpassword','password')"/> <span
+				id="regpassword" name="regpassword" value="" type="password" style="width: 150px; height: 18px;" onblur="validate('regpassword','password')"/> <span
 						class="errorMessage"></span>
 			</label>
 			<label class="username" style="float:left; width:200px; clear:right" > <span>Retype Password</span> <input
@@ -164,7 +164,7 @@
 			</label>
 			<label class="username" style="float:left; width:60px; clear:right; margin-left: 18px;" > 
 			<span>Gender</span> 
-			<select id="gender" class="styled-select" style="font-size:17px" onblur="validate('gender','gender')">
+			<select id="gender" name="gender" class="styled-select" style="font-size:17px" onblur="validate('gender','gender')">
 				<option value="M" selected="selected">Male</option>
 				<option value="F">Female</option>
 			</select>

@@ -15,6 +15,7 @@ import com.golbalmesh.util.EMFService;
  * @author Dil
  * 
  */
+
 public enum UserDAO {
 
 	//Creates an instance
@@ -29,9 +30,10 @@ public enum UserDAO {
 		return todos;
 	}
 
-	public void add(User user)  throws Exception{
-		synchronized (this) {
-			
+	public boolean add(User user)  throws Exception{
+		boolean isRegistered = false;
+		
+		synchronized (this) {			
 			try
 			{
 				
@@ -40,14 +42,17 @@ public enum UserDAO {
 				em.persist(user);
 				em.getTransaction().commit();
 				em.close();
+				
+				isRegistered = true;
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				
 			}
-			
+	
 		}
+		
+		return isRegistered;
 	}
 
 	public User getUserById(String userId)  throws Exception{

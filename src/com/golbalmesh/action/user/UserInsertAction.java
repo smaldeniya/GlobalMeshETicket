@@ -4,6 +4,7 @@
 package com.golbalmesh.action.user;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -14,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.golbalmesh.dao.UserDAO;
 import com.golbalmesh.dto.User;
+import com.golbalmesh.util.Constants;
 import com.golbalmesh.util.MD5HashGenerator;
+import com.golbalmesh.util.Utility;
 
 /**
  * @author Transformers
@@ -29,22 +32,53 @@ public class UserInsertAction extends HttpServlet {
 	
 		try {
 			User user = new User();
+
+			String nic = req.getParameter("nic");
+			String firstName = req.getParameter("firstName");
+			String lastName = req.getParameter("lastName");
+			String email = req.getParameter("email");
+			String password = MD5HashGenerator.md5(req.getParameter("regpassword"));
+			String gender = req.getParameter("gender");
+			String mobile = req.getParameter("mobile");
+			String dob = req.getParameter("dob");
+			String country = req.getParameter("country");
+			String address = req.getParameter("address");
 			
-			user.setUserId("1") ; //autogenrate
-			user.setFirstName(req.getParameter("firstName")) ;
-			user.setLastName(req.getParameter("lastName")) ;
-			user.setEmail(req.getParameter("email"));
-			user.setPassword(MD5HashGenerator.md5(req.getParameter("regpassword")));			
-			
-			user.setGender(req.getParameter("gender"));
+			user.setUserId(nic) ; 
+			user.setFirstName(firstName) ;
+			user.setLastName(lastName) ;
+			user.setEmail(email);
+			user.setPassword(password);			
+			user.setGender(gender);
+			user.setMobileNo(mobile);
 				
-//			user.setDob(new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH).parse(req.getParameter("dob"))); this will not need in registration wil update later
-			user.setNicNo(req.getParameter("nic"));
-//			user.setCountry(req.getParameter("country")); this will add later not need in registration 
-//			user.setAddress(req.getParameter("address"));this will add later not need in registration 
-			user.setMobileNo(req.getParameter("mobile"));
+			if (dob != null) {
+				user.setDob(new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH)
+						.parse(dob)); //this will not need in registration wil update later
+			}
 			
-			UserDAO.INSTANCE.add(user);
+			if(country != null) {
+				user.setCountry(country); //this will add later not need in registration 
+			}
+			
+			if(address != null){
+				user.setAddress(address); //this will add later not need in registration
+			}
+			
+			String verification = MD5HashGenerator.md5(email);
+			user.setVerified(verification);
+			
+			
+			
+			if (UserDAO.INSTANCE.add(user)) {
+				String message = Constants.USER_REG_SUCCESS_MESSAGE;		
+				req.setAttribute("message", message);
+				String URL = MessageFormat.format(Constants.SITE_URL, "useri.do?email="+user.getEmail()+"&verifi="+user.getVerified());
+				System.out.println(URL);
+				
+				String emailBody = MessageFormat.format(Constants.USER_REG_EMAIL_BODY, user.getFirstName(), user.getEmail(), URL);
+				Utility.sendEmail(Constants.USER_REG_EMAIL_SUBJECT, emailBody, user.getEmail(), Constants.SITE_EMAIL);
+			}
 			
 			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			
@@ -68,7 +102,6 @@ public class UserInsertAction extends HttpServlet {
 			user.setPassword(MD5HashGenerator.md5("password"));			
 			user.setGender("M");//M-Male F-Female								
 			//user.setDob(new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH).parse("2013-07-12"));
-			user.setNicNo("882690938V");
 			user.setCountry("country");
 			user.setAddress("address");
 			user.setMobileNo("mobileNo");

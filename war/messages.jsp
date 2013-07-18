@@ -3,8 +3,9 @@
 
 <div class="reset_password">
 	<p>
-		<strong>Your request to reset password has been proceeded.
-			New temporary password has been sent to your email address. </strong>
+		<strong>
+			${requestScope['message']}
+		 </strong>
 	</p>
 </div>
 
