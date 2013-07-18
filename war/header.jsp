@@ -124,18 +124,22 @@
 							<li><a href="contact.html"><span>Contact Us</span></a></li>
 						</ul>
 					</div>
-					<div class="login">
-						<c:if test="${sessionScope['login'] == null }">
+
+					<c:if test="${sessionScope['login'] == null }">
+						<div class="login">
 							<ul>
 								<li><a href="#login-box" id="loginButton"><span>Login</span></a></li>
 								<li><a href="#register-box" id="registerButton"><span>Register</span></a></li>
 							</ul>
-						</c:if>
-						<c:if test="${sessionScope['login'] != null }">
-							<div style="width:300px; margin:15px">You are logged in as <a href="profile.jsp"><span>${sessionScope["login"]}</span></span></a> (<a href"/logut.do"><span>Logout</span></a>)</li>
-							</div>
-						</c:if>
-					</div>
+						</div>
+					</c:if>
+					<c:if test="${sessionScope['login'] != null }">
+						<div class="login">
+							You are logged in as <a href="profile.jsp"><span>${sessionScope["login"]}</span></a>
+							(<a href="/logut.do"><span>Logout</span></a>)
+						</div>
+					</c:if>
+
 				</div>
 				<div class="clr"></div>
 				<div class="logo">

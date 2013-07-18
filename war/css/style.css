@@ -161,7 +161,7 @@ h1 small {
 	background: url(../images/menu_split.gif) no-repeat left center;
 }
 
-.menu_nav ul li a, .loggedIn div a {
+.menu_nav ul li a, .login a {
 	display: block;
 	margin: 0;
 	padding: 17px 28px 0;
@@ -176,7 +176,7 @@ h1 small {
 	background: none;
 }
 
-.menu_nav ul li.active a,.menu_nav ul li a:hover,.login ul li.active a,.login ul li a:hover, .loggedIn div a:hover
+.menu_nav ul li.active a,.menu_nav ul li a:hover,.login ul li.active a,.login ul li a:hover, .login a:hover
 	{
 	text-decoration: none;
 	color: #fff;
