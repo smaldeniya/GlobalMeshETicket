@@ -63,6 +63,14 @@ public enum UserDAO {
 		User user = (User)q.getResultList().get(0);
 		return user;
 	}
+	
+	public User getUserByEmail(String email)  throws Exception{
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from User t where t.email = :email");
+		q.setParameter("email", email);		
+		User user = (User)q.getResultList().get(0);
+		return user;
+	}
 
 	public void remove(String userId)  throws Exception{
 		EntityManager em = EMFService.get().createEntityManager();

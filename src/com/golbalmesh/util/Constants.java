@@ -12,4 +12,10 @@ public class Constants {
 	
 	public static final String SITE_URL = "http://localhost:8080/{0}";
 	
+	public static final String USER_TYPE_ADMIN = "admin";
+	
+	public static final String USER_TYPE_USER = "user";
+	
+	public static final String USER_LOGIN_FAILED = "Login failed please try again.";
+	
 }

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table( name = "User" )
 public class User {
-
+	
 	@Id	
 	@Column(name = "UserId", nullable = false,length = 11) //NIC is the user id.
 	private String userId;
@@ -43,6 +43,8 @@ public class User {
 	private String mobileNo;	
 	@Column(name = "Verification", nullable = false, length = 50)
 	private String verified;
+	@Column(name = "Type", nullable = false, length = 10)
+	private String userType;
 	/**
 	 * 
 	 */
@@ -203,6 +205,12 @@ public class User {
 	}
 	public void setVerified(String verified) {
 		this.verified = verified;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 	
 	

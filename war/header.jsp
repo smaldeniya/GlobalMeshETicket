@@ -18,88 +18,93 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/coin-slider.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function (){
+	$(document).ready(function() {
 		setActivePage();
 	});
-	
+
 	function setActivePage() {
 		var path = $(location).attr('href');
-		var urlLength = $(location).attr('hostname').length + $(location).attr('port').length + $(location).attr('protocol').length + 4;
+		var urlLength = $(location).attr('hostname').length
+				+ $(location).attr('port').length
+				+ $(location).attr('protocol').length + 4;
 		var page = path.substring(urlLength, path.length);
-		
-		if(page != 'index.jsp' && page != 'movie.jsp' && page != 'about.jsp' && page != 'contact.jsp') { 
-			$('.active').attr('class','');
+
+		if (page != 'index.jsp' && page != 'movie.jsp' && page != 'about.jsp'
+				&& page != 'contact.jsp') {
+			$('.active').attr('class', '');
 		}
 	}
-	
-	function validate(id,type){
-		var result = false ;
+
+	function validate(id, type) {
+		var result = false;
 		var message = "";
 		var value = $("#" + id).val();
-		
-		if(!isEmpty(value)){
-			switch(type) {
-			
-				case "email":
-					var re = /\S+@\S+\.\S+/;
-					result = re.test(value);
-					message = "Please enter a valid Email address";
-					break;
-					
-				case "password":
-					var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-					result = re.test(value);
-					message = "Password length should be between 6 to 20 and include atleast one lowercase and uppercase character and a number.";
-					break;
-					
-				case "text":
-					var re = /^[a-zA-z]+$/;
-					result = re.test(value);
-					message = "Name should only contain text characters";
-					break;
-					
-				case "gender":
-					result = true;
-					break;
-					
-				case "mobile":
-					var re = /^\d{10}$/;
-					result = re.test(value);
-					message = "Mobile number shoiuld only contain numbers";
-					break;
-					
-				case "nic":
-					var re = /^\d{9}\S{1}$/;
-					result = re.test(value);
-					message = "Please enter a valid nic number.";
-					break;
-					
-				case "regEmail":
-					var re = /\S+@\S+\.\S+/;
-					result = re.test(value);
-					message = "Please enter a valid Email address";
-					break;
-					
-				case "loginPass":
-					result = true;
-					break;
+
+		if (!isEmpty(value)) {
+			switch (type) {
+
+			case "email":
+				var re = /\S+@\S+\.\S+/;
+				result = re.test(value);
+				message = "Please enter a valid Email address";
+				break;
+
+			case "password":
+				var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+				result = re.test(value);
+				message = "Password length should be between 6 to 20 and include atleast one lowercase and uppercase character and a number.";
+				break;
+
+			case "text":
+				var re = /^[a-zA-z]+$/;
+				result = re.test(value);
+				message = "Name should only contain text characters";
+				break;
+
+			case "gender":
+				result = true;
+				break;
+
+			case "mobile":
+				var re = /^\d{10}$/;
+				result = re.test(value);
+				message = "Mobile number shoiuld only contain numbers";
+				break;
+
+			case "nic":
+				var re = /^\d{9}\S{1}$/;
+				result = re.test(value);
+				message = "Please enter a valid nic number.";
+				break;
+
+			case "regEmail":
+				var re = /\S+@\S+\.\S+/;
+				result = re.test(value);
+				message = "Please enter a valid Email address";
+				break;
+
+			case "loginPass":
+				result = true;
+				break;
 			}
-			
+
 		} else {
 			message = "Field should not be empty";
 		}
-		
-		if(!result){
-			$("#"+id).parent().children("span[class=errorMessage]").text(message);
+
+		if (!result) {
+			$("#" + id).parent().children("span[class=errorMessage]").text(
+					message);
 		} else {
-			$("#"+id).parent().children("span[class=errorMessage]").html("<img src='../images/ok.png' height='16' width='16'/>");
+			$("#" + id).parent().children("span[class=errorMessage]").html(
+					"<img src='../images/ok.png' height='16' width='16'/>");
 		}
-		
+
 		return result;
 	}
-	
+
 	function isEmpty(str) {
-	    return (!str || 0 === str.length);
+		return (!str || 0 === str.length);
 	}
 </script>
 
@@ -120,10 +125,16 @@
 						</ul>
 					</div>
 					<div class="login">
-						<ul>
-							<li><a href="#login-box" id="loginButton"><span>Login</span></a></li>
-							<li><a href="#register-box" id="registerButton"><span>Register</span></a></li>
-						</ul>
+						<c:if test="${sessionScope['login'] == null }">
+							<ul>
+								<li><a href="#login-box" id="loginButton"><span>Login</span></a></li>
+								<li><a href="#register-box" id="registerButton"><span>Register</span></a></li>
+							</ul>
+						</c:if>
+						<c:if test="${sessionScope['login'] != null }">
+							<div style="width:300px; margin:15px">You are logged in as <a href="profile.jsp"><span>${sessionScope["login"]}</span></span></a> (<a href"/logut.do"><span>Logout</span></a>)</li>
+							</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="clr"></div>

@@ -67,7 +67,7 @@ public class UserInsertAction extends HttpServlet {
 			
 			String verification = MD5HashGenerator.md5(email);
 			user.setVerified(verification);
-			
+			user.setUserType(Constants.USER_TYPE_USER);
 			
 			
 			if (UserDAO.INSTANCE.add(user)) {
