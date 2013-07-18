@@ -2,7 +2,7 @@
 <%@ include file="popup.jsp"%>
 
 <c:choose>
-	<c:when test="${requestScope['hasReset'] != 'true'	}">
+	<c:when test="${requestScope['resetMsg'] == null}">
 		<script type="text/javascript">
 			function submitReset(input) {
 				if (validate(input, 'email')) {
@@ -34,8 +34,7 @@
 	<c:otherwise>
 		<div class="reset_password">
 			<p>
-				<strong>Your request to reset password has been proceeded. New
-					temporary password has been sent to your email address. </strong>
+				<strong>${requestScope['resetMsg']}</strong>
 			</p>
 		</div>
 	</c:otherwise>

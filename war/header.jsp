@@ -134,9 +134,13 @@
 						</div>
 					</c:if>
 					<c:if test="${sessionScope['login'] != null }">
-						<div class="login">
-							You are logged in as <a href="profile.jsp"><span>${sessionScope["login"]}</span></a>
-							(<a href="/logut.do"><span>Logout</span></a>)
+						<div class="post_login">
+							<span style="background:none"> <span>You logged in as </span><span><a
+									href="profile.jsp" class="post_login_a" style="padding:10px;color:white;">
+										${sessionScope["login"]}</a> 
+										(<a href="/logout.do" class="post_login_a" style="padding-left:5px; padding-right:5px;color:white;">Logout</a>)
+							</span>
+							</span>
 						</div>
 					</c:if>
 

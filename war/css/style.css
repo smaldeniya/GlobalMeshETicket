@@ -140,14 +140,14 @@ h1 small {
 	height: 50px;
 }
 
-.menu_nav ul,.login ul {
+.menu_nav ul,.login ul, .post_login span {
 	list-style: none;
 	padding: 0;
 	height: 50px;
 	float: left;
 }
 
-.menu_nav ul li {
+.menu_nav ul li, .post_login span span {
 	margin: 0;
 	padding: 0 2px 0 0;
 	float: left;
@@ -161,7 +161,13 @@ h1 small {
 	background: url(../images/menu_split.gif) no-repeat left center;
 }
 
-.menu_nav ul li a, .login a {
+.post_login span span {
+	background:none; 
+	margin-top:16px; 
+	color:#681237; 
+	font-size:13px;	
+}
+.menu_nav ul li a, .login a .post_login span span a{
 	display: block;
 	margin: 0;
 	padding: 17px 28px 0;
@@ -176,7 +182,7 @@ h1 small {
 	background: none;
 }
 
-.menu_nav ul li.active a,.menu_nav ul li a:hover,.login ul li.active a,.login ul li a:hover, .login a:hover
+.menu_nav ul li.active a,.menu_nav ul li a:hover,.login ul li.active a,.login ul li a:hover, .login a:hover, .post_login_a:hover
 	{
 	text-decoration: none;
 	color: #fff;
@@ -516,7 +522,7 @@ ol li .send {
 	margin: 16px 0 0 0;
 }
 
-.login {
+.login, .post_login {
 	margin: 0 auto;
 	padding: 0;
 	height: 50px;
@@ -843,4 +849,7 @@ div.reset_password p {
 
 .forgot {
 	clear: both;
+}
+.post_login {
+	
 }

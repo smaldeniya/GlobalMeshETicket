@@ -18,4 +18,12 @@ public class Constants {
 	
 	public static final String USER_LOGIN_FAILED = "Login failed please try again.";
 	
+	public static final String RESET_PASSWORD_EMAIL_BODY = "Dear user, \n You password has been reset as requested.\n Your new password is {0}.\nRegards.";
+	
+	public static final String RESET_PASSWORD_EMAIL_SUBJECT = "Pasword reset : NOQueue.com";
+	
+	public static final String RESET_PASSWORD_SUCCESS_MESSAGE = "Your request to reset password has been proceeded. New	temporary password has been sent to your email address.";
+	
+	public static final String RESET_PASSWORD_WRONG_USER = "Wrong email address. There is no user registered with the email you entered.";
+	
 }

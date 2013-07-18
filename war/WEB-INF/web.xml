@@ -24,6 +24,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+	    <servlet-name>Logout</servlet-name>
+	    <servlet-class>com.golbalmesh.login.LogoutServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+	    <servlet-name>Logout</servlet-name>
+	    <url-pattern>/logout.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 	    <servlet-name>UserInsert</servlet-name>
 	    <servlet-class>com.golbalmesh.action.user.UserInsertAction</servlet-class>
 	</servlet>	
