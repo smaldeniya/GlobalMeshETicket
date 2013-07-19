@@ -1,4 +1,6 @@
 </div>
+</div>
+</div>
 		<div class="fbg">
 			<div class="fbg_resize">
 				<div class="col c1"></div>

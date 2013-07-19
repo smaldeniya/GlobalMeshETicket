@@ -27,14 +27,6 @@ html,.main {
 	line-height: 0;
 }
 
-h2 {
-	margin: 8px 0;
-	padding: 8px 0;
-	font-size: 25px;
-	font-weight: normal;
-	color: #3f3f3f;
-}
-
 p {
 	margin: 8px 0;
 	padding: 0 0 8px 0;
@@ -140,14 +132,14 @@ h1 small {
 	height: 50px;
 }
 
-.menu_nav ul,.login ul, .post_login span {
+.menu_nav ul,.login ul,.post_login span {
 	list-style: none;
 	padding: 0;
 	height: 50px;
 	float: left;
 }
 
-.menu_nav ul li, .post_login span span {
+.menu_nav ul li,.post_login span span {
 	margin: 0;
 	padding: 0 2px 0 0;
 	float: left;
@@ -162,12 +154,13 @@ h1 small {
 }
 
 .post_login span span {
-	background:none; 
-	margin-top:16px; 
-	color:#681237; 
-	font-size:13px;	
+	background: none;
+	margin-top: 16px;
+	color: #681237;
+	font-size: 13px;
 }
-.menu_nav ul li a, .login a .post_login span span a{
+
+.menu_nav ul li a,.login a .post_login span span a {
 	display: block;
 	margin: 0;
 	padding: 17px 28px 0;
@@ -182,7 +175,7 @@ h1 small {
 	background: none;
 }
 
-.menu_nav ul li.active a,.menu_nav ul li a:hover,.login ul li.active a,.login ul li a:hover, .login a:hover, .post_login_a:hover
+.menu_nav ul li.active a,.menu_nav ul li a:hover,.login ul li.active a,.login ul li a:hover,.login a:hover,.post_login_a:hover
 	{
 	text-decoration: none;
 	color: #fff;
@@ -201,7 +194,7 @@ h1 small {
 	width: 960px;
 	background: #f0f0f0 repeat-x left bottom;
 	overflow: auto;
-	height: 500px;
+	height: 550px;
 }
 
 .content .mainbar {
@@ -209,13 +202,6 @@ h1 small {
 	padding: 0 0 0 20px;
 	float: left;
 	width: 640px;
-}
-
-.content .mainbar h2 {
-	margin-bottom: 0;
-	padding-bottom: 8px;
-	font-size: 30px;
-	line-height: 1.2em;
 }
 
 .content .mainbar div.img {
@@ -259,12 +245,6 @@ h1 small {
 	margin: 0 0 12px;
 	padding: 8px 0;
 	background: repeat-x left bottom;
-}
-
-.content .sidebar h2 {
-	color: #949494;
-	text-transform: none;
-	border-bottom: 1px solid #d8d8d6;
 }
 
 ul.sb_menu,ul.ex_menu {
@@ -412,11 +392,6 @@ p.infopost a {
 	background: #ED1C24;
 }
 
-.fbg h2 {
-	color: #fff;
-	padding-bottom: 24px;
-}
-
 .fbg img.gal {
 	margin: 0 8px 8px 0;
 	padding: 0;
@@ -522,7 +497,7 @@ ol li .send {
 	margin: 16px 0 0 0;
 }
 
-.login, .post_login {
+.login,.post_login {
 	margin: 0 auto;
 	padding: 0;
 	height: 50px;
@@ -742,15 +717,15 @@ form.signin .textbox input {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
-	-webkit-appearance: none; 
-	-moz-appearance : textfield;
+	-webkit-appearance: none;
+	-moz-appearance: textfield;
 	font-size: 1.55em;
 	padding: 11px 20px;
 	width: 150px;
 	height: 42px;
-	background-color:white;
-	background:rgba(255,255,255, 0.9)  url(../images/down_arrow_select.png) no-repeat
-		right;
+	background-color: white;
+	background: rgba(255, 255, 255, 0.9)
+		url(../images/down_arrow_select.png) no-repeat right;
 }
 
 form.signin input:-moz-placeholder {
@@ -813,7 +788,7 @@ span.errorMessage {
 		rgb(233, 108, 108) 3%, rgb(237, 28, 36) 100%);
 	background-image: linear-gradient(top, rgb(255, 211, 211) 3%,
 		rgb(233, 108, 108) 3%, rgb(237, 28, 36) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(    startColorstr='#e2eeaf',
+	filter: progid:DXImageTransform.Microsoft.gradient(     startColorstr='#e2eeaf',
 		endColorstr='#90b026', GradientType=0);
 }
 
@@ -833,8 +808,8 @@ span.errorMessage {
 .heading {
 	font-size: 25px;
 	color: #3f3f3f;
-	font-weight: normal;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5)
+	font-weight: bold;
+	text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .username input:hover {
@@ -850,6 +825,39 @@ div.reset_password p {
 .forgot {
 	clear: both;
 }
-.post_login {
-	
+
+.seat_plan_header {
+	font-size: 22px;
+	text-shadow: 0 -1px 0 #fff;
+	color: rgb(237, 28, 36);
+	font-weight: bolder;
+	margin: 15px 0px 50px;
+	width: 600px;
+	height: 0px;
+	text-align: center;
+}
+
+.seatingArrangement {
+	width:550px;
+	border: 1px solid rgba(204, 204, 204, 1);
+	height: 390px;
+	background-color: rgba(255, 255, 255, 1);
+	-moz-border-radius: 5px;
+	-webkit-border-radius:5px;	
+	border-radius: 5px;
+	padding: 40px 10px 0px 50px;
+	bor
+}
+.plan{
+	margin-top: 30px
+}
+table.plan td {
+	width:30px;
+	height:20px;
+	padding-top:10px;
+	font-family:'DroidSansBold';
+	font-size:12px;
+	text-align:center;
+	background:url(../images/blankSeat.png);
+	background-color:#FFFFFF;
 }

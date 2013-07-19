@@ -119,7 +119,7 @@
 						<ul>
 							<li class="active"><a href="index.jsp"><span>Home
 										Page</span></a></li>
-							<li><a href="movies.html"><span>Movie Details</span></a></li>
+							<li><a href="movies.html"><span>Film Halls</span></a></li>
 							<li><a href="about.html"><span>About Us</span></a></li>
 							<li><a href="contact.html"><span>Contact Us</span></a></li>
 						</ul>
@@ -135,10 +135,12 @@
 					</c:if>
 					<c:if test="${sessionScope['login'] != null }">
 						<div class="post_login">
-							<span style="background:none"> <span>You logged in as </span><span><a
-									href="profile.jsp" class="post_login_a" style="padding:10px;color:white;">
-										${sessionScope["login"]}</a> 
-										(<a href="/logout.do" class="post_login_a" style="padding-left:5px; padding-right:5px;color:white;">Logout</a>)
+							<span style="background: none"> <span>You logged in
+									as </span><span><a href="profile.jsp" class="post_login_a"
+									style="padding: 10px; color: white;">
+										${sessionScope["login"]}</a> (<a href="/logout.do"
+									class="post_login_a"
+									style="padding-left: 5px; padding-right: 5px; color: white;">Logout</a>)
 							</span>
 							</span>
 						</div>
@@ -168,4 +170,6 @@
 			</div>
 		</div>
 
-		<div class="content_resize">
+		<div class="content">
+			<div class="content_resize">
+				<div class="mainbar">
