@@ -1,11 +1,24 @@
-<%@ include file="header.jsp"%>
+<%@ include file="movieHeader.jsp"%>
 <%@ include file="popup.jsp"%>
+
+<script type="text/javascript">
+	$(document).ready(function (){
+		$(".seatingArrangement").children("table").each(function () {
+			alert("hello")
+		});
+	})
+</script>
 
 <div class="seat_plan_header">Majestic cinema - Gold</div>
 <div class="clr"></div>
 
 <div class="seatingArrangement" align="center" >
   <div style="width:475px;">
+  	<div class="theater">
+  	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
+  		<iframe width="350" height="250" src="//www.youtube.com/embed/kEIVPiTuYkQ?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+  	</div>
+  	</div>
     <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;">
       <tr>
         <td>E10</td>
