@@ -18,7 +18,7 @@ public class CreateAdmin extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		// /adminC.do?adminId=admin1Id
 		try {
 			
 			String adminEmail = Utility.getCONFG().getProperty(Constants.SITE_ADMIN_EMAIL);

@@ -35,6 +35,10 @@
 		}
 	}
 
+	function getURLPath() {
+		return $(location).attr('protocol') + "//" + $(location).attr('hostname') + ":" + $(location).attr('port') + "/";
+	}
+	
 	function validate(id, type) {
 		var result = false;
 		var message = "";
@@ -80,7 +84,24 @@
 			case "regEmail":
 				var re = /\S+@\S+\.\S+/;
 				result = re.test(value);
-				message = "Please enter a valid Email address";
+				if(!result){
+					message = "Please enter a valid Email address.";
+				}
+				
+				var checkURL = getURLPath() + "userCheck.do?by=email&value=" + value;
+				$.ajax({
+					url:checkURL,
+					async:false,
+					type : "GET",
+					success: function(data,status){
+						if(data == "null"){
+							result = result && true;
+						} else {
+							result = result && false;
+							message = message + " This email is already registered.";
+						}
+					}
+				});
 				break;
 
 			case "loginPass":
@@ -119,7 +140,11 @@
 						<ul>
 							<li class="active"><a href="index.jsp"><span>Home
 										Page</span></a></li>
-							<li><a href="movies.html"><span>Film Halls</span></a></li>
+							<li><a href=""><span>Film Halls</span></a>
+								<ul>
+									<li><a href="gold_seatPlan.jsp"><span>MC - Gold</span></a></li>
+								</ul>
+							</li>
 							<li><a href="about.html"><span>About Us</span></a></li>
 							<li><a href="contact.html"><span>Contact Us</span></a></li>
 						</ul>
@@ -156,8 +181,10 @@
 				</div>
 				<div class="clr"></div>
 				<div class="slider">
-					<a href="#"><img src="images/MC_Gold.jpg" width="960"
-						height="360" alt="" /><span></span></a>
+					<div id="coin-slider">
+						<a href="#"><img src="images/MC_Gold.jpg" width="960"
+							height="360" alt="" /><span></span></a> 
+					</div>
 					<div class="clr"></div>
 				</div>
 				<div class="clr"></div>
