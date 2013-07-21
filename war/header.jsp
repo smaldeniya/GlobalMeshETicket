@@ -142,7 +142,7 @@
 										Page</span></a></li>
 							<li><a href=""><span>Film Halls</span></a>
 								<ul>
-									<li><a href="gold.do"><span>MC - Gold</span></a></li>
+									<li><a href="/gold.do"><span>MC - Gold</span></a></li>
 								</ul>
 							</li>
 							<li><a href="about.html"><span>About Us</span></a></li>
@@ -161,7 +161,10 @@
 					<c:if test="${sessionScope['login'] != null }">
 						<div class="post_login">
 							<span style="background: none"> <span>You logged in
-									as </span><span><a href="profile.jsp" class="post_login_a"
+									as </span><span><a href="
+									<c:if test="${sessionScope['type'] == 'user'}">/profile.jsp</c:if>
+									<c:if test="${sessionScope['type'] == 'admin'}">/adminProfile.jsp</c:if>									
+									" class="post_login_a"
 									style="padding: 10px; color: white;">
 										${sessionScope["login"]}</a> (<a href="/logout.do"
 									class="post_login_a"

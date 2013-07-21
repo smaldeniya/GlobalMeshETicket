@@ -39,7 +39,8 @@ public class LoginUserServlet extends HttpServlet {
 			if(user.getPassword().equals(encryptPwd))
 			{
 				HttpSession session = req.getSession();
-				session.setAttribute("login", user.getFirstName() + " " + user.getLastName());
+				String name = user.getFirstName() + " " + user.getLastName();
+				session.setAttribute("login", name.trim());
 				session.setAttribute("email", user.getEmail());
 				session.setAttribute("type", user.getUserType());
 				
