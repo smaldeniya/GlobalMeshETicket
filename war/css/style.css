@@ -223,17 +223,16 @@ h1 small {
 	width: 960px;
 	background: #f0f0f0 repeat-x left bottom;
 	overflow: auto;
-	height: 700px;
+	height: 850px;
 }
 
 .content .mainbar {
 	margin: 0;
-	padding: 0 0 0 20px;
-	float: left;
-	width: 640px;
+	padding: 0;
+	width: 960px;
 }
 
-.content .mainbar div.img {
+.content div.img {
 	padding: 12px 0 0;
 	float: left;
 }
@@ -715,7 +714,7 @@ form.signin p,form.signin span {
 	padding-bottom: 8px;
 }
 
-form.signin .textbox input {
+form.signin .textbox input, #ticketForm input {
 	display: inline;
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	border-style: solid;
@@ -757,12 +756,12 @@ form.signin .textbox input {
 		url(../images/down_arrow_select.png) no-repeat right;
 }
 
-form.signin input:-moz-placeholder {
+form.signin input:-moz-placeholder, #ticketForm input:-moz-placeholder {
 	color: #bbb;
 	text-shadow: 0 0 2px #000;
 }
 
-form.signin input::-webkit-input-placeholder {
+form.signin input::-webkit-input-placeholder, #ticketForm input:-webkit-input-placeholder {
 	color: #bbb;
 	text-shadow: 0 0 2px #000;
 }
@@ -841,7 +840,7 @@ span.errorMessage {
 	text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.5);
 }
 
-.username input:hover {
+.username input:hover{
 	border-style: solid;
 	border-color: maroon;
 }
@@ -901,4 +900,59 @@ table.plan td {
 
 table.plan td:HOVER {
 	background: #000 url(../images/onMouseOver.png);
+}
+.td_after_select {
+	background:url(../images/selected.png) !important;
+}
+#ticketForm {
+	width: 95%;
+	height: 100px;
+	background: #fff;
+	padding:10px;
+	margin-bottom: 20px;
+	position:relative;
+	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* CSS3 */
+	-moz-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* Firefox */
+	-webkit-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px
+		2px rgba(208, 223, 226, 0.4) inset;
+	/* Safari, Chrome */
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	/* Firefox */
+	-webkit-border-radius: 3px;
+	/* Safari, Chrome */;
+}
+#ticketForm form label {
+	display: block;
+	padding-bottom: 7px;
+}
+
+#ticketForm form label {
+	font-size: 20px;
+	font-weight:bold;
+	font-family: sans-serif;
+	display: block;
+	float: left;
+	margin-top: 5px;
+	clear: both;
+	padding: 10px
+}
+#ticketForm form label span{
+	float: left;
+}
+#ticketForm div {
+	position: absolute;
+	clear: left;
+}
+
+#ticketForm form input[type="number"]{
+	font-size:18px;
+	clear:both;
+	margin-top:15px;
+	width:110px;
+	height:20px;
 }

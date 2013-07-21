@@ -180,11 +180,9 @@
 					</h1>
 				</div>
 				<div class="clr"></div>
-				<div class="slider">
-					<div id="coin-slider">
+				<div class="slider">					
 						<a href="#"><img src="images/MC_Gold.jpg" width="960"
 							height="360" alt="" /><span></span></a> 
-					</div>
 					<div class="clr"></div>
 				</div>
 				<div class="clr"></div>

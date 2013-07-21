@@ -142,7 +142,7 @@
 										Page</span></a></li>
 							<li><a href=""><span>Film Halls</span></a>
 								<ul>
-									<li><a href="gold_seatPlan.jsp"><span>MC - Gold</span></a></li>
+									<li><a href="gold.do"><span>MC - Gold</span></a></li>
 								</ul>
 							</li>
 							<li><a href="about.html"><span>About Us</span></a></li>
