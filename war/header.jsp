@@ -119,7 +119,11 @@
 						<ul>
 							<li class="active"><a href="index.jsp"><span>Home
 										Page</span></a></li>
-							<li><a href="movies.html"><span>Film Halls</span></a></li>
+							<li><a href="movies.html"><span>Film Halls</span></a>
+								<ul>
+									<li><a href="gold_seatPlan.jsp"><span>MC - Gold</span></a></li>
+								</ul>
+							</li>
 							<li><a href="about.html"><span>About Us</span></a></li>
 							<li><a href="contact.html"><span>Contact Us</span></a></li>
 						</ul>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.golbalmesh.dto;
+package com.globalmesh.dto;
 
 import java.util.Date;
 
@@ -41,7 +41,7 @@ public class User {
 	private String address;
 	@Column(name = "MobileNo", nullable = false,length = 12)
 	private String mobileNo;	
-	@Column(name = "Verification", nullable = false, length = 50)
+	@Column(name = "Verification", nullable = false, length = 100)
 	private String verified;
 	@Column(name = "Type", nullable = false, length = 10)
 	private String userType;

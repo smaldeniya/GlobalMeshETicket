@@ -16,7 +16,7 @@
   <div style="width:475px;">
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
-  		<iframe width="350" height="250" src="//www.youtube.com/embed/kEIVPiTuYkQ?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+  		<iframe width="354" height="250" src="//www.youtube.com/embed/kEIVPiTuYkQ?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   	</div>
   	</div>
     <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;">

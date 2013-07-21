@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.golbalmesh.util;
+package com.globalmesh.util;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

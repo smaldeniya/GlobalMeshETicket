@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.golbalmesh.util;
+package com.globalmesh.util;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

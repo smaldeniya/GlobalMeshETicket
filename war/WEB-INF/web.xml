@@ -7,7 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 	    <servlet-name>ResetPassword</servlet-name>
-	    <servlet-class>com.golbalmesh.login.ResetPasswordServlet</servlet-class>
+	    <servlet-class>com.globalmesh.action.login.ResetPasswordServlet</servlet-class>
 	</servlet>	
 	<servlet-mapping>
 	    <servlet-name>ResetPassword</servlet-name>
@@ -16,7 +16,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 	    <servlet-name>Login</servlet-name>
-	    <servlet-class>com.golbalmesh.login.LoginUserServlet</servlet-class>
+	    <servlet-class>com.globalmesh.action.login.LoginUserServlet</servlet-class>
 	</servlet>	
 	<servlet-mapping>
 	    <servlet-name>Login</servlet-name>
@@ -25,7 +25,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 	    <servlet-name>Logout</servlet-name>
-	    <servlet-class>com.golbalmesh.login.LogoutServlet</servlet-class>
+	    <servlet-class>com.globalmesh.action.login.LogoutServlet</servlet-class>
 	</servlet>	
 	<servlet-mapping>
 	    <servlet-name>Logout</servlet-name>
@@ -34,11 +34,20 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 	    <servlet-name>UserInsert</servlet-name>
-	    <servlet-class>com.golbalmesh.action.user.UserInsertAction</servlet-class>
+	    <servlet-class>com.globalmesh.action.user.UserInsertAction</servlet-class>
 	</servlet>	
 	<servlet-mapping>
 	    <servlet-name>UserInsert</servlet-name>
 	    <url-pattern>/useri.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>CreateAdmin</servlet-name>
+	    <servlet-class>com.globalmesh.action.user.CreateAdmin</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+	    <servlet-name>CreateAdmin</servlet-name>
+	    <url-pattern>/adminC.do</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

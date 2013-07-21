@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.golbalmesh.action.user;
+package com.globalmesh.action.user;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.golbalmesh.dao.UserDAO;
-import com.golbalmesh.dto.User;
-import com.golbalmesh.util.Constants;
-import com.golbalmesh.util.MD5HashGenerator;
-import com.golbalmesh.util.Utility;
+import com.globalmesh.dao.UserDAO;
+import com.globalmesh.dto.User;
+import com.globalmesh.util.Constants;
+import com.globalmesh.util.MD5HashGenerator;
+import com.globalmesh.util.Utility;
 
 /**
  * @author Transformers
@@ -67,17 +67,18 @@ public class UserInsertAction extends HttpServlet {
 			
 			String verification = MD5HashGenerator.md5(email);
 			user.setVerified(verification);
-			user.setUserType(Constants.USER_TYPE_USER);
+			user.setUserType(Utility.getCONFG().getProperty(Constants.USER_TYPE_USER));
 			
 			
 			if (UserDAO.INSTANCE.add(user)) {
-				String message = Constants.USER_REG_SUCCESS_MESSAGE;		
-				req.setAttribute("message", message);
-				String URL = MessageFormat.format(Constants.SITE_URL, "useri.do?email="+user.getEmail()+"&verifi="+user.getVerified());
-				System.out.println(URL);
 				
-				String emailBody = MessageFormat.format(Constants.USER_REG_EMAIL_BODY, user.getFirstName(), user.getEmail(), URL);
-				Utility.sendEmail(Constants.USER_REG_EMAIL_SUBJECT, emailBody, user.getEmail(), Constants.SITE_EMAIL);
+				String URL = MessageFormat.format(Utility.getCONFG().getProperty(Constants.SITE_URL), "useri.do?verifi="+user.getVerified());
+				System.out.println(URL);
+				String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.USER_REG_EMAIL_BODY), user.getFirstName(), user.getEmail(), URL);
+				Utility.sendEmail(Utility.getCONFG().getProperty(Constants.USER_REG_EMAIL_SUBJECT), emailBody, user.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
+				
+				String message = Utility.getCONFG().getProperty(Constants.USER_REG_SUCCESS_MESSAGE);		
+				req.setAttribute("message", message);
 			}
 			
 			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
@@ -93,25 +94,24 @@ public class UserInsertAction extends HttpServlet {
 			throws ServletException, IOException {
 	
 		try {
-			User user = new User();
+			System.out.println(req.getParameter("verifi"));
+			User user = UserDAO.INSTANCE.getUserByVeriCode(req.getParameter("verifi"));
 			
-			user.setUserId("userId") ;
-			user.setFirstName("firstName") ;
-			user.setLastName("lastName") ;
-			user.setEmail("email");
-			user.setPassword(MD5HashGenerator.md5("password"));			
-			user.setGender("M");//M-Male F-Female								
-			//user.setDob(new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH).parse("2013-07-12"));
-			user.setCountry("country");
-			user.setAddress("address");
-			user.setMobileNo("mobileNo");
+			if(user != null) {
+				user.setVerified(Constants.USER_VERIFIED_DONE);
+				UserDAO.INSTANCE.add(user);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_REG_VARIFIED_MESSAGE));
+				
+			} else {
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_REG_VARIFIED_FAIL));
+			}			
 			
-			UserDAO.INSTANCE.add(user);
-			
-			//resp.sendRedirect("/TodoApplication.jsp");
+			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 }

@@ -143,16 +143,42 @@ h1 small {
 	margin: 0;
 	padding: 0 2px 0 0;
 	float: left;
-	background: url(../images/menu_split.gif) no-repeat right center;
 }
-
 .login ul li {
 	margin: 0;
 	padding: 0 2px 0 0;
 	float: left;
-	background: url(../images/menu_split.gif) no-repeat left center;
 }
 
+.menu_nav ul li ul {
+	background: rgba(247, 67, 74, 0);
+	background: rgb(247, 67, 74);
+    list-style:none;
+    position:inherit;
+    left:-9999px;
+    display: none;
+}
+
+.menu_nav ul li:HOVER ul{
+	left:inherit;
+	display: inline-block;
+}
+.menu_nav ul li:HOVER a{
+	background:rgb(247, 67, 74);
+}
+.menu_nav ul li ul li {
+	padding: 0px;
+	float: left;	
+}
+.menu_nav ul li:HOVER ul a{
+	text-decoration:none;
+	height: 15px;
+	clear: right;
+	line-height: 5px;
+}
+.menu_nav ul li:HOVER ul li a:HOVER{
+	color:#fff;
+}
 .post_login span span {
 	background: none;
 	margin-top: 16px;
@@ -160,7 +186,7 @@ h1 small {
 	font-size: 13px;
 }
 
-.menu_nav ul li a,.login a .post_login span span a {
+.menu_nav ul li a,.login a .post_login span span a, .menu_nav ul li ul li {
 	display: block;
 	margin: 0;
 	padding: 17px 28px 0;
@@ -184,6 +210,9 @@ h1 small {
 	font-size: 14px
 }
 
+.menu_nav ul li ul li a {
+	white-space: nowrap;
+}
 .content {
 	padding: 0;
 }
@@ -857,10 +886,11 @@ table.plan td {
 	padding:5px;
 	font-family:'DroidSansBold';
 	font-size:12px;
+	font-weight:bold;
 	text-align:center;
 	background:url(../images/blankSeat.png);
-	background-color:#FFFFFF;
-	color: black;
+	background-color:#000;
+	color: white;
 }
 .theater {
 	background:#000;
@@ -870,5 +900,5 @@ table.plan td {
 }
 
 table.plan td:HOVER {
-	background: #fff url(../images/onMouseOver.png);
+	background: #000 url(../images/onMouseOver.png);
 }

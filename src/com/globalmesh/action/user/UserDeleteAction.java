@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.golbalmesh.action.user;
+package com.globalmesh.action.user;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.golbalmesh.dao.UserDAO;
+import com.globalmesh.dao.UserDAO;
 
 /**
  * @author Dil

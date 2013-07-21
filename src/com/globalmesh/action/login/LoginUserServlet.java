@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.golbalmesh.login;
+package com.globalmesh.action.login;
 
 import java.io.IOException;
 
@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.golbalmesh.dao.UserDAO;
-import com.golbalmesh.dto.User;
-import com.golbalmesh.util.Constants;
-import com.golbalmesh.util.MD5HashGenerator;
+import com.globalmesh.dao.UserDAO;
+import com.globalmesh.dto.User;
+import com.globalmesh.util.Constants;
+import com.globalmesh.util.MD5HashGenerator;
+import com.globalmesh.util.Utility;
 
 /**
  * @author dil
@@ -46,7 +47,7 @@ public class LoginUserServlet extends HttpServlet {
 			}
 			else
 			{
-				req.setAttribute("message", Constants.USER_LOGIN_FAILED);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_LOGIN_FAILED));
 				req.getRequestDispatcher("/messages.jsp").forward(req, resp);		
 			}
 				

@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.golbalmesh.dao;
+package com.globalmesh.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.golbalmesh.dto.User;
-import com.golbalmesh.util.EMFService;
+import com.globalmesh.dto.User;
+import com.globalmesh.util.EMFService;
 
 /**
  * @author Dil
@@ -68,6 +68,22 @@ public enum UserDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from User t where t.email = :email");
 		q.setParameter("email", email);		
+		
+		User user = null;
+		
+		try {
+			user = (User)q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
+		
+		return user;
+	}
+	
+	public User getUserByVeriCode(String verificationCode)  throws Exception{
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from User t where t.verified = :verified");
+		q.setParameter("verified", verificationCode);		
 		User user = (User)q.getResultList().get(0);
 		return user;
 	}
