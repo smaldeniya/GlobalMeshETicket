@@ -20,4 +20,17 @@ public class GoldAction extends HttpServlet {
 		req.getRequestDispatcher("/gold_seatPlan.jsp").forward(req, resp);
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String hallName = req.getParameter("hallName");
+		String showDate = req.getParameter("showDate");
+		String showTime = req.getParameter("showTime");
+		String numOfHalfTickets = req.getParameter("halfTicket");
+		String seatSelection = req.getParameter("seatSelection");
+		String seatCount = req.getParameter("seatCount");
+		
+		
+	}
+	
 }
