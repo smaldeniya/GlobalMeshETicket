@@ -924,6 +924,9 @@ table.ultra_plan td {
 table.plan td.ctmgmt,table.ultra_plan td.ctmgmt, table.ultra_plan td.ctmgmt:hover, table.platinum_plan td.ctmgmt, table.platinum_plan td.ctmgmt:hover {
 	background-color:rgba(255,55,61,1);
 }
+table.plan td.sampath, table.ultra_plan td.sampath, table.platinum_plan td.sampath,table.plan td.sampath:hover, table.ultra_plan td.sampath:hover, table.platinum_plan td.sampath:hover {
+	background-color:rgba(255,204,51,1);
+}
 .theater {
 	background:#000;
 	width:480px;

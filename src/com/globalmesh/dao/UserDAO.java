@@ -115,4 +115,55 @@ public enum UserDAO {
 			em.close();
 		}
 	}
+	
+	public boolean update(User user)  throws Exception{
+		boolean isUpdateSuccess = false;
+		
+		synchronized (this) {			
+			try
+			{				
+				EntityManager em = EMFService.get().createEntityManager();
+							
+				User userFrmDb = null;
+				Query q = em.createQuery("select t from User t where t.email = :email");
+				q.setParameter("email", user.getEmail());
+				
+				userFrmDb = (User)q.getResultList().get(0);
+				
+				if(user.getAddress() != null && !user.getAddress().equals("")){
+					userFrmDb.setAddress(user.getAddress());
+				}
+				
+				if(user.getCountry() != null && !user.getCountry().equals("")){
+					userFrmDb.setCountry(user.getCountry());
+				}				
+				
+				userFrmDb.setFirstName(user.getFirstName());
+				
+				userFrmDb.setLastName(user.getLastName());
+				
+				if(user.getMobileNo() != null  && !user.getMobileNo().equals("")){
+					userFrmDb.setMobileNo(user.getMobileNo());
+				}
+				
+				if(user.getPassword() != null && !user.getPassword().equals("")){
+					userFrmDb.setPassword(user.getPassword());
+				}
+				
+				em.getTransaction().begin();
+				//em.persist(user);
+				em.getTransaction().commit();
+				em.close();
+				
+				isUpdateSuccess = true;
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	
+		}
+		
+		return isUpdateSuccess;
+	}
 }

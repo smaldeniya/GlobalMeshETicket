@@ -214,7 +214,7 @@
 						<div class="post_login">
 							<span style="background: none"> <span>You logged in
 									as </span><span><a href="
-									<c:if test="${sessionScope['type'] == 'user'}">/profile.jsp</c:if>
+									<c:if test="${sessionScope['type'] == 'user'}">/userg.do</c:if>
 									<c:if test="${sessionScope['type'] == 'admin'}">/adminProfile.jsp</c:if>									
 									" class="post_login_a"
 									style="padding: 10px; color: white;">
