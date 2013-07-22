@@ -27,6 +27,7 @@ public enum UserDAO {
 		Query q = em.createQuery("select u from User u");
 		@SuppressWarnings("unchecked")
 		List<User> todos = q.getResultList();
+		em.close();
 		return todos;
 	}
 
@@ -57,10 +58,15 @@ public enum UserDAO {
 
 	public User getUserById(String userId)  throws Exception{
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select t from User t");
-				//.createQuery("select t from User t where t.userId = :userId");
-		//q.setParameter("userId", userId);		
-		User user = (User)q.getResultList().get(0);
+		Query q = em.createQuery("select t from User t where t.userId = :userId");
+		q.setParameter("userId", userId);		
+		User user;
+		try {
+			user = (User) q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			user = null;
+		}
+		em.close();
 		return user;
 	}
 	
@@ -74,7 +80,9 @@ public enum UserDAO {
 		try {
 			user = (User)q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
-			return null;
+			user = null;
+		}finally{
+			em.close();
 		}
 		
 		return user;
@@ -84,7 +92,15 @@ public enum UserDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from User t where t.verified = :verified");
 		q.setParameter("verified", verificationCode);		
-		User user = (User)q.getResultList().get(0);
+		User user;
+		try {
+			user = (User) q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			user = null;
+		} finally {
+			em.close();
+		}
+		
 		return user;
 	}
 

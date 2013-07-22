@@ -16,58 +16,61 @@
 				<div class="mainbar">
 
 
+
 <script type="text/javascript">
 	$(".seatingArrangement").ready(function (){
 		$(".seatingArrangement").children().find("table td").each(function (){
 			
-			$(this).click(function () {				
-				if($(this).css("background-image").indexOf("selected.png") == -1){
-					
-					$(this).css("background-image", "url(../images/selected.png)");
-					
-					var seats = $("#seatSelection").val();
-					if(isEmpty(seats)){
-						seats = $(this).text();
-					} else {
-						seats = seats + ";" + $(this).text();
+			if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt")) {
+				$(this).click(function () {				
+					if($(this).css("background-image").indexOf("selected_small.png") == -1){
+						
+						$(this).css("background-image", "url(../images/selected_small.png)");
+						
+						var seats = $("#seatSelection").val();
+						if(isEmpty(seats)){
+							seats = $(this).text();
+						} else {
+							seats = seats + ";" + $(this).text();
+						}
+						$("#seatSelection").val(seats);
+						
+						var seatCount = $("#seatCount").val();
+						if(!isEmpty(seatCount)) {
+							seatCount = parseInt(seatCount);
+							seatCount += 1;
+						} else {
+							seatCount = 1;
+						}
+						$("#seatCount").val(seatCount);
+						$("#seatCounter").text(seatCount);
+						
+					}else {
+						$(this).removeAttr( 'style' );
+						var removeVal = $(this).text();
+						var seats = $("#seatSelection").val();
+						var removeValIndex = seats.indexOf(removeVal);
+						var lastIndexOfdel = seats.lastIndexOf(";")
+						//if last index is greater than remov index then remove with ; else remove without ;
+						if(lastIndexOfdel > removeValIndex) {
+							removeVal = removeVal + ";";
+						}
+						
+						$("#seatSelection").val(seats.replace(removeVal, ""));
+						
+						var seatCount = $("#seatCount").val();
+						if(!isEmpty(seatCount)) {
+							seatCount = parseInt(seatCount);
+							if(seatCount >0){
+								seatCount -= 1;
+							}						
+						}
+						$("#seatCount").val(seatCount);
+						$("#seatCounter").text(seatCount);
+											
 					}
-					$("#seatSelection").val(seats);
-					
-					var seatCount = $("#seatCount").val();
-					if(!isEmpty(seatCount)) {
-						seatCount = parseInt(seatCount);
-						seatCount += 1;
-					} else {
-						seatCount = 1;
-					}
-					$("#seatCount").val(seatCount);
-					$("#seatCounter").text(seatCount);
-					
-				}else {
-					$(this).removeAttr( 'style' );
-					var removeVal = $(this).text();
-					var seats = $("#seatSelection").val();
-					var removeValIndex = seats.indexOf(removeVal);
-					var lastIndexOfdel = seats.lastIndexOf(";")
-					//if last index is greater than remov index then remove with ; else remove without ;
-					if(lastIndexOfdel > removeValIndex) {
-						removeVal = removeVal + ";";
-					}
-					
-					$("#seatSelection").val(seats.replace(removeVal, ""));
-					
-					var seatCount = $("#seatCount").val();
-					if(!isEmpty(seatCount)) {
-						seatCount = parseInt(seatCount);
-						if(seatCount >0){
-							seatCount -= 1;
-						}						
-					}
-					$("#seatCount").val(seatCount);
-					$("#seatCounter").text(seatCount);
-										
-				}
-			});
+				});
+			}
 			
 		});
 		
@@ -75,8 +78,7 @@
 	});
 	
 	function btnBuyOnClick() {
-		if(validate('showDate','date') && validate('showTime', 'showTime') && 
-				validate('halfTicket','number') && parseInt($("#seatCount").val()) >= 0){
+		if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
 			$("#filmBookForms").attr("action", "/gold.do");
 			$("form")[2].submit();
 		}
@@ -88,6 +90,7 @@
 	
 	
 </script>
+
 <div align="center">
 
 <div class="seat_plan_header">Majestic cinema - Gold</div>
@@ -143,14 +146,14 @@
 
 <div class="clr"></div>
 
-<div class="seatingArrangement" align="center" >
-  <div style="width:475px;">
+<div class="seatingArrangement" align="center" style="width:920px; height:620px;">
+  <div style="width:920px;">
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
   		<iframe width="354" height="250" src="//${applicationScope['mcGoldMovie']}?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   	</div>
   	</div>
-    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;">
+    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;margin-left:225px;">
       <tr>
         <td id="E10">E10</td>
         <td id="E9">E9</td>

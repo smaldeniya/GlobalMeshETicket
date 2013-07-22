@@ -35,4 +35,6 @@ public class Constants {
 	public static final String USER_VERIFIED_DONE = "true";
 	
 	public static final String ADMIN_CREATED = "admin.created";
+	
+	public static final String LOGIN_NEED_MESSAGE = "user.msg.login.need";
 }

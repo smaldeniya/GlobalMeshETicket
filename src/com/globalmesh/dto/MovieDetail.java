@@ -24,7 +24,7 @@ public class MovieDetail {
 	private Long movieId;
 	@Column(name = "MovieName", nullable = false,length = 50)
 	private String movieName;
-	@Column(name = "MovieDetails", nullable = false,length = 500)
+	@Column(name = "MovieDetails", nullable = false,length = 1000)
 	private String movieDetails;
 	@Column(name = "MovieTheatre", nullable = false,length = 100)
 	private String movieTheatre;
@@ -40,6 +40,8 @@ public class MovieDetail {
 	private String movieTime5;
 	@Column(name = "MovieStatus", nullable = false)
 	private int MovieStatus;
+	@Column(name = "YouTube", nullable = false)
+	private String movieYouTube;
 	/**
 	 * @return the movieId
 	 */

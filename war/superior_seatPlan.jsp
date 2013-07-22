@@ -20,54 +20,56 @@
 	$(".seatingArrangement").ready(function (){
 		$(".seatingArrangement").children().find("table td").each(function (){
 			
-			$(this).click(function () {				
-				if($(this).css("background-image").indexOf("selected.png") == -1){
-					
-					$(this).css("background-image", "url(../images/selected.png)");
-					
-					var seats = $("#seatSelection").val();
-					if(isEmpty(seats)){
-						seats = $(this).text();
-					} else {
-						seats = seats + ";" + $(this).text();
+			if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt")) {
+				$(this).click(function () {				
+					if($(this).css("background-image").indexOf("selected_small.png") == -1){
+						
+						$(this).css("background-image", "url(../images/selected_small.png)");
+						
+						var seats = $("#seatSelection").val();
+						if(isEmpty(seats)){
+							seats = $(this).text();
+						} else {
+							seats = seats + ";" + $(this).text();
+						}
+						$("#seatSelection").val(seats);
+						
+						var seatCount = $("#seatCount").val();
+						if(!isEmpty(seatCount)) {
+							seatCount = parseInt(seatCount);
+							seatCount += 1;
+						} else {
+							seatCount = 1;
+						}
+						$("#seatCount").val(seatCount);
+						$("#seatCounter").text(seatCount);
+						
+					}else {
+						$(this).removeAttr( 'style' );
+						var removeVal = $(this).text();
+						var seats = $("#seatSelection").val();
+						var removeValIndex = seats.indexOf(removeVal);
+						var lastIndexOfdel = seats.lastIndexOf(";")
+						//if last index is greater than remov index then remove with ; else remove without ;
+						if(lastIndexOfdel > removeValIndex) {
+							removeVal = removeVal + ";";
+						}
+						
+						$("#seatSelection").val(seats.replace(removeVal, ""));
+						
+						var seatCount = $("#seatCount").val();
+						if(!isEmpty(seatCount)) {
+							seatCount = parseInt(seatCount);
+							if(seatCount >0){
+								seatCount -= 1;
+							}						
+						}
+						$("#seatCount").val(seatCount);
+						$("#seatCounter").text(seatCount);
+											
 					}
-					$("#seatSelection").val(seats);
-					
-					var seatCount = $("#seatCount").val();
-					if(!isEmpty(seatCount)) {
-						seatCount = parseInt(seatCount);
-						seatCount += 1;
-					} else {
-						seatCount = 1;
-					}
-					$("#seatCount").val(seatCount);
-					$("#seatCounter").text(seatCount);
-					
-				}else {
-					$(this).removeAttr( 'style' );
-					var removeVal = $(this).text();
-					var seats = $("#seatSelection").val();
-					var removeValIndex = seats.indexOf(removeVal);
-					var lastIndexOfdel = seats.lastIndexOf(";")
-					//if last index is greater than remov index then remove with ; else remove without ;
-					if(lastIndexOfdel > removeValIndex) {
-						removeVal = removeVal + ";";
-					}
-					
-					$("#seatSelection").val(seats.replace(removeVal, ""));
-					
-					var seatCount = $("#seatCount").val();
-					if(!isEmpty(seatCount)) {
-						seatCount = parseInt(seatCount);
-						if(seatCount >0){
-							seatCount -= 1;
-						}						
-					}
-					$("#seatCount").val(seatCount);
-					$("#seatCounter").text(seatCount);
-										
-				}
-			});
+				});
+			}
 			
 		});
 		
@@ -76,7 +78,7 @@
 	
 	function btnBuyOnClick() {
 		if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
-			$("#filmBookForms").attr("action", "/gold.do");
+			$("#filmBookForms").attr("action", "/superior.do");
 			$("form")[2].submit();
 		}
 	}
@@ -87,14 +89,15 @@
 	
 	
 </script>
+
 <div align="center">
 
-<div class="seat_plan_header">Majestic cinema - Gold</div>
+<div class="seat_plan_header">Majestic cinema - Superior</div>
 <div class="clr"></div>
 
 <div id="ticketForm">
-  	<form action="/gold.do" method="post" id="filmBookForms" name="filmBookForms">
-  		<input hidden="true" style="display:none" value="gold" id="hallName" name="hallName"/>
+  	<form action="/superior.do" method="post" id="filmBookForms" name="filmBookForms">
+  		<input hidden="true" style="display:none" value="superior" id="hallName" name="hallName"/>
   		<div style="margin-left:20px;">
   			<label>
 	  			<span>Show Date</span>
@@ -107,7 +110,7 @@
   			<label>
 	  			<span>Show Time</span>
 	  			<select class="styled-select " id="showTime" name="showTime" style="font-size:18px;clear:both;margin-top:15px;width:110px;height:45px;" onblur="validate('showTime', 'showTime')">
-	  			<% String[] shows = (String[])request.getAttribute("goldShows"); 
+	  			<% String[] shows = (String[])request.getAttribute("superiorShows"); 
 	  				for(String show : shows){
 	  			%>
 	  			<option value="<% out.print(show); %>"><% out.print(show); %></option>
@@ -142,86 +145,225 @@
 
 <div class="clr"></div>
 
-<div class="seatingArrangement" align="center" >
-  <div style="width:475px;">
+<div class="seatingArrangement" align="center" style="width:920px; height:720px;">
+  <div style="width:920px;">
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
-  		<iframe width="354" height="250" src="//${applicationScope['mcGoldMovie'] }?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+  		<iframe width="354" height="250" src="//${requestScope['superiorShowYoutube'] }?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   	</div>
   	</div>
-    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;">
+    <table border="0" cellspacing="2" cellpadding="2" class="ultra_plan" style="float:left;">
       <tr>
-        <td id="E10">E10</td>
-        <td id="E9">E9</td>
-        <td id="E8">E8</td>
-        <td id="E7">E7</td>
-        <td id="E6">E6</td>
+        <td class="blank"></td>
+        <td>H23</td>
+        <td>H22</td>
+        <td>H21</td>
+        <td>H20</td>
+        <td>H19</td>
+        <td>H18</td>
+        <td>H17</td>
+        <td>H16</td>
+        <td>H15</td>
+        <td>H14</td>
+        <td>H13</td>
       </tr>
       <tr>
-        <td id="D10">D10</td>
-        <td id="D9">D9</td>
-        <td id="D8">D8</td>
-        <td id="D7">D7</td>
-        <td id="D6">D6</td>
+        <td>G24</td>
+        <td>G23</td>
+        <td>G22</td>
+        <td>G21</td>
+        <td>G20</td>
+        <td>G19</td>
+        <td>G18</td>
+        <td>G17</td>
+        <td>G16</td>
+        <td>G15</td>
+        <td>G14</td>
+        <td>G13</td>
       </tr>
       <tr>
-        <td id="C10">C10</td>
-        <td id="C9">C9</td>
-        <td id="C8">C8</td>
-        <td id="C7">C7</td>
-        <td id="C6">C6</td>
+        <td>F24</td>
+        <td>F23</td>
+        <td>F22</td>
+        <td>F21</td>
+        <td>F20</td>
+        <td>F19</td>
+        <td>F18</td>
+        <td>F17</td>
+        <td>F16</td>
+        <td>F15</td>
+        <td>F14</td>
+        <td>F13</td>
       </tr>
       <tr>
-        <td id="B10">B10</td>
-        <td id="B9">B9</td>
-        <td id="B8">B8</td>
-        <td id="B7">B7</td>
-        <td id="B6">B6</td>
+        <td class="blank"></td>
+        <td>E23</td>
+        <td>E22</td>
+        <td>E21</td>
+        <td>E20</td>
+        <td>E19</td>
+        <td>E18</td>
+        <td>E17</td>
+        <td>E16</td>
+        <td>E15</td>
+        <td>E14</td>
+        <td>E13</td>
       </tr>
       <tr>
-        <td id="A10">A10</td>
-        <td id="A9">A9</td>
-        <td id="A8">A8</td>
-        <td id="A7">A7</td>
-        <td id="A6">A6</td>
+        <td>D24</td>
+        <td>D23</td>
+        <td>D22</td>
+        <td>D21</td>
+        <td>D20</td>
+        <td>D19</td>
+        <td>D18</td>
+        <td>D17</td>
+        <td>D16</td>
+        <td>D15</td>
+        <td>D14</td>
+        <td>D13</td>
+      </tr>
+      <tr>
+        <td class="ctmgmt">C24</td>
+        <td class="ctmgmt">C23</td>
+        <td class="ctmgmt">C22</td>
+        <td class="ctmgmt">C21</td>
+        <td class="ctmgmt">C20</td>
+        <td class="ctmgmt">C19</td>
+        <td class="ctmgmt">C18</td>
+        <td class="ctmgmt">C17</td>
+        <td class="ctmgmt">C16</td>
+        <td class="ctmgmt">C15</td>
+        <td class="ctmgmt">C14</td>
+        <td class="ctmgmt">C13</td>
+      </tr>
+      <tr>
+        <td class="blank"></td>
+        <td>B23</td>
+        <td>B22</td>
+        <td>B21</td>
+        <td>B20</td>
+        <td>B19</td>
+        <td>B18</td>
+        <td>B17</td>
+        <td>B16</td>
+        <td>B15</td>
+        <td>B14</td>
+        <td>B13</td>
+      </tr>
+      <tr>
+        <td class="blank"></td>
+        <td>A23</td>
+        <td>A22</td>
+        <td>A21</td>
+        <td>A20</td>
+        <td>A19</td>
+        <td>A18</td>
+        <td>A17</td>
+        <td>A16</td>
+        <td>A15</td>
+        <td class="blank"></td>
+        <td class="blank"></td>
       </tr>
     </table>
-    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="margin-left:35px; float:left;">
+    <table border="0" cellspacing="2" cellpadding="2" class="ultra_plan" style="float:left; margin-left:10px;">
       <tr>
-        <td id="E5">E5</td>
-        <td id="E4">E4</td>
-        <td id="E3">E3</td>
-        <td id="E2">E2</td>
-        <td id="E1">E1</td>
+        <td>H12</td>
+        <td>H11</td>
+        <td>H10</td>
+        <td>H9</td>
+        <td>H8</td>
+        <td>H7</td>
+        <td>H6</td>
+        <td>H5</td>
+        <td>H4</td>
+        <td>H3</td>
+        <td>H2</td>
+        <td>H1</td>
       </tr>
       <tr>
-        <td id="D5">D5</td>
-        <td id="D4">D4</td>
-        <td id="D3">D3</td>
-        <td id="D2">D2</td>
-        <td id="D1">D1</td>
+        <td>G12</td>
+        <td>G11</td>
+        <td>G10</td>
+        <td>G9</td>
+        <td>G8</td>
+        <td>G7</td>
+        <td>G6</td>
+        <td>G5</td>
+        <td>G4</td>
+        <td>G3</td>
+        <td>G2</td>
+        <td>G1</td>
       </tr>
       <tr>
-        <td id="C5">C5</td>
-        <td id="C4">C4</td>
-        <td id="C3">C3</td>
-        <td id="C2">C2</td>
-        <td id="C1">C1</td>
+        <td>F12</td>
+        <td>F11</td>
+        <td>F10</td>
+        <td>F9</td>
+        <td>F8</td>
+        <td>F7</td>
+        <td>F6</td>
+        <td>F5</td>
+        <td>F4</td>
+        <td>F3</td>
+        <td>F2</td>
+        <td>F1</td>
       </tr>
       <tr>
-        <td id="B5">B5</td>
-        <td id="B4">B4</td>
-        <td id="B3">B3</td>
-        <td id="B21">B2</td>
-        <td id="B1">B1</td>
+        <td>E12</td>
+        <td>E11</td>
+        <td>E10</td>
+        <td>E9</td>
+        <td>E8</td>
+        <td>E7</td>
+        <td>E6</td>
+        <td>E5</td>
+        <td>E4</td>
+        <td>E3</td>
+        <td>E2</td>
+        <td>E1</td>
       </tr>
       <tr>
-        <td id="A5">A5</td>
-        <td id="A4">A4</td>
-        <td id="A3">A3</td>
-        <td id="A2">A2</td>
-        <td id="A1">A1</td>
-      </tr>	
+        <td>D12</td>
+        <td>D11</td>
+        <td>D10</td>
+        <td>D9</td>
+        <td>D8</td>
+        <td>D7</td>
+        <td>D6</td>
+        <td>D5</td>
+        <td>D4</td>
+        <td>D3</td>
+        <td>D2</td>
+        <td>D1</td>
+      </tr>
+      <tr>
+        <td>C12</td>
+        <td>C11</td>
+        <td>C10</td>
+        <td>C9</td>
+        <td>C8</td>
+        <td>C7</td>
+        <td>C6</td>
+        <td>C5</td>
+        <td>C4</td>
+        <td>C3</td>
+        <td>C2</td>
+        <td>C1</td>
+      </tr>
+      <tr>
+        <td>B12</td>
+        <td>B11</td>
+        <td>B10</td>
+        <td>B9</td>
+        <td colspan="8" rowspan="2" class="blank"></td>
+        </tr>
+      <tr>
+        <td>A12</td>
+        <td>A11</td>
+        <td>A10</td>
+        <td>A9</td>
+      </tr>
     </table>
   </div>
   
