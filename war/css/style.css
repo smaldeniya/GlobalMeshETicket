@@ -134,9 +134,9 @@ h1 small {
 
 .menu_nav ul,.login ul,.post_login span {
 	list-style: none;
-	padding: 0;
 	height: 50px;
 	float: left;
+	display:inline;
 }
 
 .menu_nav ul li,.post_login span span {
@@ -149,35 +149,29 @@ h1 small {
 	padding: 0 2px 0 0;
 	float: left;
 }
-
-.menu_nav ul li ul {
+nav ul ul {
+	border-radius: 0px; 
+	padding: 0;
+	position: relative; 
+	top: 100%;
 	background: rgba(247, 67, 74, 0);
 	background: rgb(247, 67, 74);
-    list-style:none;
-    position:inherit;
-    left:-9999px;
+	top: 100%;
     display: none;
+    left:-9999px;
 }
-
-.menu_nav ul li:HOVER ul{
+nav ul li:HOVER ul{
 	left:inherit;
-	display: inline-block;
+	display: inline-table;
+	float: left;
+	
 }
-.menu_nav ul li:HOVER a{
-	background:rgb(247, 67, 74);
-}
-.menu_nav ul li ul li {
-	padding: 0px;
-	float: left;	
-}
-.menu_nav ul li:HOVER ul a{
-	text-decoration:none;
-	height: 15px;
-	clear: right;
-	line-height: 5px;
-}
-.menu_nav ul li:HOVER ul li a:HOVER{
-	color:#fff;
+nav ul ul li {
+    list-style:none;
+	float: left; 
+	position: relative;
+	clear:left;
+	z-index: 1000;
 }
 .post_login span span {
 	background: none;
@@ -185,10 +179,16 @@ h1 small {
 	color: #681237;
 	font-size: 13px;
 }
+.menu_nav ul li:HOVER a{
+	background:rgb(247, 67, 74);
+}
+nav ul:after {
+	content: ""; clear: both; display: block;
+}
 
-.menu_nav ul li a,.login a .post_login span span a, .menu_nav ul li ul li {
+.menu_nav ul li a,.login a .post_login span span a{
 	display: block;
-	margin: 0;
+	margin: 0px 5px 0px 5px;
 	padding: 17px 28px 0;
 	height: 33px;
 	font-size: 13px;
@@ -207,10 +207,11 @@ h1 small {
 	color: #fff;
 	text-shadow: #CCC;
 	font-weight: bold;
-	font-size: 14px
+	font-size: 14px;
+	margin: 0;
 }
 
-.menu_nav ul li ul li a {
+nav ul ul li a {
 	white-space: nowrap;
 }
 .content {
@@ -223,7 +224,7 @@ h1 small {
 	width: 960px;
 	background: #f0f0f0 repeat-x left bottom;
 	overflow: auto;
-	height: 850px;
+	height: 1100px;
 }
 
 .content .mainbar {
@@ -891,6 +892,29 @@ table.plan td {
 	background-color:#000;
 	color: white;
 }
+.ultra_plan{
+	margin-top: 30px
+}
+table.plan td.blank, table.ultra_plan td.blank {
+	background:none;
+	cursor:default;
+	background-color:#000;
+}
+table.ultra_plan td {
+	width:30px;
+	height:25px;
+	padding:4px;
+	font-family:'DroidSansBold';
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	background:url(../images/blankSeat.png);
+	background-color:#000;
+	color: white;
+}
+table.plan td.ctmgmt,table.ultra_plan td.ctmgmt {
+	background-color:rgba(255,55,61,1);
+}
 .theater {
 	background:#000;
 	width:480px;
@@ -898,7 +922,7 @@ table.plan td {
 	background: url(../images/filmhall.png);
 }
 
-table.plan td:HOVER {
+table.plan td:HOVER, table.ultra_plan td:HOVER  {
 	background: #000 url(../images/onMouseOver.png);
 }
 .td_after_select {

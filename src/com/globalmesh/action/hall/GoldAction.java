@@ -29,8 +29,9 @@ public class GoldAction extends HttpServlet {
 		String numOfHalfTickets = req.getParameter("halfTicket");
 		String seatSelection = req.getParameter("seatSelection");
 		String seatCount = req.getParameter("seatCount");
+		String userEmail = (String) req.getSession().getAttribute("email");
 		
-		
+		System.out.println(userEmail + seatSelection);
 	}
 	
 }

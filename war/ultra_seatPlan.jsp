@@ -1,6 +1,20 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@ include file="movieHeader.jsp"%>
+<%@include file="header_common.jsp" %>
 <%@ include file="popup.jsp"%>
+
+				<div class="slider">					
+						<a href="#"><img src="images/MC_Ultra.jpg" width="960"
+							height="360" alt="" /><span></span></a> 
+					<div class="clr"></div>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+
+		<div class="content">
+			<div class="content_resize">
+				<div class="mainbar">
+
 
 <script type="text/javascript">
 	$(".seatingArrangement").ready(function (){
@@ -75,7 +89,7 @@
 </script>
 <div align="center">
 
-<div class="seat_plan_header">Majestic cinema - Gold</div>
+<div class="seat_plan_header">Majestic cinema - Ultra</div>
 <div class="clr"></div>
 
 <div id="ticketForm">
@@ -128,87 +142,204 @@
 
 <div class="clr"></div>
 
-<div class="seatingArrangement" align="center" >
-  <div style="width:475px;">
+<div class="seatingArrangement" align="center" style="width:920px; height:720px;">
+  <div style="width:920px;">
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
-  		<iframe width="354" height="250" src="//${applicationScope['mcGoldMovie'] }?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+  		<iframe width="354" height="250" src="//${applicationScope['mcUltraMovie']}?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   	</div>
   	</div>
-    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;">
+    
+    <table border="0" cellspacing="3" cellpadding="3" class="ultra_plan" style="float:left;">
       <tr>
-        <td id="E10">E10</td>
-        <td id="E9">E9</td>
-        <td id="E8">E8</td>
-        <td id="E7">E7</td>
-        <td id="E6">E6</td>
+        <td>H22</td>
+        <td>H21</td>
+        <td>H20</td>
+        <td>H19</td>
+        <td>H18</td>
+        <td>H17</td>
+        <td>H16</td>
+        <td>H15</td>
+        <td>H14</td>
+        <td>H13</td>
+        <td>H12</td>
       </tr>
       <tr>
-        <td id="D10">D10</td>
-        <td id="D9">D9</td>
-        <td id="D8">D8</td>
-        <td id="D7">D7</td>
-        <td id="D6">D6</td>
+        <td>G22</td>
+        <td>G21</td>
+        <td>G20</td>
+        <td>G19</td>
+        <td>G18</td>
+        <td>G17</td>
+        <td>G16</td>
+        <td>G15</td>
+        <td>G14</td>
+        <td>G13</td>
+        <td>G12</td>
       </tr>
       <tr>
-        <td id="C10">C10</td>
-        <td id="C9">C9</td>
-        <td id="C8">C8</td>
-        <td id="C7">C7</td>
-        <td id="C6">C6</td>
-      </tr>
-      <tr>
-        <td id="B10">B10</td>
-        <td id="B9">B9</td>
-        <td id="B8">B8</td>
-        <td id="B7">B7</td>
-        <td id="B6">B6</td>
-      </tr>
-      <tr>
-        <td id="A10">A10</td>
-        <td id="A9">A9</td>
-        <td id="A8">A8</td>
-        <td id="A7">A7</td>
-        <td id="A6">A6</td>
+        <td class="blank"></td>
+        <td>F21</td>
+        <td>F20</td>
+        <td>F19</td>
+        <td>F18</td>
+        <td>F17</td>
+        <td>F16</td>
+        <td>F15</td>
+        <td>F14</td>
+        <td>F13</td>
+        <td>F12</td>
       </tr>
     </table>
-    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="margin-left:35px; float:left;">
+    <table border="0" cellspacing="3" cellpadding="3" class="ultra_plan" style="float:right;">
       <tr>
-        <td id="E5">E5</td>
-        <td id="E4">E4</td>
-        <td id="E3">E3</td>
-        <td id="E2">E2</td>
-        <td id="E1">E1</td>
+        <td>H11</td>
+        <td>H10</td>
+        <td>H9</td>
+        <td>H8</td>
+        <td>H7</td>
+        <td>H6</td>
+        <td>H5</td>
+        <td>H4</td>
+        <td>H3</td>
+        <td>H2</td>
+        <td>H1</td>
       </tr>
       <tr>
-        <td id="D5">D5</td>
-        <td id="D4">D4</td>
-        <td id="D3">D3</td>
-        <td id="D2">D2</td>
-        <td id="D1">D1</td>
+        <td>G11</td>
+        <td>G10</td>
+        <td>G9</td>
+        <td>G8</td>
+        <td>G7</td>
+        <td>G6</td>
+        <td>G5</td>
+        <td>G4</td>
+        <td>G3</td>
+        <td>G2</td>
+        <td>G1</td>
       </tr>
       <tr>
-        <td id="C5">C5</td>
-        <td id="C4">C4</td>
-        <td id="C3">C3</td>
-        <td id="C2">C2</td>
-        <td id="C1">C1</td>
+        <td>F11</td>
+        <td>F10</td>
+        <td>F9</td>
+        <td>F8</td>
+        <td>F7</td>
+        <td>F6</td>
+        <td>F5</td>
+        <td>F4</td>
+        <td>F3</td>
+        <td>F2</td>
+        <td>F1</td>
       </tr>
-      <tr>
-        <td id="B5">B5</td>
-        <td id="B4">B4</td>
-        <td id="B3">B3</td>
-        <td id="B21">B2</td>
-        <td id="B1">B1</td>
-      </tr>
-      <tr>
-        <td id="A5">A5</td>
-        <td id="A4">A4</td>
-        <td id="A3">A3</td>
-        <td id="A2">A2</td>
-        <td id="A1">A1</td>
-      </tr>	
     </table>
+  </div>
+  <div style="width:950px; margin-top:20px;">
+    <table border="0" cellspacing="3" cellpadding="3" class="ultra_plan" style="float:left; margin-right:30px;">
+      <tr>
+        <td>E22</td>
+        <td>E21</td>
+        <td>E20</td>
+        <td>E19</td>
+        <td>E18</td>
+        <td>E17</td>
+        <td>E16</td>
+        <td>E15</td>
+        <td>E14</td>
+        <td>E13</td>
+        <td>E12</td>
+      </tr>
+      <tr>
+        <td>D22</td>
+        <td>D21</td>
+        <td>D20</td>
+        <td>D19</td>
+        <td>D18</td>
+        <td>D17</td>
+        <td>D16</td>
+        <td>D15</td>
+        <td>D14</td>
+        <td>D13</td>
+        <td>D12</td>
+      </tr>
+      <tr>
+        <td class="ctmgmt">C22</td>
+        <td class="ctmgmt">C21</td>
+        <td class="ctmgmt">C20</td>
+        <td class="ctmgmt">C19</td>
+        <td class="ctmgmt">C18</td>
+        <td class="ctmgmt">C17</td>
+        <td class="ctmgmt">C16</td>
+        <td class="ctmgmt">C15</td>
+        <td class="ctmgmt">C14</td>
+        <td class="ctmgmt">C13</td>
+        <td class="ctmgmt">C12</td>
+      </tr>
+      <tr>
+        <td>B22</td>
+        <td>B21</td>
+        <td>B20</td>
+        <td>B19</td>
+        <td>B18</td>
+        <td>B17</td>
+        <td>B16</td>
+        <td>B15</td>
+        <td>B14</td>
+        <td>B13</td>
+        <td>B12</td>
+      </tr>
+      <tr>
+        <td>A22</td>
+        <td>A21</td>
+        <td>A20</td>
+        <td>A19</td>
+        <td>A18</td>
+        <td>A17</td>
+        <td>A16</td>
+        <td>A15</td>
+        <td>A14</td>
+        <td>A13</td>
+        <td>A12</td>
+      </tr>
+    </table>
+    <table border="0" cellspacing="3" cellpadding="3" class="ultra_plan" style="position:relative; float:left; margin-top:66px;">
+      <tr>
+        <td>D11</td>
+        <td>D10</td>
+        <td>D9</td>
+        <td>D8</td>
+        <td>D7</td>
+        <td>D6</td>
+        <td>D5</td>
+      </tr>
+      <tr>
+        <td>C11</td>
+        <td>C10</td>
+        <td>C9</td>
+        <td>C8</td>
+        <td>C7</td>
+        <td>C6</td>
+        <td>C5</td>
+      </tr>
+      <tr>
+        <td>B11</td>
+        <td>B10</td>
+        <td>B9</td>
+        <td>B8</td>
+        <td>B7</td>
+        <td>B6</td>
+        <td>B5</td>
+      </tr>
+      <tr>
+        <td>A11</td>
+        <td>A10</td>
+        <td>A9</td>
+        <td>A8</td>
+        <td>A7</td>
+        <td>A6</td>
+        <td>A5</td>
+      </tr>
+    </table>
+    
   </div>
   
 </div>

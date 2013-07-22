@@ -3,7 +3,7 @@
 <%@ include file="popup.jsp"%>
 
 				<div class="slider">					
-						<a href="#"><img src="images/MC_Gold.jpg" width="960"
+						<a href="#"><img src="images/MC_Superior.jpg" width="960"
 							height="360" alt="" /><span></span></a> 
 					<div class="clr"></div>
 				</div>
@@ -75,8 +75,7 @@
 	});
 	
 	function btnBuyOnClick() {
-		if(validate('showDate','date') && validate('showTime', 'showTime') && 
-				validate('halfTicket','number') && parseInt($("#seatCount").val()) >= 0){
+		if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
 			$("#filmBookForms").attr("action", "/gold.do");
 			$("form")[2].submit();
 		}
@@ -147,7 +146,7 @@
   <div style="width:475px;">
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
-  		<iframe width="354" height="250" src="//${applicationScope['mcGoldMovie']}?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+  		<iframe width="354" height="250" src="//${applicationScope['mcGoldMovie'] }?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   	</div>
   	</div>
     <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;">

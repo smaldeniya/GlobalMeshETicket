@@ -109,6 +109,7 @@
 				break;
 				
 			case "showTime":
+				result = true;
 				break;
 				
 			case "number":
@@ -183,22 +184,23 @@
 		<div class="header">
 			<div class="header_resize">
 				<div class="menu_nav">
-					<div>
+					<nav>
 						<ul>
 							<li class="active"><a href="index.jsp"><span>Home
 										Page</span></a></li>
 							<li><a href=""><span>Film Halls</span></a>
 								<ul>
-									<li><a href="/gold.do"><span>MC - Gold</span></a></li>
-									<li><a href="/ultra.do"><span>MC - Ultimate</span></a></li>
-									<li><a href="/superior.do"><span>MC - Superior</span></a></li>
-									<li><a href="/platinum.do"><span>MC - Platinum</span></a></li>
+									<li style="width:152px"><a href="/gold.do"><span>MC - Gold</span></a></li>
+									<li style="width:152px"><a href="/ultra.do"><span>MC - Ultra</span></a></li>
+									<li style="width:152px"><a href="/superior.do"><span>MC - Superior</span></a></li>
+									<li style="width:152px"><a href="/platinum.do"><span>MC - Platinum</span></a></li>
+									<li style="height:2px"></li>
 								</ul>
 							</li>
 							<li><a href="about.html"><span>About Us</span></a></li>
 							<li><a href="contact.html"><span>Contact Us</span></a></li>
 						</ul>
-					</div>
+					</nav>
 
 					<c:if test="${sessionScope['login'] == null }">
 						<div class="login">
