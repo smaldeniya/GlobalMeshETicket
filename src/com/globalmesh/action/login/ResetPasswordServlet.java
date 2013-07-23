@@ -34,9 +34,11 @@ public class ResetPasswordServlet extends HttpServlet {
 				Utility.sendEmail(Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_EMAIL_SUBJECT), messaageBody, user.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
 				
 				req.setAttribute("resetMsg", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_SUCCESS_MESSAGE));
-				
+				req.getRequestDispatcher("/resetPassword.jsp").forward(req, resp);
 			} else {
-				req.setAttribute("resetMsg", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_WRONG_USER));
+				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_WRONG_USER));
+				req.getRequestDispatcher("/message.jsp").forward(req, resp);
 			}
 			
 		} catch (Exception e) {
@@ -44,8 +46,6 @@ public class ResetPasswordServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-		req.getRequestDispatcher("/resetPassword.jsp").forward(req, resp);
 	}
 	
 }

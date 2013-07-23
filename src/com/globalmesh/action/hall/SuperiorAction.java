@@ -18,7 +18,7 @@ public class SuperiorAction extends HttpServlet {
 		String user = (String) req.getSession().getAttribute("email");
 		
 		if(user == null) {
-			
+			req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.LOGIN_NEED_MESSAGE));
 			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			

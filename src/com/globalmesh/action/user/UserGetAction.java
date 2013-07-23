@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.globalmesh.dao.UserDAO;
 import com.globalmesh.dto.User;
+import com.globalmesh.util.Constants;
+import com.globalmesh.util.Utility;
 
 /**
  * @author Dil
@@ -35,8 +37,8 @@ public class UserGetAction extends HttpServlet {
 		}
 		
 		req.setAttribute("user", user);
-		
-		RequestDispatcher view = req.getRequestDispatcher("profile.jsp");		
-		view.forward(req, resp);
+		req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
+		req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_PROFILE_UPDATE_INFO));
+		req.getRequestDispatcher("/profile.jsp").forward(req, resp);
 	}
 }

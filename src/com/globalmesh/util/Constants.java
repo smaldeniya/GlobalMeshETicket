@@ -28,6 +28,10 @@ public class Constants {
 	
 	public static final String USER_REG_VARIFIED_MESSAGE = "user.reg.varified.message";
 	
+	public static final String USER_REMOVED_MESSAGE = "user.removed.message";
+	
+	public static final String USER_UPDATED_MESSAGE = "user.updated.message";
+	
 	public static final String USER_REG_VARIFIED_FAIL = "user.reg.varified.fail";
 	
 	public static final String SITE_ADMIN_EMAIL = "site.admin.email";
@@ -37,4 +41,14 @@ public class Constants {
 	public static final String ADMIN_CREATED = "admin.created";
 	
 	public static final String LOGIN_NEED_MESSAGE = "user.msg.login.need";
+	
+	public static final String MSG_CSS_INFO = "infoMsg";
+	
+	public static final String MSG_CSS_WARNING = "successMsg";
+	
+	public static final String MSG_CSS_SUCCESS = "warningMsg";
+	
+	public static final String MSG_CSS_ERROR = "errorMsg";
+
+	public static final String USER_PROFILE_UPDATE_INFO = "user.profile.update.info";
 }

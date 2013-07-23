@@ -37,6 +37,7 @@ public class CreateAdmin extends HttpServlet {
 				
 				if(UserDAO.INSTANCE.add(admin)){
 					String message = Utility.getCONFG().getProperty(Constants.ADMIN_CREATED);
+					req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
 					req.setAttribute("message", message);
 				}
 				

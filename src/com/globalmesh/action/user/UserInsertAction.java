@@ -77,6 +77,7 @@ public class UserInsertAction extends HttpServlet {
 				String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.USER_REG_EMAIL_BODY), user.getFirstName(), user.getEmail(), URL);
 				Utility.sendEmail(Utility.getCONFG().getProperty(Constants.USER_REG_EMAIL_SUBJECT), emailBody, user.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
 				
+				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
 				String message = Utility.getCONFG().getProperty(Constants.USER_REG_SUCCESS_MESSAGE);		
 				req.setAttribute("message", message);
 			}

@@ -136,7 +136,7 @@ h1 small {
 	list-style: none;
 	height: 50px;
 	float: left;
-	display:inline;
+	display: inline;
 }
 
 .menu_nav ul li,.post_login span span {
@@ -144,49 +144,57 @@ h1 small {
 	padding: 0 2px 0 0;
 	float: left;
 }
+
 .login ul li {
 	margin: 0;
 	padding: 0 2px 0 0;
 	float: left;
 }
+
 nav ul ul {
-	border-radius: 0px; 
+	border-radius: 0px;
 	padding: 0;
-	position: relative; 
+	position: relative;
 	top: 100%;
 	background: rgba(247, 67, 74, 0);
 	background: rgb(247, 67, 74);
 	top: 100%;
-    display: none;
-    left:-9999px;
+	display: none;
+	left: -9999px;
 }
-nav ul li:HOVER ul{
-	left:inherit;
+
+nav ul li:HOVER ul {
+	left: inherit;
 	display: inline-table;
 	float: left;
-	
 }
+
 nav ul ul li {
-    list-style:none;
-	float: left; 
+	list-style: none;
+	float: left;
 	position: relative;
-	clear:left;
+	clear: left;
 	z-index: 1000;
 }
+
 .post_login span span {
 	background: none;
 	margin-top: 16px;
 	color: #681237;
 	font-size: 13px;
 }
-.menu_nav ul li:HOVER a{
-	background:rgb(247, 67, 74);
-}
-nav ul:after {
-	content: ""; clear: both; display: block;
+
+.menu_nav ul li:HOVER a {
+	background: rgb(247, 67, 74);
 }
 
-.menu_nav ul li a,.login a .post_login span span a{
+nav ul:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+.menu_nav ul li a,.login a .post_login span span a {
 	display: block;
 	margin: 0px 5px 0px 5px;
 	padding: 17px 28px 0;
@@ -214,6 +222,7 @@ nav ul:after {
 nav ul ul li a {
 	white-space: nowrap;
 }
+
 .content {
 	padding: 0;
 }
@@ -715,7 +724,7 @@ form.signin p,form.signin span {
 	padding-bottom: 8px;
 }
 
-form.signin .textbox input, #ticketForm input {
+form.signin .textbox input,#ticketForm input {
 	display: inline;
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	border-style: solid;
@@ -757,12 +766,13 @@ form.signin .textbox input, #ticketForm input {
 		url(../images/down_arrow_select.png) no-repeat right;
 }
 
-form.signin input:-moz-placeholder, #ticketForm input:-moz-placeholder {
+form.signin input:-moz-placeholder,#ticketForm input:-moz-placeholder {
 	color: #bbb;
 	text-shadow: 0 0 2px #000;
 }
 
-form.signin input::-webkit-input-placeholder, #ticketForm input:-webkit-input-placeholder {
+form.signin input::-webkit-input-placeholder,#ticketForm input:-webkit-input-placeholder
+	{
 	color: #bbb;
 	text-shadow: 0 0 2px #000;
 }
@@ -817,7 +827,7 @@ span.errorMessage {
 		rgb(233, 108, 108) 3%, rgb(237, 28, 36) 100%);
 	background-image: linear-gradient(top, rgb(255, 211, 211) 3%,
 		rgb(233, 108, 108) 3%, rgb(237, 28, 36) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(     startColorstr='#e2eeaf',
+	filter: progid:DXImageTransform.Microsoft.gradient(        startColorstr='#e2eeaf',
 		endColorstr='#90b026', GradientType=0);
 }
 
@@ -841,7 +851,7 @@ span.errorMessage {
 	text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.5);
 }
 
-.username input:hover{
+.username input:hover {
 	border-style: solid;
 	border-color: maroon;
 }
@@ -867,94 +877,109 @@ div.reset_password p {
 }
 
 .seatingArrangement {
-	width:600px;
+	width: 600px;
 	border: 1px solid rgba(204, 204, 204, 1);
 	height: 550px;
 	background-color: rgba(0, 0, 0, 1);
 	-moz-border-radius: 5px;
-	-webkit-border-radius:5px;	
+	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	padding: 40px 5px 0px 5px;
 	bor
 }
-.plan, .platinum_plan, .ultra_plan{
+
+.plan,.platinum_plan,.ultra_plan {
 	margin-top: 30px
 }
+
 table.plan td {
-	width:30px;
-	height:25px;
-	padding:5px;
-	font-family:'DroidSansBold';
-	font-size:12px;
-	font-weight:bold;
-	text-align:center;
-	background:url(../images/blankSeat.png) no-repeat center;
-	background-color:#000;
+	width: 30px;
+	height: 25px;
+	padding: 5px;
+	font-family: 'DroidSansBold';
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	background: url(../images/blankSeat.png) no-repeat center;
+	background-color: #000;
 	color: white;
 }
+
 table.platinum_plan td {
-	width:23px;
-	height:25px;
-	padding:3px;
-	font-family:'DroidSansBold';
-	font-size:12px;
-	font-weight:lighter;
-	text-align:center;
-	background:url(../images/blankSeat_small.png) no-repeat center;
-	background-color:#000;
+	width: 23px;
+	height: 25px;
+	padding: 3px;
+	font-family: 'DroidSansBold';
+	font-size: 12px;
+	font-weight: lighter;
+	text-align: center;
+	background: url(../images/blankSeat_small.png) no-repeat center;
+	background-color: #000;
 	color: white;
 }
-table.plan td.blank, table.ultra_plan td.blank, table.platinum_plan td.blank {
-	background:none;
-	cursor:default;
-	background-color:#000;
+
+table.plan td.blank,table.ultra_plan td.blank,table.platinum_plan td.blank
+	{
+	background: none;
+	cursor: default;
+	background-color: #000;
 }
+
 table.ultra_plan td {
-	width:27px;
-	height:25px;
-	padding:4px;
-	font-family:'DroidSansBold';
-	font-size:12px;
-	font-weight:bold;
-	text-align:center;
-	background:url(../images/blankSeat_small.png) no-repeat;
-	background-color:#000;
+	width: 27px;
+	height: 25px;
+	padding: 4px;
+	font-family: 'DroidSansBold';
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	background: url(../images/blankSeat_small.png) no-repeat;
+	background-color: #000;
 	color: white;
 }
-table.plan td.ctmgmt,table.ultra_plan td.ctmgmt, table.ultra_plan td.ctmgmt:hover, table.platinum_plan td.ctmgmt, table.platinum_plan td.ctmgmt:hover {
-	background-color:rgba(255,55,61,1);
+
+table.plan td.ctmgmt,table.ultra_plan td.ctmgmt,table.ultra_plan td.ctmgmt:hover,table.platinum_plan td.ctmgmt,table.platinum_plan td.ctmgmt:hover
+	{
+	background-color: rgba(255, 55, 61, 1);
 }
-table.plan td.sampath, table.ultra_plan td.sampath, table.platinum_plan td.sampath,table.plan td.sampath:hover, table.ultra_plan td.sampath:hover, table.platinum_plan td.sampath:hover {
-	background-color:rgba(255,204,51,1);
+
+table.plan td.sampath,table.ultra_plan td.sampath,table.platinum_plan td.sampath,table.plan td.sampath:hover,table.ultra_plan td.sampath:hover,table.platinum_plan td.sampath:hover
+	{
+	background-color: rgba(255, 204, 51, 1);
 }
+
 .theater {
-	background:#000;
-	width:480px;
-	height:300px;
+	background: #000;
+	width: 480px;
+	height: 300px;
 	background: url(../images/filmhall.png);
 }
 
 table.plan td:HOVER {
 	background: #000 url(../images/onMouseOver.png) no-repeat center;
 }
-table.ultra_plan td.blank:hover, table.platinum_plan td.blank:hover {
-	background:none;
-	cursor:default;
-	background-color:#000;
+
+table.ultra_plan td.blank:hover,table.platinum_plan td.blank:hover {
+	background: none;
+	cursor: default;
+	background-color: #000;
 }
-table.ultra_plan td:HOVER, table.platinum_plan td:HOVER  {
+
+table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 	background: #000 url(../images/onMouseOver_small.png) no-repeat;
 }
+
 .td_after_select {
-	background:url(../images/selected.png) no-repeat !important;
+	background: url(../images/selected.png) no-repeat !important;
 }
+
 #ticketForm {
 	width: 95%;
 	height: 150px;
 	background: #fff;
-	padding:10px;
+	padding: 10px;
 	margin-bottom: 30px;
-	position:relative;
+	position: relative;
 	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
 		rgba(208, 223, 226, 0.4) inset;
 	/* CSS3 */
@@ -970,6 +995,7 @@ table.ultra_plan td:HOVER, table.platinum_plan td:HOVER  {
 	-webkit-border-radius: 3px;
 	/* Safari, Chrome */;
 }
+
 #ticketForm form label {
 	display: block;
 	padding-bottom: 7px;
@@ -977,7 +1003,7 @@ table.ultra_plan td:HOVER, table.platinum_plan td:HOVER  {
 
 #ticketForm form label {
 	font-size: 20px;
-	font-weight:bold;
+	font-weight: bold;
 	font-family: sans-serif;
 	display: block;
 	float: left;
@@ -985,36 +1011,40 @@ table.ultra_plan td:HOVER, table.platinum_plan td:HOVER  {
 	clear: both;
 	padding: 10px
 }
-#ticketForm form label span{
+
+#ticketForm form label span {
 	float: left;
 }
+
 #ticketForm div {
 	position: absolute;
 	clear: left;
 }
 
-#ticketForm form input[type="number"]{
-	font-size:18px;
-	clear:both;
-	margin-top:15px;
-	width:110px;
-	height:20px;
+#ticketForm form input[type="number"] {
+	font-size: 18px;
+	clear: both;
+	margin-top: 15px;
+	width: 110px;
+	height: 20px;
 }
-#ticketForm form input[type="date"]{
-	width:160px; 
-	height:20px; 
-	font-size:18px;
-	clear:both;
-	margin-top:15px; 
-	padding-left:15px; 
-	padding-right:10px;
+
+#ticketForm form input[type="date"] {
+	width: 160px;
+	height: 20px;
+	font-size: 18px;
+	clear: both;
+	margin-top: 15px;
+	padding-left: 15px;
+	padding-right: 10px;
 }
-#userForm{
-	width: 650px;
+
+#userForm {
+	width: 840px;
 	height: 750px;
 	background: #fff;
-	margin:50px;
-	padding:10px;
+	margin: 50px;
+	padding: 10px;
 	margin-bottom: 30px;
 	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
 		rgba(208, 223, 226, 0.4) inset;
@@ -1030,4 +1060,103 @@ table.ultra_plan td:HOVER, table.platinum_plan td:HOVER  {
 	/* Firefox */
 	-webkit-border-radius: 3px;
 	/* Safari, Chrome */;
+}
+
+.info {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding: 15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.infoMsg {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url(../images/msgInfo.png);
+}
+
+.successMsg {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image: url(../images/msgSuccess.png);
+}
+
+.warningMsg {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url(../images/msgWarning.png);
+}
+
+.errorMsg {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url(../images/msgError.png);
+}
+
+.devider {
+  	width: 2px;
+  	float: left;
+  	height: 620px;
+  	margin:100px 30px 0 300px;
+  	position: absolute;
+  	background: #4b545f;
+	background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+	box-shadow: 0.7px -2px 9px rgba(0,0,4,0.15);
+}
+.tabHeader{
+	width: 100%;
+	padding: 0px;
+}
+.tabHeader nav ul {
+	width:840px;
+	padding:0px;
+	background: #fff;
+	background: linear-gradient(top, #fff 0%, #fffdfd 100%);
+	background: -moz-linear-gradient(top, #fff 0%, #fffdfd 100%);
+	background: -webkit-linear-gradient(top, #fff 0%, #fffdfd 100%);
+	box-shadow: -2px 0px 2px rgba(0, 0, 0, 0.15);
+	list-style: none;
+	position: relative;
+	display: inline-table;
+	float: left;
+}
+
+.tabHeader nav ul:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+.tabHeader nav ul li {
+	height:80px;
+	float: left;
+}
+
+.tabHeader nav ul li:hover {
+	background: #ed1c24;
+	background: linear-gradient(top, #ed1c24 0%, #be1319 40%);
+	background: -moz-linear-gradient(top, #ed1c24 0%, #be1319 40%);
+	background: -webkit-linear-gradient(top, #ed1c24 0%, #be1319 40%);
+}
+
+.tabHeader	nav ul li:hover a {
+	color: #fff;
+}
+
+.tabHeader	nav ul li a {
+	display: block;
+	padding: 25px 40px;
+	color: #681237;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+}
+.labelDetails {
+	position: absolute;
+	float: left;
+	margin-left: 30px;
+	margin-top: 140px;
 }

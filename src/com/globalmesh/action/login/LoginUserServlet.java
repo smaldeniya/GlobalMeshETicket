@@ -48,6 +48,7 @@ public class LoginUserServlet extends HttpServlet {
 			}
 			else
 			{
+				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_LOGIN_FAILED));
 				req.getRequestDispatcher("/messages.jsp").forward(req, resp);		
 			}

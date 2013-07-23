@@ -58,8 +58,10 @@ public class UserUpdateAction extends HttpServlet {
 			if(UserDAO.INSTANCE.update(user)){
 				
 			}
-
-			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+			
+			req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
+			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_UPDATED_MESSAGE));
+			req.getRequestDispatcher("/profile.jsp").forward(req, resp);
 
 		} catch (Exception e) {
 

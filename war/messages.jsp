@@ -2,11 +2,9 @@
 <%@ include file="popup.jsp"%>
 
 <div class="reset_password">
-	<p>
-		<strong>
-			${requestScope['message']}
-		 </strong>
-	</p>
+
+<div class="${requestScope['msgClass']}">${requestScope['message']}</div>			
+		
 </div>
 
 <%@ include file="footer.jsp"%>

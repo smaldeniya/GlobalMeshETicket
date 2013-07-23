@@ -8,20 +8,42 @@
 	}
 </script>
 
-<h2>Update Profile</h2>
-<hr/>
-Please update your profile to reflect your current details. Note that you are NOT permitted to update your email.
-<br/><br/>
+<div class="seat_plan_header" align="center" style="width:95%">Profile Details</div>
 
-<style type="text/css">
-	div.table {border: 1px solid black; display: table; width = 400px;}
-/* 	div.tr {border: 1px solid black; display: table-row; width = 400px;} */
- 	span.td {display: table-cell; width = 200px; float= left;} 
-	 
-</style>
-
+<div class="${requestScope['msgClass']}">${requestScope['message']}</div>
 <% User user = (User) request.getAttribute("user"); %>
-<div id="userForm">
+
+<div id="userForm" align="center">
+
+<div class="tabHeader">
+<nav>
+	<ul>
+		<li><a href="#">Account Details</a></li>
+		<li><a href="#">Purchase History</a></li>
+	</ul>
+</nav>
+</div>
+<div id="accountDetails">
+<div class="labelDetails">
+	<div>
+	<fieldset class="textbox">
+		<lable class="username"><span>Email</span></lable> <!-- include class which make fonts larger -->
+	</fieldset>
+	</div>
+</div>
+<div class="devider"></div>
+
+<div class="userDetailsCommon"></div>
+</div>
+
+</div>
+
+<%@include file="footer.jsp"%>
+
+
+<!-- 
+
+
 <form method="post" class="signin" action="/useru.do" id="registerForm">
 
 <div class="table">
@@ -91,6 +113,5 @@ Please update your profile to reflect your current details. Note that you are NO
 <button class="submit button" type="button" onclick="btnUpdateOnClick()">Buy</button>
 		
 </form>
-</div>
 
-<%@include file="footer.jsp"%>
+ -->
