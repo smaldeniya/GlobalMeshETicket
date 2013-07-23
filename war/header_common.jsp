@@ -230,8 +230,7 @@
 				<div class="clr"></div>
 				<div class="logo">
 					<h1>
-						<a href="index.html"><span>Creative</span>World <small>Company
-								Slogan Here</small></a>
+						<a href="index.html"><span>Majestic </span>Cinema <small>A ceylon theaters company...</small></a>
 					</h1>
 				</div>
 				<div class="clr"></div>

@@ -1,6 +1,13 @@
 <%@page import="com.globalmesh.dto.User"%>
 <%@include file="header.jsp" %>
 
+<script>
+	function btnUpdateOnClick() {
+		
+
+	}
+</script>
+
 <h2>Update Profile</h2>
 <hr/>
 Please update your profile to reflect your current details. Note that you are NOT permitted to update your email.
@@ -14,9 +21,8 @@ Please update your profile to reflect your current details. Note that you are NO
 </style>
 
 <% User user = (User) request.getAttribute("user"); %>
-
+<div id="userForm">
 <form method="post" class="signin" action="/useru.do" id="registerForm">
-
 
 <div class="table">
   <div class="tr">
@@ -82,7 +88,9 @@ Please update your profile to reflect your current details. Note that you are NO
   
 </div>
 
-<input class="submit button" type="submit" value="Submit" >
+<button class="submit button" type="button" onclick="btnUpdateOnClick()">Buy</button>
 		
 </form>
+</div>
+
 <%@include file="footer.jsp"%>

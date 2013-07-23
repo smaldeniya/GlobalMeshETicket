@@ -17,8 +17,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.datanucleus.query.evaluator.memory.GetClassMethodEvaluator;
-
 @SuppressWarnings("rawtypes")
 public class Utility {
 

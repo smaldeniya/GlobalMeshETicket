@@ -1009,3 +1009,25 @@ table.ultra_plan td:HOVER, table.platinum_plan td:HOVER  {
 	padding-left:15px; 
 	padding-right:10px;
 }
+#userForm{
+	width: 650px;
+	height: 750px;
+	background: #fff;
+	margin:50px;
+	padding:10px;
+	margin-bottom: 30px;
+	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* CSS3 */
+	-moz-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* Firefox */
+	-webkit-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px
+		2px rgba(208, 223, 226, 0.4) inset;
+	/* Safari, Chrome */
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	/* Firefox */
+	-webkit-border-radius: 3px;
+	/* Safari, Chrome */;
+}
