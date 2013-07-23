@@ -38,7 +38,7 @@ public class ResetPasswordServlet extends HttpServlet {
 			} else {
 				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_WRONG_USER));
-				req.getRequestDispatcher("/message.jsp").forward(req, resp);
+				req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			}
 			
 		} catch (Exception e) {

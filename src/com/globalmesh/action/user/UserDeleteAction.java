@@ -33,6 +33,7 @@ public class UserDeleteAction extends HttpServlet {
 			String message = MessageFormat.format(Utility.getCONFG().getProperty(Constants.USER_REMOVED_MESSAGE), u.getFirstName()+ " " + u.getLastName());
 			req.setAttribute("msgClass", Constants.MSG_CSS_WARNING);
 			req.setAttribute("message", message);
+			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
