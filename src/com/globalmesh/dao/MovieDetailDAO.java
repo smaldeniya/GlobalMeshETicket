@@ -62,7 +62,7 @@ public enum MovieDetailDAO {
 	}
 
 
-	public void remove(int movieId) throws Exception {
+	public void remove(long movieId) throws Exception {
 		
 		EntityManager em = EMFService.get().createEntityManager();
 		try {

@@ -215,7 +215,7 @@
 							<span style="background: none"> <span>You logged in
 									as </span><span><a href="
 									<c:if test="${sessionScope['type'] == 'user'}">/userg.do</c:if>
-									<c:if test="${sessionScope['type'] == 'admin'}">/adminProfile.jsp</c:if>									
+									<c:if test="${sessionScope['type'] == 'admin'}">/adminH.do</c:if>									
 									" class="post_login_a"
 									style="padding: 10px; color: white;">
 										${sessionScope["login"]}</a> (<a href="/logout.do"

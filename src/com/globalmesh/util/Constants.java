@@ -44,9 +44,9 @@ public class Constants {
 	
 	public static final String MSG_CSS_INFO = "infoMsg";
 	
-	public static final String MSG_CSS_WARNING = "successMsg";
+	public static final String MSG_CSS_WARNING = "warningMsg";
 	
-	public static final String MSG_CSS_SUCCESS = "warningMsg";
+	public static final String MSG_CSS_SUCCESS = "successMsg";
 	
 	public static final String MSG_CSS_ERROR = "errorMsg";
 
@@ -57,4 +57,11 @@ public class Constants {
 	public static final String USER_UPDATE_FAIL_MESSAGE = "user.update.fail.message";
 	
 	public static final String USER_UPDATE_WRONG_CURRUNT_PASSWORD = "user.update.wrong.password";
+	
+	public enum MovieStatus
+	{
+		NowShowing,
+		UpComing,
+		Shown
+	}
 }

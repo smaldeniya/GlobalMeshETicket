@@ -16,9 +16,17 @@
 		
 	});
 	
-	function btnUpdateOnClick() {
-		$("#userUpdateForm").attr("action", "/useru.do");
-		$("form")[0].submit();
+	function btnUpdateOnClick(casePar) {	
+		switch(casePar) {
+			case "password":
+				$("#userUpdateForm").attr("action", "/useru.do");
+				$("form")[1].submit();
+				break;
+			case "common":
+				$("#userUpdateForm").attr("action", "/useru.do");
+				$("form")[0].submit();
+				break;
+		}
 	}
 	
 	function retypePasswordValidate(password, retypePass){
@@ -48,10 +56,14 @@
 	
 	function shoTab(id) {
 		$(id).css('display', 'block');
-		$("#userNavigation li a").each(function () {
+
+		$("#adminNavigateion li a").each(function () {
 			var tabId = $(this).attr('href');
 			if(tabId != id) {
 				$(tabId).css('display', 'none');
+				$(this).parent().css('background-color', '#fff');
+			} else {
+				$(this).parent().css('background-color', '#ed1c24');
 			}
 		});
 	}
@@ -91,6 +103,7 @@
 
 <div class="userDetailsCommon">
 	<form action="/useru.do" id="userUpdateForm" method="post">
+		<input type="hidden" id="updatetype" name="updatetype" value="common" style="display: none;" />
 		<label>
 			<input type="hidden" id="emailU" name="emailU" value="<%=user.getEmail() %>" style="display:none;"/>
 			<input type="text" value='<%= user.getEmail() %>' disabled="disabled" style="width:250px;margin-top:30px"/>
@@ -376,16 +389,12 @@
 			<input type="text" id="addressU" name="addressU" value='<%= address %>' style="margin-top:25px; width:400px;" />
 		</label>
 		<label>
-			<button class="submit button" type="button" onclick="btnUpdateOnClick()" style="margin-top:25px;">Update</button>
+			<button class="submit button" type="button" onclick="btnUpdateOnClick('common')" style="margin-top:25px;">Update</button>
 		</label>
 		
 	</form>
 
 </div>
-</div>
-
-<div id="purchaseHistory">
-	hello
 </div>
 
 <div id="changePassword">
@@ -407,26 +416,31 @@
 		<div class="userDetailsCommon" style="margin-top:160px">
 		<form action="/useru.do" id="userUpdateForm" method="post">
 			<input type="hidden" id="emailU" name="emailU" value="<%=user.getEmail()%>" style="display: none;" />
-			<input type="hidden" id="emailU" name="updatetype" value="password" style="display: none;" />
+			<input type="hidden" id="updatetype" name="updatetype" value="password" style="display: none;" />
 			<label> 
-				<input id="curPasswordU" name="curPasswordU" style="width: 250px; margin-top: 30px" type="password" onblur="validate('curPasswordU', 'password')"/>
+				<input id="curPasswordU" name="curPasswordU" style="margin-top: 30px" type="password" onblur="validate('curPasswordU', 'password')"/>
 			</label>
 			<label> 
 				<input type="password" id="newPasswordU" name="newPasswordU" style="margin-top: 28px" value="" onblur="validate('newPasswordU', 'password')" /> 
 				<span class="errorMessage" style="float: left; margin-left: 5px; margin-top: 35px;"></span>
 			</label>
 			<label> 
-				<input type="password" id="retypeNewPasswordU" name="retypeNewPasswordU" value='<%=user.getLastName()%>' style="margin-top: 25px"
+				<input type="password" id="retypeNewPasswordU" name="retypeNewPasswordU" value="" style="margin-top: 25px"
 				onblur="validate('retypeNewPasswordU', 'password')" />
 				 <span class="errorMessage" style="float: left; margin-left: 5px; margin-top: 35px;"></span>
 			</label>
 			<label>
-				<button class="submit button" type="button" onclick="btnUpdateOnClick()" style="margin-top:25px;">Update</button>
+				<button class="submit button" type="button" onclick="btnUpdateOnClick('password')" style="margin-top:25px;">Update</button>
 			</label>
 		</form>
 	</div>
 </div>
-	
+
+
+<div id="purchaseHistory">
+	hello
+</div>
+
 </div>
 
 <%@include file="footer.jsp"%>

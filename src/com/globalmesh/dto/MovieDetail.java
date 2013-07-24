@@ -49,6 +49,18 @@ public class MovieDetail {
 		return movieId;
 	}
 	/**
+	 * @return the movieYouTube
+	 */
+	public String getMovieYouTube() {
+		return movieYouTube;
+	}
+	/**
+	 * @param movieYouTube the movieYouTube to set
+	 */
+	public void setMovieYouTube(String movieYouTube) {
+		this.movieYouTube = movieYouTube;
+	}
+	/**
 	 * @param movieId the movieId to set
 	 */
 	public void setMovieId(Long movieId) {

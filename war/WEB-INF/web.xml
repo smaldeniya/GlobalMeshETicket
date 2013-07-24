@@ -1,119 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-	
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
 	<servlet>
-	    <servlet-name>ResetPassword</servlet-name>
-	    <servlet-class>com.globalmesh.action.login.ResetPasswordServlet</servlet-class>
-	</servlet>	
+		<servlet-name>ResetPassword</servlet-name>
+		<servlet-class>com.globalmesh.action.login.ResetPasswordServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>ResetPassword</servlet-name>
-	    <url-pattern>/reset.do</url-pattern>
+		<servlet-name>ResetPassword</servlet-name>
+		<url-pattern>/reset.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>Login</servlet-name>
-	    <servlet-class>com.globalmesh.action.login.LoginUserServlet</servlet-class>
-	</servlet>	
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.globalmesh.action.login.LoginUserServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>Login</servlet-name>
-	    <url-pattern>/login.do</url-pattern>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>Logout</servlet-name>
-	    <servlet-class>com.globalmesh.action.login.LogoutServlet</servlet-class>
-	</servlet>	
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>com.globalmesh.action.login.LogoutServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>Logout</servlet-name>
-	    <url-pattern>/logout.do</url-pattern>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/logout.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>UserInsert</servlet-name>
-	    <servlet-class>com.globalmesh.action.user.UserInsertAction</servlet-class>
-	</servlet>	
+		<servlet-name>UserInsert</servlet-name>
+		<servlet-class>com.globalmesh.action.user.UserInsertAction</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>UserInsert</servlet-name>
-	    <url-pattern>/useri.do</url-pattern>
+		<servlet-name>UserInsert</servlet-name>
+		<url-pattern>/useri.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>CreateAdmin</servlet-name>
-	    <servlet-class>com.globalmesh.action.user.CreateAdmin</servlet-class>
-	</servlet>	
+		<servlet-name>CreateAdmin</servlet-name>
+		<servlet-class>com.globalmesh.action.user.CreateAdmin</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>CreateAdmin</servlet-name>
-	    <url-pattern>/adminC.do</url-pattern>
+		<servlet-name>CreateAdmin</servlet-name>
+		<url-pattern>/adminC.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>CheckUser</servlet-name>
-	    <servlet-class>com.globalmesh.action.user.CheckUser</servlet-class>
-	</servlet>	
+		<servlet-name>CheckUser</servlet-name>
+		<servlet-class>com.globalmesh.action.user.CheckUser</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>CheckUser</servlet-name>
-	    <url-pattern>/userCheck.do</url-pattern>
+		<servlet-name>CheckUser</servlet-name>
+		<url-pattern>/userCheck.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>GoldHall</servlet-name>
-	    <servlet-class>com.globalmesh.action.hall.GoldAction</servlet-class>
-	</servlet>	
+		<servlet-name>GoldHall</servlet-name>
+		<servlet-class>com.globalmesh.action.hall.GoldAction</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>GoldHall</servlet-name>
-	    <url-pattern>/gold.do</url-pattern>
+		<servlet-name>GoldHall</servlet-name>
+		<url-pattern>/gold.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>UltraHall</servlet-name>
-	    <servlet-class>com.globalmesh.action.hall.UltraAction</servlet-class>
-	</servlet>	
+		<servlet-name>UltraHall</servlet-name>
+		<servlet-class>com.globalmesh.action.hall.UltraAction</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>UltraHall</servlet-name>
-	    <url-pattern>/ultra.do</url-pattern>
+		<servlet-name>UltraHall</servlet-name>
+		<url-pattern>/ultra.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>PlatinumHall</servlet-name>
-	    <servlet-class>com.globalmesh.action.hall.PlatinumAction</servlet-class>
-	</servlet>	
+		<servlet-name>PlatinumHall</servlet-name>
+		<servlet-class>com.globalmesh.action.hall.PlatinumAction</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>PlatinumHall</servlet-name>
-	    <url-pattern>/platinum.do</url-pattern>
+		<servlet-name>PlatinumHall</servlet-name>
+		<url-pattern>/platinum.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>SuperiorHall</servlet-name>
-	    <servlet-class>com.globalmesh.action.hall.SuperiorAction</servlet-class>
-	</servlet>	
+		<servlet-name>SuperiorHall</servlet-name>
+		<servlet-class>com.globalmesh.action.hall.SuperiorAction</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>SuperiorHall</servlet-name>
-	    <url-pattern>/superior.do</url-pattern>
+		<servlet-name>SuperiorHall</servlet-name>
+		<url-pattern>/superior.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-        <servlet-name>UpdateUser</servlet-name>
-        <servlet-class>com.globalmesh.action.user.UserUpdateAction</servlet-class>
-    </servlet>    
-    <servlet-mapping>
-        <servlet-name>UpdateUser</servlet-name>
-        <url-pattern>/useru.do</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>GetUser</servlet-name>
-        <servlet-class>com.globalmesh.action.user.UserGetAction</servlet-class>
-    </servlet>    
-    <servlet-mapping>
-        <servlet-name>GetUser</servlet-name>
-        <url-pattern>/userg.do</url-pattern>
-    </servlet-mapping>
-	
+		<servlet-name>UpdateUser</servlet-name>
+		<servlet-class>com.globalmesh.action.user.UserUpdateAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateUser</servlet-name>
+		<url-pattern>/useru.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GetUser</servlet-name>
+		<servlet-class>com.globalmesh.action.user.UserGetAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetUser</servlet-name>
+		<url-pattern>/userg.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MovieDtlInsert</servlet-name>
+		<servlet-class>com.globalmesh.action.moviedetail.MovieDetailInsertAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieDtlInsert</servlet-name>
+		<url-pattern>/mvdtli.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MovieDtlDel</servlet-name>
+		<servlet-class>com.globalmesh.action.moviedetail.MovieDetailDeleteAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieDtlDel</servlet-name>
+		<url-pattern>/mvdtld.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminHandle</servlet-name>
+		<servlet-class>com.globalmesh.action.user.HandleAdminAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminHandle</servlet-name>
+		<url-pattern>/adminH.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>Remote API Servlet</display-name>
+		<servlet-name>RemoteApiServlet</servlet-name>
+		<servlet-class>com.google.apphosting.utils.remoteapi.RemoteApiServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoteApiServlet</servlet-name>
+		<url-pattern>/remote_api</url-pattern>
+	</servlet-mapping>
+
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>welcome.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

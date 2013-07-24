@@ -37,7 +37,7 @@ public class UserGetAction extends HttpServlet {
 		}
 		
 		req.setAttribute("user", user);
-		req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
+		req.setAttribute("msgClass", Constants.MSG_CSS_INFO);
 		req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_PROFILE_UPDATE_INFO));
 		req.getRequestDispatcher("/profile.jsp").forward(req, resp);
 	}

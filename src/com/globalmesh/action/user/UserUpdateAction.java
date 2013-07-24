@@ -34,34 +34,35 @@ public class UserUpdateAction extends HttpServlet {
 				
 				String curPassword = MD5HashGenerator.md5(req.getParameter("curPasswordU"));
 				String newPassword = MD5HashGenerator.md5(req.getParameter("newPasswordU"));
+				
 				if(curPassword.compareTo(user.getPassword()) == 0) {
 					user.setPassword(newPassword);
 					UserDAO.INSTANCE.update(user);
 					req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
 					req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_UPDATED_MESSAGE));
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 				} else {
 					req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 					req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_UPDATE_WRONG_CURRUNT_PASSWORD));
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 				}
 								
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String newPassword = req.getParameter("newPasswordU");
-			
 			
 		} else {
 			try {
-				String email = req.getParameter("email");
+				String email = req.getParameter("emailU");
 				
 				User user = UserDAO.INSTANCE.getUserByEmail(email);
 				
-				String firstName = req.getParameter("firstName");
-				String lastName = req.getParameter("lastName");	
-				String mobile = req.getParameter("mobile");			
-				String country = req.getParameter("country");
-				String address = req.getParameter("address");
+				String firstName = req.getParameter("firstNameU");
+				String lastName = req.getParameter("lastNameU");	
+				String mobile = req.getParameter("mobileU");			
+				String country = req.getParameter("countryU");
+				String address = req.getParameter("addressU");
 				
 				user.setFirstName(firstName);
 				user.setLastName(lastName);		
@@ -80,17 +81,18 @@ public class UserUpdateAction extends HttpServlet {
 				if(UserDAO.INSTANCE.update(user)){
 					req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
 					req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_UPDATED_MESSAGE));
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+				} else {
+					req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
+					req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_UPDATE_FAIL_MESSAGE));
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 				}
 				
-				req.getRequestDispatcher("/profile.jsp").forward(req, resp);
 
 			} catch (Exception e) {
-				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
-				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_UPDATE_FAIL_MESSAGE));
+				e.printStackTrace();
 			}
 		}
 		
-		req.getRequestDispatcher("/profile.jsp").forward(req, resp);		
-
 	}
 }

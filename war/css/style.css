@@ -1119,11 +1119,11 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 	position: absolute;
 	margin:80px 30px 0 350px;
 }
-.tabHeader{
+.tabHeader, .adminTabHeader{
 	width: 100%;
 	padding: 0px;
 }
-.tabHeader nav ul {
+.tabHeader nav ul, .adminTabHeader nav ul {
 	width:840px;
 	padding:0px;
 	background: #fff;
@@ -1137,25 +1137,25 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 	float: left;
 }
 
-.tabHeader nav ul:after {
+.tabHeader nav ul:after, .adminTabHeader nav ul:after {
 	content: "";
 	clear: both;
 	display: block;
 }
 
-.tabHeader nav ul li {
+.tabHeader nav ul li, .adminTabHeader nav ul li {
 	height:80px;
 	float: left;
 }
 
-.tabHeader nav ul li:hover {
+.tabHeader nav ul li:hover, .adminTabHeader nav ul li:hover {
 	background: #ed1c24;
 	background: linear-gradient(top, #ed1c24 0%, #be1319 40%);
 	background: -moz-linear-gradient(top, #ed1c24 0%, #be1319 40%);
 	background: -webkit-linear-gradient(top, #ed1c24 0%, #be1319 40%);
 }
 
-.tabHeader	nav ul li:hover a {
+.tabHeader	nav ul li:hover a, .adminTabHeader nav ul li:hover a {
 	color: #fff;
 }
 
@@ -1167,18 +1167,23 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 	font-size: 18px;
 	font-weight: bold;
 }
+.adminTabHeader nav ul li a{
+	display: block;
+	padding: 25px 25px;
+	color: #681237;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: bold;
+}
 .labelDetails {
 	position: absolute;
 	float: left;
 	margin-left: 30px;
 	margin-top: 70px;
 }
-#accountDetails {
+#accountDetails, #movieDetails {
 	display: block;
 }
-#purchaseHistory {
-	display: none;
-}
-#changePassword {
+#purchaseHistory, #changePassword, #reports, #userDetails, #hallDetails, #movieDetails {
 	display: none;
 }
