@@ -57,7 +57,7 @@
 	function shoTab(id) {
 		$(id).css('display', 'block');
 
-		$("#adminNavigateion li a").each(function () {
+		$("#userNavigation li a").each(function () {
 			var tabId = $(this).attr('href');
 			if(tabId != id) {
 				$(tabId).css('display', 'none');
