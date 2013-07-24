@@ -80,7 +80,7 @@
 	function btnBuyOnClick() {
 		if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
 			$("#filmBookForms").attr("action", "/gold.do");
-			$("form")[2].submit();
+			$("form")[0].submit();
 		}
 	}
 	

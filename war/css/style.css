@@ -1105,8 +1105,8 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 .devider {
   	width: 2px;
   	float: left;
-  	height: 620px;
-  	margin:100px 30px 0 300px;
+  	height: 500px;
+  	margin:130px 30px 0 300px;
   	position: absolute;
   	background: #aeaeae;
 	background: linear-gradient(top, #aeaeae 0%, #4f5964 40%);
@@ -1117,7 +1117,7 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 
 .userDetailsCommon {
 	position: absolute;
-	margin:80px 30px 0 380px;
+	margin:80px 30px 0 350px;
 }
 .tabHeader{
 	width: 100%;
@@ -1172,4 +1172,13 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 	float: left;
 	margin-left: 30px;
 	margin-top: 70px;
+}
+#accountDetails {
+	display: block;
+}
+#purchaseHistory {
+	display: none;
+}
+#changePassword {
+	display: none;
 }

@@ -51,4 +51,10 @@ public class Constants {
 	public static final String MSG_CSS_ERROR = "errorMsg";
 
 	public static final String USER_PROFILE_UPDATE_INFO = "user.profile.update.info";
+	
+	public static final String USER_UPDATE_TYPE_PASSWORD = "user.update.type.password";
+	
+	public static final String USER_UPDATE_FAIL_MESSAGE = "user.update.fail.message";
+	
+	public static final String USER_UPDATE_WRONG_CURRUNT_PASSWORD = "user.update.wrong.password";
 }

@@ -17,22 +17,58 @@
 	});
 	
 	function btnUpdateOnClick() {
+		$("#userUpdateForm").attr("action", "/useru.do");
+		$("form")[0].submit();
+	}
+	
+	function retypePasswordValidate(password, retypePass){
+		var result = false ;
+		var message = "";
+		var passValue = $("#" + password).val();
+		var rePassValue = $("#" + retypePass).val();
 		
-
+		if(!isEmpty(rePassValue)){
+			if(passValue === rePassValue) {
+				result = true;
+			} else {
+				message = "Password should be match to re typed password";
+			}
+		} else {
+			message = "Field should not be empty";
+		}
+		
+		if(!result){
+			$("#"+retypePass).parent().children("span[class=errorMessage]").text(message);
+		} else {
+			$("#"+retypePass).parent().children("span[class=errorMessage]").html("<img src='../images/ok.png' height='16' width='16'/>");
+		}
+		
+		return result;
+	}
+	
+	function shoTab(id) {
+		$(id).css('display', 'block');
+		$("#userNavigation li a").each(function () {
+			var tabId = $(this).attr('href');
+			if(tabId != id) {
+				$(tabId).css('display', 'none');
+			}
+		});
 	}
 </script>
 
-<div class="seat_plan_header" align="center" style="width:95%">Profile Details</div>
+<div class="seat_plan_header" align="center" style="width:95%;">Profile Details</div>
 
 <div class="${requestScope['msgClass']}">${requestScope['message']}</div>
 
-<div id="userForm" align="center">
+<div id="userForm" align="center" style="marigin-top:20px;">
 
 <div class="tabHeader">
-<nav>
+<nav id="userNavigation">
 	<ul>
-		<li><a href="#">Account Details</a></li>
-		<li><a href="#">Purchase History</a></li>
+		<li><a href="#accountDetails" onclick="shoTab('#accountDetails')">Account Details</a></li>
+		<li><a href="#purchaseHistory" onclick="shoTab('#purchaseHistory')">Purchase History</a></li>
+		<li><a href="#changePassword" onclick="shoTab('#changePassword')">Change Password</a></li>
 	</ul>
 </nav>
 </div>
@@ -48,14 +84,13 @@
 		<lable ><span>Mobile</span></lable>
 		<lable ><span>Country</span></lable>
 		<lable ><span>Address</span></lable>
-		<lable ><span>Password</span></lable>
 	</fieldset>
 	</div>
 </div>
 <div class="devider"></div>
 
 <div class="userDetailsCommon">
-	<form action="/useru.do" id="userUpdateForm">
+	<form action="/useru.do" id="userUpdateForm" method="post">
 		<label>
 			<input type="hidden" id="emailU" name="emailU" value="<%=user.getEmail() %>" style="display:none;"/>
 			<input type="text" value='<%= user.getEmail() %>' disabled="disabled" style="width:250px;margin-top:30px"/>
@@ -340,11 +375,58 @@
 				} %>
 			<input type="text" id="addressU" name="addressU" value='<%= address %>' style="margin-top:25px; width:400px;" />
 		</label>
+		<label>
+			<button class="submit button" type="button" onclick="btnUpdateOnClick()" style="margin-top:25px;">Update</button>
+		</label>
+		
 	</form>
 
 </div>
 </div>
 
+<div id="purchaseHistory">
+	hello
+</div>
+
+<div id="changePassword">
+		<div class="labelDetails" style=" margin-top:145px">
+			<div>
+				<fieldset class="textbox">
+					<lable>
+					<span>Currunt Password</span></lable>
+					<lable>
+					<span>New Password</span></lable>
+					<lable>
+					<span>Retype Password</span></lable>
+				</fieldset>
+			</div>
+		</div>
+		
+		<div class="devider" style="height:140px; margin-top:210px"></div>
+		
+		<div class="userDetailsCommon" style="margin-top:160px">
+		<form action="/useru.do" id="userUpdateForm" method="post">
+			<input type="hidden" id="emailU" name="emailU" value="<%=user.getEmail()%>" style="display: none;" />
+			<input type="hidden" id="emailU" name="updatetype" value="password" style="display: none;" />
+			<label> 
+				<input id="curPasswordU" name="curPasswordU" style="width: 250px; margin-top: 30px" type="password" onblur="validate('curPasswordU', 'password')"/>
+			</label>
+			<label> 
+				<input type="password" id="newPasswordU" name="newPasswordU" style="margin-top: 28px" value="" onblur="validate('newPasswordU', 'password')" /> 
+				<span class="errorMessage" style="float: left; margin-left: 5px; margin-top: 35px;"></span>
+			</label>
+			<label> 
+				<input type="password" id="retypeNewPasswordU" name="retypeNewPasswordU" value='<%=user.getLastName()%>' style="margin-top: 25px"
+				onblur="validate('retypeNewPasswordU', 'password')" />
+				 <span class="errorMessage" style="float: left; margin-left: 5px; margin-top: 35px;"></span>
+			</label>
+			<label>
+				<button class="submit button" type="button" onclick="btnUpdateOnClick()" style="margin-top:25px;">Update</button>
+			</label>
+		</form>
+	</div>
+</div>
+	
 </div>
 
 <%@include file="footer.jsp"%>
@@ -352,5 +434,16 @@
 
 <!-- 
 
+		<lable ><span>Password</span></lable>
+		<lable ><span>Retype Password</span></lable>
+
+<label>
+			<input type="password" id="passwordU" name="passwordU" value="" style="margin-top:25px; width:180px;" onblur="validate('passwordU', 'password')" />
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+		<label>
+			<input type="password" id="repasswordU" name="repasswordU" value="" style="margin-top:25px; width:180px; position:relative;"  onblur="retypePasswordValidate('passwordU', 'repasswordU')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
 
  -->
