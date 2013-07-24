@@ -707,7 +707,7 @@ form.signin .textbox label {
 	padding-bottom: 7px;
 }
 
-form.signin .textbox span {
+form.signin .textbox span, .labelDetails .textbox span{
 	font-size: 25px;
 	font-family: sans-serif;
 	display: block;
@@ -715,7 +715,12 @@ form.signin .textbox span {
 	margin-top: 5px;
 	clear: both;
 }
-
+.labelDetails .textbox span {
+	font-weight: lighter;
+	text-shadow: 0px 1px #aeaeae;
+	color:#aeaeae;
+	margin-top: 50px;
+}
 form.signin p,form.signin span {
 	color: #999;
 	font-size: 11px;
@@ -724,7 +729,7 @@ form.signin p,form.signin span {
 	padding-bottom: 8px;
 }
 
-form.signin .textbox input,#ticketForm input {
+form.signin .textbox input,#ticketForm input, .userDetailsCommon input{
 	display: inline;
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	border-style: solid;
@@ -741,6 +746,13 @@ form.signin .textbox input,#ticketForm input {
 	padding-left: 55px;
 	width: 300px;
 	clear: left;
+}
+.userDetailsCommon input {
+	width:180px;
+	padding-left: 20px;
+	text-shadow: 0px 1px #aeaeae;
+	margin-top: 10px;
+	line-height: 10px;
 }
 
 .styled-select {
@@ -1064,9 +1076,10 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 
 .infoMsg, .successMsg, .warningMsg, .errorMsg{
 	border: 1px solid;
-	margin: 10px 0px;
+	margin: 10px auto 0 auto;
 	padding: 15px 10px 15px 50px;
 	border-radius: 5px;
+	width: 80%;
 }
 
 .infoMsg {
@@ -1095,11 +1108,16 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
   	height: 620px;
   	margin:100px 30px 0 300px;
   	position: absolute;
-  	background: #4b545f;
-	background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
-	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
-	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+  	background: #aeaeae;
+	background: linear-gradient(top, #aeaeae 0%, #4f5964 40%);
+	background: -moz-linear-gradient(top, #aeaeae 0%, #4f5964 40%);
+	background: -webkit-linear-gradient(top, #aeaeae 0%,#4f5964 40%);
 	box-shadow: 0.7px -2px 9px rgba(0,0,4,0.15);
+}
+
+.userDetailsCommon {
+	position: absolute;
+	margin:80px 30px 0 380px;
 }
 .tabHeader{
 	width: 100%;
@@ -1153,5 +1171,5 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 	position: absolute;
 	float: left;
 	margin-left: 30px;
-	margin-top: 140px;
-} 
+	margin-top: 70px;
+}

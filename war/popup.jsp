@@ -1,3 +1,4 @@
+<c:if test="${sessionScope['login'] == null }">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#loginButton').click(function() {
@@ -174,3 +175,4 @@
 		</fieldset>
 	</form>
 </div>
+</c:if>
