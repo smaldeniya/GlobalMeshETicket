@@ -1187,3 +1187,25 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 #purchaseHistory, #changePassword, #reports, #userDetails, #hallDetails, #movieDetails {
 	display: none;
 }
+input[type=checkbox].css-checkbox {
+position: relative; 
+overflow: hidden; 
+clip: rect(0 0 0 0); 
+height:40px; 
+width:40px; 
+margin:-1px; 
+padding:0;
+border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+padding-left:20px;
+height:15px; 
+display:inline-block;
+line-height:15px;
+background-repeat:no-repeat;
+background-position: 0 0;
+font-size:15px;
+vertical-align:middle;
+cursor:pointer;
+}

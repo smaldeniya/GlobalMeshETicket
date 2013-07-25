@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="com.globalmesh.dto.User"%>
 <%@include file="header.jsp" %>
 <script>
@@ -21,7 +22,7 @@
 	function btnAddOnClick(casePar) {
 		switch(casePar) {			
 			case "hall":
-				$("#hallForm").attr("action", "/useru.do");
+				$("#hallForm").attr("action", "/hallUnI.do");
 				$("form")[1].submit();
 				break;
 				
@@ -79,7 +80,7 @@
 				break;
 				
 			case "hall":
-				$("#hallForm").attr("action", "/useru.do");
+				$("#hallForm").attr("action", "/hallUnI.do");
 				$("form")[1].submit();
 				break;
 				
@@ -159,6 +160,37 @@
 
 		return result;
 	}
+	
+	function is3DonClick() {
+		if($("#is3D").is(":checked")){
+			$("#is3D").val("3D")
+		} else {
+			$("#is3D").val("")
+		}
+	}
+	
+	function getHallDetails() {
+		var hallName = $("#hallName :selected").val();
+		var checkURL = getURLPath() + "hallG.do?hallId=" + hallName;
+		
+		$.ajax({
+			url:checkURL,
+			async:false,
+			type : "GET",
+			success: function(data,status){
+				if(!isEmpty(data)){
+					var values = data.split(";")
+					$("#noOfSeats").val(values[0]);
+					
+					if(values[1] == true) {
+						$("#is3D").prop('checked', true);
+					} else {
+						$("#is3D").prop('checked', false);
+					}
+				}
+			}
+		});
+	}
 </script>
 
 <div class="seat_plan_header" align="center" style="width:95%;">Profile Details</div>
@@ -220,7 +252,7 @@
 
 <div id="hallDetails">
 
-<div class="infoMsg">Only ${requestScope['freeHalls']} more halls can be added. Please note that after adding, halls can not be deleted. Only update is possible</div>
+<div class="infoMsg" style="margin-top:150px; margin-bottom:30px;">Only ${requestScope['freeHalls']} more halls can be added. Please note that after adding, halls can not be deleted. Only update is possible</div>
 
 <div class="labelDetails">
 	<div>
@@ -231,30 +263,51 @@
 	</fieldset>
 	</div>
 </div>
-<div class="devider"></div>
+<div class="devider" style="height:150px"></div>
 
 <div class="userDetailsCommon">
-	<form action="#" id="hallForm" method="post">
-		<label>
-			<input type="text" value='' id="hallName" name="hallName" style="margin-top:30px" onblur="validate('hallName', 'any')"/>
-			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
-		</label>
-		
+	<form action="/hallUnI.do" id="hallForm" method="post">
+		<c:choose>
+					<c:when test="${requestScope['freeHalls'] > 0 }">
+						<label> <input type="text" value='' id="hallName"
+							name="hallName" style="margin-top: 30px"
+							onblur="validate('hallName', 'any')" /> <span
+							class="errorMessage"
+							style="float: left; margin-left: 5px; margin-top: 35px;"></span>
+						</label>
+					</c:when>
+					
+					<c:otherwise>
+						<label>			
+			<select name="hallName" id="hallName" onchange="getHallDetails()" style="margin-top:25px; float:left; clear:left; width:150px; height:45px;" class="styled-select">
+				<% 	String [] hallNames = (String[])request.getAttribute("hallNames"); 
+					for(String hall:hallNames){
+				%>
+					<option value="<%=hall %>"><%=hall %></option>
+				<%	} %>
+			</select>
+					</label>
+					</c:otherwise>
+		</c:choose>
 		<label>
 			<input type="text" value='' id="noOfSeats" name="noOfSeats" style="margin-top:30px" onblur="validate('noOfSeats', 'number')"/>
 			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 		</label>
 		
 		<label>
-			<input type="checkbox" value='3D' id="is3D" name="is3D" style="margin-top:30px" onblur="validate('is3D', 'any')"/>
+			<input type="checkbox" value='' onclick="is3DonClick()" id="is3D" name="is3D" class="css-checkbox" style="margin-top:30px" onblur="validate('is3D', 'any')"/>
 			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 		</label>
 		<label>
-			<c:if test="${requestScope['freeHalls']} != 0">
-				<button class="submit button" type="button" onclick="btnAddOnClick('hall')" style="margin-top:25px;margin-right:20px;position:relative;">New Hall</button>
-			</c:if>
-			<button class="submit button" type="button" onclick="btnUpdateOnClick('hall')" style="margin-top:25px;position:relative;clear:none">Update Hall</button>
+			<button class="submit button" type="button" onclick="btnUpdateOnClick('hall')" style="margin-top:45px;margin-right:20px;position:relative;">Update Hall</button>
 		</label>
+			<c:if test="${requestScope['freeHalls'] > 0 }">
+			<label>
+				<button class="submit button" type="button" onclick="btnAddOnClick('hall')" style="margin-top:45px;position:relative;clear:none">New Hall</button>
+			</label>
+			</c:if>
+			
+		
 	</form>
 </div>
 </div>
@@ -304,11 +357,12 @@
 				<label>			
 					<select name="theater" id="theater" style="margin-top:25px; float:left; clear:left; width:230px; height:45px;" class="styled-select"> 
 						<option value="" selected="selected">Select Theater</option> 
-						<option value="${requestScope['Gold']}">${requestScope['Gold']}</option> 
-						<option value="${requestScope['Ultra']}">${requestScope['Ultra']}</option> 
-						<option value="${requestScope['Platinum']}">${requestScope['Platinum']}</option>
-						<option value="${requestScope['Superior']}">${requestScope['Superior']}</option> 
-					</select>
+						<% 	String [] hallNames = (String[])request.getAttribute("hallNames"); 
+							for(String hall:hallNames){
+						%>
+								<option value="<%=hall %>"><%=hall %></option>
+						<%	} %> 
+						</select>
 				</label>
 				
 				<label>			
@@ -321,7 +375,7 @@
 				</label>
 				
 				<label>
-					<input type="text"  id="utube" size="12" name="utube" value='' style="margin-top:25px" onblur="validate('utube', 'utube')"/>
+					<input type="text"  id="utube" size="12" name="utube" value='' style="margin-top:25px; width:330px;" onblur="validate('utube', 'utube')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				
@@ -356,7 +410,13 @@
 				
 				<label>
 					<button class="submit button" type="button" onclick="btnAddOnClick('movie')" style="margin-top:25px;margin-right:20px;position:relative;">Add Movie</button>
+				</label>
+					
+				<label>	
 					<button class="submit button" type="button" onclick="btnUpdateOnClick('movie')" style="margin-top:25px;position:relative;clear:none">Update Movie</button>
+				</label>
+				
+				<label>
 					<button class="submit button" type="button" onclick="btnRemoveOnClick('movie')" style="margin-left:20px;margin-top:25px;position:relative;clear:none">Delete Movie</button>
 				</label>
 			</form>

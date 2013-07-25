@@ -81,4 +81,21 @@ public enum HallDAO {
 		return isSuccess;
 	}
 	
+	public boolean updateHall(Hall h) {
+		boolean isSuccess = false;
+		
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			
+			em.getTransaction().begin();
+			em.merge(h);
+			em.getTransaction().commit();
+			em.close();
+			
+			isSuccess = true;
+		}
+		
+		return isSuccess;
+	}
+	
 }
