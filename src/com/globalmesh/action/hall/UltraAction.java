@@ -24,7 +24,7 @@ public class UltraAction extends HttpServlet {
 			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			
 		} else {
-			String[] shows = { "10:30", "1:30", "4:30", "7" };
+			String [] shows = {"10:30 AM", "1:30 PM", "4:30 PM", "7:00 PM"};
 
 			req.setAttribute("mcUltraShows", shows);
 			req.getRequestDispatcher("/ultra_seatPlan.jsp").forward(req, resp);

@@ -108,8 +108,20 @@
 				result = true;
 				break;
 				
-			case "showTime":
+			case "any":
 				result = true;
+				break;
+				
+			case "utube":
+				var re = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+				result = re.test(value);
+				message = "Enter a valid youtube embade url";
+				break;
+				
+			case "showTime":
+				var re = /^(0?[1-9]|1[012])(:[0-5]\d) [APap][mM]$/;
+				result = re.test(value);
+				message = "Enter a valid time (Eg. 10:30 PM)";
 				break;
 				
 			case "number":
@@ -162,6 +174,7 @@
 		}
 
 		if (!result) {
+			$("#" + id).focus();
 			$("#" + id).parent().children("span[class=errorMessage]").text(
 					message);
 		} else {

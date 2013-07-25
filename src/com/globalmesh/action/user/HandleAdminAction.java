@@ -12,6 +12,13 @@ public class HandleAdminAction extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		/**
+		 * setting hall names from database hall objects
+		 */
+		req.setAttribute("", "");
+		req.setAttribute("", "");
+		req.setAttribute("", "");
+		req.setAttribute("", "");
 		
 		req.getRequestDispatcher("/adminProfile.jsp").forward(req, resp);
 	}

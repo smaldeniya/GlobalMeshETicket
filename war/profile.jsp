@@ -19,12 +19,16 @@
 	function btnUpdateOnClick(casePar) {	
 		switch(casePar) {
 			case "password":
-				$("#userUpdateForm").attr("action", "/useru.do");
-				$("form")[1].submit();
+				if(validate('curPasswordU', 'password') && validate('newPasswordU', 'password') && validate('retypeNewPasswordU', 'password')){
+					$("#userUpdateForm").attr("action", "/useru.do");
+					$("form")[1].submit();
+				}
 				break;
 			case "common":
-				$("#userUpdateForm").attr("action", "/useru.do");
-				$("form")[0].submit();
+				if(validate('firstNameU', 'text') && validate('lastNameU', 'text') && validate('mobileU', 'mobile')) {
+					$("#userUpdateForm").attr("action", "/useru.do");
+					$("form")[0].submit();
+				}
 				break;
 		}
 	}
@@ -426,7 +430,7 @@
 			</label>
 			<label> 
 				<input type="password" id="retypeNewPasswordU" name="retypeNewPasswordU" value="" style="margin-top: 25px"
-				onblur="validate('retypeNewPasswordU', 'password')" />
+				onblur="retypePasswordValidate('newPasswordU', 'retypeNewPasswordU')" />
 				 <span class="errorMessage" style="float: left; margin-left: 5px; margin-top: 35px;"></span>
 			</label>
 			<label>
@@ -444,20 +448,3 @@
 </div>
 
 <%@include file="footer.jsp"%>
-
-
-<!-- 
-
-		<lable ><span>Password</span></lable>
-		<lable ><span>Retype Password</span></lable>
-
-<label>
-			<input type="password" id="passwordU" name="passwordU" value="" style="margin-top:25px; width:180px;" onblur="validate('passwordU', 'password')" />
-			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
-		</label>
-		<label>
-			<input type="password" id="repasswordU" name="repasswordU" value="" style="margin-top:25px; width:180px; position:relative;"  onblur="retypePasswordValidate('passwordU', 'repasswordU')"/>
-			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
-		</label>
-
- -->

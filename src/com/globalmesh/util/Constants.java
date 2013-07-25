@@ -60,8 +60,8 @@ public class Constants {
 	
 	public enum MovieStatus
 	{
-		NowShowing,
-		UpComing,
-		Shown
+		NowShowing, // 0
+		UpComing, // 1
+		Shown // 2
 	}
 }

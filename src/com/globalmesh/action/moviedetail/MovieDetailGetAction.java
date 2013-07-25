@@ -26,19 +26,12 @@ public class MovieDetailGetAction extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		List<MovieDetail> movieDetailList = null;
+		//get Movie
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		
-		try{
-			movieDetailList = MovieDetailDAO.INSTANCE.listMovies();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		String url="..."; //relative url for display jsp page
-	    ServletContext sc = getServletContext();
-	    RequestDispatcher rd = sc.getRequestDispatcher(url);
-
-	    req.setAttribute("movieDetailList", movieDetailList );
-	    rd.forward(req, resp);
+		//update movies
 	}
 }

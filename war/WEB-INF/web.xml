@@ -130,6 +130,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>MovieDtlDel</servlet-name>
 		<url-pattern>/mvdtld.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MovieDtlUpnGet</servlet-name>
+		<servlet-class>com.globalmesh.action.moviedetail.MovieDetailGetAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieDtlUpnGet</servlet-name>
+		<url-pattern>/mvdtlung.do</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>AdminHandle</servlet-name>

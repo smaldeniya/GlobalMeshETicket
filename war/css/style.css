@@ -729,7 +729,7 @@ form.signin p,form.signin span {
 	padding-bottom: 8px;
 }
 
-form.signin .textbox input,#ticketForm input, .userDetailsCommon input{
+form.signin .textbox input,#ticketForm input, .userDetailsCommon input, .userDetailsCommon textarea {
 	display: inline;
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	border-style: solid;
