@@ -20,7 +20,7 @@
 	$(".seatingArrangement").ready(function (){
 		$(".seatingArrangement").children().find("table td").each(function (){
 			
-			if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt")) {
+			if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt") && !$(this).hasClass("sampath")) {
 				$(this).click(function () {				
 					if($(this).css("background-image").indexOf("selected_small.png") == -1){
 						

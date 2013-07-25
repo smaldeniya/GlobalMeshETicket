@@ -89,8 +89,11 @@
 				break;
 				
 			case "movie":
-				$("#movieForm").attr("action", "/mvdtlung.do");
-				$("form")[3].submit();
+				if(validate('filmName', 'any') && validate('utube', 'utube') && validateShowTimes('showtime1') && validateShowTimes('showtime2') && validateShowTimes('showtime3')
+						&& validateShowTimes('showtime4') && validateShowTimes('showtime5')) {
+					$("#movieForm").attr("action", "/mvdtlung.do");
+					$("form")[3].submit();					
+				}
 				break;
 				
 			case "report":
@@ -168,10 +171,10 @@
 <nav id="adminNavigateion">
 	<ul>
 		<li style="background-color:#ed1c24;"><a href="#movieDetails" onclick="shoTab('#movieDetails')">Movie Details</a></li>
-		<li><a href="#hallDetails" onclick="shoTab('#hallDetails')">Hall Details</a></li>
 		<li><a href="#changePassword" onclick="shoTab('#changePassword')">Admin Password</a></li>
 		<li><a href="#userDetails" onclick="shoTab('#userDetails')">User Details</a></li>
 		<li><a href="#reports" onclick="shoTab('#reports')">Reports</a></li>
+		<li><a href="#hallDetails" onclick="shoTab('#hallDetails')">Hall Details</a></li>
 	</ul>
 </nav>
 </div>
@@ -216,21 +219,43 @@
 </div>
 
 <div id="hallDetails">
+
+<div class="infoMsg">Only ${requestScope['freeHalls']} more halls can be added. Please note that after adding, halls can not be deleted. Only update is possible</div>
+
 <div class="labelDetails">
 	<div>
 	<fieldset class="textbox">
-		
+		<lable ><span>Hall Name</span></lable>
+		<lable ><span>Number Of Seats</span></lable>
+		<lable ><span>3D</span></lable>
 	</fieldset>
 	</div>
 </div>
 <div class="devider"></div>
 
 <div class="userDetailsCommon">
-	<form action="/useru.do" id="hallForm" method="post">
+	<form action="#" id="hallForm" method="post">
+		<label>
+			<input type="text" value='' id="hallName" name="hallName" style="margin-top:30px" onblur="validate('hallName', 'any')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
 		
+		<label>
+			<input type="text" value='' id="noOfSeats" name="noOfSeats" style="margin-top:30px" onblur="validate('noOfSeats', 'number')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
 		
+		<label>
+			<input type="checkbox" value='3D' id="is3D" name="is3D" style="margin-top:30px" onblur="validate('is3D', 'any')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+		<label>
+			<c:if test="${requestScope['freeHalls']} != 0">
+				<button class="submit button" type="button" onclick="btnAddOnClick('hall')" style="margin-top:25px;margin-right:20px;position:relative;">New Hall</button>
+			</c:if>
+			<button class="submit button" type="button" onclick="btnUpdateOnClick('hall')" style="margin-top:25px;position:relative;clear:none">Update Hall</button>
+		</label>
 	</form>
-
 </div>
 </div>
 
