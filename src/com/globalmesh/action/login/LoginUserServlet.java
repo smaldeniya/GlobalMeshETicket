@@ -5,7 +5,6 @@ package com.globalmesh.action.login;
 
 import java.io.IOException;
 
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -4,6 +4,10 @@
 package com.globalmesh.action.moviedetail;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.globalmesh.dao.MovieDetailDAO;
 import com.globalmesh.dto.MovieDetail;
 import com.globalmesh.util.Constants;
+import com.globalmesh.util.Constants.MovieStatus;
+import com.globalmesh.util.MD5HashGenerator;
+import com.globalmesh.util.Utility;
 
 /**
  * @author Transformers
@@ -24,49 +31,147 @@ public class MovieDetailInsertAction extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	
-		try{
-			MovieDetail movieDetail = new MovieDetail();
-			
-			movieDetail.setMovieDetails(req.getParameter("movieDetails"));			
-			movieDetail.setMovieName(req.getParameter("movieName"));
-			movieDetail.setMovieStatus(Integer.parseInt(req.getParameter("movieStatus")));
-			movieDetail.setMovieTheatre(req.getParameter("movieTheatre"));
-			movieDetail.setMovieTime1(req.getParameter("movieTime1"));
-			movieDetail.setMovieTime2(req.getParameter("movieTime2"));
-			movieDetail.setMovieTime3(req.getParameter("movieTime3"));
-			movieDetail.setMovieTime4(req.getParameter("movieTime4"));
-			movieDetail.setMovieTime5(req.getParameter("movieTime5"));
-			
-			MovieDetailDAO.INSTANCE.addMovieDetail(movieDetail);//return boolean
-			
-		}catch(Exception e){
-			e.printStackTrace();
+		String filmName = req.getParameter("filmName");
+		String movieId = null;
+		try {
+			movieId = MD5HashGenerator.md5(filmName);
+			//movie.setMovieId(MD5HashGenerator.md5(filmName));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		MovieDetail movie = MovieDetailDAO.INSTANCE.getMovieById(movieId);
+		boolean isNew = false;
+		if(movie == null) {
+			isNew = true;
+			movie = new MovieDetail();
+			movie.setMovieId(movieId);
+			movie.setMovieName(filmName);
+		}
+		
+		movie.setMovieTheatre(req.getParameter("theater"));
+		int status = Integer.parseInt(req.getParameter("status"));
+		
+		if (status == 0) {
+			movie.setMovieStatus(Constants.MovieStatus.NowShowing);
+		} else if(status == 1) {
+			movie.setMovieStatus(MovieStatus.UpComing);
+		} else {
+			movie.setMovieStatus(MovieStatus.Shown);
+		}
+		
+		movie.setMovieYouTube(req.getParameter("utube")); //www.youtube.com/embed/aV8H7kszXqo
+		DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");
+		
+		for(int i = 1; i<6; i++) {
+			String showtime = req.getParameter("showtime" + i);
+			if(showtime != null && showtime.compareTo("NAN") != 0){ 
+				try {
+					Date date = movieDateFormat.parse(showtime);
+					switch (i) {
+						case 1:
+							movie.setMovieTime1(date);
+							break;
+						case 2:
+							movie.setMovieTime2(date);
+							break;
+						case 3:
+							movie.setMovieTime3(date);
+							break;
+						case 4:
+							movie.setMovieTime4(date);
+							break;
+						case 5:
+							movie.setMovieTime5(date);
+							break;
+							
+						default:
+							break;
+					}
+				} catch (ParseException e) {
+				}
+			}
+		}
+				
+		movie.setMovieDetails(req.getParameter("plot"));
+		
+		if(isNew){
+			if(MovieDetailDAO.INSTANCE.addMovieDetail(movie)){
+				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.MOVIE_ENTER_SUCCESSFUL));
+				req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+			} else {
+				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.MOVIE_ENTER_FAIL));
+				req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+			}
+		} else {
+			if(MovieDetailDAO.INSTANCE.updateMovieDetail(movie)){
+				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.MOVIE_ENTER_SUCCESSFUL));
+				req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+			} else {
+				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.MOVIE_ENTER_FAIL));
+				req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+			}
 		}
 		
 	}
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-	
-		try{
-			MovieDetail movieDetail = new MovieDetail();
+		
+		String type = req.getParameter("type");
+		
+		if(type.compareTo("hall") == 0){
+			String hall = req.getParameter("hallId");
 			
-			movieDetail.setMovieDetails("movieDetails");			
-			movieDetail.setMovieName("movieName");
-			movieDetail.setMovieStatus(1);
-			movieDetail.setMovieTheatre("movieTheatre");
-			movieDetail.setMovieTime1("10.00Am");
-			movieDetail.setMovieTime2("10.00Am");
-			movieDetail.setMovieTime3("10.00Am");
-			movieDetail.setMovieTime4("10.00Am");
-			movieDetail.setMovieTime5("10.00Am");
+			MovieDetail movie = MovieDetailDAO.INSTANCE.getNowShowingMovie(hall);
 			
-			MovieDetailDAO.INSTANCE.addMovieDetail(movieDetail);//return boolean
-			
-		}catch(Exception e){
-			e.printStackTrace();
+			if(movie == null){
+				resp.getWriter().write("true");
+			} else {
+				resp.getWriter().write("false");
+			}	
 		}
+		
+		if(type.compareTo("update") == 0) {
+			String hall = req.getParameter("hallId");
+			
+			MovieDetail movie = MovieDetailDAO.INSTANCE.getNowShowingMovie(hall);
+			if(movie != null){
+				DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");
+				
+				StringBuffer sb = new StringBuffer();
+				sb.append(movie.getMovieName());
+				sb.append(";");
+				sb.append(movie.getMovieTheatre());
+				sb.append(";");
+				sb.append(movie.getMovieYouTube());
+				sb.append(";");		
+				
+				Date[] shows = {movie.getMovieTime1(), movie.getMovieTime2(), movie.getMovieTime3()
+						, movie.getMovieTime4(), movie.getMovieTime5()};
+				for (Date date : shows) {
+					if(date != null){
+						sb.append(movieDateFormat.format(date));
+						sb.append(";");
+					}
+				}
+				
+				sb.append(movie.getMovieDetails().replace(';', ' '));
+				
+				resp.getWriter().write(sb.toString());
+				
+			} else {
+				resp.getWriter().write("false");
+			}	
+			
+		}
+			
 		
 	}
 }

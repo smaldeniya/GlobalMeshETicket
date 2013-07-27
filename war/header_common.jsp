@@ -130,6 +130,12 @@
 				message = "This field should only include numbers";
 				break;
 				
+			case "curruncy":
+				var re = /^[0-9]+$/;
+				result = re.test(value);
+				message = "Curruncy should only include numbers";
+				break;
+				
 			case "date":
 				var re = /\d{4}-\d{2}-\d{2}/;
 				result = re.test(value);

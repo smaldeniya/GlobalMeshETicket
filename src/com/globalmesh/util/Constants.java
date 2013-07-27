@@ -63,7 +63,33 @@ public class Constants {
 	public static final String HALL_UPDATE_SUCCESS_FULL = "hall.update.successfull";
 
 	public static final String HALL_TRAN_FAIl = "hall.trans.fail";
+	
+	public static final String MOVIE_ENTER_SUCCESSFUL = "movie.enter.success";
+	
+	public static final String MOVIE_UPDATE_SUCCESSFUL = "movie.update.success";
+	
+	public static final String MOVIE_DELETE_SUCCESSFUL = "movie.delete.success";
+	
+	public static final String MOVIE_ENTER_FAIL = "movie.enter.fail";
+	
+	public static final String MOVIE_UPDATE_FAIL = "movie.update.fail";
+	
+	public static final String MOVIE_DELETE_FAIL = "movie.delete.fail";
+	
+	public static final String HALL_GOLD = "hall.gold";
+	
+	public static final String HALL_ULTRA = "hall.ultra";
+	
+	public static final String HALL_PLATINUM = "hall.platinum";
+	
+	public static final String HALL_SUPERIOR = "hall.superior";
+	
+	public static final String HALL_NO_FILM = "hall.no.film";
 
+	public static final String DATE_EXCEED = "sale.date.error.old";
+	
+	public static final String SALE_FAIL = "sale.error.trans.fail";
+	
 	public enum MovieStatus {
 		NowShowing, // 0
 		UpComing, // 1

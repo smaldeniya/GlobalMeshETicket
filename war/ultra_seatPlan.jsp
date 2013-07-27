@@ -1,6 +1,6 @@
+<%@page import="java.util.List"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@include file="header_common.jsp" %>
-<%@ include file="popup.jsp"%>
 
 				<div class="slider">					
 						<a href="#"><img src="images/MC_Ultra.jpg" width="960"
@@ -78,7 +78,7 @@
 	
 	function btnBuyOnClick() {
 		if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
-			$("#filmBookForms").attr("action", "/ultra.do");
+			$("#filmBookForms").attr("action", "/book.do");
 			$("form")[0].submit();
 		}
 	}
@@ -95,7 +95,7 @@
 <div class="clr"></div>
 
 <div id="ticketForm">
-  	<form action="/ultra.do" method="post" id="filmBookForms" name="filmBookForms">
+  	<form action="/book.do" method="post" id="filmBookForms" name="filmBookForms">
   		<input hidden="true" style="display:none" value="ultra" id="hallName" name="hallName"/>
   		<div style="margin-left:20px;">
   			<label>
@@ -109,11 +109,13 @@
   			<label>
 	  			<span>Show Time</span>
 	  			<select class="styled-select " id="showTime" name="showTime" style="font-size:18px;clear:both;margin-top:15px;width:110px;height:45px;" onblur="validate('showTime', 'showTime')">
-	  			<% String[] shows = (String[])request.getAttribute("mcUltraShows"); 
-	  				for(String show : shows){
+	  			<%List<String> shows = (List<String>)request.getAttribute("shows"); 
+	  				if(shows != null) {
+	  					for(String show : shows){
 	  			%>
 	  			<option value="<% out.print(show); %>"><% out.print(show); %></option>
-	  			<%} %>
+	  			<%		}
+		  			}%>
 	  			</select>
 	  			<span class="errorMessage" style="clear:both; margin-top:20px; line-width:15px"></span>
 	  		</label>
@@ -148,7 +150,7 @@
   <div style="width:920px;">
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
-  		<iframe width="354" height="250" src="//${requestScope['mcUltrasYoutube']}?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+  		<iframe width="354" height="250" src="//${requestScope['youtubeUrl']}?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   	</div>
   	</div>
     

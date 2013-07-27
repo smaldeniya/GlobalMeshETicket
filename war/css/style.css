@@ -1209,3 +1209,17 @@ font-size:15px;
 vertical-align:middle;
 cursor:pointer;
 }
+.searchBut {
+	width: 30px;
+	height: 30px;
+	position:relative;
+	float:left;
+	margin-left:10px;
+	background: url(../images/search.gif) no-repeat center;
+	border-radius: 2px;
+	
+}
+.searchBut:HOVER {
+	border: 2px rgb(253,184,6) solid;
+	box-shadow: 1px 2px 5px rgba(0,0,4,0.15)
+}

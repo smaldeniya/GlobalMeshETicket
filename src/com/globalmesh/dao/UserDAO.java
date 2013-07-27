@@ -27,7 +27,7 @@ public enum UserDAO {
 		Query q = em.createQuery("select u from User u");
 		@SuppressWarnings("unchecked")
 		List<User> todos = q.getResultList();
-		em.close();
+		
 		return todos;
 	}
 
@@ -42,7 +42,7 @@ public enum UserDAO {
 				em.getTransaction().begin();
 				em.persist(user);
 				em.getTransaction().commit();
-				em.close();
+				
 				
 				isRegistered = true;
 			}
@@ -66,11 +66,11 @@ public enum UserDAO {
 		} catch (IndexOutOfBoundsException e) {
 			user = null;
 		}
-		em.close();
+		
 		return user;
 	}
 	
-	public User getUserByEmail(String email)  throws Exception{
+	public User getUserByEmail(String email){
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from User t where t.email = :email");
 		q.setParameter("email", email);		
@@ -82,13 +82,13 @@ public enum UserDAO {
 		} catch (IndexOutOfBoundsException e) {
 			user = null;
 		}finally{
-			em.close();
+			
 		}
 		
 		return user;
 	}
 	
-	public User getUserByVeriCode(String verificationCode)  throws Exception{
+	public User getUserByVeriCode(String verificationCode){
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from User t where t.verified = :verified");
 		q.setParameter("verified", verificationCode);		
@@ -98,13 +98,13 @@ public enum UserDAO {
 		} catch (IndexOutOfBoundsException e) {
 			user = null;
 		} finally {
-			em.close();
+			
 		}
 		
 		return user;
 	}
 
-	public void remove(String userId)  throws Exception{
+	public void remove(String userId) {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
 			User user = em.find(User.class, userId);
@@ -112,7 +112,7 @@ public enum UserDAO {
 			em.remove(user);
 			em.getTransaction().commit();
 		} finally {
-			em.close();
+			
 		}
 	}
 	
@@ -126,7 +126,6 @@ public enum UserDAO {
 				em.getTransaction().begin();
 				em.merge(user);
 				em.getTransaction().commit();
-				em.close();
 				
 				isUpdateSuccess = true;
 			}

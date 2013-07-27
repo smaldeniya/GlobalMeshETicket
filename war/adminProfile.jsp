@@ -13,7 +13,7 @@
 			$("#showtime"+index).bind('blur', function (){
 				 var curText = $(this).val();
 				 if(curText == ""){
-					 $(this).val("Eg. 04:30 PM");
+					 $(this).val("Eg. 04:30 PM or NAN");
 				 }
 			})
 		}
@@ -92,7 +92,7 @@
 			case "movie":
 				if(validate('filmName', 'any') && validate('utube', 'utube') && validateShowTimes('showtime1') && validateShowTimes('showtime2') && validateShowTimes('showtime3')
 						&& validateShowTimes('showtime4') && validateShowTimes('showtime5')) {
-					$("#movieForm").attr("action", "/mvdtlung.do");
+					$("#movieForm").attr("action", "/mvdtli.do");
 					$("form")[3].submit();					
 				}
 				break;
@@ -146,9 +146,16 @@
 	function validateShowTimes(id){
 		
 		var value = $("#" + id).val();
-		var re = /^(0?[1-9]|1[012])(:[0-5]\d) [APap][mM]$/;
-		var result = re.test(value);
-		var message = "Enter a valid time (Eg. 10:30 PM)";
+		
+		if(value == "NAN") {
+			result = true;
+		} else {
+			var re = /^(0?[1-9]|1[012])(:[0-5]\d) [APap][mM]$/;
+			var result = re.test(value);
+			var message = "Enter a valid time (Eg. 10:30 PM) or NAN if no show at this time";
+		}
+		
+		
 		
 		if (!result) {
 			$("#" + id).parent().children("span[class=errorMessage]").text(
@@ -187,6 +194,58 @@
 					} else {
 						$("#is3D").prop('checked', false);
 					}
+					$("#odcTicketPrice").val(values[2]);
+					$("#odcHalfTicketPrice").val(values[3]);
+				}
+			}
+		});
+	}
+	
+	function checkHall() {
+		var hallName = $("#theater :selected").val();
+		var checkURL = getURLPath() + "mvdtli.do?type=hall&hallId=" + hallName;
+		var returnVal = false;
+		$.ajax({
+			url:checkURL,
+			async:false,
+			type : "GET",
+			success: function(data,status){
+				if(data === "false"){
+					$("#theater").parent().children("span[class=errorMessage]").text(
+							"Another movie is showing in this hall at the moment. Please update it's status to 'Show Ended'");
+				} else {
+					$("#theater").parent().children("span[class=errorMessage]").html("<img src='../images/ok.png' height='16' width='16'/>");
+					returnVal = true;
+				}
+			}
+		});
+		return returnVal;
+	}
+	
+	function getMovieForUpdate() {
+		var hallName = $("#theater :selected").val();
+		var checkURL = getURLPath() + "mvdtli.do?type=update&hallId=" + hallName;
+		
+		$.ajax({
+			url:checkURL,
+			async:false,
+			type : "GET",
+			success: function(data,status){
+				if(data != "false"){
+					var dataArr = data.split(";");
+					$("#filmName").val(dataArr[0]);
+					$("#status").val("0"); 
+					$("#utube").val(dataArr[2]);
+					
+					for(var i = 3; i < dataArr.length; i++) {
+						if(dataArr[i].toLowerCase().indexOf("am") != -1 || dataArr[i].toLowerCase().indexOf("pm") != -1){
+							$("#showtime"+(i-2)).val(dataArr[i]);
+						}
+					}
+					
+					$("#plot").val(dataArr[dataArr.length - 1]);
+					
+					$("#theater").parent().children("span[class=errorMessage]").html("");
 				}
 			}
 		});
@@ -197,16 +256,16 @@
 
 <div class="${requestScope['msgClass']}">${requestScope['message']}</div>
 
-<div id="userForm" align="center" style="marigin-top:20px;height:940px;">
+<div id="userForm" align="center" style="marigin-top:20px;height:960px;">
 
 <div class="adminTabHeader">
 <nav id="adminNavigateion">
 	<ul>
-		<li style="background-color:#ed1c24;"><a href="#movieDetails" onclick="shoTab('#movieDetails')">Movie Details</a></li>
-		<li><a href="#changePassword" onclick="shoTab('#changePassword')">Admin Password</a></li>
-		<li><a href="#userDetails" onclick="shoTab('#userDetails')">User Details</a></li>
-		<li><a href="#reports" onclick="shoTab('#reports')">Reports</a></li>
-		<li><a href="#hallDetails" onclick="shoTab('#hallDetails')">Hall Details</a></li>
+		<li style="background-color:#ed1c24;"><a href="#movieDetails" onclick="shoTab('#movieDetails');return false;">Movie Details</a></li>
+		<li><a href="#changePassword" onclick="shoTab('#changePassword');return false;">Admin Password</a></li>
+		<li><a href="#userDetails" onclick="shoTab('#userDetails');return false;">User Details</a></li>
+		<li><a href="#reports" onclick="shoTab('#reports');return false;">Reports</a></li>
+		<li><a href="#hallDetails" onclick="shoTab('#hallDetails');return false;">Hall Details</a></li>
 	</ul>
 </nav>
 </div>
@@ -252,20 +311,22 @@
 
 <div id="hallDetails">
 
-<div class="infoMsg" style="margin-top:150px; margin-bottom:30px;">Only ${requestScope['freeHalls']} more halls can be added. Please note that after adding, halls can not be deleted. Only update is possible</div>
+<div class="infoMsg" style="margin-top:120px;">Only ${requestScope['freeHalls']} more halls can be added. Please note that after adding, halls can not be deleted. Only update is possible</div>
 
 <div class="labelDetails">
 	<div>
 	<fieldset class="textbox">
 		<lable ><span>Hall Name</span></lable>
 		<lable ><span>Number Of Seats</span></lable>
+		<lable ><span>ODC FULL Ticket Price</span></lable>
+		<lable ><span>ODC HALF Ticket Price</span></lable>
 		<lable ><span>3D</span></lable>
 	</fieldset>
 	</div>
 </div>
-<div class="devider" style="height:150px"></div>
+<div class="devider" style="height:300px; margin-left:350px"></div>
 
-<div class="userDetailsCommon">
+<div class="userDetailsCommon" style="margin-left:400px;">
 	<form action="/hallUnI.do" id="hallForm" method="post">
 		<c:choose>
 					<c:when test="${requestScope['freeHalls'] > 0 }">
@@ -291,6 +352,16 @@
 		</c:choose>
 		<label>
 			<input type="text" value='' id="noOfSeats" name="noOfSeats" style="margin-top:30px" onblur="validate('noOfSeats', 'number')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+		
+		<label>
+			<input type="text" value='' id="odcTicketPrice" name="odcTicketPrice" style="margin-top:30px" onblur="validate('odcTicketPrice', 'number')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+		
+		<label>
+			<input type="text" value='' id="odcHalfTicketPrice" name="odcHalfTicketPrice" style="margin-top:30px" onblur="validate('odcHalfTicketPrice', 'number')"/>
 			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 		</label>
 		
@@ -340,6 +411,7 @@
 					<lable ><span>Show Time 3</span></lable>
 					<lable ><span>Show Time 4</span></lable>
 					<lable ><span>Show Time 5</span></lable>
+					<lable ><span>Film Poster</span></lable>
 					<lable ><span>Description (Plot)</span></lable>
 				</fieldset>
 			</div>
@@ -351,11 +423,12 @@
 			<form action="/useru.do" id="movieForm" method="post">
 				<label>
 					<input type="text" value='' id="filmName" name="filmName" style="margin-top:30px" onblur="validate('filmName', 'any')"/>
-					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+					<!-- span style="float:left; margin-left:5px;margin-top:35px;"><a class="searchBut" href="	"></a></span -->
+					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:40px;"></span>
 				</label>
 		
 				<label>			
-					<select name="theater" id="theater" style="margin-top:25px; float:left; clear:left; width:230px; height:45px;" class="styled-select"> 
+					<select name="theater" id="theater" style="margin-top:20px; float:left; clear:left; width:230px; height:45px;" class="styled-select" onchange="checkHall()"> 
 						<option value="" selected="selected">Select Theater</option> 
 						<% 	String [] hallNames = (String[])request.getAttribute("hallNames"); 
 							for(String hall:hallNames){
@@ -363,6 +436,8 @@
 								<option value="<%=hall %>"><%=hall %></option>
 						<%	} %> 
 						</select>
+						<span style="float:left; margin-left:5px;margin-top:25px;"><a class="searchBut" href="#" onclick="getMovieForUpdate();return false;"></a></span>
+						<span class="errorMessage" style="float:left; margin-left:5px;margin-top:40px; width:210px;"></span>
 				</label>
 				
 				<label>			
@@ -375,37 +450,37 @@
 				</label>
 				
 				<label>
-					<input type="text"  id="utube" size="12" name="utube" value='' style="margin-top:25px; width:330px;" onblur="validate('utube', 'utube')"/>
+					<input type="text"  id="utube" size="12" name="utube" value='' style="margin-top:25px; width:250px;padding:10px;" onblur="validate('utube', 'utube')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				
 				<label>
-					<input type="text"  id="showtime1" size="12" name="showtime1" value='Eg. 04:30 PM' style="margin-top:25px" onblur="validateShowTimes('showtime1')"/>
+					<input type="text"  id="showtime1" size="12" name="showtime1" value='Eg. 04:30 PM or NAN' style="margin-top:25px" onblur="validateShowTimes('showtime1')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				
 				<label>
-					<input type="text"  id="showtime2" size="12" name="showtime2" value='Eg. 04:30 PM' style="margin-top:25px" onblur="validateShowTimes('showtime2')"/>
+					<input type="text"  id="showtime2" size="12" name="showtime2" value='Eg. 04:30 PM or NAN' style="margin-top:25px" onblur="validateShowTimes('showtime2')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				
 				<label>
-					<input type="text"  id="showtime3" size="12" name="showtime3" value='Eg. 04:30 PM' style="margin-top:25px" onblur="validateShowTimes('showtime3')"/>
+					<input type="text"  id="showtime3" size="12" name="showtime3" value='Eg. 04:30 PM or NAN' style="margin-top:25px" onblur="validateShowTimes('showtime3')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				
 				<label>
-					<input type="text"  id="showtime4" size="12" name="showtime4" value='Eg. 04:30 PM' style="margin-top:25px" onblur="validateShowTimes('showtime4')"/>
+					<input type="text"  id="showtime4" size="12" name="showtime4" value='Eg. 04:30 PM or NAN' style="margin-top:25px" onblur="validateShowTimes('showtime4')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				
 				<label>
-					<input type="text"  id="showtime5" size="12" name="showtime5" value='Eg. 04:30 PM' style="margin-top:25px" onblur="validateShowTimes('showtime5')"/>
+					<input type="text"  id="showtime5" size="12" name="showtime5" value='Eg. 04:30 PM or NAN' style="margin-top:25px" onblur="validateShowTimes('showtime5')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				
 				<label>
-					<textarea rows="5" cols="20" id="plot" name="plot" style="margin-top:25px"></textarea>
+					<textarea rows="4" cols="20" id="plot" name="plot" style="margin-top:25px"></textarea>
 				</label>
 				
 				<label>

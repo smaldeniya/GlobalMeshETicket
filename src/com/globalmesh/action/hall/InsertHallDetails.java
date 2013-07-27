@@ -22,12 +22,16 @@ public class InsertHallDetails extends HttpServlet {
 		String hallName = req.getParameter("hallName");
 		int numOfSeats = Integer.parseInt(req.getParameter("noOfSeats"));
 		boolean is3D = (req.getParameter("is3D") != null);
+		double odcFull = Double.parseDouble(req.getParameter("odcTicketPrice"));
+		double odcHalf = Double.parseDouble(req.getParameter("odcHalfTicketPrice"));
 		
 		Hall h = HallDAO.INSTANCE.getHallById(hallName);
 		
 		if(h != null ) {
 			h.setNumOfSeats(numOfSeats);
 			h.setThreeD(is3D);
+			h.setOdcFull(odcFull);
+			h.setOdcHalf(odcHalf);
 			
 			if(HallDAO.INSTANCE.updateHall(h)){
 				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
@@ -45,6 +49,8 @@ public class InsertHallDetails extends HttpServlet {
 			h.setHallId(hallName);
 			h.setNumOfSeats(numOfSeats);
 			h.setThreeD(is3D);
+			h.setOdcFull(odcFull);
+			h.setOdcHalf(odcHalf);
 			
 			if(HallDAO.INSTANCE.addHall(h)){
 				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);

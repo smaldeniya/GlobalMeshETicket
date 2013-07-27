@@ -1,13 +1,8 @@
 package com.globalmesh.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Properties;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -17,7 +12,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-@SuppressWarnings("rawtypes")
 public class Utility {
 
 	private static final String CONFIG_FILE = "noqWeb.properties";

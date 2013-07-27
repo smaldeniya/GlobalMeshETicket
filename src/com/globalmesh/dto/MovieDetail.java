@@ -3,12 +3,15 @@
  */
 package com.globalmesh.dto;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.globalmesh.util.Constants.MovieStatus;
 
 /**
  * @author Dil
@@ -16,12 +19,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table( name = "MovieDetail" )
-public class MovieDetail {
+public class MovieDetail implements Serializable{
 
 	@Id	
 	@Column(name = "MovieId", nullable = false)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)//Movie Id is auto generated
-	private Long movieId;
+	private String movieId;
 	@Column(name = "MovieName", nullable = false,length = 50)
 	private String movieName;
 	@Column(name = "MovieDetails", nullable = false,length = 1000)
@@ -29,23 +31,23 @@ public class MovieDetail {
 	@Column(name = "MovieTheatre", nullable = false,length = 100)
 	private String movieTheatre;
 	@Column(name = "MovieTime1", nullable = true,length = 10)
-	private String movieTime1;
+	private Date movieTime1;
 	@Column(name = "MovieTime2", nullable = true,length = 10)
-	private String movieTime2;
+	private Date movieTime2;
 	@Column(name = "MovieTime3", nullable = true,length = 10)
-	private String movieTime3;
+	private Date movieTime3;
 	@Column(name = "MovieTime4", nullable = true,length = 10)
-	private String movieTime4;
+	private Date movieTime4;
 	@Column(name = "MovieTime5", nullable = true,length = 10)
-	private String movieTime5;
+	private Date movieTime5;
 	@Column(name = "MovieStatus", nullable = false)
-	private int MovieStatus;
+	private MovieStatus status;
 	@Column(name = "YouTube", nullable = false)
 	private String movieYouTube;
 	/**
 	 * @return the movieId
 	 */
-	public Long getMovieId() {
+	public String getMovieId() {
 		return movieId;
 	}
 	/**
@@ -59,12 +61,6 @@ public class MovieDetail {
 	 */
 	public void setMovieYouTube(String movieYouTube) {
 		this.movieYouTube = movieYouTube;
-	}
-	/**
-	 * @param movieId the movieId to set
-	 */
-	public void setMovieId(Long movieId) {
-		this.movieId = movieId;
 	}
 	/**
 	 * @return the movieName
@@ -105,73 +101,79 @@ public class MovieDetail {
 	/**
 	 * @return the movieTime1
 	 */
-	public String getMovieTime1() {
+	public Date getMovieTime1() {
 		return movieTime1;
 	}
 	/**
 	 * @param movieTime1 the movieTime1 to set
 	 */
-	public void setMovieTime1(String movieTime1) {
+	public void setMovieTime1(Date movieTime1) {
 		this.movieTime1 = movieTime1;
 	}
 	/**
 	 * @return the movieTime2
 	 */
-	public String getMovieTime2() {
+	public Date getMovieTime2() {
 		return movieTime2;
 	}
 	/**
 	 * @param movieTime2 the movieTime2 to set
 	 */
-	public void setMovieTime2(String movieTime2) {
+	public void setMovieTime2(Date movieTime2) {
 		this.movieTime2 = movieTime2;
 	}
 	/**
 	 * @return the movieTime3
 	 */
-	public String getMovieTime3() {
+	public Date getMovieTime3() {
 		return movieTime3;
 	}
 	/**
 	 * @param movieTime3 the movieTime3 to set
 	 */
-	public void setMovieTime3(String movieTime3) {
+	public void setMovieTime3(Date movieTime3) {
 		this.movieTime3 = movieTime3;
 	}
 	/**
 	 * @return the movieTime4
 	 */
-	public String getMovieTime4() {
+	public Date getMovieTime4() {
 		return movieTime4;
 	}
 	/**
 	 * @param movieTime4 the movieTime4 to set
 	 */
-	public void setMovieTime4(String movieTime4) {
+	public void setMovieTime4(Date movieTime4) {
 		this.movieTime4 = movieTime4;
 	}
 	/**
 	 * @return the movieTime5
 	 */
-	public String getMovieTime5() {
+	public Date getMovieTime5() {
 		return movieTime5;
 	}
 	/**
 	 * @param movieTime5 the movieTime5 to set
 	 */
-	public void setMovieTime5(String movieTime5) {
+	public void setMovieTime5(Date movieTime5) {
 		this.movieTime5 = movieTime5;
 	}
 	/**
 	 * @return the movieStatus
 	 */
-	public int getMovieStatus() {
-		return MovieStatus;
+	public MovieStatus getMovieStatus() {
+		return status;
 	}
 	/**
-	 * @param movieStatus the movieStatus to set
+	 * @param nowshowing the movieStatus to set
 	 */
-	public void setMovieStatus(int movieStatus) {
-		MovieStatus = movieStatus;
+	public void setMovieStatus(MovieStatus nowshowing) {
+		status = nowshowing;
+	}
+	/**
+	 * @param movieId the movieId to set
+	 */
+	public void setMovieId(String movieId) {
+		this.movieId = movieId;
 	}
 }

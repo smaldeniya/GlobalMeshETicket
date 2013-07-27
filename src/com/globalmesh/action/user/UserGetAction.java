@@ -5,7 +5,6 @@ package com.globalmesh.action.user;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,17 +27,19 @@ public class UserGetAction extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String email = (String) req.getSession().getAttribute("email");
-		User user = null;
-		try {
+		if(email == null){
+			req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
+			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.LOGIN_NEED_MESSAGE));
+			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+		} else {
+			User user = null;
+			
 			user = UserDAO.INSTANCE.getUserByEmail(email);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			req.setAttribute("user", user);
+			req.setAttribute("msgClass", Constants.MSG_CSS_INFO);
+			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_PROFILE_UPDATE_INFO));
+			req.getRequestDispatcher("/profile.jsp").forward(req, resp);
 		}
-		
-		req.setAttribute("user", user);
-		req.setAttribute("msgClass", Constants.MSG_CSS_INFO);
-		req.setAttribute("message", Utility.getCONFG().getProperty(Constants.USER_PROFILE_UPDATE_INFO));
-		req.getRequestDispatcher("/profile.jsp").forward(req, resp);
 	}
 }

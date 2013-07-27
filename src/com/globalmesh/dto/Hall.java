@@ -1,5 +1,7 @@
 package com.globalmesh.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Hall")
-public class Hall {
+public class Hall implements Serializable{
 
 	@Id
 	@Column(name="HallID")
@@ -18,6 +20,12 @@ public class Hall {
 	
 	@Column(name="ThreeD", nullable=false)
 	private boolean threeD;
+	
+	@Column(name="OdcFull", nullable=false)
+	private double odcFull;
+	
+	@Column(name="OdcHalf", nullable=false)
+	private double odcHalf;
 
 	/**
 	 * @return the hallId
@@ -59,5 +67,33 @@ public class Hall {
 	 */
 	public void setThreeD(boolean threeD) {
 		this.threeD = threeD;
+	}
+
+	/**
+	 * @return the odcFull
+	 */
+	public double getOdcFull() {
+		return odcFull;
+	}
+
+	/**
+	 * @param odcFull the odcFull to set
+	 */
+	public void setOdcFull(double odcFull) {
+		this.odcFull = odcFull;
+	}
+
+	/**
+	 * @return the odcHalf
+	 */
+	public double getOdcHalf() {
+		return odcHalf;
+	}
+
+	/**
+	 * @param odcHalf the odcHalf to set
+	 */
+	public void setOdcHalf(double odcHalf) {
+		this.odcHalf = odcHalf;
 	}
 }

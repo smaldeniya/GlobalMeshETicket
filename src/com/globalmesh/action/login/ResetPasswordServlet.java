@@ -2,7 +2,6 @@ package com.globalmesh.action.login;
 
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

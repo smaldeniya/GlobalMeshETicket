@@ -3,10 +3,9 @@
  */
 package com.globalmesh.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.annotation.Nonnull;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table( name = "User" )
-public class User {
+public class User implements Serializable{	
 	
 	@Id	
 	@Column(name = "UserId", nullable = false,length = 11) //NIC is the user id.

@@ -1,8 +1,9 @@
 package com.globalmesh.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.annotation.Generated;
+import javax.jdo.annotations.Persistent;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Sale")
-public class Sale {
+public class Sale implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,13 +28,11 @@ public class Sale {
 	@Column(name="SeatArrangement", nullable=false, length=100)
 	private String seats;
 	
-	@ManyToOne(cascade={CascadeType.ALL}, targetEntity=MovieDetail.class, fetch=FetchType.LAZY)
-	@JoinColumn(name="MovieId")
-	private Long movie;
+	@Column(name="MovieId", nullable=false, length=100)
+	private String movie;
 	
-	@ManyToOne(cascade={CascadeType.ALL}, targetEntity=Hall.class, fetch=FetchType.LAZY)
-	@JoinColumn(name="HallID")
-	private String hallId;
+	@Column(name="HallId", nullable=false, length=100)
+	private String hall;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="ShowDate", nullable=false)
@@ -45,9 +44,8 @@ public class Sale {
 	@Column(name="SeatCount", nullable=false)
 	private int seatCount;
 	
-	@ManyToOne(cascade={CascadeType.ALL}, targetEntity=User.class, fetch=FetchType.LAZY)
-	@JoinColumn(name="BuyerId")
-	private String userId;
+	@Column(name="UserId", nullable=false)
+	private String UserId;
 
 	/**
 	 * @return the id
@@ -80,29 +78,29 @@ public class Sale {
 	/**
 	 * @return the movie
 	 */
-	public Long getMovie() {
+	public String getMovie() {
 		return movie;
 	}
 
 	/**
 	 * @param movie the movie to set
 	 */
-	public void setMovie(Long movie) {
+	public void setMovie(String movie) {
 		this.movie = movie;
 	}
 
 	/**
-	 * @return the hallId
+	 * @return the hall
 	 */
-	public String getHallId() {
-		return hallId;
+	public String getHall() {
+		return hall;
 	}
 
 	/**
-	 * @param hallId the hallId to set
+	 * @param hall the hall to set
 	 */
-	public void setHallId(String hallId) {
-		this.hallId = hallId;
+	public void setHall(String hall) {
+		this.hall = hall;
 	}
 
 	/**
@@ -151,15 +149,15 @@ public class Sale {
 	 * @return the userId
 	 */
 	public String getUserId() {
-		return userId;
+		return UserId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
 	public void setUserId(String userId) {
-		this.userId = userId;
+		UserId = userId;
 	}
-	
+		
 	
 }

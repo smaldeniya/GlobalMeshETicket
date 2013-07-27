@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.globalmesh.dto.Hall;
-import com.globalmesh.dto.User;
 import com.globalmesh.util.EMFService;
 
 public enum HallDAO {
@@ -18,7 +17,7 @@ public enum HallDAO {
 		Query q = em.createQuery("Select h from Hall h");
 		
 		List<Hall> hallList = q.getResultList();
-		em.close();
+		
 		return hallList;
 	}
 	
@@ -32,7 +31,7 @@ public enum HallDAO {
 		} catch (IndexOutOfBoundsException e) {
 			hall = null;
 		}
-		em.close();
+		
 		return hall;
 	}
 	
@@ -50,7 +49,7 @@ public enum HallDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				em.close();
+				
 			}
 			
 		}
@@ -74,7 +73,7 @@ public enum HallDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}  finally {
-				em.close();
+				
 			}
 		}
 		
@@ -90,7 +89,7 @@ public enum HallDAO {
 			em.getTransaction().begin();
 			em.merge(h);
 			em.getTransaction().commit();
-			em.close();
+			
 			
 			isSuccess = true;
 		}
