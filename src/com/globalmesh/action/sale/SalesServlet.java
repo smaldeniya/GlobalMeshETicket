@@ -38,7 +38,7 @@ public class SalesServlet extends HttpServlet {
 			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			
 		} else {
-			String hallName = chooseHall(req.getParameter("hallName"));
+			String hallName = Utility.chooseHall(req.getParameter("hallName"));
 			String showDate = req.getParameter("showDate");
 			String showTime = req.getParameter("showTime");
 			int numOfHalfTickets = Integer.parseInt(req.getParameter("halfTicket"));
@@ -92,21 +92,6 @@ public class SalesServlet extends HttpServlet {
 		
 	}
 
-	private String chooseHall(String hallId){
-		String hall = "";
-		if(hallId.compareTo("gold") == 0) {
-			hall = Utility.getCONFG().getProperty(Constants.HALL_GOLD);
-		} else if(hallId.compareTo("platinum") == 0) {
-			hall = Utility.getCONFG().getProperty(Constants.HALL_PLATINUM);
-		} else if(hallId.compareTo("superior") == 0) {
-			hall = Utility.getCONFG().getProperty(Constants.HALL_SUPERIOR);
-		} else if(hallId.compareTo("ultra") == 0) {
-			hall = Utility.getCONFG().getProperty(Constants.HALL_ULTRA);
-		} else {
-			//error
-		}
-		
-		return hall;
-	}
+	
 	
 }

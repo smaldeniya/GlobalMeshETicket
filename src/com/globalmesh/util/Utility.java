@@ -65,4 +65,21 @@ public class Utility {
 		CONFG = cONFG;
 	}
 
+	public static String chooseHall(String hallId){
+		String hall = "";
+		if(hallId.compareTo("gold") == 0) {
+			hall = Utility.getCONFG().getProperty(Constants.HALL_GOLD);
+		} else if(hallId.compareTo("platinum") == 0) {
+			hall = Utility.getCONFG().getProperty(Constants.HALL_PLATINUM);
+		} else if(hallId.compareTo("superior") == 0) {
+			hall = Utility.getCONFG().getProperty(Constants.HALL_SUPERIOR);
+		} else if(hallId.compareTo("ultra") == 0) {
+			hall = Utility.getCONFG().getProperty(Constants.HALL_ULTRA);
+		} else {
+			//error
+		}
+		
+		return hall;
+	}
+	
 }
