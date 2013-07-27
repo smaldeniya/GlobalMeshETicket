@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import com.globalmesh.dto.Hall;
 import com.globalmesh.dto.Sale;
@@ -44,7 +45,7 @@ public enum SaleDAO {
 	
 	public List<Sale> listSalesByDate(Date date){
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("Select s from  Sale s.showDate =: showDates");
+		Query q = em.createQuery("Select s from  Sale s where s.showDate =: showDates");
 		q.setParameter("showDate", date);
 		
 		List<Sale> saleList = q.getResultList();		
@@ -53,8 +54,8 @@ public enum SaleDAO {
 	
 	public List<Sale> listSalesByDateAndHall(Date date, Hall h){
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("Select s from  Sale s.showDate =: showDates and s.hall=: hall");
-		q.setParameter("showDate", date);
+		Query q = em.createQuery("Select s from  Sale s where s.hall= :hall and s.showDate > :showDate");
+		q.setParameter("showDate", date, TemporalType.TIMESTAMP);
 		q.setParameter("hall", h.getHallId());
 		List<Sale> saleList = q.getResultList();		
 		return saleList;

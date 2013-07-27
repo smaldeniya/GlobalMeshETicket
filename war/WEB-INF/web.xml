@@ -130,7 +130,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>MovieDtlDel</servlet-name>
 		<url-pattern>/mvdtld.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>AdminHandle</servlet-name>
 		<servlet-class>com.globalmesh.action.user.HandleAdminAction</servlet-class>
@@ -139,7 +139,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>AdminHandle</servlet-name>
 		<url-pattern>/adminH.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>HallUpIn</servlet-name>
 		<servlet-class>com.globalmesh.action.hall.InsertHallDetails</servlet-class>
@@ -150,14 +150,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	</servlet-mapping>
 
 	<servlet>
-	    <servlet-name>GetHall</servlet-name>
-	    <servlet-class>com.globalmesh.action.hall.GetHall</servlet-class>
+		<servlet-name>GetHall</servlet-name>
+		<servlet-class>com.globalmesh.action.hall.GetHall</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>GetHall</servlet-name>
-	    <url-pattern>/hallG.do</url-pattern>
+		<servlet-name>GetHall</servlet-name>
+		<url-pattern>/hallG.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>Booking</servlet-name>
 		<servlet-class>com.globalmesh.action.sale.SalesServlet</servlet-class>
@@ -166,7 +166,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>Booking</servlet-name>
 		<url-pattern>/book.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>ReservedSeats</servlet-name>
 		<servlet-class>com.globalmesh.action.sale.GetReservedSeatsServlet</servlet-class>
@@ -175,7 +175,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>ReservedSeats</servlet-name>
 		<url-pattern>/getReserved.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<display-name>Remote API Servlet</display-name>
 		<servlet-name>RemoteApiServlet</servlet-name>
@@ -186,6 +186,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>RemoteApiServlet</servlet-name>
 		<url-pattern>/remote_api</url-pattern>
 	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>AuthServer</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 
 	<welcome-file-list>
 		<welcome-file>welcome.jsp</welcome-file>
