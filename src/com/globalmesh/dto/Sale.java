@@ -38,15 +38,30 @@ public class Sale implements Serializable{
 	@Column(name="ShowDate", nullable=false)
 	private Date showDate;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="TransactionDate", nullable=false)
+	private Date transactionDate;
+	
 	@Column(name="NumberOfHalfTickets", nullable=false)
 	private int numOfHalfTickets;
+	
+	@Column(name="NumberOfFullTickets", nullable=false) // fullTickets = seatCount - halftickets
+	private int numOfFullfTickets;
 	
 	@Column(name="SeatCount", nullable=false)
 	private int seatCount;
 	
 	@Column(name="UserId", nullable=false)
 	private String UserId;
-
+	
+	@Column(name="HalfTicketPrice", nullable=false)
+	private double halfTicketPrice;
+	
+	@Column(name="FullTicketPrice", nullable=false)
+	private double fullTicketPrice;
+	
+	@Column(name="Total", nullable=false) // total = fullticket * fullticetPrice + halfTicket * halfTicketPrice
+	private double total;
 	/**
 	 * @return the id
 	 */
@@ -157,6 +172,76 @@ public class Sale implements Serializable{
 	 */
 	public void setUserId(String userId) {
 		UserId = userId;
+	}
+
+	/**
+	 * @return the transactionDate
+	 */
+	public Date getTransactionDate() {
+		return transactionDate;
+	}
+
+	/**
+	 * @param transactionDate the transactionDate to set
+	 */
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	/**
+	 * @return the numOfFullfTickets
+	 */
+	public int getNumOfFullfTickets() {
+		return numOfFullfTickets;
+	}
+
+	/**
+	 * @param numOfFullfTickets the numOfFullfTickets to set
+	 */
+	public void setNumOfFullfTickets(int numOfFullfTickets) {
+		this.numOfFullfTickets = numOfFullfTickets;
+	}
+
+	/**
+	 * @return the halfTicketPrice
+	 */
+	public double getHalfTicketPrice() {
+		return halfTicketPrice;
+	}
+
+	/**
+	 * @param halfTicketPrice the halfTicketPrice to set
+	 */
+	public void setHalfTicketPrice(double halfTicketPrice) {
+		this.halfTicketPrice = halfTicketPrice;
+	}
+
+	/**
+	 * @return the fullTicketPrice
+	 */
+	public double getFullTicketPrice() {
+		return fullTicketPrice;
+	}
+
+	/**
+	 * @param fullTicketPrice the fullTicketPrice to set
+	 */
+	public void setFullTicketPrice(double fullTicketPrice) {
+		this.fullTicketPrice = fullTicketPrice;
+	}
+
+	/**
+	 * @return the total
+	 */
+	public double getTotal() {
+		return total;
+	}
+
+	/**
+	 * @param total the total to set
+	 */
+	public void setTotal(double total) {
+		this.total = total;
 	}
 		
 	

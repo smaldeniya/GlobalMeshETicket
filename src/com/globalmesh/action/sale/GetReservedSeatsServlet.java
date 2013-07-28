@@ -20,15 +20,15 @@ import com.globalmesh.util.Utility;
 public class GetReservedSeatsServlet extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String date = req.getParameter("showDate");
+		String date = req.getParameter("showDate"); //localhost:8080/getReserved.do?showDate=&showTime=&hallName=
 		String time = req.getParameter("showTime"); //time is must to identify the booking
 		String hall = Utility.chooseHall(req.getParameter("hallName"));
 		Hall h = HallDAO.INSTANCE.getHallById(hall);
 		
-		DateFormat showFormat = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat showFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
 		List<Sale> bookings = null;
 		try {
 			bookings = SaleDAO.INSTANCE.listSalesByDateAndHall(showFormat.parse(date + " " + time), h);
@@ -39,10 +39,10 @@ public class GetReservedSeatsServlet extends HttpServlet {
 		StringBuilder sb = new StringBuilder();
 		for (Sale s : bookings) {
 			
-/*			sb.append(s.getSeats());
+			sb.append(s.getSeats());
 			if(bookings.indexOf(s) < bookings.size() -1 ){
 				sb.append(";");
-			}*/
+			}
 		}
 		
 		resp.getWriter().write(sb.toString());

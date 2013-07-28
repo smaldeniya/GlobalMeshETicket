@@ -103,6 +103,14 @@ public enum MovieDetailDAO {
 		
 		return movieDetail;
 	}
+	
+	public List<MovieDetail> listNowShowingMovies() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from MovieDetail t where t.status = :status");
+		q.setParameter("status", Constants.MovieStatus.NowShowing);
+				
+		return q.getResultList();
+	}
 
 
 	public void remove(long movieId) throws Exception {

@@ -175,6 +175,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>ReservedSeats</servlet-name>
 		<url-pattern>/getReserved.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>InitialPage</servlet-name>
+		<servlet-class>com.globalmesh.action.InitialServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitialPage</servlet-name>
+		<url-pattern>/init.do</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<display-name>Remote API Servlet</display-name>

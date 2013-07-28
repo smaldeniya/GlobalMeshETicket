@@ -19,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
 		session.removeAttribute("email");
 		session.removeAttribute("type");
 		
-		resp.sendRedirect("/index.jsp");
+		resp.sendRedirect("/init.do");
 	}
 	
 }

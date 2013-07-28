@@ -1,5 +1,6 @@
 package com.globalmesh.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,11 +55,16 @@ public enum SaleDAO {
 	
 	public List<Sale> listSalesByDateAndHall(Date date, Hall h){
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("Select s from  Sale s where s.hall= :hall and s.showDate > :showDate");
-		q.setParameter("showDate", date, TemporalType.TIMESTAMP);
+		Query q = em.createQuery("Select s from  Sale s where s.hall= :hall and s.showDate= :showDate");
 		q.setParameter("hall", h.getHallId());
-		List<Sale> saleList = q.getResultList();		
-		return saleList;
+		q.setParameter("showDate", date);
+		List<Sale> saleList = q.getResultList();	
+		
+		List<Sale> returnList = new ArrayList<Sale>();
+		for (Sale sale : saleList) {
+			returnList.add(sale);
+		}
+		return returnList;
 	}
 	
 	

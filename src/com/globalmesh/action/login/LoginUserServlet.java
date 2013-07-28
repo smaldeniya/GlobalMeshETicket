@@ -43,7 +43,7 @@ public class LoginUserServlet extends HttpServlet {
 				session.setAttribute("email", user.getEmail());
 				session.setAttribute("type", user.getUserType());
 				
-				resp.sendRedirect("/index.jsp");
+				resp.sendRedirect("/init.do");
 			}
 			else
 			{

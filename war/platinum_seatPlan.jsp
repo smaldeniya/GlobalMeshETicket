@@ -17,7 +17,43 @@
 
 
 <script type="text/javascript">
-	$(".seatingArrangement").ready(function (){
+$(".seatingArrangement").ready(function (){
+	
+	$("#showDate").bind("blur",function() {
+		cleanSeats();
+		seatListner();
+		if(validate('showDate','date')){
+			getBookedSeats();
+		} else {
+			$(".seatingArrangement").children().find("table td").each(function (){
+				$(this).unbind("click");
+			});
+		}
+	});
+	
+	//function too change resered seats.
+});
+
+function btnBuyOnClick() {
+	if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
+		$("#filmBookForms").attr("action", "/book.do");
+		$("form")[0].submit();
+	}
+}
+
+function cleanSeats(){
+	$(".seatingArrangement").children().find("table td").each(function (){
+		if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt") && !$(this).hasClass("sampath")) {
+			$(this).removeAttr( 'style' );
+			$(this).unbind("click");
+			$("#seatCount").val("0");
+			$("#seatCounter").text("0");
+			$("#seatSelection").val("");
+		}			
+	});
+}
+
+function seatListner() {
 		$(".seatingArrangement").children().find("table td").each(function (){
 			
 			if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt") && !$(this).hasClass("sampath")) {
@@ -71,29 +107,47 @@
 				});
 			}
 			
-		});
-		
-		//function too change resered seats.
-	});
+		});			
+}
+
+function getBookedSeats() {
 	
-	function btnBuyOnClick() {
-		if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
-			$("#filmBookForms").attr("action", "/book.do");
-			$("form")[0].submit();
+var showDate = $("#showDate").val();
+	var showTime = $("#showTime").val();
+	var hall = $("#hallName").val();
+
+	var urlGet = getURLPath() + "getReserved.do";
+
+	$.ajax({
+		url : urlGet,
+		async : false,
+		type : "POST",
+		data : {
+			'showDate' : showDate,
+			'showTime' : showTime,
+			'hallName' : hall
+		},
+		success : function(data, status) {
+			if (!isEmpty(data)) {
+				var bookedSeats = data.split(";");
+				for ( var i = 0; i < bookedSeats.length; i++) {
+					$("#" + bookedSeats[i]).unbind("click");
+					$("#" + bookedSeats[i]).css("background-image",
+							"url(../images/reserved_small.png)");
+				}
+			}
 		}
-	}
-	
-	function getBookedSeats() {
-		//TODO implment to send ajax request take the booked seats and compare with currunt seats.
-	}
-	
-	
+	});
+
+}	
 </script>
 
 <div align="center">
 
 <div class="seat_plan_header">Majestic cinema - Platinum</div>
 <div class="clr"></div>
+
+<div class="infoMsg" style="margin-bottom:10px;" id="beforClickMsg">Please select a date and time to proceed with ticket booking.</div>
 
 <div id="ticketForm">
   	<form action="/book.do" method="post" id="filmBookForms" name="filmBookForms">

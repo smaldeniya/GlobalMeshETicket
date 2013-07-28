@@ -205,7 +205,7 @@
 				<div class="menu_nav">
 					<nav>
 						<ul>
-							<li class="active"><a href="index.jsp"><span>Home
+							<li class="active"><a href="/init.do"><span>Home
 										Page</span></a></li>
 							<li><a href=""><span>Film Halls</span></a>
 								<ul>

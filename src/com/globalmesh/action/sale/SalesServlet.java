@@ -64,6 +64,16 @@ public class SalesServlet extends HttpServlet {
 					sale.setSeatCount(seatCount);
 					sale.setNumOfHalfTickets(numOfHalfTickets);
 					sale.setSeats(seatSelection);
+					sale.setFullTicketPrice(h.getOdcFull());					
+					sale.setHalfTicketPrice(h.getOdcHalf());
+					
+					int numOfFullTickets = (seatCount - numOfHalfTickets);					
+					sale.setNumOfFullfTickets(numOfFullTickets);
+					
+					double total = numOfFullTickets * h.getOdcFull() + numOfHalfTickets * h.getOdcHalf();					
+					sale.setTotal(total);
+					
+					sale.setTransactionDate(Calendar.getInstance().getTime());
 					
 					if(SaleDAO.INSTANCE.insertSale(sale)){
 						//TODO payment gateway
