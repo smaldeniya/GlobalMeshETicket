@@ -1,5 +1,20 @@
 <script>
+function getMovieForUpdate() {
+	var hallName = $("#hallforRule :selected").val();
+	var checkURL = getURLPath() + "mvdtli.do?type=showTimes&hallId=" + hallName;
 	
+	$.ajax({
+		url:checkURL,
+		async:false,
+		type : "GET",
+		success: function(data,status){
+			if(data != "false"){
+				var dataArr = data.split(";");
+				
+			}
+		}
+	});
+}
 </script>
 
 <div id="showTimeRules">

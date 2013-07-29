@@ -169,6 +169,42 @@ public class MovieDetailInsertAction extends HttpServlet {
 			}	
 			
 		}
+		
+		if(type.compareTo("showTimes") == 0){
+			String hall = req.getParameter("hallId");
+			
+			MovieDetail movie = MovieDetailDAO.INSTANCE.getNowShowingMovie(hall);
+			
+			if(movie != null){
+				
+				int i = 0;
+				
+				if (movie.getMovieTime1().length == 7){
+					i++;
+				}
+				
+				if (movie.getMovieTime2().length == 7){
+					i++;
+				}
+				
+				if (movie.getMovieTime3().length == 7){
+					i++;
+				}
+				
+				if (movie.getMovieTime4().length == 7){
+					i++;
+				}
+				
+				if (movie.getMovieTime5().length == 7){
+					i++;
+				}
+				
+				resp.getWriter().write("" + i);
+				
+			} else {
+				resp.getWriter().write("false");
+			}
+		}
 			
 		
 	}
