@@ -26,11 +26,6 @@
 				$("form")[1].submit();
 				break;
 				
-			case "user":
-				$("#userUpdateForm").attr("action", "/useru.do");
-				$("form")[2].submit();
-				break;
-				
 			case "movie":
 				if(validate('filmName', 'any') && validate('utube', 'utube') && validateShowTimes('showtime1') && validateShowTimes('showtime2') && validateShowTimes('showtime3')
 						&& validateShowTimes('showtime4') && validateShowTimes('showtime5')){
@@ -51,11 +46,6 @@
 			case "hall":
 				$("#hallForm").attr("action", "/useru.do");
 				$("form")[1].submit();
-				break;
-				
-			case "user":
-				$("#userUpdateForm").attr("action", "/useru.do");
-				$("form")[2].submit();
 				break;
 				
 			case "movie":
@@ -90,8 +80,7 @@
 				break;
 				
 			case "movie":
-				if(validate('filmName', 'any') && validate('utube', 'utube') && validateShowTimes('showtime1') && validateShowTimes('showtime2') && validateShowTimes('showtime3')
-						&& validateShowTimes('showtime4') && validateShowTimes('showtime5')) {
+				if(validate('filmName', 'any') && validate('utube', 'utube')) {
 					$("#movieForm").attr("action", "/mvdtli.do");
 					$("form")[3].submit();	
 					$("#showtime1").parent().children("span[class=errorMessage]").text("Go to 'Show Times' tab to update movie times");
@@ -99,8 +88,11 @@
 				break;
 				
 			case "showRules":
-				$("#showTimeRuleForm").attr("action", "/hallUnI.do");
-				$("form")[5].submit();
+				if(validate('hallforRule', 'any') && validate('showTimeforRule', 'number') && validateWeeklyTime('ruleSunday') && validateWeeklyTime('ruleMonday') && validateWeeklyTime('ruleTuesday') 
+						&& validateWeeklyTime('ruleWednesday') && validateWeeklyTime('ruleThursday') && validateWeeklyTime('ruleFriday') && validateWeeklyTime('ruleSaturday')){
+					$("#showTimeRuleForm").attr("action", "/mvtimeup.do");
+					$("form")[5].submit();
+				}
 				break;
 				
 			case "report":
@@ -243,15 +235,13 @@
 					$("#status").val("0"); 
 					$("#utube").val(dataArr[2]);
 					
-					for(var i = 3; i < dataArr.length; i++) {
-						if(dataArr[i].toLowerCase().indexOf("am") != -1 || dataArr[i].toLowerCase().indexOf("pm") != -1){
-							$("#showtime"+(i-2)).val(dataArr[i]);
-						}
+					for(var i = 1; i < 6; i++) {
+						$("#showtime"+i).parent().children("span[class=errorMessage]").text("Click 'Show Times' tab to change time of movie");
 					}
 					
 					$("#plot").val(dataArr[dataArr.length - 1]);
 					
-					$("#theater").parent().children("span[class=errorMessage]").html("");
+					$("#theater").parent().children("span[class=errorMessage]").text("");
 				}
 			}
 		});
@@ -319,13 +309,31 @@
 <%@include file="hallDetailsAdder.jsp" %>
 
 <div id="userDetails">
-		<div class="labelDetails"></div>
+		<div class="labelDetails">
+			<div>
+				<fieldset class="textbox">
+					<label><span>User Email</span></label>
+					<label><span>Type</span></label>
+				</fieldset>
+			</div>
+		</div>
 		<div class="devider"></div>
 
 		<div class="userDetailsCommon">
 			<form action="/useru.do" id="userUpdateForm" method="post">
+				<input type="text" name="updatetype" id="updatetype" value="userType" hidden="hidden" style="display:none"/>
 				<label>
-					<button class="submit button" type="button"	onclick="btnUpdateOnClick('report')" style="margin-top: 25px;">Block Users</button>
+					<input type="text" onblur="validate('emailT', 'email')" id="emailT" name="emailT" value="" style="margin-top: 30px;width:250px;"/>
+					<span class="errorMessage" style="float: left; margin-left: 5px; margin-top: 35px;"></span>
+				</label>
+				<label>
+				</label>
+					<select name="newType" id="newType" style="margin-top:25px; float:left; clear:left; width:150px; height:45px;" class="styled-select" >
+						<option value="1">Admin</option>
+						<option value="2">User</option>
+					</select>
+				<label>
+					<button class="submit button" type="button"	onclick="btnUpdateOnClick('user')" style="margin-top: 25px;">Update Users</button>
 				</label>
 
 			</form>

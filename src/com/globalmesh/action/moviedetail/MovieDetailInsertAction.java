@@ -5,6 +5,7 @@ package com.globalmesh.action.moviedetail;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -116,7 +117,8 @@ public class MovieDetailInsertAction extends HttpServlet {
 		} else {
 			if(MovieDetailDAO.INSTANCE.updateMovieDetail(movie)){
 				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
-				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.MOVIE_ENTER_SUCCESSFUL));
+				String message = MessageFormat.format(Utility.getCONFG().getProperty(Constants.MOVIE_UPDATE_SUCCESSFUL), movie.getMovieName());
+				req.setAttribute("message", message);
 				req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			} else {
 				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
@@ -179,23 +181,23 @@ public class MovieDetailInsertAction extends HttpServlet {
 				
 				int i = 0;
 				
-				if (movie.getMovieTime1().length == 7){
+				if (movie.getMovieTime1() != null && movie.getMovieTime1().length == 7){
 					i++;
 				}
 				
-				if (movie.getMovieTime2().length == 7){
+				if (movie.getMovieTime2() != null && movie.getMovieTime2().length == 7){
 					i++;
 				}
 				
-				if (movie.getMovieTime3().length == 7){
+				if (movie.getMovieTime3() != null && movie.getMovieTime3().length == 7){
 					i++;
 				}
 				
-				if (movie.getMovieTime4().length == 7){
+				if (movie.getMovieTime4() != null && movie.getMovieTime4().length == 7){
 					i++;
 				}
 				
-				if (movie.getMovieTime5().length == 7){
+				if (movie.getMovieTime5() != null && movie.getMovieTime5().length == 7){
 					i++;
 				}
 				
@@ -206,6 +208,52 @@ public class MovieDetailInsertAction extends HttpServlet {
 			}
 		}
 			
-		
+		if(type.compareTo("showSchedule") == 0){
+			String hall = req.getParameter("hallId");
+			MovieDetail movie = MovieDetailDAO.INSTANCE.getNowShowingMovie(hall);
+			String show = req.getParameter("show");
+			
+			Date[] showSchedule = null;
+			StringBuilder sb = new StringBuilder();
+			
+			if(movie != null && show != null){
+				int showNum = Integer.parseInt(show);
+				
+				switch(showNum) {
+					case 1:
+						showSchedule = movie.getMovieTime1();
+						break;
+					case 2:
+						showSchedule = movie.getMovieTime2();
+						break;
+					case 3:
+						showSchedule = movie.getMovieTime3();
+						break;
+					case 4:
+						showSchedule = movie.getMovieTime4();
+						break;
+					case 5:
+						showSchedule = movie.getMovieTime5();
+						break;
+				}
+				
+				if(showSchedule != null){
+					DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");
+					for (int date = 0; date < showSchedule.length; date++) {
+						sb.append(movieDateFormat.format(showSchedule[date]));
+						
+						if(date < showSchedule.length -1){
+							sb.append(";");
+						}
+					}
+					
+					resp.getWriter().write(sb.toString());
+				} else {
+					resp.getWriter().write("false");
+				}
+			} else {
+				resp.getWriter().write("false");
+			}
+		}
 	}
 }

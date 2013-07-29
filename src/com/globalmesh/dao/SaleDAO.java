@@ -27,7 +27,7 @@ public enum SaleDAO {
 				em.getTransaction().commit();
 				isSuccess = true;
 			} catch (Exception e) {
-				// TODO: handle exception
+				em.close();
 			}
 			
 		}
@@ -40,8 +40,12 @@ public enum SaleDAO {
 		Query q = em.createQuery("Select s from  Sale s");
 		
 		List<Sale> saleList = q.getResultList();
-		
-		return saleList;
+		List<Sale> returnList = new ArrayList<Sale>();
+		for (Sale sale : saleList) {
+			returnList.add(sale);
+		}
+		em.close();
+		return returnList;
 	}
 	
 	public List<Sale> listSalesByDate(Date date){
@@ -49,7 +53,12 @@ public enum SaleDAO {
 		Query q = em.createQuery("Select s from  Sale s where s.showDate =: showDates");
 		q.setParameter("showDate", date);
 		
-		List<Sale> saleList = q.getResultList();		
+		List<Sale> saleList = q.getResultList();
+		List<Sale> returnList = new ArrayList<Sale>();
+		for (Sale sale : saleList) {
+			returnList.add(sale);
+		}
+		em.close();
 		return saleList;
 	}
 	
@@ -63,7 +72,8 @@ public enum SaleDAO {
 		List<Sale> returnList = new ArrayList<Sale>();
 		for (Sale sale : saleList) {
 			returnList.add(sale);
-		}
+		} 
+		em.close();
 		return returnList;
 	}
 	

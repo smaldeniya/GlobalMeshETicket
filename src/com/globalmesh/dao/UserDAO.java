@@ -3,6 +3,7 @@
  */
 package com.globalmesh.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -26,19 +27,23 @@ public enum UserDAO {
 		// Read the existing entries
 		Query q = em.createQuery("select u from User u");
 		@SuppressWarnings("unchecked")
-		List<User> todos = q.getResultList();
+		List<User> users = q.getResultList();
+		List<User> returnList = new ArrayList<User>();
+		for (User user : users) {
+			returnList.add(user);
+		}
 		
-		return todos;
+		return returnList;
 	}
 
 	public boolean add(User user)  throws Exception{
 		boolean isRegistered = false;
 		
 		synchronized (this) {			
+			EntityManager em = EMFService.get().createEntityManager();
 			try
 			{
 				
-				EntityManager em = EMFService.get().createEntityManager();
 				em.getTransaction().begin();
 				em.persist(user);
 				em.getTransaction().commit();
@@ -48,7 +53,7 @@ public enum UserDAO {
 			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
+				em.close();
 			}
 	
 		}
@@ -64,6 +69,7 @@ public enum UserDAO {
 		try {
 			user = (User) q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
+			em.close();
 			user = null;
 		}
 		
@@ -82,7 +88,7 @@ public enum UserDAO {
 		} catch (IndexOutOfBoundsException e) {
 			user = null;
 		}finally{
-			
+			em.close();
 		}
 		
 		return user;
@@ -98,7 +104,7 @@ public enum UserDAO {
 		} catch (IndexOutOfBoundsException e) {
 			user = null;
 		} finally {
-			
+			em.close();
 		}
 		
 		return user;
@@ -112,17 +118,18 @@ public enum UserDAO {
 			em.remove(user);
 			em.getTransaction().commit();
 		} finally {
-			
+			em.close();
 		}
 	}
 	
-	public boolean update(User user)  throws Exception{
+	public boolean update(User user){
 		boolean isUpdateSuccess = false;
 		
-		synchronized (this) {			
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
 			try
 			{				
-				EntityManager em = EMFService.get().createEntityManager();								
+												
 				em.getTransaction().begin();
 				em.merge(user);
 				em.getTransaction().commit();
@@ -131,7 +138,7 @@ public enum UserDAO {
 			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
+				em.close();
 			}
 	
 		}

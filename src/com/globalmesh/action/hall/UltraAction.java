@@ -50,23 +50,23 @@ public class UltraAction extends HttpServlet {
 				for (int i = 0; i < 5; i++) {
 					switch (i) {
 					case 0:
-						if (hallMovie.getMovieTime1().length == 7)
+						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
 							shows[i] = hallMovie.getMovieTime1()[dayOfWeek];
 						break;
 					case 1:
-						if (hallMovie.getMovieTime2().length == 7)
+						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
 							shows[i] = hallMovie.getMovieTime2()[dayOfWeek];
 						break;
 					case 2:
-						if (hallMovie.getMovieTime3().length == 7)
+						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
 							shows[i] = hallMovie.getMovieTime3()[dayOfWeek];
 						break;
 					case 3:
-						if (hallMovie.getMovieTime4().length == 7)
+						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
 							shows[i] = hallMovie.getMovieTime4()[dayOfWeek];
 						break;
 					case 4:
-						if (hallMovie.getMovieTime5().length == 7)
+						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
 							shows[i] = hallMovie.getMovieTime5()[dayOfWeek];
 						break;
 					}

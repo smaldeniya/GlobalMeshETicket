@@ -1,5 +1,6 @@
 package com.globalmesh.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,8 +18,14 @@ public enum HallDAO {
 		Query q = em.createQuery("Select h from Hall h");
 		
 		List<Hall> hallList = q.getResultList();
+		List<Hall> resultList = new ArrayList<Hall>();
 		
-		return hallList;
+		for (Hall hall : hallList) {
+			resultList.add(hall);
+		}
+		
+		em.close();
+		return resultList;
 	}
 	
 	public Hall getHallById(String hallId){
@@ -31,7 +38,7 @@ public enum HallDAO {
 		} catch (IndexOutOfBoundsException e) {
 			hall = null;
 		}
-		
+		em.close();
 		return hall;
 	}
 	
@@ -49,7 +56,7 @@ public enum HallDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				
+				em.close();
 			}
 			
 		}
@@ -73,7 +80,7 @@ public enum HallDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}  finally {
-				
+				em.close();
 			}
 		}
 		
@@ -90,7 +97,7 @@ public enum HallDAO {
 			em.merge(h);
 			em.getTransaction().commit();
 			
-			
+			em.close();
 			isSuccess = true;
 		}
 		

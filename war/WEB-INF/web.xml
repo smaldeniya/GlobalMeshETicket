@@ -132,6 +132,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>MovieTimeUpdate</servlet-name>
+		<servlet-class>com.globalmesh.action.moviedetail.MovieTimeUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieTimeUpdate</servlet-name>
+		<url-pattern>/mvtimeup.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>AdminHandle</servlet-name>
 		<servlet-class>com.globalmesh.action.user.HandleAdminAction</servlet-class>
 	</servlet>

@@ -3,6 +3,7 @@
  */
 package com.globalmesh.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,18 +28,22 @@ public enum MovieDetailDAO {
 		Query q = em.createQuery("select m from MovieDetail m");
 		@SuppressWarnings("unchecked")
 		List<MovieDetail> movieDetails = q.getResultList();
-		
+		List<MovieDetail> returnList = new ArrayList<MovieDetail>();
+		for (MovieDetail movieDetail : movieDetails) {
+			returnList.add(movieDetail);
+		}
+		em.close();
 		return movieDetails;
 	}
 
 	public boolean addMovieDetail(MovieDetail movieDetail) {	
 
 		boolean isAddScuccess = false;
+		EntityManager em = EMFService.get().createEntityManager();
 		
 		synchronized (this) {
 			try {
-
-				EntityManager em = EMFService.get().createEntityManager();
+			
 				em.getTransaction().begin();
 				em.persist(movieDetail);
 				em.getTransaction().commit();
@@ -46,6 +51,8 @@ public enum MovieDetailDAO {
 								
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally{
+				em.close();
 			}
 
 		}
@@ -56,10 +63,11 @@ public enum MovieDetailDAO {
 	public boolean updateMovieDetail(MovieDetail movie){
 		boolean isUpdateSuccess = false;
 		
-		synchronized (this) {			
+		synchronized (this) {		
+			EntityManager em = EMFService.get().createEntityManager();
 			try
 			{				
-				EntityManager em = EMFService.get().createEntityManager();								
+												
 				em.getTransaction().begin();
 				em.merge(movie);
 				em.getTransaction().commit();
@@ -70,6 +78,8 @@ public enum MovieDetailDAO {
 			catch(Exception e)
 			{
 				e.printStackTrace();
+			} finally {
+				em.close();
 			}
 	
 		}
@@ -86,7 +96,7 @@ public enum MovieDetailDAO {
 			movieDetail = (MovieDetail) q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
 		}
-		
+		em.close();
 		return movieDetail;
 	}
 	
@@ -100,7 +110,7 @@ public enum MovieDetailDAO {
 			movieDetail = (MovieDetail) q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
 		}
-		
+		em.close();
 		return movieDetail;
 	}
 	
@@ -108,8 +118,15 @@ public enum MovieDetailDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from MovieDetail t where t.status = :status");
 		q.setParameter("status", Constants.MovieStatus.NowShowing);
-				
-		return q.getResultList();
+		
+		List<MovieDetail> movieList = q.getResultList();
+		List<MovieDetail> returnList = new ArrayList<MovieDetail>();
+		
+		for (MovieDetail movieDetail : movieList) {
+			returnList.add(movieDetail);
+		}
+		em.close();
+		return returnList;
 	}
 
 
@@ -122,7 +139,7 @@ public enum MovieDetailDAO {
 			em.remove(movieDetail);
 			em.getTransaction().commit();
 		} finally {
-			
+			em.close();
 		}
 	}
 }
