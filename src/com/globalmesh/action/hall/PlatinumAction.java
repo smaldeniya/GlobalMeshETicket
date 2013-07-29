@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,41 +24,73 @@ public class PlatinumAction extends HttpServlet {
 			throws ServletException, IOException {
 
 		String user = (String) req.getSession().getAttribute("email");
-		
-		if(user == null) {
+
+		if (user == null) {
 			req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
-			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.LOGIN_NEED_MESSAGE));
+			req.setAttribute("message",
+					Utility.getCONFG()
+							.getProperty(Constants.LOGIN_NEED_MESSAGE));
 			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
-			
+
 		} else {
-			String hallName = Utility.getCONFG().getProperty(Constants.HALL_PLATINUM);
-			MovieDetail hallMovie = MovieDetailDAO.INSTANCE.getNowShowingMovie(hallName);
-			
-			if(hallMovie != null) {
+			String hallName = Utility.getCONFG().getProperty(
+					Constants.HALL_PLATINUM);
+			MovieDetail hallMovie = MovieDetailDAO.INSTANCE
+					.getNowShowingMovie(hallName);
+
+			if (hallMovie != null) {
 				DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");
-				
+
 				req.setAttribute("youtubeUrl", hallMovie.getMovieYouTube());
-				
-				Date[] shows = {hallMovie.getMovieTime1(), hallMovie.getMovieTime2(), hallMovie.getMovieTime3(),
-						hallMovie.getMovieTime4(), hallMovie.getMovieTime5()};
+				int dayOfWeek = Calendar.getInstance()
+						.get(Calendar.DAY_OF_WEEK);
+				Date[] shows = new Date[5];
+
+				for (int i = 0; i < 5; i++) {
+					switch (i) {
+					case 0:
+						if (hallMovie.getMovieTime1().length == 7)
+							shows[i] = hallMovie.getMovieTime1()[dayOfWeek];
+						break;
+					case 1:
+						if (hallMovie.getMovieTime2().length == 7)
+							shows[i] = hallMovie.getMovieTime2()[dayOfWeek];
+						break;
+					case 2:
+						if (hallMovie.getMovieTime3().length == 7)
+							shows[i] = hallMovie.getMovieTime3()[dayOfWeek];
+						break;
+					case 3:
+						if (hallMovie.getMovieTime4().length == 7)
+							shows[i] = hallMovie.getMovieTime4()[dayOfWeek];
+						break;
+					case 4:
+						if (hallMovie.getMovieTime5().length == 7)
+							shows[i] = hallMovie.getMovieTime5()[dayOfWeek];
+						break;
+					}
+				}
+
 				List<String> showTimes = new ArrayList<String>();
-				
+
 				for (Date date : shows) {
-					if(date != null){
+					if (date != null) {
 						showTimes.add(movieDateFormat.format(date));
 					}
 				}
 
 				req.setAttribute("shows", showTimes);
-				req.getRequestDispatcher("/platinum_seatPlan.jsp").forward(req, resp);
+				req.getRequestDispatcher("/platinum_seatPlan.jsp").forward(req,
+						resp);
 			} else {
 				req.setAttribute("youtubeUrl", "");
 				req.setAttribute("shows", new ArrayList<String>());
-				req.getRequestDispatcher("/platinum_seatPlan.jsp").forward(req, resp);
+				req.getRequestDispatcher("/platinum_seatPlan.jsp").forward(req,
+						resp);
 			}
-			
+
 		}
-		
+
 	}
-		
+
 }

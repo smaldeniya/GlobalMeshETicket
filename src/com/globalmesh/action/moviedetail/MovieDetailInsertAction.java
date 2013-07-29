@@ -43,57 +43,64 @@ public class MovieDetailInsertAction extends HttpServlet {
 		
 		MovieDetail movie = MovieDetailDAO.INSTANCE.getMovieById(movieId);
 		boolean isNew = false;
-		if(movie == null) {
+		if(movie == null) {  // add new movie
 			isNew = true;
 			movie = new MovieDetail();
 			movie.setMovieId(movieId);
 			movie.setMovieName(filmName);
+			
+			DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");
+			
+			for(int i = 1; i<6; i++) {
+				String showtime = req.getParameter("showtime" + i);
+				if(showtime != null && showtime.compareTo("NAN") != 0){ 
+					try {
+						Date date = movieDateFormat.parse(showtime);
+						Date [] weeklySchedule = new Date[7];
+						
+						for(int dateIndex=0; dateIndex<weeklySchedule.length; dateIndex++) {
+							weeklySchedule[dateIndex] = date;
+						}
+						
+						switch (i) {
+							case 1:
+								movie.setMovieTime1(weeklySchedule);
+								break;
+							case 2:
+								movie.setMovieTime2(weeklySchedule);
+								break;
+							case 3:
+								movie.setMovieTime3(weeklySchedule);
+								break;
+							case 4:
+								movie.setMovieTime4(weeklySchedule);
+								break;
+							case 5:
+								movie.setMovieTime5(weeklySchedule);
+								break;
+								
+							default:
+								break;
+						}
+					} catch (ParseException e) {
+					}
+				}
+			}
+			
 		}
 		
 		movie.setMovieTheatre(req.getParameter("theater"));
 		int status = Integer.parseInt(req.getParameter("status"));
 		
 		if (status == 0) {
-			movie.setMovieStatus(Constants.MovieStatus.NowShowing);
+			movie.setStatus(Constants.MovieStatus.NowShowing);
 		} else if(status == 1) {
-			movie.setMovieStatus(MovieStatus.UpComing);
+			movie.setStatus(MovieStatus.UpComing);
 		} else {
-			movie.setMovieStatus(MovieStatus.Shown);
+			movie.setStatus(MovieStatus.Shown);
 		}
 		
-		movie.setMovieYouTube(req.getParameter("utube")); //www.youtube.com/embed/aV8H7kszXqo
-		DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");
-		
-		for(int i = 1; i<6; i++) {
-			String showtime = req.getParameter("showtime" + i);
-			if(showtime != null && showtime.compareTo("NAN") != 0){ 
-				try {
-					Date date = movieDateFormat.parse(showtime);
-					switch (i) {
-						case 1:
-							movie.setMovieTime1(date);
-							break;
-						case 2:
-							movie.setMovieTime2(date);
-							break;
-						case 3:
-							movie.setMovieTime3(date);
-							break;
-						case 4:
-							movie.setMovieTime4(date);
-							break;
-						case 5:
-							movie.setMovieTime5(date);
-							break;
-							
-						default:
-							break;
-					}
-				} catch (ParseException e) {
-				}
-			}
-		}
-				
+		movie.setMovieYouTube(req.getParameter("utube")); //www.youtube.com/embed/aV8H7kszXqo				
 		movie.setMovieDetails(req.getParameter("plot"));
 		
 		if(isNew){
@@ -152,16 +159,7 @@ public class MovieDetailInsertAction extends HttpServlet {
 				sb.append(";");
 				sb.append(movie.getMovieYouTube());
 				sb.append(";");		
-				
-				Date[] shows = {movie.getMovieTime1(), movie.getMovieTime2(), movie.getMovieTime3()
-						, movie.getMovieTime4(), movie.getMovieTime5()};
-				for (Date date : shows) {
-					if(date != null){
-						sb.append(movieDateFormat.format(date));
-						sb.append(";");
-					}
-				}
-				
+							
 				sb.append(movie.getMovieDetails().replace(';', ' '));
 				
 				resp.getWriter().write(sb.toString());

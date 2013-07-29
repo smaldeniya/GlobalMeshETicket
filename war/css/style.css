@@ -1184,7 +1184,7 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 #accountDetails, #movieDetails {
 	display: block;
 }
-#purchaseHistory, #changePassword, #reports, #userDetails, #hallDetails, #movieDetails {
+#purchaseHistory, #changePassword, #reports, #userDetails, #hallDetails, #movieDetails, #showTimeRules {
 	display: none;
 }
 input[type=checkbox].css-checkbox {

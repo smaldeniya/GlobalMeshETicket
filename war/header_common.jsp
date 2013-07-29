@@ -124,6 +124,11 @@
 				message = "Enter a valid time (Eg. 10:30 PM)";
 				break;
 				
+			case "seatCount":
+				result = (parseInt(value) > 0);
+				message = "Please select seats to proceed.";
+				break;
+				
 			case "number":
 				var re = /^[0-9]+$/;
 				result = re.test(value);
@@ -209,10 +214,10 @@
 										Page</span></a></li>
 							<li><a href=""><span>Film Halls</span></a>
 								<ul>
-									<li style="width:152px"><a href="/gold.do"><span>MC - Gold</span></a></li>
-									<li style="width:152px"><a href="/ultra.do"><span>MC - Ultra</span></a></li>
-									<li style="width:152px"><a href="/superior.do"><span>MC - Superior</span></a></li>
-									<li style="width:152px"><a href="/platinum.do"><span>MC - Platinum</span></a></li>
+									<li style="width:152px"><a href="/gold.do"><span>Gold Cinema</span></a></li>
+									<li style="width:152px"><a href="/ultra.do"><span>Ultra Cinema</span></a></li>
+									<li style="width:152px"><a href="/superior.do"><span>Superior  Cinema</span></a></li>
+									<li style="width:152px"><a href="/platinum.do"><span>Platinum Cinema</span></a></li>
 									<li style="height:2px"></li>
 								</ul>
 							</li>

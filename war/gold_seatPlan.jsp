@@ -41,7 +41,7 @@ $(".seatingArrangement").ready(function (){
 });
 
 function btnBuyOnClick() {
-	if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number')){
+	if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
 		$("#filmBookForms").attr("action", "/book.do");
 		$("form")[0].submit();
 	}
@@ -196,6 +196,7 @@ var showDate = $("#showDate").val();
 	  			<span style="clear:both; margin-top:30px;font-size:30px;" id="seatCounter">0</span>
 	  			<input hidden="true" id="seatSelection" name="seatSelection" value="" style="display:none;"/>
 	  			<input hidden="true" id="seatCount" name="seatCount" value="0" style="display:none;"/>
+	  			<span class="errorMessage" style="clear:both; margin-top:20px; line-width:15px"></span>
 	  		</label>
   		</div>
   		

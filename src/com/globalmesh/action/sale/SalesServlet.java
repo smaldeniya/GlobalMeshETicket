@@ -32,7 +32,7 @@ public class SalesServlet extends HttpServlet {
 		String userEmail = (String) req.getSession().getAttribute("email");
 		int seatCount = Integer.parseInt(req.getParameter("seatCount"));
 		
-		if(userEmail == null || seatCount <= 0) {
+		if(userEmail == null) {
 			req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.LOGIN_NEED_MESSAGE));
 			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
