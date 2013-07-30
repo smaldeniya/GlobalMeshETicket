@@ -11,14 +11,13 @@
 		<lable ><span>ODC HALF Ticket Price</span></lable>
 		<lable ><span>3D</span></lable>		
 		<lable ><span>Front Page Banner</span></lable>
-		<lable ><span>Film Poster (Small)</span></lable>
 	</fieldset>
 	</div>
 </div>
 <div class="devider" style="height:400px; margin-left:350px"></div>
 
 <div class="userDetailsCommon" style="margin-left:400px;">
-	<form action="/hallUnI.do" id="hallForm" method="post">
+	<form action="/hallUnI.do" id="hallForm" method="post" enctype="multipart/form-data">
 		<c:choose>
 					<c:when test="${requestScope['freeHalls'] > 0 }">
 						<label> <input type="text" value='' id="hallName"
@@ -32,6 +31,7 @@
 					<c:otherwise>
 						<label>			
 			<select name="hallName" id="hallName" onchange="getHallDetails()" style="margin-top:25px; float:left; clear:left; width:150px; height:45px;" class="styled-select">
+				<option value=""></option>
 				<% 	String [] hallNames = (String[])request.getAttribute("hallNames"); 
 					for(String hall:hallNames){
 				%>
@@ -57,19 +57,15 @@
 		</label>
 		
 		<label>
-			<input type="checkbox" value='' onclick="is3DonClick()" id="is3D" name="is3D" class="css-checkbox" style="margin-top:30px" onblur="validate('is3D', 'any')"/>
+			<input type="checkbox" value='' onclick="is3DonClick()" id="is3D" name="is3D" class="css-checkbox" style="margin-top:20px" onblur="validate('is3D', 'any')"/>
 			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 		</label>
 		
 		<label>
-			<input type="file" value='' id="filmBanner" name="filmBanner" style="margin-top:30px" onblur="validate('filmBanner', 'any')"/>
+			<input type="file" value='' id="filmBanner" name="filmBanner" style="margin-top:20px" onblur="validate('filmBanner', 'any')"/>
 			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 		</label>
 		
-		<label>
-			<input type="file" value='' id="filmPoster" name="filmPoster" style="margin-top:30px" onblur="validate('filmPoster', 'any')"/>
-			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
-		</label>
 		<label>
 			<button class="submit button" type="button" onclick="btnUpdateOnClick('hall')" style="margin-top:45px;margin-right:20px;position:relative;">Update Hall</button>
 		</label>

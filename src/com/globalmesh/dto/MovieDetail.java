@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.globalmesh.util.Constants.MovieStatus;
+import com.google.appengine.api.datastore.Blob;
 
 /**
  * @author Dil
@@ -51,6 +52,9 @@ public class MovieDetail implements Serializable {
 	
 	@Column(name = "YouTube", nullable = false)
 	private String movieYouTube;
+	
+	@Column(name = "MoviePoster", nullable = true)
+	private Blob moviePoster;
 
 	public String getMovieId() {
 		return movieId;
@@ -138,6 +142,20 @@ public class MovieDetail implements Serializable {
 
 	public void setMovieYouTube(String movieYouTube) {
 		this.movieYouTube = movieYouTube;
+	}
+
+	/**
+	 * @return the moviePoster
+	 */
+	public Blob getMoviePoster() {
+		return moviePoster;
+	}
+
+	/**
+	 * @param moviePoster the moviePoster to set
+	 */
+	public void setMoviePoster(Blob moviePoster) {
+		this.moviePoster = moviePoster;
 	}
 
 }

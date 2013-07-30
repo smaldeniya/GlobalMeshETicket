@@ -12,15 +12,16 @@
 					<lable ><span>Show Time 3</span></lable>
 					<lable ><span>Show Time 4</span></lable>
 					<lable ><span>Show Time 5</span></lable>
+					<lable ><span>Film Poster (Small)</span></lable>
 					<lable ><span>Description (Plot)</span></lable>
 				</fieldset>
 			</div>
 		</div>
 		
-		<div class="devider" style="height:650px"></div>
+		<div class="devider" style="height:700px"></div>
 
 		<div class="userDetailsCommon">
-			<form action="/useru.do" id="movieForm" method="post">
+			<form action="/useru.do" id="movieForm" method="post" enctype="multipart/form-data">
 				<label>
 					<input type="text" value='' id="filmName" name="filmName" style="margin-top:30px" onblur="validate('filmName', 'any')"/>
 					<!-- span style="float:left; margin-left:5px;margin-top:35px;"><a class="searchBut" href="	"></a></span -->
@@ -76,6 +77,11 @@
 				
 				<label>
 					<input type="text"  id="showtime5" size="12" name="showtime5" value='Eg. 04:30 PM or NAN' style="margin-top:25px" onblur="validateShowTimes('showtime5')"/>
+					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+				</label>
+				
+				<label>
+					<input type="file" value='' id="filmPoster" name="filmPoster" style="margin-top:20px" onblur="validate('filmPoster', 'any')"/>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 				</label>
 				

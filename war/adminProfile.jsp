@@ -187,7 +187,7 @@
 					var values = data.split(";")
 					$("#noOfSeats").val(values[0]);
 					
-					if(values[1] == true) {
+					if(values[1] == "true") {
 						$("#is3D").prop('checked', true);
 					} else {
 						$("#is3D").prop('checked', false);

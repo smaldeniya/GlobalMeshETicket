@@ -4,6 +4,7 @@
 package com.globalmesh.action.moviedetail;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -15,13 +16,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
+
 import com.globalmesh.dao.MovieDetailDAO;
 import com.globalmesh.dto.MovieDetail;
 import com.globalmesh.util.Constants;
 import com.globalmesh.util.Constants.MovieStatus;
 import com.globalmesh.util.MD5HashGenerator;
 import com.globalmesh.util.Utility;
-
+import com.google.appengine.api.datastore.Blob;
 /**
  * @author Transformers
  *
@@ -103,6 +110,19 @@ public class MovieDetailInsertAction extends HttpServlet {
 		
 		movie.setMovieYouTube(req.getParameter("utube")); //www.youtube.com/embed/aV8H7kszXqo				
 		movie.setMovieDetails(req.getParameter("plot"));
+		
+		ServletFileUpload upload = new ServletFileUpload();
+		try {
+			FileItemIterator iterator = upload.getItemIterator(req);
+			FileItemStream imageItem = iterator.next();
+			InputStream imageStream = imageItem.openStream();
+			
+			Blob image = new Blob(IOUtils.toByteArray(imageStream));
+			movie.setMoviePoster(image);
+			
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		}
 		
 		if(isNew){
 			if(MovieDetailDAO.INSTANCE.addMovieDetail(movie)){

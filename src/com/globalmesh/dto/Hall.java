@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.appengine.api.datastore.Blob;
+
 @Entity
 @Table(name="Hall")
 public class Hall implements Serializable{
@@ -27,6 +29,9 @@ public class Hall implements Serializable{
 	@Column(name="OdcHalf", nullable=false)
 	private double odcHalf;
 
+	@Column(name="MovieBanner", nullable=false)
+	private Blob movieBanner;
+	
 	/**
 	 * @return the hallId
 	 */
@@ -95,5 +100,19 @@ public class Hall implements Serializable{
 	 */
 	public void setOdcHalf(double odcHalf) {
 		this.odcHalf = odcHalf;
+	}
+
+	/**
+	 * @return the movieBanner
+	 */
+	public Blob getMovieBanner() {
+		return movieBanner;
+	}
+
+	/**
+	 * @param movieBanner the movieBanner to set
+	 */
+	public void setMovieBanner(Blob movieBanner) {
+		this.movieBanner = movieBanner;
 	}
 }
