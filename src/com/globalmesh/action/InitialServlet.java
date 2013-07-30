@@ -19,11 +19,7 @@ public class InitialServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		List<MovieDetail> nowShowingMovies = MovieDetailDAO.INSTANCE.listNowShowingMovies();
-		List<MovieDetail> movieArr = new ArrayList<MovieDetail>(nowShowingMovies.size());
-		
-		for (MovieDetail movieDetail : nowShowingMovies) {
-			movieArr.add(movieDetail);
-		}
+		MovieDetail[] movieArr = nowShowingMovies.toArray(new MovieDetail[nowShowingMovies.size()]);
 		
 		req.setAttribute("movieArray", movieArr);
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);

@@ -482,21 +482,21 @@ p.infopost a {
 	text-decoration: underline;
 }
 
-.fbg p.contact_info {
-	line-height: 1.8em;
-}
-
-.fbg p.contact_info a {
+.fbg .contact_info a {
 	color: #ed1c24;
 	text-decoration: underline;
 }
 
-.fbg p.contact_info span {
+.fbg .contact_info span {
 	display: block;
 	float: left;
 	width: 74px;
 	font-weight: bold;
 	color: #fff;
+}
+
+.fbg .contact_info span span {
+	font-weight: normal;
 }
 
 ol {
@@ -602,7 +602,7 @@ ol li .send {
 
 .footer_resize a {
 	color: #16202e;
-	font-weight: normal;
+	font-weight: bold;
 	margin: 0;
 	padding: 0;
 	border: none;
@@ -621,7 +621,7 @@ ol li .send {
 	color: #fff;
 	text-shadow: #CCC;
 	font-weight: bold;
-	font-size: 11px
+	font-size: 12px
 }
 
 .footer_resize .rf {
@@ -629,7 +629,7 @@ ol li .send {
 	color: #fff;
 	text-shadow: #CCC;
 	font-weight: bold;
-	font-size: 11px
+	font-size: 12px
 }
 
 a {
@@ -1222,4 +1222,57 @@ cursor:pointer;
 .searchBut:HOVER {
 	border: 2px rgb(253,184,6) solid;
 	box-shadow: 1px 2px 5px rgba(0,0,4,0.15)
+}
+
+#commingSoon, .movieBoard {
+	margin: 20px;
+	background: #FFF;
+	width : 900px;
+	height : 220px;
+	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* CSS3 */
+	-moz-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* Firefox */
+	-webkit-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px
+		2px rgba(208, 223, 226, 0.4) inset;
+	/* Safari, Chrome */
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	/* Firefox */
+	-webkit-border-radius: 3px;
+	padding: 10px;
+	vertical-align: middle;
+	position: absolute;
+}
+
+.movieBoard {
+	margin-top: 280px;
+	height: 850px;
+	font-size: 15px;
+}
+.movieSection {
+	margin:10px;
+	width:430px;
+	height: 400px;
+	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	position: relative;
+}
+
+.movieSection div.movieSectionHeader {
+	width: 392px;
+	height: 20px;
+	background: #000;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+	font-size: 16px;
+	font-style: oblique;
+	font-weight: bolder;
+	font-stretch:expanded;
+	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	text-shadow: 0px 1px 0px #FFFFAA;
 }
