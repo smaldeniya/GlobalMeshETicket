@@ -10,6 +10,9 @@ import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +23,7 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
 import org.apache.commons.io.IOUtils;
 
 import com.globalmesh.dao.MovieDetailDAO;
@@ -39,7 +43,37 @@ public class MovieDetailInsertAction extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	
-		String filmName = req.getParameter("filmName");
+		ServletFileUpload upload = new ServletFileUpload();
+		Blob image = null;
+		Map<String, String> formFields = new HashMap<String, String>();
+		try {
+			FileItemIterator iterator = upload.getItemIterator(req);
+			
+			while(iterator.hasNext()){
+				FileItemStream item = iterator.next();
+				InputStream stream = item.openStream();
+				
+				if(item.isFormField()){
+					System.out.println(item.getFieldName());
+					formFields.put(item.getFieldName(), Streams.asString(stream));
+				} else {
+					byte[] b = IOUtils.toByteArray(stream);
+					if(b.length > 0) {
+						image = new Blob(b);
+					}
+				}
+			}	
+			
+			
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		}
+		
+		for (Entry<String, String> e : formFields.entrySet()) {
+			System.out.println(e.getKey() + " " + e.getValue());
+		}
+		
+		String filmName = formFields.get("filmName");
 		String movieId = null;
 		try {
 			movieId = MD5HashGenerator.md5(filmName);
@@ -60,7 +94,7 @@ public class MovieDetailInsertAction extends HttpServlet {
 			DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");
 			
 			for(int i = 1; i<6; i++) {
-				String showtime = req.getParameter("showtime" + i);
+				String showtime = formFields.get("showtime" + i);
 				if(showtime != null && showtime.compareTo("NAN") != 0){ 
 					try {
 						Date date = movieDateFormat.parse(showtime);
@@ -97,8 +131,8 @@ public class MovieDetailInsertAction extends HttpServlet {
 			
 		}
 		
-		movie.setMovieTheatre(req.getParameter("theater"));
-		int status = Integer.parseInt(req.getParameter("status"));
+		movie.setMovieTheatre(formFields.get("theater"));
+		int status = Integer.parseInt(formFields.get("status"));
 		
 		if (status == 0) {
 			movie.setStatus(Constants.MovieStatus.NowShowing);
@@ -108,21 +142,8 @@ public class MovieDetailInsertAction extends HttpServlet {
 			movie.setStatus(MovieStatus.Shown);
 		}
 		
-		movie.setMovieYouTube(req.getParameter("utube")); //www.youtube.com/embed/aV8H7kszXqo				
-		movie.setMovieDetails(req.getParameter("plot"));
-		
-		ServletFileUpload upload = new ServletFileUpload();
-		try {
-			FileItemIterator iterator = upload.getItemIterator(req);
-			FileItemStream imageItem = iterator.next();
-			InputStream imageStream = imageItem.openStream();
-			
-			Blob image = new Blob(IOUtils.toByteArray(imageStream));
-			movie.setMoviePoster(image);
-			
-		} catch (FileUploadException e) {
-			e.printStackTrace();
-		}
+		movie.setMovieYouTube(formFields.get("utube")); //www.youtube.com/embed/aV8H7kszXqo				
+		movie.setMovieDetails(formFields.get("plot"));
 		
 		if(isNew){
 			if(MovieDetailDAO.INSTANCE.addMovieDetail(movie)){
