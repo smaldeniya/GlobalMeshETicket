@@ -54,7 +54,6 @@ public class MovieDetailInsertAction extends HttpServlet {
 				InputStream stream = item.openStream();
 				
 				if(item.isFormField()){
-					System.out.println(item.getFieldName());
 					formFields.put(item.getFieldName(), Streams.asString(stream));
 				} else {
 					byte[] b = IOUtils.toByteArray(stream);
@@ -67,10 +66,6 @@ public class MovieDetailInsertAction extends HttpServlet {
 			
 		} catch (FileUploadException e) {
 			e.printStackTrace();
-		}
-		
-		for (Entry<String, String> e : formFields.entrySet()) {
-			System.out.println(e.getKey() + " " + e.getValue());
 		}
 		
 		String filmName = formFields.get("filmName");
@@ -144,6 +139,10 @@ public class MovieDetailInsertAction extends HttpServlet {
 		
 		movie.setMovieYouTube(formFields.get("utube")); //www.youtube.com/embed/aV8H7kszXqo				
 		movie.setMovieDetails(formFields.get("plot"));
+		if(image != null) {
+			movie.setMoviePoster(image);
+		}
+		
 		
 		if(isNew){
 			if(MovieDetailDAO.INSTANCE.addMovieDetail(movie)){

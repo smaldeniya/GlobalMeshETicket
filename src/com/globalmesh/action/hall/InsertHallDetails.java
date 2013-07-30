@@ -43,7 +43,6 @@ public class InsertHallDetails extends HttpServlet {
 				InputStream stream = item.openStream();
 				
 				if(item.isFormField()){
-					System.out.println(item.getFieldName());
 					formFields.put(item.getFieldName(), Streams.asString(stream));
 				} else {
 					byte[] b = IOUtils.toByteArray(stream);
