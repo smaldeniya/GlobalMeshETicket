@@ -19,7 +19,7 @@ public class HandleAdminAction extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-String user = (String) req.getSession().getAttribute("email");
+		String user = (String) req.getSession().getAttribute("email");
 		
 		if(user == null) {
 			req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);

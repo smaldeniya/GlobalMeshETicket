@@ -3,7 +3,7 @@
 <%@include file="header_common.jsp" %>
 
 				<div class="slider">					
-						<a href="#"><img src="/image.do?type=hall&hall=platinum" width="960"
+						<a href="#"><img src="/image.do?type=hall&hall=Platinum" width="960"
 							height="360" alt="" /><span></span></a> 
 					<div class="clr"></div>
 				</div>

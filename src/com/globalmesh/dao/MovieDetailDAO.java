@@ -128,6 +128,21 @@ public enum MovieDetailDAO {
 		em.close();
 		return returnList;
 	}
+	
+	public List<String> listNowShowingMovieHalls() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from MovieDetail t where t.status = :status");
+		q.setParameter("status", Constants.MovieStatus.NowShowing);
+		
+		List<MovieDetail> hallList = q.getResultList();
+		List<String> returnList = new ArrayList<String>();
+		
+		for (MovieDetail movieDetail : hallList) {
+			returnList.add(movieDetail.getMovieTheatre());
+		}
+		em.close();
+		return returnList;
+	}
 
 
 	public void remove(long movieId) throws Exception {

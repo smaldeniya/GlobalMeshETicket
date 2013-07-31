@@ -1288,5 +1288,34 @@ cursor:pointer;
 }
 
 .movieSection div.showDetails {
-	
+	width: 180px;
+	height: 150px;
+	float:right;
+	margin: 20px 10px 20px 10px;
+	text-align:justify;
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+	font-stretch: condensed;
+	text-shadow: 0px 1px 0px gray;
+	font-family: Verdana,Arial,sans-serif;
+}
+
+.movieSection div.showTimes {
+	width: 180px;
+	height: 220px;
+	float: right;
+	margin-right: 10px;
+}
+
+.movieSection div.showTimes div {
+	padding: 5px;
+	margin: 5px;
+	clear: both;	
+	font-size: 16px;
+	vertical-align: middle;
+	text-align:center;
+	color: graytext;
+	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
 }

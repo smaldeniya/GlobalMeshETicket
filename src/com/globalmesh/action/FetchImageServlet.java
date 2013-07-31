@@ -29,13 +29,13 @@ public class FetchImageServlet extends HttpServlet {
 		if(type != null ) {
 			if(type.compareTo("hall") == 0){
 				if(hall != null){
-					if(hall.compareTo("gold") == 0){
+					if(hall.compareTo("Gold") == 0){
 						image = getHallBanner(Utility.getCONFG().getProperty(Constants.HALL_GOLD));
-					} else if(hall.compareTo("ultra") == 0) {
+					} else if(hall.compareTo("Ultra") == 0) {
 						image = getHallBanner(Utility.getCONFG().getProperty(Constants.HALL_ULTRA));
-					} if(hall.compareTo("platinum") == 0) {
+					} if(hall.compareTo("Platinum") == 0) {
 						image = getHallBanner(Utility.getCONFG().getProperty(Constants.HALL_PLATINUM));
-					} if(hall.compareTo("superior") == 0) {
+					} if(hall.compareTo("Superior") == 0) {
 						image = getHallBanner(Utility.getCONFG().getProperty(Constants.HALL_SUPERIOR));
 					} else {
 						
@@ -45,13 +45,13 @@ public class FetchImageServlet extends HttpServlet {
 			
 			if(type.compareTo("movie") == 0){
 				if(hall != null){
-					if(hall.compareTo("gold") == 0){
+					if(hall.compareTo("Gold") == 0){
 						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_GOLD));
-					} else if(hall.compareTo("ultra") == 0) {
+					} else if(hall.compareTo("Ultra") == 0) {
 						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_ULTRA));
-					} if(hall.compareTo("platinum") == 0) {
+					} if(hall.compareTo("Platinum") == 0) {
 						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_PLATINUM));
-					} if(hall.compareTo("superior") == 0) {
+					} if(hall.compareTo("Superior") == 0) {
 						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_SUPERIOR));
 					} else {
 						
