@@ -2,12 +2,12 @@
 
 				<div class="slider">
 					<div id="coin-slider">
-						<a href="#"><img src="images/MC_Gold.jpg" width="960"
+						<a href="#"><img src="/image.do?type=hall&hall=gold" width="960"
 							height="360" alt="" /><span></span></a> <a href="#"><img
-							src="images/MC_Platinum.jpg" width="960" height="360" alt="" /><span></span></a>
-						<a href="#"><img src="images/MC_Superior.jpg" width="960"
+							src="/image.do?type=hall&hall=platinum" width="960" height="360" alt="" /><span></span></a>
+						<a href="#"><img src="/image.do?type=hall&hall=superior" width="960"
 							height="360" alt="" /><span></span></a> <a href="#"><img
-							src="images/MC_Ultra.jpg" width="960" height="360" alt="" /><span></span></a>
+							src="/image.do?type=hall&hall=ultra" width="960" height="360" alt="" /><span></span></a>
 					</div>
 					<div class="clr"></div>
 				</div>
