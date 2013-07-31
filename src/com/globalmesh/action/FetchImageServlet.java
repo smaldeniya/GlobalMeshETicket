@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.globalmesh.dao.HallDAO;
+import com.globalmesh.dao.MovieDetailDAO;
 import com.globalmesh.dto.Hall;
+import com.globalmesh.dto.MovieDetail;
 import com.globalmesh.util.Constants;
 import com.globalmesh.util.Utility;
 import com.google.appengine.api.datastore.Blob;
@@ -41,6 +43,21 @@ public class FetchImageServlet extends HttpServlet {
 				}
 			}
 			
+			if(type.compareTo("movie") == 0){
+				if(hall != null){
+					if(hall.compareTo("gold") == 0){
+						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_GOLD));
+					} else if(hall.compareTo("ultra") == 0) {
+						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_ULTRA));
+					} if(hall.compareTo("platinum") == 0) {
+						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_PLATINUM));
+					} if(hall.compareTo("superior") == 0) {
+						image = getMoviePoster(Utility.getCONFG().getProperty(Constants.HALL_SUPERIOR));
+					} else {
+						
+					}
+				}
+			}
 			// other images
 		} else {
 			
@@ -58,6 +75,11 @@ public class FetchImageServlet extends HttpServlet {
 	private Blob getHallBanner(String hallName) {
 		Hall h = HallDAO.INSTANCE.getHallById(hallName);
 		return h.getMovieBanner();
+	}
+	
+	private Blob getMoviePoster(String hallName) {
+		MovieDetail m = MovieDetailDAO.INSTANCE.getNowShowingMovie(hallName);
+		return m.getMoviePoster();
 	}
 	
 }

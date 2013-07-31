@@ -14,6 +14,15 @@
 			<div class="movieSectionHeader">
 			 <%=mArr[0].getMovieName() %>
 			</div>
+			
+			<div class="movieSectionImage">
+				<img src="/image.do?type=movie&hall=gold">
+			</div>
+			
+			<div class="showDetails">
+			
+			</div>
+			
 		<%} %>
 	</div>
 	
