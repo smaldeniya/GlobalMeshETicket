@@ -23,7 +23,7 @@
 			
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[0].getMovieTheatre()%>"	>
+					<img src="/image.do?type=movie&hall=<%=mArr[0].getMovieTheatre()%>"	width="214px" height="317px">
 				</div>
 				<div class="showDetails">
 					<%=mArr[0].getMovieDetails() %>
@@ -51,7 +51,7 @@
 		
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[1].getMovieTheatre()%>"	>
+					<img src="/image.do?type=movie&hall=<%=mArr[1].getMovieTheatre()%>"	width="214px" height="317px">
 				</div>
 				<div class="showDetails">
 					<%=mArr[1].getMovieDetails() %>
@@ -78,7 +78,7 @@
 					
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[2].getMovieTheatre()%>"	>
+					<img src="/image.do?type=movie&hall=<%=mArr[2].getMovieTheatre()%>"	width="214px" height="317px"	>
 				</div>
 				<div class="showDetails">
 					<%=mArr[2].getMovieDetails() %>
@@ -105,7 +105,7 @@
 			
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[3].getMovieTheatre()%>"	>
+					<img src="/image.do?type=movie&hall=<%=mArr[3].getMovieTheatre()%>"	width="214px" height="317px"	>
 				</div>
 				<div class="showDetails">
 					<%=mArr[3].getMovieDetails() %>

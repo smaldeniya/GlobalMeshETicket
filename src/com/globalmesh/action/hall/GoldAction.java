@@ -44,7 +44,7 @@ public class GoldAction<E> extends HttpServlet {
 
 				req.setAttribute("youtubeUrl", hallMovie.getMovieYouTube());
 				int dayOfWeek = Calendar.getInstance()
-						.get(Calendar.DAY_OF_WEEK);
+						.get(Calendar.DAY_OF_WEEK) - 1;
 				Date[] shows = new Date[5];
 
 				for (int i = 0; i < 5; i++) {

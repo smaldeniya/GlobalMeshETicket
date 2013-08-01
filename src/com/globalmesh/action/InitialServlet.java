@@ -25,7 +25,7 @@ public class InitialServlet extends HttpServlet {
 		
 		List<MovieDetail> nowShowingMovies = MovieDetailDAO.INSTANCE.listNowShowingMovies();
 		MovieDetail[] movieArr = nowShowingMovies.toArray(new MovieDetail[nowShowingMovies.size()]);
-		int dateOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);	
+		int dateOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;	
 
 		req.setAttribute("today", dateOfWeek);
 		req.setAttribute("movieArray", movieArr);

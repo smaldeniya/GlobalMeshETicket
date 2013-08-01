@@ -70,7 +70,7 @@ public class GetReservedSeatsServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			int dateOfWeek = c.get(Calendar.DAY_OF_WEEK);
+			int dateOfWeek = c.get(Calendar.DAY_OF_WEEK) - 1; // date of weak is not zero based index. but to access array it should be zero based
 			
 			DateFormat showFormat2 = new SimpleDateFormat("hh:mm a");
 			
