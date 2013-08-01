@@ -3,8 +3,16 @@
 </div>
 		<div class="fbg">
 			<div class="fbg_resize">
-				<div class="col c1"></div>
-				<div class="col c2"></div>
+				<div class="col c1">
+					<div class="socialLinks">
+						<a href="#"><img src="../images/facebook.png" /></a>
+						<a href="#"><img src="../images/twitter.png" /></a>
+						<a href="#"><img src="../images/facebook.png" /></a>
+					</div>
+				</div>
+				<div class="col c2">
+					<div></div>
+				</div>
 				<div class="col c3">
 					<h2><span>Contact</span> Us</h2>
 					<p class="contact_info">
