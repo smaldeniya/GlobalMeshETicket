@@ -1293,7 +1293,7 @@ cursor:pointer;
 	float:right;
 	margin: 20px 10px 20px 10px;
 	text-align:justify;
-	font-size: 12px;
+	font-size: 11px;
 	font-weight: normal;
 	color: #333;
 	font-stretch: condensed;
@@ -1309,10 +1309,10 @@ cursor:pointer;
 }
 
 .movieSection div.showTimes div {
-	padding: 5px;
+	padding: 4px 2px 3px 2px;
 	margin: 5px;
 	clear: both;	
-	font-size: 16px;
+	font-size: 15px;
 	vertical-align: middle;
 	text-align:center;
 	color: graytext;

@@ -20,6 +20,7 @@
 $(".seatingArrangement").ready(function (){
 	
 	$("#showDate").bind("blur",function() {
+		getShowTimesOfDate();
 		cleanSeats();
 		seatListner();
 		if(validate('showDate','date')){
@@ -31,6 +32,11 @@ $(".seatingArrangement").ready(function (){
 		}
 	});
 	
+	$("#showTime").bind("change",function() {
+		cleanSeats();
+		seatListner();
+		getBookedSeats();
+	});
 	//function too change resered seats.
 });
 
@@ -112,7 +118,7 @@ function seatListner() {
 
 function getBookedSeats() {
 	
-var showDate = $("#showDate").val();
+	var showDate = $("#showDate").val();
 	var showTime = $("#showTime").val();
 	var hall = $("#hallName").val();
 
@@ -123,6 +129,7 @@ var showDate = $("#showDate").val();
 		async : false,
 		type : "POST",
 		data : {
+			'type' : 'reservedSeats',
 			'showDate' : showDate,
 			'showTime' : showTime,
 			'hallName' : hall
@@ -139,6 +146,35 @@ var showDate = $("#showDate").val();
 		}
 	});
 
+}
+
+function getShowTimesOfDate() {
+	var showDate = $("#showDate").val();
+	var hall = $("#hallName").val();
+	
+	var urlGet = getURLPath() + "getReserved.do";
+	
+	$.ajax({
+		url : urlGet,
+		async : false,
+		type : "POST",
+		data : {
+			'type' : 'timeForDay',
+			'showDate' : showDate,
+			'hallName' : hall
+		},
+		success : function(data, status) {
+			if (!isEmpty(data)) {
+				$("#showTime").html("");
+				var showTimes = data.split(";");
+				var html = "";
+				for ( var i = 0; i < showTimes.length; i++) {
+					html += "<option value='" + showTimes[i] + "'>" + showTimes[i] + "</option>"
+				}
+				$("#showTime").html(html);
+			}
+		}
+	});
 }	
 </script>
 

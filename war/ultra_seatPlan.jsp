@@ -17,134 +17,165 @@
 
 
 <script type="text/javascript">
-	$(".seatingArrangement").ready(function (){
-		
-		$("#showDate").bind("blur",function() {
-			cleanSeats();
-			seatListner();
-			if(validate('showDate','date')){
-				getBookedSeats();
-			} else {
-				$(".seatingArrangement").children().find("table td").each(function (){
-					$(this).unbind("click");
-				});
-			}
-		});
-		
-		$("#showTime").bind("change",function() {
-			cleanSeats();
-			seatListner();
+$(".seatingArrangement").ready(function (){
+	
+	$("#showDate").bind("blur",function() {
+		getShowTimesOfDate();
+		cleanSeats();
+		seatListner();
+		if(validate('showDate','date')){
 			getBookedSeats();
-		});
-		//function too change resered seats.
+		} else {
+			$(".seatingArrangement").children().find("table td").each(function (){
+				$(this).unbind("click");
+			});
+		}
 	});
 	
-	function btnBuyOnClick() {
-		if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
-			$("#filmBookForms").attr("action", "/book.do");
-			$("form")[0].submit();
-		}
+	$("#showTime").bind("change",function() {
+		cleanSeats();
+		seatListner();
+		getBookedSeats();
+	});
+	//function too change resered seats.
+});
+
+function btnBuyOnClick() {
+	if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
+		$("#filmBookForms").attr("action", "/book.do");
+		$("form")[0].submit();
 	}
-	
-	function cleanSeats(){
+}
+
+function cleanSeats(){
+	$(".seatingArrangement").children().find("table td").each(function (){
+		if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt") && !$(this).hasClass("sampath")) {
+			$(this).removeAttr( 'style' );
+			$(this).unbind("click");
+			$("#seatCount").val("0");
+			$("#seatCounter").text("0");
+			$("#seatSelection").val("");
+		}			
+	});
+}
+
+function seatListner() {
 		$(".seatingArrangement").children().find("table td").each(function (){
+			
 			if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt") && !$(this).hasClass("sampath")) {
-				$(this).removeAttr( 'style' );
-				$(this).unbind("click");
-				$("#seatCount").val("0");
-				$("#seatCounter").text("0");
-				$("#seatSelection").val("");
-			}			
-		});
-	}
-	
-	function seatListner() {
-			$(".seatingArrangement").children().find("table td").each(function (){
-				
-				if(!$(this).hasClass("blank") && !$(this).hasClass("ctmgmt") && !$(this).hasClass("sampath")) {
-					$(this).click(function () {				
-						if($(this).css("background-image").indexOf("selected_small.png") == -1){
-							
-							$(this).css("background-image", "url(../images/selected_small.png)");
-							
-							var seats = $("#seatSelection").val();
-							if(isEmpty(seats)){
-								seats = $(this).text();
-							} else {
-								seats = seats + ";" + $(this).text();
-							}
-							$("#seatSelection").val(seats);
-							
-							var seatCount = $("#seatCount").val();
-							if(!isEmpty(seatCount)) {
-								seatCount = parseInt(seatCount);
-								seatCount += 1;
-							} else {
-								seatCount = 1;
-							}
-							$("#seatCount").val(seatCount);
-							$("#seatCounter").text(seatCount);
-							
-						}else {
-							$(this).removeAttr( 'style' );
-							var removeVal = $(this).text();
-							var seats = $("#seatSelection").val();
-							var removeValIndex = seats.indexOf(removeVal);
-							var lastIndexOfdel = seats.lastIndexOf(";")
-							//if last index is greater than remov index then remove with ; else remove without ;
-							if(lastIndexOfdel > removeValIndex) {
-								removeVal = removeVal + ";";
-							}
-							
-							$("#seatSelection").val(seats.replace(removeVal, ""));
-							
-							var seatCount = $("#seatCount").val();
-							if(!isEmpty(seatCount)) {
-								seatCount = parseInt(seatCount);
-								if(seatCount >0){
-									seatCount -= 1;
-								}						
-							}
-							$("#seatCount").val(seatCount);
-							$("#seatCounter").text(seatCount);
-												
+				$(this).click(function () {				
+					if($(this).css("background-image").indexOf("selected_small.png") == -1){
+						
+						$(this).css("background-image", "url(../images/selected_small.png)");
+						
+						var seats = $("#seatSelection").val();
+						if(isEmpty(seats)){
+							seats = $(this).text();
+						} else {
+							seats = seats + ";" + $(this).text();
 						}
-					});
-				}
-				
-			});			
-	}
-	
-	function getBookedSeats() {
-		
-	var showDate = $("#showDate").val();
-		var showTime = $("#showTime").val();
-		var hall = $("#hallName").val();
-
-		var urlGet = getURLPath() + "getReserved.do";
-
-		$.ajax({
-			url : urlGet,
-			async : false,
-			type : "POST",
-			data : {
-				'showDate' : showDate,
-				'showTime' : showTime,
-				'hallName' : hall
-			},
-			success : function(data, status) {
-				if (!isEmpty(data)) {
-					var bookedSeats = data.split(";");
-					for ( var i = 0; i < bookedSeats.length; i++) {
-						$("#" + bookedSeats[i]).unbind("click");
-						$("#" + bookedSeats[i]).css("background-image",
-								"url(../images/reserved_small.png)");
+						$("#seatSelection").val(seats);
+						
+						var seatCount = $("#seatCount").val();
+						if(!isEmpty(seatCount)) {
+							seatCount = parseInt(seatCount);
+							seatCount += 1;
+						} else {
+							seatCount = 1;
+						}
+						$("#seatCount").val(seatCount);
+						$("#seatCounter").text(seatCount);
+						
+					}else {
+						$(this).removeAttr( 'style' );
+						var removeVal = $(this).text();
+						var seats = $("#seatSelection").val();
+						var removeValIndex = seats.indexOf(removeVal);
+						var lastIndexOfdel = seats.lastIndexOf(";")
+						//if last index is greater than remov index then remove with ; else remove without ;
+						if(lastIndexOfdel > removeValIndex) {
+							removeVal = removeVal + ";";
+						}
+						
+						$("#seatSelection").val(seats.replace(removeVal, ""));
+						
+						var seatCount = $("#seatCount").val();
+						if(!isEmpty(seatCount)) {
+							seatCount = parseInt(seatCount);
+							if(seatCount >0){
+								seatCount -= 1;
+							}						
+						}
+						$("#seatCount").val(seatCount);
+						$("#seatCounter").text(seatCount);
+											
 					}
+				});
+			}
+			
+		});			
+}
+
+function getBookedSeats() {
+	
+	var showDate = $("#showDate").val();
+	var showTime = $("#showTime").val();
+	var hall = $("#hallName").val();
+
+	var urlGet = getURLPath() + "getReserved.do";
+
+	$.ajax({
+		url : urlGet,
+		async : false,
+		type : "POST",
+		data : {
+			'type' : 'reservedSeats',
+			'showDate' : showDate,
+			'showTime' : showTime,
+			'hallName' : hall
+		},
+		success : function(data, status) {
+			if (!isEmpty(data)) {
+				var bookedSeats = data.split(";");
+				for ( var i = 0; i < bookedSeats.length; i++) {
+					$("#" + bookedSeats[i]).unbind("click");
+					$("#" + bookedSeats[i]).css("background-image",
+							"url(../images/reserved_small.png)");
 				}
 			}
-		});
+		}
+	});
 
-	}
+}
+
+function getShowTimesOfDate() {
+	var showDate = $("#showDate").val();
+	var hall = $("#hallName").val();
+	
+	var urlGet = getURLPath() + "getReserved.do";
+	
+	$.ajax({
+		url : urlGet,
+		async : false,
+		type : "POST",
+		data : {
+			'type' : 'timeForDay',
+			'showDate' : showDate,
+			'hallName' : hall
+		},
+		success : function(data, status) {
+			if (!isEmpty(data)) {
+				$("#showTime").html("");
+				var showTimes = data.split(";");
+				var html = "";
+				for ( var i = 0; i < showTimes.length; i++) {
+					html += "<option value='" + showTimes[i] + "'>" + showTimes[i] + "</option>"
+				}
+				$("#showTime").html(html);
+			}
+		}
+	});
+}
 </script>
 <div align="center">
 
