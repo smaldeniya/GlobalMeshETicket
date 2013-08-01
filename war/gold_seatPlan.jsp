@@ -160,7 +160,7 @@ function getShowTimesOfDate() {
 		async : false,
 		type : "POST",
 		data : {
-			'type' : 'reservedSeats',
+			'type' : 'timeForDay',
 			'showDate' : showDate,
 			'hallName' : hall
 		},
@@ -169,7 +169,7 @@ function getShowTimesOfDate() {
 				$("#showTime").html("");
 				var showTimes = data.split(";");
 				var html = "";
-				for ( var i = 0; i < bookedSeats.length; i++) {
+				for ( var i = 0; i < showTimes.length; i++) {
 					html += "<option value='" + showTimes[i] + "'>" + showTimes[i] + "</option>"
 				}
 				$("#showTime").html(html);

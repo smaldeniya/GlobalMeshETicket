@@ -75,17 +75,33 @@ public class GetReservedSeatsServlet extends HttpServlet {
 			DateFormat showFormat2 = new SimpleDateFormat("hh:mm a");
 			
 			StringBuilder sb = new StringBuilder();
+			if(movie.getMovieTime1() != null && movie.getMovieTime1().length >0) {
+				sb.append(showFormat2.format(movie.getMovieTime1()[dateOfWeek]));
+				
+			}
+			if(movie.getMovieTime2() != null && movie.getMovieTime2().length >0){
+				sb.append(";");
+				sb.append(showFormat2.format(movie.getMovieTime2()[dateOfWeek]));
+				
+			}
+			if(movie.getMovieTime3() != null && movie.getMovieTime3().length >0){
+				sb.append(";");
+				sb.append(showFormat2.format(movie.getMovieTime3()[dateOfWeek]));
+				
+			}
 			
-			sb.append(showFormat2.format(movie.getMovieTime1()[dateOfWeek]));
-			sb.append(";");
-			sb.append(showFormat2.format(movie.getMovieTime2()[dateOfWeek]));
-			sb.append(";");
-			sb.append(showFormat2.format(movie.getMovieTime3()[dateOfWeek]));
-			sb.append(";");
-			sb.append(showFormat2.format(movie.getMovieTime4()[dateOfWeek]));
-			sb.append(";");
-			sb.append(showFormat2.format(movie.getMovieTime5()[dateOfWeek]));
+			if(movie.getMovieTime4() != null && movie.getMovieTime4().length >0){
+				sb.append(";");
+				sb.append(showFormat2.format(movie.getMovieTime4()[dateOfWeek]));
+				
+			}
 			
+			if (movie.getMovieTime5() != null && movie.getMovieTime5().length >0) {
+				sb.append(";");
+				sb.append(showFormat2.format(movie.getMovieTime5()[dateOfWeek]));
+			}
+	
+			resp.getWriter().write(sb.toString());
 			
 		}
 		
