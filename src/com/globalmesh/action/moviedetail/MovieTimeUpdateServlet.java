@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -31,15 +32,36 @@ public class MovieTimeUpdateServlet extends HttpServlet {
 		if(movie != null) {
 			DateFormat movieDateFormat = new SimpleDateFormat("hh:mm a");			
 			try {
-				Date[] showSchedule = {
-						movieDateFormat.parse(req.getParameter("ruleSunday")),
-						movieDateFormat.parse(req.getParameter("ruleMonday")),
-						movieDateFormat.parse(req.getParameter("ruleTuesday")),
-						movieDateFormat.parse(req.getParameter("ruleWednesday")),
-						movieDateFormat.parse(req.getParameter("ruleThursday")),
-						movieDateFormat.parse(req.getParameter("ruleFriday")),
-						movieDateFormat.parse(req.getParameter("ruleSaturday"))
-				};
+				
+				Calendar c1 = Calendar.getInstance();
+				c1.setTime(movieDateFormat.parse(req.getParameter("ruleSunday")));
+				c1.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+				
+				Calendar c2 = Calendar.getInstance();
+				c2.setTime(movieDateFormat.parse(req.getParameter("ruleMonday")));
+				c2.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+				
+				Calendar c3 = Calendar.getInstance();
+				c3.setTime(movieDateFormat.parse(req.getParameter("ruleTuesday")));
+				c3.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+				
+				Calendar c4 = Calendar.getInstance();
+				c4.setTime(movieDateFormat.parse(req.getParameter("ruleWednesday")));
+				c4.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+				
+				Calendar c5 = Calendar.getInstance();
+				c5.setTime(movieDateFormat.parse(req.getParameter("ruleThursday")));
+				c5.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+				
+				Calendar c6 = Calendar.getInstance();
+				c6.setTime(movieDateFormat.parse(req.getParameter("ruleFriday")));
+				c6.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+				
+				Calendar c7 = Calendar.getInstance();
+				c7.setTime(movieDateFormat.parse(req.getParameter("ruleSaturday")));
+				c7.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+				
+				Date[] showSchedule = {c1.getTime(), c2.getTime(), c3.getTime(), c4.getTime(), c5.getTime(), c6.getTime(), c7.getTime()};
 				
 				switch (showNum) {
 					case 1:

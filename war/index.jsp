@@ -32,11 +32,11 @@
 			
 			<div class="showTimes">
 				<% 
-					if(mArr[0].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime1()[today]) + "</div>");
-					if(mArr[0].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime2()[today]) + "</div>");
-					if(mArr[0].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime3()[today]) + "</div>");
-					if(mArr[0].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime4()[today]) + "</div>");
-					if(mArr[0].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime5()[today]) + "</div>");
+					if(mArr[0].getMovieTime1() != null && mArr[0].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime1()[today]) + "</div>");
+					if(mArr[0].getMovieTime2() != null && mArr[0].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime2()[today]) + "</div>");
+					if(mArr[0].getMovieTime3() != null && mArr[0].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime3()[today]) + "</div>");
+					if(mArr[0].getMovieTime4() != null && mArr[0].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime4()[today]) + "</div>");
+					if(mArr[0].getMovieTime5() != null && mArr[0].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[0].getMovieTime5()[today]) + "</div>");
 				%>
 			</div>
 			
@@ -60,11 +60,11 @@
 			
 			<div class="showTimes">
 				<% 
-					if(mArr[1].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime1()[today]) + "</div>");
-					if(mArr[1].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime2()[today]) + "</div>");
-					if(mArr[1].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime3()[today]) + "</div>");
-					if(mArr[1].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime4()[today]) + "</div>");
-					if(mArr[1].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime5()[today]) + "</div>");
+					if(mArr[1].getMovieTime1() != null && mArr[1].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime1()[today]) + "</div>");
+					if(mArr[1].getMovieTime2() != null && mArr[1].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime2()[today]) + "</div>");
+					if(mArr[1].getMovieTime3() != null && mArr[1].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime3()[today]) + "</div>");
+					if(mArr[1].getMovieTime4() != null && mArr[1].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime4()[today]) + "</div>");
+					if(mArr[1].getMovieTime5() != null && mArr[1].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[1].getMovieTime5()[today]) + "</div>");
 				%>
 			</div>
 		<% } %>
@@ -87,11 +87,11 @@
 			
 			<div class="showTimes">
 				<% 
-					if(mArr[2].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime1()[today]) + "</div>");
-					if(mArr[2].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime2()[today]) + "</div>");
-					if(mArr[2].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime3()[today]) + "</div>");
-					if(mArr[2].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime4()[today]) + "</div>");
-					if(mArr[2].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime5()[today]) + "</div>");
+					if(mArr[2].getMovieTime1() != null && mArr[2].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime1()[today]) + "</div>");
+					if(mArr[2].getMovieTime2() != null && mArr[2].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime2()[today]) + "</div>");
+					if(mArr[2].getMovieTime3() != null && mArr[2].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime3()[today]) + "</div>");
+					if(mArr[2].getMovieTime4() != null && mArr[2].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime4()[today]) + "</div>");
+					if(mArr[2].getMovieTime5() != null && mArr[2].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[2].getMovieTime5()[today]) + "</div>");
 				%>
 			</div>
 		<%} %>
@@ -114,11 +114,11 @@
 			
 			<div class="showTimes">
 				<% 
-					if(mArr[3].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime1()[today]) + "</div>");
-					if(mArr[3].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime2()[today]) + "</div>");
-					if(mArr[3].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime3()[today]) + "</div>");
-					if(mArr[3].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime4()[today]) + "</div>");
-					if(mArr[3].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime5()[today]) + "</div>");
+					if(mArr[3].getMovieTime1() != null && mArr[3].getMovieTime1().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime1()[today]) + "</div>");
+					if(mArr[3].getMovieTime2() != null && mArr[3].getMovieTime2().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime2()[today]) + "</div>");
+					if(mArr[3].getMovieTime3() != null && mArr[3].getMovieTime3().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime3()[today]) + "</div>");
+					if(mArr[3].getMovieTime4() != null && mArr[3].getMovieTime4().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime4()[today]) + "</div>");
+					if(mArr[3].getMovieTime5() != null && mArr[3].getMovieTime5().length > 0) out.print("<div>" + showFormat.format(mArr[3].getMovieTime5()[today]) + "</div>");
 				%>
 			</div>
 			

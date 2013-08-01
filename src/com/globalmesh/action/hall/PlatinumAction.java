@@ -49,24 +49,29 @@ public class PlatinumAction extends HttpServlet {
 				for (int i = 0; i < 5; i++) {
 					switch (i) {
 					case 0:
-						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
-							shows[i] = hallMovie.getMovieTime1()[dayOfWeek];
+						Date[] date = hallMovie.getMovieTime1();
+						if (date != null && date.length == 7)
+							shows[i] = date[dayOfWeek];
 						break;
 					case 1:
-						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
-							shows[i] = hallMovie.getMovieTime2()[dayOfWeek];
+						Date[] date2 = hallMovie.getMovieTime2();
+						if (date2 != null && date2.length == 7)
+							shows[i] = date2[dayOfWeek];
 						break;
 					case 2:
-						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
-							shows[i] = hallMovie.getMovieTime3()[dayOfWeek];
+						Date[] date3 = hallMovie.getMovieTime3();
+						if (date3 != null && date3.length == 7)
+							shows[i] = date3[dayOfWeek];
 						break;
 					case 3:
-						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
-							shows[i] = hallMovie.getMovieTime4()[dayOfWeek];
+						Date[] date4 = hallMovie.getMovieTime4();
+						if (date4 != null && date4.length == 7)
+							shows[i] = date4[dayOfWeek];
 						break;
 					case 4:
-						if (hallMovie.getMovieTime5() != null && hallMovie.getMovieTime5().length == 7)
-							shows[i] = hallMovie.getMovieTime5()[dayOfWeek];
+						Date[] date5 = hallMovie.getMovieTime5();
+						if (date5 != null && date5.length == 7)
+							shows[i] = date5[dayOfWeek];
 						break;
 					}
 				}

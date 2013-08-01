@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.globalmesh.dto.Hall;
+import com.globalmesh.dto.MovieDetail;
 import com.globalmesh.dto.Sale;
 import com.globalmesh.dao.HallDAO;
+import com.globalmesh.dao.MovieDetailDAO;
 import com.globalmesh.dao.SaleDAO;
 import com.globalmesh.util.Utility;
 
@@ -26,26 +29,65 @@ public class GetReservedSeatsServlet extends HttpServlet {
 		String date = req.getParameter("showDate"); //localhost:8080/getReserved.do?showDate=&showTime=&hallName=
 		String time = req.getParameter("showTime"); //time is must to identify the booking
 		String hall = Utility.chooseHall(req.getParameter("hallName"));
-		Hall h = HallDAO.INSTANCE.getHallById(hall);
+		String type = req.getParameter("type");
 		
-		DateFormat showFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
-		List<Sale> bookings = null;
-		try {
-			bookings = SaleDAO.INSTANCE.listSalesByDateAndHall(showFormat.parse(date + " " + time), h);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		StringBuilder sb = new StringBuilder();
-		for (Sale s : bookings) {
+		if(type.compareTo("reservedSeats") == 0) {
+			Hall h = HallDAO.INSTANCE.getHallById(hall);
 			
-			sb.append(s.getSeats());
-			if(bookings.indexOf(s) < bookings.size() -1 ){
-				sb.append(";");
+			DateFormat showFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+			List<Sale> bookings = null;
+			try {
+				bookings = SaleDAO.INSTANCE.listSalesByDateAndHall(showFormat.parse(date + " " + time), h);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			if(bookings != null) {
+				StringBuilder sb = new StringBuilder();
+				for (Sale s : bookings) {
+					
+					sb.append(s.getSeats());
+					if(bookings.indexOf(s) < bookings.size() -1 ){
+						sb.append(";");
+					}
+				}
+				
+				resp.getWriter().write(sb.toString());
+			}
+			
 		}
 		
-		resp.getWriter().write(sb.toString());
+		if(type.compareTo("timeForDay") == 0) {
+			
+			MovieDetail movie = MovieDetailDAO.INSTANCE.getNowShowingMovie(hall);
+			DateFormat showFormat = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar c = Calendar.getInstance();
+			try {
+				c.setTime(showFormat.parse(date));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			int dateOfWeek = c.get(Calendar.DAY_OF_WEEK);
+			
+			DateFormat showFormat2 = new SimpleDateFormat("hh:mm a");
+			
+			StringBuilder sb = new StringBuilder();
+			
+			sb.append(showFormat2.format(movie.getMovieTime1()[dateOfWeek]));
+			sb.append(";");
+			sb.append(showFormat2.format(movie.getMovieTime2()[dateOfWeek]));
+			sb.append(";");
+			sb.append(showFormat2.format(movie.getMovieTime3()[dateOfWeek]));
+			sb.append(";");
+			sb.append(showFormat2.format(movie.getMovieTime4()[dateOfWeek]));
+			sb.append(";");
+			sb.append(showFormat2.format(movie.getMovieTime5()[dateOfWeek]));
+			
+			
+		}
 		
 	}
 	
