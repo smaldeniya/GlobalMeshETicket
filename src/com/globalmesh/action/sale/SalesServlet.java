@@ -52,9 +52,10 @@ public class SalesServlet extends HttpServlet {
 				Calendar show = Calendar.getInstance();
 				show.setTime(showFormat.parse(showDate + " " + showTime));
 				Calendar today = Calendar.getInstance();
+				
 				today.add(Calendar.MINUTE, 30);
 				
-				if(today.before(show)){
+				if(today.after(show)){
 					User u = UserDAO.INSTANCE.getUserByEmail(userEmail);
 					Hall h = HallDAO.INSTANCE.getHallById(hallName);
 					MovieDetail movie = MovieDetailDAO.INSTANCE.getNowShowingMovie(h.getHallId());

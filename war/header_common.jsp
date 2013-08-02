@@ -207,7 +207,7 @@
 	<div class="main">
 		<div class="header">
 			<div class="header_resize">
-				<div class="menu_nav">
+					<div class="menu_nav">
 					<nav>
 						<ul>
 							<li class="active"><a href="/init.do"><span>Home
@@ -252,8 +252,10 @@
 				</div>
 				<div class="clr"></div>
 				<div class="logo">
+					<div style="float:left">
 					<h1>
-						<a href="index.html"><span>Majestic </span>Cinema <small>A ceylon theaters company...</small></a>
-					</h1>
+						<a href="/init.do"><span>CEYLON </span>THEATRES <small>Bring You the World of Entertainment.</small></a>
+					</h1></div>
+					<div style="float:right"><img src="../images/ceylon_logo.png" alt="" width="80px" height="80px"/></div>
 				</div>
 				<div class="clr"></div>
