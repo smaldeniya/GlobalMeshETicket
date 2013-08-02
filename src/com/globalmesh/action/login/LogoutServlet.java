@@ -18,6 +18,8 @@ public class LogoutServlet extends HttpServlet {
 		session.removeAttribute("login");
 		session.removeAttribute("email");
 		session.removeAttribute("type");
+		session.invalidate();
+		
 		
 		resp.sendRedirect("/init.do");
 	}
