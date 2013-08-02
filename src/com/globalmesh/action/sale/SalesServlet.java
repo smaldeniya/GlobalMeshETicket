@@ -32,6 +32,9 @@ public class SalesServlet extends HttpServlet {
 		String userEmail = (String) req.getSession().getAttribute("email");
 		int seatCount = Integer.parseInt(req.getParameter("seatCount"));
 		
+		resp.setContentType("text/plain");
+		resp.setCharacterEncoding("UTF-8");
+		
 		if(userEmail == null) {
 			req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.LOGIN_NEED_MESSAGE));

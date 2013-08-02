@@ -174,6 +174,8 @@ public class MovieDetailInsertAction extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String type = req.getParameter("type");
+		resp.setContentType("text/plain");
+		resp.setCharacterEncoding("UTF-8");
 		
 		if(type.compareTo("hall") == 0){
 			String hall = req.getParameter("hallId");

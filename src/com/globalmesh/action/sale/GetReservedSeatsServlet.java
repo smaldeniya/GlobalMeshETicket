@@ -31,6 +31,9 @@ public class GetReservedSeatsServlet extends HttpServlet {
 		String hall = Utility.chooseHall(req.getParameter("hallName"));
 		String type = req.getParameter("type");
 		
+		resp.setContentType("text/plain");
+		resp.setCharacterEncoding("UTF-8");
+		
 		if(type.compareTo("reservedSeats") == 0) {
 			Hall h = HallDAO.INSTANCE.getHallById(hall);
 			

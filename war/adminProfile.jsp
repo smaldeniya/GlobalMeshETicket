@@ -208,7 +208,7 @@
 			async:false,
 			type : "GET",
 			success: function(data,status){
-				if(data === "false"){
+				if(data.toString() === "false"){
 					$("#theater").parent().children("span[class=errorMessage]").text(
 							"Another movie is showing in this hall at the moment. Please update it's status to 'Show Ended'");
 				} else {
