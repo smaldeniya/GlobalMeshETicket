@@ -9,10 +9,50 @@
 	int today = (Integer)request.getAttribute("today");
 	DateFormat showFormat = new SimpleDateFormat("hh:mm a");
 %>
-
 <div id="commingSoon">
-
+	<div class="image_carousel">
+		<div id="imageSlider">
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+		</div>
+		<div class="clearfix"></div>
+	    <a class="prev" id="imageSlider_prev" href="#" ><span>prev</span></a>
+	    <a class="next" id="imageSlider_next" href="#" ><span>next</span></a>
+	</div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#imageSlider").carouFredSel({
+		circular: false,
+		infinite: false,
+		auto 	: false,
+		prev	: {	
+			button	: "#imageSlider_prev",
+			key		: "left"
+		},
+		next	: { 
+			button	: "#imageSlider_next",
+			key		: "right"
+		}
+	});
+});
+</script>
 
 <div class="movieBoard">
 	<div class="movieSection" style="float:left;">
@@ -23,7 +63,7 @@
 			
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[0].getMovieTheatre()%>"	width="214px" height="317px">
+					<img src="/image.do?type=movie&hall=<%=mArr[0].getMovieTheatre()%>"	width="214px" height="317px"/>
 				</div>
 				<div class="showDetails">
 					<%=mArr[0].getMovieDetails() %>
@@ -51,7 +91,7 @@
 		
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[1].getMovieTheatre()%>"	width="214px" height="317px">
+					<img src="/image.do?type=movie&hall=<%=mArr[1].getMovieTheatre()%>"	width="214px" height="317px"/>
 				</div>
 				<div class="showDetails">
 					<%=mArr[1].getMovieDetails() %>
@@ -78,7 +118,7 @@
 					
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[2].getMovieTheatre()%>"	width="214px" height="317px"	>
+					<img src="/image.do?type=movie&hall=<%=mArr[2].getMovieTheatre()%>"	width="214px" height="317px"/>
 				</div>
 				<div class="showDetails">
 					<%=mArr[2].getMovieDetails() %>
@@ -105,7 +145,7 @@
 			
 			<div>
 				<div class="movieSectionImage">
-					<img src="/image.do?type=movie&hall=<%=mArr[3].getMovieTheatre()%>"	width="214px" height="317px"	>
+					<img src="/image.do?type=movie&hall=<%=mArr[3].getMovieTheatre()%>"	width="214px" height="317px"/>
 				</div>
 				<div class="showDetails">
 					<%=mArr[3].getMovieDetails() %>
