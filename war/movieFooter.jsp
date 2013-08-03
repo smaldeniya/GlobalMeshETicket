@@ -4,9 +4,7 @@
 </div>
 <div class="fbg">
 	<div class="fbg_resize">
-		<div class="col c1"></div>
-		<div class="col c2"></div>
-		<div class="col c3">
+		<div class="col c1">
 					<h2><span>Contact</span> Us</h2>
 					<p class="contact_info">
 						<span style="clear:both; width:200px;margin-top:5px">
@@ -21,8 +19,24 @@
 								(+94) 112 5811759 
 							</span>
 						</span>
-					</p>
-		</div>
+						</p>
+				</div>
+				<div class="col c2">
+					<div>
+						<div><a href="/gold.do">Gold Cinema</a></div>
+						<div><a href="/ultra.do">Ultra Cinema</a></div>
+						<div><a href="/superior.do">Superior Cinema</a></div>
+						<div><a href="/platinum.do">Platinum Cinema</a></div>
+					</div>
+				</div>
+				<div class="col c3">
+					<div class="socialLinks">
+						<a href="#"><img src="../images/facebook.png" height="32px" width="32px"/></a>
+						<a href="#"><img src="../images/twitter.png" height="30px" width="30px" style="margin-bottom:2px"/></a>
+						<a href="#"><img src="../images/gplus.png" height="30px" width="30px" style="margin-bottom:2px"/></a>
+					</div>
+					
+				</div>
 		
 		<div class="clr"></div>
 	</div>
