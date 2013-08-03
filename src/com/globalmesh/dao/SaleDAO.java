@@ -10,6 +10,7 @@ import javax.persistence.TemporalType;
 
 import com.globalmesh.dto.Hall;
 import com.globalmesh.dto.Sale;
+import com.globalmesh.dto.User;
 import com.globalmesh.util.EMFService;
 
 public enum SaleDAO {
@@ -77,6 +78,22 @@ public enum SaleDAO {
 		return returnList;
 	}
 	
+	public Sale getSaleById(String saleId) {
+		
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Sale t where t.id = :id");
+		q.setParameter("id", saleId);		
+		Sale sale;
+		try {
+			sale = (Sale) q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			em.close();
+			sale = null;
+		}
+		
+		return sale;
+		
+	}
 	
 	/**
 	 * Query that will fetch a lazy relationship Be carefull, with this kind of

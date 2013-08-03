@@ -41,12 +41,32 @@ $(".seatingArrangement").ready(function (){
 	//function too change resered seats.
 });
 
-function btnBuyOnClick() {
-	if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
-		$("#filmBookForms").attr("action", "/book.do");
-		$("form")[0].submit();
-	}
-}
+<c:choose>
+	<c:when test="${sessionScope['type'] == 'admin'}">
+		function btnPrintOnClick() {
+			if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
+				var seats = $("#seatSelection").val().split(';');
+				for(var i = 0; i<seats.length ; i++) {
+					$("#" + seats[i]).unbind("click");
+					$("#" + seats[i]).css("background-image",
+							"url(../images/reserved_small.png)");
+				}
+				
+				$("#filmBookForms").attr("action", "/book.do");
+				$("#filmBookForms").attr("target", "_blank");
+				$("form")[0].submit();
+			}
+		}
+	</c:when>
+	<c:otherwise>
+		function btnBuyOnClick() {
+			if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
+				$("#filmBookForms").attr("action", "/book.do");
+				$("form")[0].submit();
+			}
+		}
+	</c:otherwise>
+</c:choose>
 
 function cleanSeats(){
 	$(".seatingArrangement").children().find("table td").each(function (){
@@ -232,7 +252,14 @@ function getShowTimesOfDate() {
   		</div>
   		
   		<div style="margin-left:830px;margin-top:20px">
-  			<button class="submit button" type="button" onclick="btnBuyOnClick()">Buy</button>
+  			<c:choose>
+  				<c:when test="${sessionScope['type'] == 'admin'}">
+  					<button class="submit button" type="button" onclick="btnPrintOnClick()" taret="_blank">Sale</button>
+  				</c:when>
+  				<c:otherwise>
+  					<button class="submit button" type="button" onclick="btnBuyOnClick()">Buy</button>
+  				</c:otherwise>
+  			</c:choose>
   		</div>
   	</form>
 </div>

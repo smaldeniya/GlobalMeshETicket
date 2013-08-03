@@ -1,3 +1,5 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -8,27 +10,15 @@
 <% MovieDetail[] mArr = (MovieDetail[])request.getAttribute("movieArray");
 	int today = (Integer)request.getAttribute("today");
 	DateFormat showFormat = new SimpleDateFormat("hh:mm a");
+	List<String> commingSoon = (List<String>)request.getAttribute("commingSoon");
 %>
 <div id="commingSoon">
+	<span class="commingSoonTitle">Now Showing & Coming Soon</span>
 	<div class="image_carousel">
 		<div id="imageSlider">
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
-			<img src="/image.do?type=movie&hall=<%if(mArr.length > 0) out.print(mArr[0].getMovieTheatre()); %>"	width="120px" height="180px"/>
+			<% for(String commingSoonName : commingSoon){%>
+				<img src="/image.do?type=commingSoon&movieId=<%=commingSoonName%>"	width="120px" height="180px"/>
+			<% } %>
 		</div>
 		<div class="clearfix"></div>
 	    <a class="prev" id="imageSlider_prev" href="#" ><span>prev</span></a>

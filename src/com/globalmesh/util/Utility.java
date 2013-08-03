@@ -12,6 +12,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.itextpdf.text.Document;
+
 public class Utility {
 
 	private static final String CONFIG_FILE = "noqWeb.properties";
@@ -81,5 +83,10 @@ public class Utility {
 		
 		return hall;
 	}
+	
+	public static float mmToPt(float mm) {
+		// 70pt = 25.4mm
+		return ((70f * mm) / 25.4f);
+	}	
 	
 }

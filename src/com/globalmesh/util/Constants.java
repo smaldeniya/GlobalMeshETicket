@@ -95,5 +95,11 @@ public class Constants {
 		UpComing, // 1
 		Shown // 2
 	}
+	
+	public enum TicketTypes {
+		Full, // 0
+		Half, // 1
+		Service // 2
+	}
 
 }

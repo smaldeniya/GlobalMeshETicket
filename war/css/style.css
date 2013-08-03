@@ -900,6 +900,10 @@ div.reset_password p {
 	clear: both;
 }
 
+.forgot a {
+	color: rgb(237, 28, 36);
+}
+
 .seat_plan_header {
 	font-size: 22px;
 	text-shadow: 0 -1px 0 #fff;
@@ -1248,10 +1252,10 @@ cursor:pointer;
 }
 
 #commingSoon, .movieBoard {
-	margin: 20px 20px 30px 20px;
+	margin: 10px 20px 30px 20px;
 	background: #FFF;
 	width : 900px;
-	height : 230px;
+	height : 250px;
 	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
 		rgba(208, 223, 226, 0.4) inset;
 	/* CSS3 */
@@ -1268,6 +1272,16 @@ cursor:pointer;
 	padding: 10px;
 	vertical-align: middle;
 	position: absolute;
+}
+
+.commingSoonTitle {
+	margin: 20px 0 0 350px; 
+	color: #000111;
+	text-align:center;
+	text-shadow: 0px 1px 2px gray;
+	vertical-align: middle;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 .movieBoard {
@@ -1357,10 +1371,10 @@ cursor:pointer;
 	position: relative;
 }
 .image_carousel img {
-	border: 1px solid #ccc;
+	box-shadow: 1pt 1px 3px #ccc, 0px 0px 4px 2px;
 	background-color: white;
-	padding: 9px;
-	margin: 7px;
+	padding: 1px;
+	margin: 14px 70px 7px 20px;
 	display: block;
 	float: left;
 }

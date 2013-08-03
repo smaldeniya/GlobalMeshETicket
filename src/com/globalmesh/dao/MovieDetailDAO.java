@@ -157,4 +157,20 @@ public enum MovieDetailDAO {
 			em.close();
 		}
 	}
+	
+	public List<MovieDetail> listNowShowingAndCommingSoonMovies() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from MovieDetail t where t.status <> :status");
+		q.setParameter("status", Constants.MovieStatus.Shown);
+		
+		List<MovieDetail> movieList = q.getResultList();
+		List<MovieDetail> returnList = new ArrayList<MovieDetail>();
+		
+		for (MovieDetail movieDetail : movieList) {
+			returnList.add(movieDetail);
+		}
+		em.close();
+		return returnList;
+	}
+	
 }

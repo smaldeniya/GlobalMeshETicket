@@ -58,6 +58,12 @@ public class FetchImageServlet extends HttpServlet {
 					}
 				}
 			}
+			
+			if(type.compareTo("commingSoon") == 0) {
+				String movieId = req.getParameter("movieId");
+				image = MovieDetailDAO.INSTANCE.getMovieById(movieId).getMoviePoster();
+			}
+			
 			// other images
 		} else {
 			

@@ -35,7 +35,7 @@ public class LoginUserServlet extends HttpServlet {
 			
 			User user = UserDAO.INSTANCE.getUserByEmail(email);
 			
-			if(user.getPassword().equals(encryptPwd))
+			if(user != null && user.getPassword().equals(encryptPwd))
 			{
 				HttpSession session = req.getSession();
 				String name = user.getFirstName() + " " + user.getLastName();

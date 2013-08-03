@@ -22,10 +22,10 @@
 				</div>
 				<div class="col c2">
 					<div>
-						<div><a>Gold Cinema</a></div>
-						<div><a>Gold Cinema</a></div>
-						<div><a>Gold Cinema</a></div>
-						<div><a>Gold Cinema</a></div>
+						<div><a href="/gold.do">Gold Cinema</a></div>
+						<div><a href="/ultra.do">Ultra Cinema</a></div>
+						<div><a href="/superior.do">Superior Cinema</a></div>
+						<div><a href="/platinum.do">Platinum Cinema</a></div>
 					</div>
 				</div>
 				<div class="col c3">

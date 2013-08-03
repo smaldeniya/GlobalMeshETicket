@@ -26,7 +26,14 @@ public class InitialServlet extends HttpServlet {
 		List<MovieDetail> nowShowingMovies = MovieDetailDAO.INSTANCE.listNowShowingMovies();
 		MovieDetail[] movieArr = nowShowingMovies.toArray(new MovieDetail[nowShowingMovies.size()]);
 		int dateOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;	
+		
+		List<MovieDetail> commingSoon = MovieDetailDAO.INSTANCE.listNowShowingAndCommingSoonMovies();
+		List<String> commingMovieNames = new ArrayList<String>();
+		for (MovieDetail movieDetail : commingSoon) {
+			commingMovieNames.add(movieDetail.getMovieId());
+		}
 
+		req.setAttribute("commingSoon", commingMovieNames);
 		req.setAttribute("today", dateOfWeek);
 		req.setAttribute("movieArray", movieArr);
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
