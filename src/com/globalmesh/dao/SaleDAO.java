@@ -1,5 +1,7 @@
 package com.globalmesh.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,6 +95,42 @@ public enum SaleDAO {
 		
 		return sale;
 		
+	}
+	
+	public List<Sale> listSalesFromTO(Date from, Date to, String type , String movie, Date showTime){
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("Select s from  Sale s where s.online=:type and s.movie=:movie and s.showDate between :fromDate and :toDate ");
+		
+		if(type.compareTo("all") == 0) {
+			// no sales type hence query changed
+			q = em.createQuery("Select s from  Sale s where s.movie=:movie and s.showDate between :fromDate and :toDate ");
+			
+		} else if(type.compareTo("online") == 0 ) {
+			
+			q.setParameter("type", true);
+			
+		} else if(type.compareTo("offline") == 0 ){
+			
+			q.setParameter("type", false);
+			
+		} else {
+			throw new RuntimeException("report type should be all, online or offline. You send " + type);
+		}
+		
+		q.setParameter("movie", movie);
+		q.setParameter("fromDate", from);
+		q.setParameter("toDate", to);
+		
+		List<Sale> saleList = q.getResultList();		
+		List<Sale> returnList = new ArrayList<Sale>();
+		DateFormat showTimeFormat = new SimpleDateFormat("hh:mm a");
+		
+		for (Sale sale : saleList) {
+			if(showTimeFormat.format(sale.getShowDate()).compareTo(showTimeFormat.format(showTime)) == 0)
+				returnList.add(sale);
+		} 
+		em.close();
+		return returnList;
 	}
 	
 	/**

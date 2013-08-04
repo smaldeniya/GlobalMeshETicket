@@ -80,6 +80,9 @@ public class SalesServlet extends HttpServlet {
 				
 				if(u.getUserType().compareTo(Utility.getCONFG().getProperty(Constants.USER_TYPE_ADMIN)) == 0) {
 					
+					sale.setPaid(true);
+					sale.setOnline(false);
+					
 					if(today.before(show)){					
 						if(SaleDAO.INSTANCE.insertSale(sale)){
 							
@@ -119,11 +122,16 @@ public class SalesServlet extends HttpServlet {
 						
 					if(today.before(show)){
 						
+						sale.setOnline(true);
+						
+						
 						if(SaleDAO.INSTANCE.insertSale(sale)){
 							//TODO payment gateway
 							resp.setContentType("text/plain");
 							resp.setCharacterEncoding("UTF-8");
-								
+							
+							sale.setPaid(false);
+							
 							resp.getWriter().write("Welcome to payment gateway :P");
 						} else {
 							req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);

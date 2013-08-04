@@ -26,7 +26,7 @@ public class TicketPrinter {
 	private static Font largeFont = new Font(FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
 	private static Font largeFontBold = new Font(FontFamily.TIMES_ROMAN, 14, Font.BOLD);	
 	
-	private static int counter = 0;
+	
 	private static final SimpleDateFormat timeFormet = new SimpleDateFormat("hh:mm a");
 	private static final SimpleDateFormat dateFomatter = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -45,10 +45,10 @@ public class TicketPrinter {
 			
 			String seatNo = seatNosArray[loopCnt];
 			
-			printTicketBody(ticket, seatNo, counter, sale,
+			printTicketBody(ticket, seatNo, (sale.getId() + " - " + loopCnt), sale,
 					Constants.TicketTypes.Half, movieName);
 			
-			printTicketSummary(ticket, seatNo, counter, sale,
+			printTicketSummary(ticket, seatNo, (sale.getId() + " - " + loopCnt), sale,
 					Constants.TicketTypes.Half, movieName);
 			
 			loopCnt++;
@@ -61,10 +61,10 @@ public class TicketPrinter {
 
 			String seatNo = seatNosArray[loopCnt];
 			
-			printTicketBody(ticket, seatNo, counter, sale,
+			printTicketBody(ticket, seatNo, (sale.getId() + " - " + loopCnt), sale,
 					Constants.TicketTypes.Full, movieName);
 
-			printTicketSummary(ticket, seatNo, counter, sale,
+			printTicketSummary(ticket, seatNo, (sale.getId() + " - " + loopCnt), sale,
 					Constants.TicketTypes.Full, movieName);
 			
 			loopCnt++;
@@ -76,7 +76,7 @@ public class TicketPrinter {
 	
 	
 	private static void printTicketSummary(Document document,
-			String seatNo, int ticketNo, Sale sale,
+			String seatNo, String ticketNo, Sale sale,
 			Constants.TicketTypes typeOfTicket, String movieName) {
 
 		Paragraph para = null;
@@ -144,10 +144,10 @@ public class TicketPrinter {
 			para.add(tab3);
 			
 			if (typeOfTicket == Constants.TicketTypes.Full)
-				para.add(String.format("Rs.%s", sale.getFullTicketPrice()));
+				para.add(String.format("Rs. %.2f", sale.getFullTicketPrice()));
 
 			if (typeOfTicket == Constants.TicketTypes.Half)
-				para.add(String.format("Rs.%s", sale.getHalfTicketPrice()));
+				para.add(String.format("Rs. %.2f", sale.getHalfTicketPrice()));
 
 			para.setAlignment(Element.ALIGN_LEFT);
 			document.add(para);
@@ -184,7 +184,7 @@ public class TicketPrinter {
 	}
 	
 	private static void printTicketBody(Document document,
-			String seatNo, int ticketNo, Sale sale,
+			String seatNo, String ticketNo, Sale sale,
 			Constants.TicketTypes typeOfTicket, String movieName) {
 
 		Paragraph para = null;
@@ -196,7 +196,7 @@ public class TicketPrinter {
 			para.setAlignment(Element.ALIGN_MIDDLE);
 			document.add(para);
 
-			para = new Paragraph(String.format("Ticket No : %s", ticketNo++),
+			para = new Paragraph(String.format("Ticket No : %s", ticketNo),
 					midFont);
 			para.setAlignment(Element.ALIGN_RIGHT);
 			document.add(para);
@@ -282,10 +282,10 @@ public class TicketPrinter {
 			para.add(tab2);
 			
 			if (typeOfTicket == Constants.TicketTypes.Full)
-				para.add(String.format("Rs.%s", sale.getFullTicketPrice()));
+				para.add(String.format("Rs. %.2f", sale.getFullTicketPrice()));
 
 			if (typeOfTicket == Constants.TicketTypes.Half)
-				para.add(String.format("Rs.%s", sale.getHalfTicketPrice()));
+				para.add(String.format("Rs. %.2f", sale.getHalfTicketPrice()));
 
 			para.setAlignment(Element.ALIGN_LEFT);
 			document.add(para);
@@ -294,7 +294,7 @@ public class TicketPrinter {
 			para.add(tab1);
 			para.add(":");
 			para.add(tab2);			
-			para.add(String.format("Rs.%s", sale.getTotal()));
+			para.add(String.format("Rs. %.2f", sale.getTotal()));
 			
 			para.setAlignment(Element.ALIGN_LEFT);
 			document.add(para);
@@ -303,7 +303,7 @@ public class TicketPrinter {
 			para.add(tab1);
 			para.add(":");
 			para.add(tab2);
-			para.add(String.format("Rs.%s", "0.00"));
+			para.add(String.format("Rs. %s", "0.00"));
 
 			para.setAlignment(Element.ALIGN_LEFT);
 			document.add(para);

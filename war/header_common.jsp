@@ -212,7 +212,7 @@
 						<ul>
 							<li class="active"><a href="/init.do"><span>Home
 										Page</span></a></li>
-							<li><a href=""><span>Film Halls</span></a>
+							<li><a href="#" onclick="return false;"><span>Film Halls</span></a>
 								<ul>
 									<li style="width:152px"><a href="/gold.do"><span>Gold Cinema</span></a></li>
 									<li style="width:152px"><a href="/ultra.do"><span>Ultra Cinema</span></a></li>

@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 public class Sale implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String id;
 	
 	@Column(name="SeatArrangement", nullable=false, length=100)
@@ -62,6 +62,12 @@ public class Sale implements Serializable{
 	
 	@Column(name="Total", nullable=false) // total = fullticket * fullticetPrice + halfTicket * halfTicketPrice
 	private double total;
+	
+	@Column(name="IsOnline", nullable=false)
+	private boolean online;
+	
+	@Column(name="HasPaid", nullable=false)
+	private boolean paid;
 	/**
 	 * @return the id
 	 */
@@ -242,6 +248,34 @@ public class Sale implements Serializable{
 	 */
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	/**
+	 * @return the online
+	 */
+	public boolean isOnline() {
+		return online;
+	}
+
+	/**
+	 * @param online the online to set
+	 */
+	public void setOnline(boolean online) {
+		this.online = online;
+	}
+
+	/**
+	 * @return the paid
+	 */
+	public boolean isPaid() {
+		return paid;
+	}
+
+	/**
+	 * @param paid the paid to set
+	 */
+	public void setPaid(boolean paid) {
+		this.paid = paid;
 	}
 		
 	

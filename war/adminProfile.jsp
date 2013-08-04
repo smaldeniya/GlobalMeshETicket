@@ -96,7 +96,8 @@
 				break;
 				
 			case "report":
-				$("#reportForm").attr("action", "/useru.do");
+				$("#reportForm").attr("action", "/reportg.do");
+				$("#reportForm").attr("target", "_blank");
 				$("form")[4].submit();
 				break;
 		}
@@ -246,6 +247,56 @@
 			}
 		});
 	}
+	
+	function getShowTimesForReport() {
+		var hallName = $("#reportHall :selected").val();
+		var checkURL = getURLPath() + "mvdtli.do?type=showTimes&hallId=" + hallName;
+		if(validate('reportHall','any')){
+			$("#reportShow").html("");
+			
+			$.ajax({
+				url:checkURL,
+				async:false,
+				type : "GET",
+				success: function(data,status){
+					if(data != "false"){
+						var numOfShows = parseInt(data);
+						var option = "";
+						for(var i = 1; i <= numOfShows; i++){
+							option = option + "<option value='"+ i + "'>Show " + i + "</option>";
+						}
+						$("#reportShow").html(option);
+					}
+				}
+			});	
+		}
+	}
+	
+	function validateReportDate(id) {
+		var message = "";
+		var value = $("#" + id).val();
+		var result = false;
+		
+		if(!isEmpty(value)) {
+			var re = /\d{4}-\d{2}-\d{2}/;
+			result = re.test(value);
+			message = "Please enter a valid date. Eg: 2013-01-01";
+		} else {
+			message = "Field should not be empty";
+		}
+		
+		if (!result) {
+			$("#" + id).focus();
+			$("#" + id).parent().children("span[class=errorMessage]").text(
+					message);
+		} else {
+			$("#" + id).parent().children("span[class=errorMessage]").html(
+					"<img src='../images/ok.png' height='16' width='16'/>");
+		}
+
+		return result;
+		
+	}
 </script>
 
 <div class="seat_plan_header" align="center" style="width:95%;">Profile Details</div>
@@ -343,16 +394,61 @@
 <%@include file="movieDetailsAdder.jsp" %>
 <div id="reports">
 <div class="labelDetails">
-	
+	<div>
+		<fieldset class="textbox">
+					<lable ><span>Theater</span></lable>
+					<lable ><span>Sales Type</span></lable>
+					<lable ><span>Show</span></lable>
+					<lable ><span>From Date</span></lable>
+					<lable ><span>To Date</span></lable>					
+		</fieldset>
+	</div>
 </div>
-<div class="devider"></div>
+<div class="devider" style="height:280px;"></div>
 
 <div class="userDetailsCommon">
 	<form action="/useru.do" id="reportForm" method="post">
 		
+		<label>			
+			<select name="reportHall" id="reportHall" style="margin-top:30px; float:left; clear:left; width:230px; height:45px;" class="styled-select" onblur="getShowTimesForReport();"> 
+				<option value="" selected="selected">Select Theater</option> 
+				<% 	String[] rephallNames = (String[])request.getAttribute("hallNames"); 
+					for(String hall:rephallNames){
+				%>
+					<option value="<%=hall %>"><%=hall %></option>
+				<%	} %> 
+			</select>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:40px; width:210px;"></span>
+		</label>
+	
+		
+		<label>			
+			<select name="reqreportType" id="reqreportType" style="margin-top:20px; float:left; clear:left; width:230px; height:45px;" class="styled-select" >
+				<option value="online" >Online Sales</option>
+				<option value="offline" >Offline Sales</option>
+				<option value="all" >All Sales</option>
+			</select>
+		</label>
+		
+		<label> 
+			<select name="reportShow" id="reportShow" style="margin-top:25px; float:left; clear:left; width:150px; height:45px;" class="styled-select">
+				
+			</select>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
 		
 		<label>
-			<button class="submit button" type="button" onclick="btnUpdateOnClick('report')" style="margin-top:25px;">Update</button>
+			<input type="date" id="reportFromDate" name="reportFromDate" onblur="validateReportDate('reportFromDate');" style="margin-top: 25px;"/>	
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:40px; width:210px;"></span>	
+		</label>
+		
+		<label>
+			<input type="date" id="reportToDate" name="reportToDate" onblur="validateReportDate('reportToDate');" style="margin-top: 25px;"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:40px; width:210px;"></span>
+		</label>
+		
+		<label>
+			<button class="submit button" type="button" onclick="btnUpdateOnClick('report')" style="margin-top:25px;">Request </button>
 		</label>
 		
 	</form>
