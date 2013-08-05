@@ -1425,3 +1425,40 @@ a.prev span, a.next span {
 #imageSlider {
 	
 }
+
+.tLegend {
+	float:right;
+	background: #fff; 
+	width:200px; 
+	height:170px; 
+	position:relative;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 0 1px 3px gray inset;
+	-moz-box-shadow: 0 1px 3px gray inset;
+	-webkit-box-shadow: 0 1px 3px gray inset;
+}
+
+.tLegend span{
+	color: graytext;
+	font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tLegend div {
+	margin-top :10px;
+}
+
+.tLegend div img {
+	float:left;
+	margin-left:10px;
+	clear : left;
+}
+
+.tLegend div span {
+	font-size: 14px;
+    font-weight: normal;
+    padding-top:100px;
+    line-height: 20px;
+}

@@ -268,6 +268,22 @@ function getShowTimesOfDate() {
 
 <div class="seatingArrangement" align="center" style="width:920px; height:870px;">
   <div style="width:920px;">
+  	<div class="tLegend">
+  		<span>Legend</span>
+  		<div style="margin:10px 5px 5px 5px;">
+  			<img src="images/blankSeat_small.png"/>
+  			<span>- Empty seats</span>
+  		</div>
+  		<div style="margin:25px 5px 5px 5px;">
+  			<img src="images/selected_small.png"/>
+  			<span> - Selected seats</span>
+  		</div>
+  		<div style="margin:25px 5px 5px 5px;">
+  			<img src="images/reserved_small.png"/>
+  			<span> - Reserved seats</span>
+  		</div>
+  	</div>  
+  
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
   		<iframe width="354" height="250" src="//${requestScope['youtubeUrl'] }?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
