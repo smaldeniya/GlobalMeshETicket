@@ -314,6 +314,10 @@
 					$("#status").val(parameters[2]);
 					$("#utube").val(parameters[3]);
 					$("#plot").val(parameters[4]);
+					
+					for(var i = 1; i < 6; i++) {
+						$("#showtime"+i).parent().children("span[class=errorMessage]").text("Click 'Show Times' tab to change time of movie");
+					}
 				}
 			}
 		});
