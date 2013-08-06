@@ -173,4 +173,17 @@ public enum MovieDetailDAO {
 		return returnList;
 	}
 	
+	public MovieDetail searchMovie(String pattern) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("Select m from MovieDetail m where m.movieName LIKE '" + pattern + "%'");
+		MovieDetail movie = null;
+		try {
+			movie = (MovieDetail) q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			// TODO: handle exception
+		}
+		em.close();
+		return movie;
+	}
+	
 }

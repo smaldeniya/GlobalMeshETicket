@@ -25,6 +25,7 @@
 				<label>
 					<input type="text" value='' id="filmName" name="filmName" style="margin-top:30px" onblur="validate('filmName', 'any')"/>
 					<!-- span style="float:left; margin-left:5px;margin-top:35px;"><a class="searchBut" href="	"></a></span -->
+					<span style="float:left; margin-left:5px;margin-top:35px;"><a class="searchBut" href="#" onclick="searchMovie();return false;"></a></span>
 					<span class="errorMessage" style="float:left; margin-left:5px;margin-top:40px;"></span>
 				</label>
 		

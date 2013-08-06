@@ -297,5 +297,41 @@ public class MovieDetailInsertAction extends HttpServlet {
 				resp.getWriter().write("false");
 			}
 		}
+		
+		if(type.compareTo("movieSearch") == 0) {
+			
+			String movieName = req.getParameter("movieName");
+			
+			MovieDetail movie = MovieDetailDAO.INSTANCE.searchMovie(movieName);
+			
+			StringBuffer sb = new StringBuffer();
+			
+			if(movie != null) {
+				
+				sb.append(movie.getMovieName());
+				sb.append(";");
+				sb.append(movie.getMovieTheatre());
+				sb.append(";");
+				
+				MovieStatus status = movie.getStatus();
+				if(status == MovieStatus.NowShowing) {
+					sb.append("0");
+					sb.append(";");
+				}else if(status == MovieStatus.UpComing) {
+					sb.append("1");
+					sb.append(";");
+				} else {
+					sb.append("2");
+					sb.append(";");
+				}				
+				
+				sb.append(movie.getMovieYouTube());
+				sb.append(";");	
+				sb.append(movie.getMovieDetails());
+			}
+			
+			resp.getWriter().write(sb.toString());
+		}
+		
 	}
 }

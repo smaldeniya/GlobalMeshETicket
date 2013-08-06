@@ -297,9 +297,30 @@
 		return result;
 		
 	}
+	
+	function searchMovie() {
+		var movieName = $("#filmName").val();
+		var url = getURLPath() + "mvdtli.do?type=movieSearch&movieName=" + movieName;
+		
+		$.ajax({
+			url : url,
+			async : false,
+			type : "GET",
+			success : function(data, status) {
+				if(!isEmpty(data)) {
+					var parameters = data.split(';');
+					$("#filmName").val(parameters[0]);
+					$("#theater").val(parameters[1]);
+					$("#status").val(parameters[2]);
+					$("#utube").val(parameters[3]);
+					$("#plot").val(parameters[4]);
+				}
+			}
+		});
+	}
 </script>
 
-<div class="seat_plan_header" align="center" style="width:95%;">Profile Details</div>
+<div class="seat_plan_header" align="center" style="width:95%;">Admin Console</div>
 
 <div class="${requestScope['msgClass']}">${requestScope['message']}</div>
 
