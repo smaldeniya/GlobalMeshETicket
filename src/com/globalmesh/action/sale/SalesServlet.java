@@ -21,6 +21,7 @@ import com.globalmesh.dto.MovieDetail;
 import com.globalmesh.dto.Sale;
 import com.globalmesh.dto.User;
 import com.globalmesh.util.Constants;
+import com.globalmesh.util.RandomKeyGen;
 import com.globalmesh.util.TicketPrinter;
 import com.globalmesh.util.Utility;
 import com.itextpdf.text.Document;
@@ -82,6 +83,8 @@ public class SalesServlet extends HttpServlet {
 					
 					sale.setPaid(true);
 					sale.setOnline(false);
+					sale.setRedeem(true);
+					sale.setVeriFicationCode("NONE");
 					
 					if(today.before(show)){					
 						if(SaleDAO.INSTANCE.insertSale(sale)){
@@ -123,10 +126,13 @@ public class SalesServlet extends HttpServlet {
 					if(today.before(show)){
 						
 						sale.setOnline(true);
+						sale.setRedeem(false);
 						
+						String verificationCode = RandomKeyGen.createId();
+						sale.setVeriFicationCode(verificationCode);
 						
 						if(SaleDAO.INSTANCE.insertSale(sale)){
-							//TODO payment gateway
+							//TODO payment gateway send verification code to user
 							resp.setContentType("text/plain");
 							resp.setCharacterEncoding("UTF-8");
 							

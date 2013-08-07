@@ -85,13 +85,12 @@ public enum SaleDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from Sale t where t.id = :id");
 		q.setParameter("id", saleId);		
-		Sale sale;
+		Sale sale = null;
 		try {
 			sale = (Sale) q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
-			em.close();
-			sale = null;
 		}
+		em.close();
 		
 		return sale;
 		
@@ -131,6 +130,21 @@ public enum SaleDAO {
 		} 
 		em.close();
 		return returnList;
+	}
+	
+	public Sale getSaleByVeriCode(String veriCode) {
+		
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Sale t where t.veriFicationCode = :veriFicationCode");
+		q.setParameter("veriFicationCode", veriCode);		
+		Sale sale = null;
+		try {
+			sale = (Sale) q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+		}
+		em.close();
+		
+		return sale;
 	}
 	
 	/**

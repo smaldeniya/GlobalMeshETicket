@@ -68,6 +68,29 @@ public class Sale implements Serializable{
 	
 	@Column(name="HasPaid", nullable=false)
 	private boolean paid;
+	
+	@Column(name="VerificationCode", nullable=false)
+	private String veriFicationCode;
+	
+	@Column(name="Redeem", nullable=false)
+	private boolean redeem;
+	
+	public boolean isRedeem() {
+		return redeem;
+	}
+
+	public void setRedeem(boolean redeem) {
+		this.redeem = redeem;
+	}
+
+	public String getVeriFicationCode() {
+		return veriFicationCode;
+	}
+
+	public void setVeriFicationCode(String veriFicationCode) {
+		this.veriFicationCode = veriFicationCode;
+	}
+
 	/**
 	 * @return the id
 	 */

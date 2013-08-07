@@ -14,6 +14,12 @@
 		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 		
 		<script type="text/javascript">
+		
+		$(document).ready(function () {
+			$("#btnGet").bind("click", animate1);
+			$("#btnPrint").bind("click", animate2);
+		});
+		
 		function getURLPath() {
 			return $(location).attr('protocol') + "//" + $(location).attr('hostname') + ":" + $(location).attr('port') + "/";
 		}
@@ -179,22 +185,59 @@
 			return (!str || 0 === str.length);
 		}
 		
-		function btnPrintOnClich() {
+				
+		function animate1() {
 			$("#redeem").animate({ 
 		        left: "-=220px",
 		        top: "-=100px",
 		      }, 850 );
 			
+			$("#ticketDetails").css("top", $("#redeem").css("top"));
+			$("#ticketDetails").css("top", "-=100px");
+			
 			$("#ticketDetails").fadeIn(850, function(){
 				$("#ticketDetails").css("display", "block");
-			});			
+			});	
 			
-			// ajax call print function
+			$("#btnGet").unbind("click");
 		}
 		
-		function btnPrintClose() {
-				
-		}		
+		function animate2() {
+			$("#redeem").animate({ 
+		        left: "+=220px",
+		        top: "+=100px",
+		      }, 850 );
+			
+			$("#ticketDetails").fadeOut(850, function(){
+				$("#ticketDetails").css("display", "none");
+			});	
+			
+			$("#btnGet").bind("click", animate1);
+		}
+		
+		function btnPrintOnClick() {
+			
+		}
+		
+		function btnGetOnClick() {
+			var ticketSerial = $("#serialNum").val();
+			
+			$.ajax({
+				url : url,
+				async : false,
+				type : "POST",
+				data : {
+					'type' : 'getDetails',
+					'ticketSerial' : ticketSerial;
+				},
+				success : function(data, status) {
+					if (!isEmpty(data) && data == "true") {
+						result = true;
+					}
+				}
+			});
+		}
+		
 		</script>		
 	</head>
 	
@@ -204,12 +247,35 @@
 					<span>Serial Number</span>
 					<input class="redeemInput" value="Serial Number" type="text" id="serialNum" 
 							name="serialNum" onblur="if(this.value=='')this.value='Serial Number';"  onfocus=" if(this.value=='Serial Number')this.value='';"/>
-					<button type="button" id="btnPrint" name="btnPrint" onclick="btnPrintOnClich();">Print Ticket</button>					
+					<button type="button" id="btnGet" name="btnGet" onclick="btnGetOnClick()">Get Details</button>					
 				</form>
 			</div>
 			
 			<div id="ticketDetails">
-			  hello
+			  <span>Ticket Details</span>
+			  
+			  <div>
+			  	<span class="name">Show Date:</span>
+			  	<span class="value"></span>
+			  </div>
+			  
+			  <div>
+			  	<span class="name">Show Time:</span>
+			  	<span class="value"></span>
+			  </div>
+			  
+			  <div>
+			  	<span class="name">Purchase Date:</span>
+			  	<span class="value"></span>
+			  </div>
+			  
+			  <div>
+			  	<span class="name">Amount Paid:</span>
+			  	<span class="value"></span>
+			  </div>
+			  
+			  <button type="button" id="btnPrint" name="btnPrint" onclick="btnPrintOnClick()">Print Ticket</button>	
+			  
 			</div>
 	</body>
 	
