@@ -18,27 +18,19 @@
 <script type="text/javascript" src="js/coin-slider.min.js"></script>
 <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		setActivePage();
-	});
-
-	function setActivePage() {
-		var path = $(location).attr('href');
-		var urlLength = $(location).attr('hostname').length
-				+ $(location).attr('port').length
-				+ $(location).attr('protocol').length + 4;
-		var page = path.substring(urlLength, path.length);
-
-		if (page != 'index.jsp' && page != 'movie.jsp' && page != 'about.jsp'
-				&& page != 'contact.jsp') {
-			$('.active').attr('class', '');
-		}
-	}
-
-	function getURLPath() {
-		return $(location).attr('protocol') + "//" + $(location).attr('hostname') + ":" + $(location).attr('port') + "/";
-	}
 	
+	function getURLPath() {
+		var url = $(location).attr('protocol') + "//" + $(location).attr('hostname');
+		
+		if(!isEmpty($(location).attr('port'))){
+			url += ":" + $(location).attr('port') + "/";
+		} else {
+			url += "/";
+		}
+		
+		return url;
+	}
+		
 	function validate(id, type) {
 		var result = false;
 		var message = "";

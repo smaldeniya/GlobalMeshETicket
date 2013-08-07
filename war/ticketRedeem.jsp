@@ -21,7 +21,15 @@
 		});
 		
 		function getURLPath() {
-			return $(location).attr('protocol') + "//" + $(location).attr('hostname') + ":" + $(location).attr('port') + "/";
+			var url = $(location).attr('protocol') + "//" + $(location).attr('hostname');
+			
+			if(!isEmpty($(location).attr('port'))){
+				url += ":" + $(location).attr('port') + "/";
+			} else {
+				url += "/";
+			}
+			
+			return url;
 		}
 		
 		function validate(id, type) {
@@ -220,6 +228,8 @@
 		}
 		
 		function btnGetOnClick() {
+			
+			var url = getURLPath() + "redeem.do"
 			var ticketSerial = $("#serialNum").val();
 			
 			$.ajax({
@@ -228,11 +238,17 @@
 				type : "POST",
 				data : {
 					'type' : 'getDetails',
-					'ticketSerial' : ticketSerial;
+					'ticketSerial' : ticketSerial
 				},
 				success : function(data, status) {
-					if (!isEmpty(data) && data == "true") {
-						result = true;
+					if (data != "false") {
+						var params = data.split(";");
+						$("#sdate").val(params[0]);
+						$("#stime").val(params[1]);
+						$("#pdate").val(params[2]);
+						$("#total").val(params[3]);
+					} else {
+						// set error
 					}
 				}
 			});
@@ -256,22 +272,22 @@
 			  
 			  <div>
 			  	<span class="name">Show Date:</span>
-			  	<span class="value"></span>
+			  	<span id="sdate" class="value"></span>
 			  </div>
 			  
 			  <div>
 			  	<span class="name">Show Time:</span>
-			  	<span class="value"></span>
+			  	<span id="stime" class="value"></span>
 			  </div>
 			  
 			  <div>
 			  	<span class="name">Purchase Date:</span>
-			  	<span class="value"></span>
+			  	<span id="pdate" class="value"></span>
 			  </div>
 			  
 			  <div>
 			  	<span class="name">Amount Paid:</span>
-			  	<span class="value"></span>
+			  	<span id="total" class="value"></span>
 			  </div>
 			  
 			  <button type="button" id="btnPrint" name="btnPrint" onclick="btnPrintOnClick()">Print Ticket</button>	

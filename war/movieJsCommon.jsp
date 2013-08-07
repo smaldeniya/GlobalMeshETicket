@@ -80,7 +80,7 @@ function seatListner() {
 				$(this).click(function () {
 					
 					var result = false;
-					var url ="http://" + $(location).attr('hostname') + ":" + $(location).attr('port') + "/blockTicket.do";
+					var url = getURLPath() + "blockTicket.do";
 					var ticketKey = $("#showDate").val() + "-" + $("#showTime").val() + "-" + $("#hallName").val() + "-" + $(this).attr('id');
 					
 					$.ajax({
@@ -228,7 +228,7 @@ $(window).unload(function() {
 });
 
 function cleanSeatsFromServer() {
-	var url ="http://" + $(location).attr('hostname') + ":" + $(location).attr('port') + "/blockTicket.do";
+	var url = getURLPath() + "blockTicket.do";
 	var seats = $("#seatSelection").val();
 		
 		$.ajax({
