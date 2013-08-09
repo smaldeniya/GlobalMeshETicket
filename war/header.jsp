@@ -1,16 +1,32 @@
 <%@include file="header_common.jsp"%>
 
-				<div class="slider">
-					<div id="coin-slider">
-						<a href="#"><img src="/image.do?type=hall&hall=Gold" width="960"
-							height="360" alt="" /><span></span></a> <a href="#"><img
-							src="/image.do?type=hall&hall=Platinum" width="960" height="360" alt="" /><span></span></a>
-						<a href="#"><img src="/image.do?type=hall&hall=Superior" width="960"
-							height="360" alt="" /><span></span></a> <a href="#"><img
-							src="/image.do?type=hall&hall=Ultra" width="960" height="360" alt="" /><span></span></a>
-					</div>
-					<div class="clr"></div>
-				</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#sliderBanner").carouFredSel({
+		circular: true,
+		infinite: false,
+		pagination  : "#slidePag",
+		scroll : {
+			items : 1,
+			easing : "quadratic",
+			duration : 1000,                        
+			pauseOnHover : true
+		}
+	});
+});
+</script>
+
+<div id="slider">
+	<div id="sliderBanner">
+		<img src="/image.do?type=hall&hall=Gold" width="960" height="360" alt="" />
+		<img src="/image.do?type=hall&hall=Platinum" width="960" height="360" alt="" />
+		<img src="/image.do?type=hall&hall=Superior" width="960" height="360" alt="" />
+		<img src="/image.do?type=hall&hall=Ultra" width="960" height="360" alt="" />
+	</div>
+	<div class="pagination" id="slidePag"></div>
+</div>
+
 				<div class="clr"></div>
 			</div>
 		</div>
