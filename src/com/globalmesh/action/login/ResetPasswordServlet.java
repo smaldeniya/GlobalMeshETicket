@@ -28,12 +28,21 @@ public class ResetPasswordServlet extends HttpServlet {
 				String newPassword = Utility.shortUUID();
 				user.setPassword(MD5HashGenerator.md5(newPassword));
 				
-				String messaageBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_EMAIL_BODY), newPassword);
+				if(UserDAO.INSTANCE.update(user)){
+					String messaageBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_EMAIL_BODY), newPassword);
+					
+					Utility.sendEmail(Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_EMAIL_SUBJECT), messaageBody, user.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
+					
+					req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
+					req.setAttribute("message", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_SUCCESS_MESSAGE));
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 				
-				Utility.sendEmail(Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_EMAIL_SUBJECT), messaageBody, user.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
+				}  else {
+					req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
+					req.setAttribute("message", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_WRONG_USER));
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+				}
 				
-				req.setAttribute("resetMsg", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_SUCCESS_MESSAGE));
-				req.getRequestDispatcher("/resetPassword.jsp").forward(req, resp);
 			} else {
 				req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.RESET_PASSWORD_WRONG_USER));
