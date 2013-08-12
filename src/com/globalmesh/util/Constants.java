@@ -90,6 +90,16 @@ public class Constants {
 	
 	public static final String SALE_FAIL = "sale.error.trans.fail";
 	
+	public static final String USER_RESEND_VERIFICATIN_BODY = "user.verify.resend";
+	
+	public static final String USER_VERI_RESEND_MESSAGE = "user.veri.resend";
+	
+	public static final String USER_VERI_SUCCES = "user.veri.success";
+	
+	public static final String USER_VERI_WRONG_CODE = "user.veri.fail";
+	
+	public static final String USER_VERI_ACCOUNT_ALREDY_VERIFIED = "user.veri.already.verified";
+	
 	public enum MovieStatus {
 		NowShowing, // 0
 		UpComing, // 1

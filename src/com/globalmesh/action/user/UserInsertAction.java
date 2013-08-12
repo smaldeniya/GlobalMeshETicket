@@ -17,6 +17,7 @@ import com.globalmesh.dao.UserDAO;
 import com.globalmesh.dto.User;
 import com.globalmesh.util.Constants;
 import com.globalmesh.util.MD5HashGenerator;
+import com.globalmesh.util.RandomKeyGen;
 import com.globalmesh.util.Utility;
 
 /**
@@ -65,16 +66,14 @@ public class UserInsertAction extends HttpServlet {
 				user.setAddress(address); //this will add later not need in registration
 			}
 			
-			String verification = MD5HashGenerator.md5(email);
+			String verification = RandomKeyGen.createId();
 			user.setVerified(verification);
 			user.setUserType(Utility.getCONFG().getProperty(Constants.USER_TYPE_USER));
 			
 			
 			if (UserDAO.INSTANCE.add(user)) {
 				
-				String URL = MessageFormat.format(Utility.getCONFG().getProperty(Constants.SITE_URL), "useri.do?verifi="+user.getVerified());
-				System.out.println(URL);
-				String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.USER_REG_EMAIL_BODY), user.getFirstName(), user.getEmail(), URL);
+				String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.USER_REG_EMAIL_BODY), user.getFirstName(), user.getEmail(), user.getVerified());
 				Utility.sendEmail(Utility.getCONFG().getProperty(Constants.USER_REG_EMAIL_SUBJECT), emailBody, user.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
 				
 				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
