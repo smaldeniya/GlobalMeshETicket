@@ -71,13 +71,48 @@
 			}
 		});
 	}
+	
+	function btnReSendOnClick() {
+		var url = getURLPath() + "verifyMe.do";
+		
+		$.ajax({
+			url : url,
+			async : false,
+			type : "POST",
+			data : {
+				'type' : 'resend'
+			},
+			success : function(data, status) {
+				$("#veriCode").val("Check your emails");
+			}
+		});
+	}
+	
+	function btnVerifyOnClick() {
+		var url = getURLPath() + "verifyMe.do";
+		var veriCode = $("#veriCode").val();
+		
+		$.ajax({
+			url : url,
+			async : false,
+			type : "POST",
+			data : {
+				'type' : 'verify',
+				'veriCode' : veriCode				
+			},
+			success : function(data, status) {
+				$("#veriCode").parent().html("");
+				$("#veriCode").parent().html("<input type='text' value='yes' style='margin-top:28px' disabled='disabled'/>")
+			}
+		}); 
+	}
 </script>
 
 <div class="seat_plan_header" align="center" style="width:95%;">Profile Details</div>
 
 <div class="${requestScope['msgClass']}">${requestScope['message']}</div>
 
-<div id="userForm" align="center" style="marigin-top:20px;">
+<div id="userForm" align="center" style="marigin-top:20px;height:850px;">
 
 <div class="tabHeader">
 <nav id="userNavigation">
@@ -93,6 +128,7 @@
 	<div>
 	<fieldset class="textbox">
 		<lable ><span>Email</span></lable>
+		<lable ><span>Verified</span></lable>
 		<lable ><span>First Name</span></lable>
 		<lable ><span>Last Name</span></lable>
 		<lable ><span>Gender</span></lable>
@@ -103,7 +139,7 @@
 	</fieldset>
 	</div>
 </div>
-<div class="devider"></div>
+<div class="devider" style="height:550px"></div>
 
 <div class="userDetailsCommon">
 	<form action="/useru.do" id="userUpdateForm" method="post">
@@ -111,6 +147,18 @@
 		<label>
 			<input type="hidden" id="emailU" name="emailU" value="<%=user.getEmail() %>" style="display:none;"/>
 			<input type="text" value='<%= user.getEmail() %>' disabled="disabled" style="width:250px;margin-top:30px"/>
+		</label>
+		<label>
+			<% 	boolean verified = (user.getVerified().compareTo("true") == 0);
+				if(!verified) {
+			%> 
+				<input type="text" id="veriCode" name="veriCode" style="margin-top:28px" value='No' onfocus="if(this.value=='No')this.value='';" onblur="if(this.value=='')this.value='No';"/>
+				<button class="submit button" type="button" onclick="btnReSendOnClick()" style="margin-top:30px;clear:none;margin-left:30px">Re Send</button>
+				<button class="submit button" type="button" onclick="btnVerifyOnClick()" style="margin-top:30px;clear:none;margin-left:30px">Verify</button>
+			<% } else { %>
+				<input type="text" value="yes" style="margin-top:28px" disabled="disabled"/>
+			<% } %>
+			
 		</label>
 		<label>
 			<input type="text" id="firstNameU" name="firstNameU" style="margin-top:28px" value='<%= user.getFirstName() %>' onblur="validate('firstNameU', 'text')"/>

@@ -21,7 +21,7 @@ public class VerifyAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String userEmail = (String) req.getAttribute("email");
+		String userEmail = (String) req.getSession().getAttribute("email");
 		String type = req.getParameter("type");
 		
 		User user = UserDAO.INSTANCE.getUserByEmail(userEmail);
@@ -42,6 +42,7 @@ public class VerifyAccountServlet extends HttpServlet {
 						req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
 						String message = Utility.getCONFG().getProperty(Constants.USER_VERI_RESEND_MESSAGE);		
 						req.setAttribute("message", message);
+						req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -51,6 +52,7 @@ public class VerifyAccountServlet extends HttpServlet {
 					req.setAttribute("msgClass", Constants.MSG_CSS_INFO);
 					String message = Utility.getCONFG().getProperty(Constants.USER_VERI_ACCOUNT_ALREDY_VERIFIED);		
 					req.setAttribute("message", message);
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 				}
 				
 			}
@@ -66,13 +68,16 @@ public class VerifyAccountServlet extends HttpServlet {
 					req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
 					String message = Utility.getCONFG().getProperty(Constants.USER_VERI_SUCCES);		
 					req.setAttribute("message", message);
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 				} else {
 					req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 					String message = Utility.getCONFG().getProperty(Constants.USER_VERI_WRONG_CODE);		
 					req.setAttribute("message", message);
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 				}
 				
 			}
+			
 			
 		}
 		
