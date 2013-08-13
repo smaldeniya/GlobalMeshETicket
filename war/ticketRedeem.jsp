@@ -243,10 +243,10 @@
 				success : function(data, status) {
 					if (data != "false") {
 						var params = data.split(";");
-						$("#sdate").val(params[0]);
-						$("#stime").val(params[1]);
-						$("#pdate").val(params[2]);
-						$("#total").val(params[3]);
+						$("#sdate").text(params[0]);
+						$("#stime").text(params[1]);
+						$("#pdate").text(params[2]);
+						$("#total").text(params[3]);
 					} else {
 						// set error
 					}
