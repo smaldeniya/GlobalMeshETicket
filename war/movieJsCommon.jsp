@@ -135,6 +135,10 @@ function seatListner() {
 							removeVal = removeVal + ";";
 						}
 						
+						if(lastIndexOfdel > -1 && lastIndexOfdel == (removeValIndex - 1)) {
+							removeVal = ";" + removeVal;
+						}
+						
 						$("#seatSelection").val(seats.replace(removeVal, ""));
 						
 						var seatCount = $("#seatCount").val();
