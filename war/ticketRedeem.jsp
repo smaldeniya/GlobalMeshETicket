@@ -27,6 +27,11 @@
 				}
 			});
 			$("#btnPrint").bind("click", animate2);
+			
+			<c:if test="${requestScope['message'] != null}">
+				new Messi('${requestScope["message"]}', {title: 'Ticket Print Abroated', titleClass: 'anim error', buttons: [{id: 0, label: 'Close', val: 'X'}]});
+			</c:if>
+			
 		});
 		
 		function getURLPath() {
@@ -233,6 +238,11 @@
 		}
 		
 		function btnPrintOnClick() {
+			var ticketSerial = $("#serialNum").val();
+			
+			$("#printTicketForm").attr("action", "/redeem.do");
+			$("#printTicketForm").attr("target", "_blank");
+			$("form")[0].submit();
 			
 		}
 		
@@ -272,6 +282,7 @@
 					<span>Serial Number</span>
 					<input class="redeemInput" value="Serial Number" type="text" id="serialNum" 
 							name="serialNum" onblur="if(this.value=='')this.value='Serial Number';"  onfocus=" if(this.value=='Serial Number')this.value='';"/>
+					<input type="hidden" value="printTicket" style="display:none;" id="type" name="type"/>
 					<button type="button" id="btnGet" name="btnGet" onclick="btnGetOnClick()">Get Details</button>					
 				</form>
 			</div>

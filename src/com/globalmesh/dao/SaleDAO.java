@@ -30,12 +30,36 @@ public enum SaleDAO {
 				em.getTransaction().commit();
 				isSuccess = true;
 			} catch (Exception e) {
-				em.close();
-			}
 			
+			}
+			em.close();
 		}
 
 		return isSuccess;
+	}
+	
+	public boolean update(Sale sale) {
+		boolean isUpdateSuccess = false;
+		
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			try
+			{				
+												
+				em.getTransaction().begin();
+				em.merge(sale);
+				em.getTransaction().commit();
+				
+				isUpdateSuccess = true;
+			}
+			catch(Exception e)
+			{
+			
+			}
+			em.close();
+		}
+		
+		return isUpdateSuccess;
 	}
 
 	public List<Sale> listSales(){

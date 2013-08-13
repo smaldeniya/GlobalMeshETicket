@@ -100,6 +100,8 @@ public class Constants {
 	
 	public static final String USER_VERI_ACCOUNT_ALREDY_VERIFIED = "user.veri.already.verified";
 	
+	public static final String TICKET_PRINT_TWICE = "ticket.already.printed";
+	
 	public enum MovieStatus {
 		NowShowing, // 0
 		UpComing, // 1

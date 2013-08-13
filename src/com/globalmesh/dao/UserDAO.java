@@ -32,7 +32,7 @@ public enum UserDAO {
 		for (User user : users) {
 			returnList.add(user);
 		}
-		
+		em.close();
 		return returnList;
 	}
 
@@ -53,9 +53,9 @@ public enum UserDAO {
 			}
 			catch(Exception e)
 			{
-				em.close();
+				
 			}
-	
+			em.close();
 		}
 		
 		return isRegistered;
@@ -72,7 +72,7 @@ public enum UserDAO {
 			em.close();
 			user = null;
 		}
-		
+		em.close();
 		return user;
 	}
 	
@@ -87,10 +87,8 @@ public enum UserDAO {
 			user = (User)q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
 			user = null;
-		}finally{
-			em.close();
-		}
-		
+		}	
+		em.close();
 		return user;
 	}
 	
@@ -103,10 +101,8 @@ public enum UserDAO {
 			user = (User) q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
 			user = null;
-		} finally {
-			em.close();
 		}
-		
+		em.close();
 		return user;
 	}
 
@@ -118,8 +114,9 @@ public enum UserDAO {
 			em.remove(user);
 			em.getTransaction().commit();
 		} finally {
-			em.close();
+		
 		}
+		em.close();
 	}
 	
 	public boolean update(User user){
@@ -138,9 +135,9 @@ public enum UserDAO {
 			}
 			catch(Exception e)
 			{
-				em.close();
+			
 			}
-	
+			em.close();
 		}
 		
 		return isUpdateSuccess;
