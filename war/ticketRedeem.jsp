@@ -11,12 +11,21 @@
 		<title>NoQueue Redeem</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="css/ticket_redeem.css" rel="stylesheet" type="text/css" />
+		<link href="css/messi.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="js/messi.js"></script>
 		
 		<script type="text/javascript">
 		
 		$(document).ready(function () {
-			$("#btnGet").bind("click", animate1);
+			$("#btnGet").bind("click", function () {
+				var serialNum = $("#serialNum").val();
+				if(!isEmpty(serialNum) && serialNum != "Serial Number"){
+					animate1();
+				} else {
+					new Messi('Please enter a valid serial number.', {title: 'Wrong Serial Number', titleClass: 'anim error', buttons: [{id: 0, label: 'Close', val: 'X'}]});
+				}
+			});
 			$("#btnPrint").bind("click", animate2);
 		});
 		
