@@ -1,3 +1,7 @@
+<%@page import="com.globalmesh.dto.BookingDetails"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="com.globalmesh.dto.Sale"%>
+<%@page import="java.util.List"%>
 <%@page import="com.globalmesh.dto.User"%>
 <%@include file="header.jsp" %>
 
@@ -118,7 +122,7 @@
 <nav id="userNavigation">
 	<ul>
 		<li><a href="#accountDetails" onclick="shoTab('#accountDetails')">Account Details</a></li>
-		<li><a href="#purchaseHistory" onclick="shoTab('#purchaseHistory')">Purchase History</a></li>
+		<li><a href="#purchaseHistory" onclick="shoTab('#purchaseHistory')">Future Bookings</a></li>
 		<li><a href="#changePassword" onclick="shoTab('#changePassword')">Change Password</a></li>
 	</ul>
 </nav>
@@ -488,9 +492,49 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	$(".CSSTableGenerator").ready(function(){
+		$(".CSSTableGenerator table button").each(function() {
+			$(this).bind('click', function() {
+				alert($(this).attr('id'));
+			});
+		});
+	});
+</script>
 
 <div id="purchaseHistory">
-	hello
+	<%
+		List<BookingDetails> futureBookings = (List<BookingDetails>)request.getAttribute("bookings");
+		if(futureBookings != null) {
+	%>
+		<div class="CSSTableGenerator" style="margin-top:150px;width:800px">
+                <table border="0" cellspacing="0">
+                    <tr>
+                    	<td>Name of the movie</td>
+                        <td>Show Date</td>
+                        <td>Show Time</td>
+                        <td>Tranaction Date</td>
+                        <td>Seat Numbers</td>
+                        <td>Re-print tickets</td>
+                    </tr>
+                    <% 	int i=0;
+                    	for(BookingDetails b: futureBookings) {%>
+                    	<tr>
+                      		<td><%=b.getMovieName() %></td>
+                      		<td><%=b.getShowDate() %></td>
+                      		<td><%=b.getShowTime() %></td>
+                      		<td><%=b.getTransactionDate() %></td>
+                      		<td><%=b.getSeatNumbers() %></td>
+                      		<td><button id="reqTicket<%=i%>" class="submit button" type="button">Request Ticket</button></td>
+                    	</tr>
+                    <%	i++;
+                    	} %>
+                </table>
+            </div>
+            
+	<% } else { %>
+		<div class="infoMsg">You do not have any future bookings for movies.</div>
+	<%} %>
 </div>
 
 </div>

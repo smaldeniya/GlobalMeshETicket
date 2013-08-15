@@ -171,6 +171,24 @@ public enum SaleDAO {
 		return sale;
 	}
 	
+	public List<Sale> listSalesFromTOByUser(Date from, Date to, String userId){
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("Select s from  Sale s where s.UserId=:userId and s.showDate between :fromDate and :toDate ");
+		
+		q.setParameter("userId", userId);
+		q.setParameter("fromDate", from);
+		q.setParameter("toDate", to);
+		
+		List<Sale> saleList = q.getResultList();		
+		List<Sale> returnList = new ArrayList<Sale>();
+		
+		for (Sale sale : saleList) {
+			returnList.add(sale);
+		} 
+		em.close();
+		return returnList;
+	}
+	
 	/**
 	 * Query that will fetch a lazy relationship Be carefull, with this kind of
 	 * query only those who have the relationship will come in the result
