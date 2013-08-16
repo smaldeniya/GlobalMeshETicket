@@ -105,8 +105,9 @@
 				'veriCode' : veriCode				
 			},
 			success : function(data, status) {
-				$("#veriCode").parent().html("");
-				$("#veriCode").parent().html("<input type='text' value='yes' style='margin-top:28px' disabled='disabled'/>")
+				var parent = $("#veriCode").parent();
+				$(parent).html("");
+				$(parent).html("<input type='text' value='yes' style='margin-top:28px' disabled='disabled'/>");
 			}
 		}); 
 	}
@@ -121,9 +122,9 @@
 <div class="tabHeader">
 <nav id="userNavigation">
 	<ul>
-		<li><a href="#accountDetails" onclick="shoTab('#accountDetails')">Account Details</a></li>
-		<li><a href="#purchaseHistory" onclick="shoTab('#purchaseHistory')">Future Bookings</a></li>
-		<li><a href="#changePassword" onclick="shoTab('#changePassword')">Change Password</a></li>
+		<li><a href="#accountDetails" onclick="shoTab('#accountDetails');return false;">Account Details</a></li>
+		<li><a href="#purchaseHistory" onclick="shoTab('#purchaseHistory');return false;">Future Reservations</a></li>
+		<li><a href="#changePassword" onclick="shoTab('#changePassword');return false;">Change Password</a></li>
 	</ul>
 </nav>
 </div>
@@ -493,19 +494,37 @@
 </div>
 
 <script type="text/javascript">
-	$(".CSSTableGenerator").ready(function(){
-		$(".CSSTableGenerator table button").each(function() {
-			$(this).bind('click', function() {
-				alert($(this).attr('id'));
-			});
-		});
-	});
+	//$(".CSSTableGenerator").ready(function(){
+	//	$(".CSSTableGenerator table button").each(function() {
+	//		$(this).bind('click', function() {
+	//		});
+	//	});
+	//});
+	
+	function requestRePrint(number) {
+		var saleId = $("#saleId" + number).val();
+		var url = getURLPath() + "reprintTicket.do";
+		
+		if(!isEmpty(saleId)) {
+			$.ajax({
+				url : url,
+				async : false,
+				type : "POST",
+				data : {
+					'saleId' : saleId				
+				},
+				success : function(data, status) {
+					
+				}
+			}); 
+		}
+	}
 </script>
 
 <div id="purchaseHistory">
 	<%
 		List<BookingDetails> futureBookings = (List<BookingDetails>)request.getAttribute("bookings");
-		if(futureBookings != null) {
+		if(futureBookings.size() > 0) {
 	%>
 		<div class="CSSTableGenerator" style="margin-top:150px;width:800px">
                 <table border="0" cellspacing="0">
@@ -525,7 +544,10 @@
                       		<td><%=b.getShowTime() %></td>
                       		<td><%=b.getTransactionDate() %></td>
                       		<td><%=b.getSeatNumbers() %></td>
-                      		<td><button id="reqTicket<%=i%>" class="submit button" type="button">Request Ticket</button></td>
+                      		<td>
+                      			<input type="hidden" value="<%=b.getSaleId()%>" id="saleId<%=i%>"/>
+                      			<button id="reqTicket<%=i%>" class="submit button" type="button" onclick="requestRePrint(<%=i%>)">Request Ticket</button>
+                      		</td>
                     	</tr>
                     <%	i++;
                     	} %>
@@ -533,7 +555,7 @@
             </div>
             
 	<% } else { %>
-		<div class="infoMsg">You do not have any future bookings for movies.</div>
+		<div class="infoMsg" style="margin-top:150px">You do not have any future bookings for movies.</div>
 	<%} %>
 </div>
 

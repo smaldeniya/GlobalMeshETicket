@@ -61,7 +61,7 @@ public enum UserDAO {
 		return isRegistered;
 	}
 
-	public User getUserById(String userId)  throws Exception{
+	public User getUserById(String userId){
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from User t where t.userId = :userId");
 		q.setParameter("userId", userId);		

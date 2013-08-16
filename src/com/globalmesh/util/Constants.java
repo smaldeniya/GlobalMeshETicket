@@ -102,6 +102,14 @@ public class Constants {
 	
 	public static final String TICKET_PRINT_TWICE = "ticket.already.printed";
 	
+	public static final String SALE_VERI_CODE_EMAIL_BODY = "sale.ticket.code.message";
+	
+	public static final String SALE_VERI_CODE_EMAIL_SUBJECT = "sale.ticket.code.subject";
+	
+	public static final String TICKET_RE_PRINT_SUCCESS = "sale.ticket.code.success";
+	
+	public static final String TICKET_RE_PRINT_FAIL = "sale.ticket.code.fail";
+	
 	public enum MovieStatus {
 		NowShowing, // 0
 		UpComing, // 1

@@ -63,6 +63,7 @@ public class UserGetAction extends HttpServlet {
 				b.setTransactionDate(showDateFormat.format(sale.getTransactionDate()));
 				b.setSeatNumbers(sale.getSeats());
 				b.setMovieName(MovieDetailDAO.INSTANCE.getMovieById(sale.getMovie()).getMovieName());
+				b.setSaleId(sale.getId());
 				
 				bookings.add(b);
 			}

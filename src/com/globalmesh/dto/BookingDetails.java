@@ -11,6 +11,18 @@ public class BookingDetails {
 	private String transactionDate;
 	
 	private String seatNumbers;
+	
+	private String saleId;
+	
+	
+
+	public String getSaleId() {
+		return saleId;
+	}
+
+	public void setSaleId(String saleId) {
+		this.saleId = saleId;
+	}
 
 	/**
 	 * @return the movieName
