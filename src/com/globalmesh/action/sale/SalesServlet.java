@@ -2,6 +2,7 @@ package com.globalmesh.action.sale;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -130,13 +131,20 @@ public class SalesServlet extends HttpServlet {
 						
 						String verificationCode = RandomKeyGen.createId();
 						sale.setVeriFicationCode(verificationCode);
+						sale.setPaid(false);
+						//TODO payment gateway send verification code to user
 						
 						if(SaleDAO.INSTANCE.insertSale(sale)){
-							//TODO payment gateway send verification code to user
+							
 							resp.setContentType("text/plain");
 							resp.setCharacterEncoding("UTF-8");
 							
-							sale.setPaid(false);
+							
+							
+							String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_BODY), 
+									movie.getMovieName(), sale.getShowDate(), sale.getHall(), sale.getVeriFicationCode());
+						
+							Utility.sendEmail(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_SUBJECT), emailBody, u.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
 							
 							resp.getWriter().write("Welcome to payment gateway :P");
 						} else {

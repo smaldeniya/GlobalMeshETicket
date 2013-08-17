@@ -492,7 +492,7 @@
 		</form>
 	</div>
 </div>
-
+<%--
 <script type="text/javascript">
 	//$(".CSSTableGenerator").ready(function(){
 	//	$(".CSSTableGenerator table button").each(function() {
@@ -520,7 +520,7 @@
 		}
 	}
 </script>
-
+--%>
 <div id="purchaseHistory">
 	<%
 		List<BookingDetails> futureBookings = (List<BookingDetails>)request.getAttribute("bookings");
@@ -534,7 +534,7 @@
                         <td>Show Time</td>
                         <td>Tranaction Date</td>
                         <td>Seat Numbers</td>
-                        <td>Re-print tickets</td>
+                       <%-- <td>Re-print tickets</td> --%> 
                     </tr>
                     <% 	int i=0;
                     	for(BookingDetails b: futureBookings) {%>
@@ -544,10 +544,10 @@
                       		<td><%=b.getShowTime() %></td>
                       		<td><%=b.getTransactionDate() %></td>
                       		<td><%=b.getSeatNumbers() %></td>
-                      		<td>
+                      <%--		<td>
                       			<input type="hidden" value="<%=b.getSaleId()%>" id="saleId<%=i%>"/>
                       			<button id="reqTicket<%=i%>" class="submit button" type="button" onclick="requestRePrint(<%=i%>)">Request Ticket</button>
-                      		</td>
+                      		</td> --%>
                     	</tr>
                     <%	i++;
                     	} %>

@@ -71,6 +71,22 @@
 				var re = /^\d{9}\S{1}$/;
 				result = re.test(value);
 				message = "Please enter a valid nic number.";
+				
+				var checkURL = getURLPath() + "userCheck.do?by=nic&value=" + value;
+				$.ajax({
+					url:checkURL,
+					async:false,
+					type : "GET",
+					success: function(data,status){
+						if(data == "null"){
+							result = result && true;
+						} else {
+							result = result && false;
+							message = message + " This NIC is already in the database.";
+						}
+					}
+				});
+				
 				break;
 
 			case "regEmail":

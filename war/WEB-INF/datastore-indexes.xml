@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes autoGenerate="true">
+
+    <datastore-index kind="Sale" ancestor="false" source="auto">
+        <property name="UserId" direction="asc"/>
+        <property name="ShowDate" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>

@@ -243,7 +243,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/verifyMe.do</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>RequestAnotherPrint</servlet-name>
 		<servlet-class>com.globalmesh.action.sale.RequestAnotherTicketPrintServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
@@ -252,7 +252,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>RequestAnotherPrint</servlet-name>
 		<url-pattern>/reprintTicket.do</url-pattern>
 	</servlet-mapping>
-	
+	 -->
+	 
 	<servlet>
 		<display-name>Remote API Servlet</display-name>
 		<servlet-name>RemoteApiServlet</servlet-name>
@@ -264,16 +265,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/remote_api</url-pattern>
 	</servlet-mapping>
 	
-	<!-- <security-constraint>
+	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>AuthServer</web-resource-name>
-			<url-pattern>/blockTicket.do</url-pattern>
+			<url-pattern>/*</url-pattern>
 		</web-resource-collection>
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-	</security-constraint> -->
-
+	</security-constraint>
+ 
 	<welcome-file-list>
 		<welcome-file>welcome.jsp</welcome-file>
 	</welcome-file-list>

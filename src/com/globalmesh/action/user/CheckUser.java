@@ -44,6 +44,16 @@ public class CheckUser extends HttpServlet {
 			}
 		}
 		
+		if(byParameter.compareTo("nic") == 0) {
+			User user = UserDAO.INSTANCE.getUserById(value);
+			
+			if(user == null) {
+				response = "null";
+			} else {
+				response = user.getUserId();
+			}
+		}
+		
 		return response;
 	}
 	

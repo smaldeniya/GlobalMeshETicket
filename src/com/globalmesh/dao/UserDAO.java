@@ -69,7 +69,6 @@ public enum UserDAO {
 		try {
 			user = (User) q.getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
-			em.close();
 			user = null;
 		}
 		em.close();
