@@ -243,6 +243,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/verifyMe.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AfterPayment</servlet-name>
+		<servlet-class>com.globalmesh.action.sale.AfterPaymentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AfterPayment</servlet-name>
+		<url-pattern>/afterP.do</url-pattern>
+	</servlet-mapping>
+	
 	<!-- <servlet>
 		<servlet-name>RequestAnotherPrint</servlet-name>
 		<servlet-class>com.globalmesh.action.sale.RequestAnotherTicketPrintServlet</servlet-class>

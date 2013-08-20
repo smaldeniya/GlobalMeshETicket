@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.globalmesh.dao.HallDAO;
 import com.globalmesh.dao.MovieDetailDAO;
@@ -132,26 +133,21 @@ public class SalesServlet extends HttpServlet {
 						String verificationCode = RandomKeyGen.createId();
 						sale.setVeriFicationCode(verificationCode);
 						sale.setPaid(false);
-						//TODO payment gateway send verification code to user
 						
-						if(SaleDAO.INSTANCE.insertSale(sale)){
-							
-							resp.setContentType("text/plain");
-							resp.setCharacterEncoding("UTF-8");
-							
-							
-							
-							String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_BODY), 
-									movie.getMovieName(), sale.getShowDate(), sale.getHall(), sale.getVeriFicationCode());
+						HttpSession session = req.getSession();
+						Sale oldSale = (Sale) session.getAttribute("sale");
 						
-							Utility.sendEmail(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_SUBJECT), emailBody, u.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
-							
-							resp.getWriter().write("Welcome to payment gateway :P");
+						if(oldSale == null) {
+							session.setAttribute("sale", sale);
+							//TODO payment gateway send verification code to user
+							req.getRequestDispatcher("/afterP.do").forward(req, resp); 
 						} else {
 							req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 							req.setAttribute("message",Utility.getCONFG().getProperty(Constants.SALE_FAIL));
 							req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+
 						}
+						
 							
 					} else {
 						req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
