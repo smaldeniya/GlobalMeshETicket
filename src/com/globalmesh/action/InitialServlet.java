@@ -16,6 +16,14 @@ import com.globalmesh.dao.HallDAO;
 import com.globalmesh.dao.MovieDetailDAO;
 import com.globalmesh.dto.Hall;
 import com.globalmesh.dto.MovieDetail;
+/**
+ * 
+ * Initial servlet. Request to home page goes through this page and it set all the dynamic things like
+ * list of films and coming soon films etc to the request body and forward to index.jsp page which 
+ * display those details on it's page.
+ * 
+ *
+ */
 
 public class InitialServlet extends HttpServlet {
 

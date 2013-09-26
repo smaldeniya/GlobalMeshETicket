@@ -18,6 +18,12 @@ import com.globalmesh.dto.MovieDetail;
 import com.globalmesh.util.Constants;
 import com.globalmesh.util.Utility;
 
+/**
+ * Requests coming to Ultra hall, go through this servlet. It set the relevent show times
+ * which may be changed for the date of the week. (Ex: Sunday show 3 starts 40 minutes later )
+ * 
+ */
+
 public class UltraAction extends HttpServlet {
 
 	@Override

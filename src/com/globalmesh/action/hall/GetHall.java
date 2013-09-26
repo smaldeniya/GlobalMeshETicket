@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.globalmesh.dao.HallDAO;
 import com.globalmesh.dto.Hall;
 
+/**
+ * get the details of a hall given the hallId of that hall. 
+ * This servlet handle ajax request send to retrieve hall details.
+ *
+ */
+
 public class GetHall extends HttpServlet {
 
 	@Override

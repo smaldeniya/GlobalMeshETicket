@@ -26,6 +26,11 @@ import com.globalmesh.util.Constants;
 import com.globalmesh.util.Utility;
 import com.google.appengine.api.datastore.Blob;
 
+/**
+ * This serlet insert new hall to database or update existing hall from the database.
+ *
+ */
+
 public class InsertHallDetails extends HttpServlet {
 
 	@Override
