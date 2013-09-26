@@ -328,7 +328,7 @@
 
 <div class="${requestScope['msgClass']}">${requestScope['message']}</div>
 
-<div id="userForm" align="center" style="marigin-top:20px;height:960px;">
+<div id="userForm" align="center" style="marigin-top:20px;height:980px;">
 
 <div class="adminTabHeader">
 <nav id="adminNavigateion">

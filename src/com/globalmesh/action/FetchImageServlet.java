@@ -15,6 +15,13 @@ import com.globalmesh.util.Constants;
 import com.globalmesh.util.Utility;
 import com.google.appengine.api.datastore.Blob;
 
+/**
+ * 
+ * Fetch images for the hall based on type whether it is a banner for slide or
+ * a poster to display in details section.
+ *
+ */
+
 public class FetchImageServlet extends HttpServlet {
 
 	@Override
@@ -27,6 +34,9 @@ public class FetchImageServlet extends HttpServlet {
 		Blob image = null;
 		
 		if(type != null ) {
+			/**
+			 * Type of Banner image is 'hall'
+			 */
 			if(type.compareTo("hall") == 0){
 				if(hall != null){
 					if(hall.compareTo("Gold") == 0){
@@ -43,6 +53,9 @@ public class FetchImageServlet extends HttpServlet {
 				}
 			}
 			
+			/**
+			 * Type of Poster is 'movie'
+			 */
 			if(type.compareTo("movie") == 0){
 				if(hall != null){
 					if(hall.compareTo("Gold") == 0){
@@ -78,11 +91,21 @@ public class FetchImageServlet extends HttpServlet {
 		
 	}
 	
+	/**
+	 * Get the hall name and return its attached image of banner as a Blob
+	 * @param hallName of type String
+	 * @return image of type {@link Blob}
+	 */
 	private Blob getHallBanner(String hallName) {
 		Hall h = HallDAO.INSTANCE.getHallById(hallName);
 		return h.getMovieBanner();
 	}
 	
+	/**
+	 * Get the hall name and return it's attached image of poster as a Blob
+	 * @param hallName of type String
+	 * @return image of type {@link Blob}
+	 */
 	private Blob getMoviePoster(String hallName) {
 		MovieDetail m = MovieDetailDAO.INSTANCE.getNowShowingMovie(hallName);
 		return m.getMoviePoster();
