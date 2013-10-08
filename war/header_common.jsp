@@ -121,9 +121,13 @@
 				break;
 				
 			case "utube":
-				var re = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-				result = re.test(value);
-				message = "Enter a valid youtube embade url";
+				if(value == "NAN") {
+					result = true;
+				} else {
+					var re = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+					result = re.test(value);
+					message = "Enter a valid youtube embade url or NAN";
+				}
 				break;
 				
 			case "showTime":
