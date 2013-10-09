@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+#login-form {
+	display: block;
+	position:fixed;
+	float: none;
+    top: 20%;
+    left: 30%;
+    border: none;
+}
