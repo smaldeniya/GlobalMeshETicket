@@ -122,6 +122,7 @@
 				id="password" name="password" value="" type="password" />
 				<span class="errorMessage"></span>
 			</label>
+			<input type="hidden" id="toUrl" name="toUrl" value="init.do" style="display: none;"/>
 			<button class="submit button" type="button" onclick="loginOnClick()">Sign in</button>
 			<p class="forgot">
 				<a href="resetPassword.jsp">Forgot your password?</a>

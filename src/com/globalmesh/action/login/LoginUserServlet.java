@@ -43,7 +43,15 @@ public class LoginUserServlet extends HttpServlet {
 				session.setAttribute("email", user.getEmail());
 				session.setAttribute("type", user.getUserType());
 				
-				resp.sendRedirect("/init.do");
+				String to = req.getParameter("toUrl");
+				
+				if(to.compareTo("init.do") == 0) {
+					resp.sendRedirect("/init.do");
+				} else {
+					resp.sendRedirect(""); // to hall selector page
+				}
+				
+								
 			}
 			else
 			{
