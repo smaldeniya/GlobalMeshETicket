@@ -47,8 +47,10 @@ public class LoginUserServlet extends HttpServlet {
 				
 				if(to.compareTo("init.do") == 0) {
 					resp.sendRedirect("/init.do");
+				} else if(to.compareTo("theater.do") == 0) {
+					resp.sendRedirect("/theater.do"); // to hall selector page
 				} else {
-					resp.sendRedirect(""); // to hall selector page
+					resp.sendRedirect("/init.do");
 				}
 				
 								

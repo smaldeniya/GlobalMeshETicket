@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-#login-form {
+#login-form, #hallSelector {
 	display: block;
 	clear:left;
 	position:static;
@@ -19,3 +19,21 @@
 	top: 5%;
 	left: 25%;
 }
+
+.row {
+	width: inherit;
+	height: 20px;
+	margin-top: 10px;
+	padding: 0 10px 0 10px;
+}
+
+.row span {
+	font-size: 22px;
+	font-family: Liberation sans;
+	display: block;
+	float: left;
+	margin-top: 5px;
+	color: #7B8587;
+	font-stretch: condensed;
+}
+	

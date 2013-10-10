@@ -139,6 +139,7 @@
 						id="password" name="password" value="" type="password" /> <span
 						class="errorMessage"></span>
 					</label>
+					<input type="hidden" id="toUrl" name="toUrl" value="theater.do" style="display: none;"/>
 					<button class="submit button" type="button"
 						onclick="loginOnClick()">Sign in</button>
 					<button class="submit button" type="button" id="registerButton"
