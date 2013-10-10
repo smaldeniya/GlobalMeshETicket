@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<%@page import="java.util.List"%>
+<%@page import="com.globalmesh.dto.MovieDetail"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isELIgnored="false"%>
@@ -15,7 +17,21 @@
 <%@include file="commonRef.jsp"%>
 
 <script>
-	
+	$(document).ready(function() {
+		$("#imageSlider").carouFredSel({
+			circular : false,
+			infinite : false,
+			auto : false,
+			prev : {
+				button : "#imageSlider_prev",
+				key : "left"
+			},
+			next : {
+				button : "#imageSlider_next",
+				key : "right"
+			}
+		});
+	});
 </script>
 
 </head>
@@ -42,15 +58,32 @@
 			</div>
 		</div>
 
-		<div class="login-popup" id="hallSelector" style="width: 550px;height: 300px">
-			
-			<div class="row">
-				<span class="username">Select Theater :</span>
-				<select id="Theater">
-				
-				</select>
+
+		<%
+			MovieDetail[] mArr = (MovieDetail[])request.getAttribute("nowShowing");
+		%>
+
+		<div id="commingSoon" style="left: 15%;">
+			<span class="commingSoonTitle" style="margin-left: 280px;">Select
+				a movie to proceed with ticket booking.</span>
+			<div class="image_carousel">
+				<div id="imageSlider">
+					<%
+						for(MovieDetail movie : mArr){
+					%>
+					
+							<img
+								src="/image.do?type=commingSoon&movieId=<%=movie.getMovieId()%>"
+								width="120px" height="180px" />
+							
+					<%
+						}
+					%>
+				</div>
+				<div class="clearfix"></div>
+				<a class="prev" id="imageSlider_prev" href="#"><span>prev</span></a>
+				<a class="next" id="imageSlider_next" href="#"><span>next</span></a>
 			</div>
-		
 		</div>
 
 	</div>

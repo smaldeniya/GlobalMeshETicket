@@ -11,10 +11,12 @@
 		<lable ><span>ODC HALF Ticket Price</span></lable>
 		<lable ><span>3D</span></lable>		
 		<lable ><span>Front Page Banner</span></lable>
+		<lable ><span>Seat Limit</span></lable>
+		<lable ><span>Seat Plan URL</span></lable>
 	</fieldset>
 	</div>
 </div>
-<div class="devider" style="height:400px; margin-left:350px"></div>
+<div class="devider" style="height:460px; margin-left:350px"></div>
 
 <div class="userDetailsCommon" style="margin-left:400px;">
 	<form action="/hallUnI.do" id="hallForm" method="post" enctype="multipart/form-data">
@@ -63,6 +65,16 @@
 		
 		<label>
 			<input type="file" value='' id="filmBanner" name="filmBanner" style="margin-top:20px" onblur="validate('filmBanner', 'any')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+		
+		<label>
+			<input type="text" value='' id="maxSeat" name="maxSeat" style="margin-top:20px" onblur="validate('maxSeat', 'number')"/>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+		
+		<label>
+			<input type="text" value='' id="hallUri" name="hallUri" style="margin-top:20px" />
 			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 		</label>
 		

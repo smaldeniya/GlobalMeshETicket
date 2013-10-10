@@ -32,6 +32,12 @@ public class Hall implements Serializable{
 	@Column(name="MovieBanner", nullable=false)
 	private Blob movieBanner;
 	
+	@Column(name="SeatPlanURI", nullable=false)
+	private String seatPlanUrl;
+	
+	@Column(name="SeatLimit", nullable=false)
+	private int seatLimit;
+	
 	/**
 	 * @return the hallId
 	 */
@@ -114,5 +120,37 @@ public class Hall implements Serializable{
 	 */
 	public void setMovieBanner(Blob movieBanner) {
 		this.movieBanner = movieBanner;
+	}
+
+	/**
+	 * 
+	 * @return seat plan url
+	 */
+	public String getSeatPlanUrl() {
+		return seatPlanUrl;
+	}
+
+	/**
+	 * to set the URL of seat plan
+	 * @param seatPlanUrl 
+	 */
+	public void setSeatPlanUrl(String seatPlanUrl) {
+		this.seatPlanUrl = seatPlanUrl;
+	}
+
+	/**
+	 * return the maximum number of seats that can be sell via online booking for this hall
+	 * @return
+	 */
+	public int getSeatLimit() {
+		return seatLimit;
+	}
+
+	/**
+	 * set the maximum number of seats that can be sell via online booking for this hall
+	 * @param seatLimit
+	 */
+	public void setSeatLimit(int seatLimit) {
+		this.seatLimit = seatLimit;
 	}
 }

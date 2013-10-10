@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-#login-form, #hallSelector {
+#login-form, .hallSelector {
 	display: block;
 	clear:left;
 	position:static;
