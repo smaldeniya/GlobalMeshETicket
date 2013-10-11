@@ -36,4 +36,35 @@
 	color: #7B8587;
 	font-stretch: condensed;
 }
+
+.show_item {
+	width: 150px;
+	height: 200px;
+	display: block;
+	float: left;
+	margin:14px 40px 7px 20px;
+}
+
+.show_item span {
+	font-family: Liberation sans;
+	font-size: 15px;
+	display: block;
+	color: #7B8587;
+	text-shadow: 0 1px 1px #808080;
+	text-align: center;
+}
+
+.show_item img {
+	box-shadow: 1pt 1px 3px #ccc, 0px 0px 4px 2px;
+	background-color: white;
+	padding: 1px;
+	margin: 10px 50px 7px 20px;
+	display: block;
+	float: left;
+}
+
+.show_item a img:HOVER {
+	background-color: #808080;
+	box-shadow: 1pt 1px 8px #808080, 0px 0px 4px 2px;
+}
 	

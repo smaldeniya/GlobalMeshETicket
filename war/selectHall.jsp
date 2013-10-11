@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<%@page import="com.globalmesh.dto.Hall"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.globalmesh.dto.MovieDetail"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -60,22 +62,25 @@
 
 
 		<%
-			MovieDetail[] mArr = (MovieDetail[])request.getAttribute("nowShowing");
+			MovieDetail[] mArr = (MovieDetail[]) request.getAttribute("nowShowing");
+			Map<String, Hall> hallDetails = (Map<String, Hall>) request.getAttribute("hallDetails");
 		%>
 
-		<div id="commingSoon" style="left: 15%;">
+		<div id="commingSoon" style="left: 13%;">
 			<span class="commingSoonTitle" style="margin-left: 280px;">Select
 				a movie to proceed with ticket booking.</span>
-			<div class="image_carousel">
-				<div id="imageSlider">
+			<div class="image_carousel" style="padding: 10px 0 15px 40px;">
+				<div id="imageSlider" style="height: 230px;">
 					<%
-						for(MovieDetail movie : mArr){
+						for (MovieDetail movie : mArr) {
 					%>
-					
+					<div class="show_item">
+						<a href="/<%=hallDetails.get(movie.getMovieTheatre()).getSeatPlanUrl()%>"> <span><%=movie.getMovieTheatre()%> Cinema</span>
 							<img
-								src="/image.do?type=commingSoon&movieId=<%=movie.getMovieId()%>"
-								width="120px" height="180px" />
-							
+							src="/image.do?type=commingSoon&movieId=<%=movie.getMovieId()%>"
+							width="120px" height="180px" />
+						</a>
+					</div>
 					<%
 						}
 					%>
