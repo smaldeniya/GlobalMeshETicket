@@ -63,8 +63,9 @@
 	float: left;
 }
 
-.show_item a img:HOVER {
+.show_item a img:HOVER, .show_item span:HOVER + img {
 	background-color: #808080;
 	box-shadow: 1pt 1px 8px #808080, 0px 0px 4px 2px;
+	font-size: 18px;
 }
 	

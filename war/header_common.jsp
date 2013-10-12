@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<link href="css/messi.css" rel="stylesheet" type="text/css" />
 
 <%@include file="commonRef.jsp"%>
 

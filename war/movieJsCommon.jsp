@@ -3,7 +3,7 @@
 				<div class="mainbar">
 
 
-
+<script type="text/javascript" src="js/messi.js"></script>
 <script type="text/javascript">
 $(".seatingArrangement").ready(function (){
 	
@@ -186,12 +186,28 @@ function getBookedSeats() {
 		},
 		success : function(data, status) {
 			if (!isEmpty(data)) {
-				var bookedSeats = data.split(";");
-				for ( var i = 0; i < bookedSeats.length; i++) {
-					$("#" + bookedSeats[i]).unbind("click");
-					$("#" + bookedSeats[i]).css("background-image",
-							"url(../images/reserved_small.png)");
-				}
+				<c:choose>
+					<c:when test="${sessionScope['type'] == 'admin'}">
+						var bookedSeats = data.split(";");
+						for ( var i = 0; i < bookedSeats.length; i++) {
+							$("#" + bookedSeats[i]).unbind("click");
+							$("#" + bookedSeats[i]).css("background-image",
+									"url(../images/reserved_small.png)");
+						}
+					</c:when>
+					<c:otherwise>					
+						if(data=="NAN"){
+							new Messi('Maximum online ticket limit reach for show time ' + showTime + ' on ' + showDate + ' for '  + hall + ' cinema. Please try another show time or another date.' , {title: 'Ticket limit exceed.', titleClass: 'anim info', buttons: [{id: 0, label: 'Close', val: 'X'}]});
+						} else {
+							var bookedSeats = data.split(";");
+							for ( var i = 0; i < bookedSeats.length; i++) {
+								$("#" + bookedSeats[i]).unbind("click");
+								$("#" + bookedSeats[i]).css("background-image",
+										"url(../images/reserved_small.png)");
+							}
+						}
+					</c:otherwise>
+				</c:choose>
 			}
 		}
 	});

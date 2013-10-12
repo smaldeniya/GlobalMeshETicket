@@ -18,6 +18,7 @@ import com.globalmesh.dto.Sale;
 import com.globalmesh.dao.HallDAO;
 import com.globalmesh.dao.MovieDetailDAO;
 import com.globalmesh.dao.SaleDAO;
+import com.globalmesh.util.Constants;
 import com.globalmesh.util.Utility;
 
 public class GetReservedSeatsServlet extends HttpServlet {
@@ -55,7 +56,29 @@ public class GetReservedSeatsServlet extends HttpServlet {
 					}
 				}
 				
-				resp.getWriter().write(sb.toString());
+				String seats = sb.toString();
+				int numberOfSeats = seats.split(";").length;
+				
+				String userType = (String) req.getSession().getAttribute("type");
+				
+				
+				/**
+				 * if user is admin allow unlimited booking. Else check whether seat limit not exceeded befor allow booking.
+				 */
+				
+				
+				if(userType.compareTo(Utility.getCONFG().getProperty(Constants.USER_TYPE_ADMIN)) == 0 ) {
+					resp.getWriter().write(sb.toString());
+				} else {
+					
+					if(numberOfSeats <= h.getSeatLimit()) {
+						resp.getWriter().write(sb.toString());
+					} else {
+						resp.getWriter().write("NAN");
+					}
+					
+				}	
+				
 			}
 			
 		}

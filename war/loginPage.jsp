@@ -107,7 +107,7 @@
 
 <body>
 
-	<div id="main">
+	<div id="main" align="center">
 
 		<div id="banner" class="login_banner">
 			<div style="float: left; margin-top: 5px; margin-left: 20px">
