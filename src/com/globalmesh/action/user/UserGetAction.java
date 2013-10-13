@@ -48,7 +48,7 @@ public class UserGetAction extends HttpServlet {
 			Calendar from = Calendar.getInstance();
 			from.add(Calendar.DATE, -1);
 			Calendar to = Calendar.getInstance();
-			to.add(Calendar.DATE, 15);
+			to.add(Calendar.DATE, 31);
 			
 			DateFormat showDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			DateFormat showTimeFormat = new SimpleDateFormat("hh:mm a");

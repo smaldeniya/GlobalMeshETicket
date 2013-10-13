@@ -97,7 +97,7 @@
   
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">
-  		<c:if test="${not empty requestScope['youtubeUrl']}">
+  		<c:if test="${requestScope['youtubeUrl'] != 'NAN'}">
   			<iframe width="354" height="250" src="//${requestScope['youtubeUrl']}?autoplay=1&fmt=17&controls=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   		</c:if>  	
   	</div>

@@ -110,6 +110,7 @@
 			case "utube":
 				if(value == "NAN") {
 					result = true;
+					message = "";
 				} else {
 					var re = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
 					result = re.test(value);
