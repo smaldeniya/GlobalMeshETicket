@@ -66,7 +66,7 @@
 			Map<String, Hall> hallDetails = (Map<String, Hall>) request.getAttribute("hallDetails");
 		%>
 
-		<div id="commingSoon" style="left: 13%;height: 280px;" align="center">
+		<div id="commingSoon" style="left: 13%;height: 280px;position: static;" align="center">
 			<span class="commingSoonTitle" style="float: left; margin-left: 290px;">Select
 				a movie to proceed with ticket booking.</span>
 			<div class="image_carousel" style="padding: 10px 0 15px 40px;">

@@ -53,10 +53,19 @@ $(".seatingArrangement").ready(function (){
 	</c:when>
 	<c:otherwise>
 		function btnBuyOnClick() {
+			$("#seatPlanHolder").css("display", "none");
+			$(".confirmationPopup").css("display", "block");
+		}
+		
+		function btnConfirmOnClick(){
 			if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
 				$("#filmBookForms").attr("action", "/book.do");
 				$("form")[0].submit();
 			}
+		}
+		
+		function btnCancleBuyOnClick() {
+			//reverse what done in btnBuyOnClick
 		}
 	</c:otherwise>
 </c:choose>
@@ -266,4 +275,11 @@ function cleanSeatsFromServer() {
 }
 </script>
 
-<div align="center">
+<div class="confirmationPopup">
+
+</div>
+
+<div align="center" id="seatPlanHolder">
+
+
+
