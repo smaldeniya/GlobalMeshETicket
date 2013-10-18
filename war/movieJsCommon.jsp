@@ -9,7 +9,8 @@ $(".seatingArrangement").ready(function (){
 	
 	$("#showDate").bind("blur",function() {
 		getShowTimesOfDate();
-		cleanSeats();
+		cleanSeatsFromServer();
+		cleanSeats(); <%-- before every call to cleanSeats function, cleanSeatsFromServer() should be called to clean seats from server.--%>
 		seatListner();
 		if(validate('showDate','date')){
 			getBookedSeats();
@@ -21,6 +22,7 @@ $(".seatingArrangement").ready(function (){
 	});
 	
 	$("#showTime").bind("change",function() {
+		cleanSeatsFromServer();
 		cleanSeats();
 		seatListner();
 		getBookedSeats();
@@ -53,8 +55,15 @@ $(".seatingArrangement").ready(function (){
 	</c:when>
 	<c:otherwise>
 		function btnBuyOnClick() {
-			$("#seatPlanHolder").css("display", "none");
-			$(".confirmationPopup").css("display", "block");
+			if(validate('showDate','date') && validate('showTime', 'showTime') && validate('halfTicket','number') && validate('seatCount', 'seatCount')){
+				$("#seatPlanHolder").css("display", "none");
+				$("#confirmationBlock").css("display", "block");
+				$("#confirmSeatnumbers .value").text($("#seatSelection").val().replace(/\;/g,' '));
+				$("#confirmDate .value").text($("#showDate").val());
+				$("#confirmTime .value").text($("#showTime").val());
+				$("#confirmTotal .value").text("Rs. " + calculateTotal().toFixed(2));
+				$("#confirmationBlock").focus();
+			}
 		}
 		
 		function btnConfirmOnClick(){
@@ -65,7 +74,24 @@ $(".seatingArrangement").ready(function (){
 		}
 		
 		function btnCancleBuyOnClick() {
-			//reverse what done in btnBuyOnClick
+			$("#seatPlanHolder").css("display", "block");
+			$("#confirmationBlock").css("display", "none");
+			$("#confirmSeatnumbers .value").text("");
+			$("#confirmDate .value").text("");
+			$("#confirmTime .value").text("");
+			$("#confirmTotal .value").text("");
+		}
+		
+		function calculateTotal() {
+			var fullTicketPrice = parseFloat(${requestScope['hall'].odcFull});
+			var halfTicketPrice = parseFloat(${requestScope['hall'].odcHalf});
+			
+			var halfTickets = parseInt($("#halfTicket").val());
+			var totalTicket = parseInt($("#seatCount").val());
+			var fullTickets = totalTicket - halfTickets;
+			
+			return (halfTickets * halfTicketPrice + fullTickets * fullTicketPrice);
+			
 		}
 	</c:otherwise>
 </c:choose>
@@ -275,8 +301,39 @@ function cleanSeatsFromServer() {
 }
 </script>
 
-<div class="confirmationPopup">
 
+
+<div id="confirmationBlock" class="login-popup">
+	
+		<div class="seat_plan_header" style="margin-bottom: 70px;">Confirm Ticket Selection.</div>
+		
+		<div>
+			<div id="confirmSeatnumbers" class="confirmItemHolder">
+				<label class="username"><span class="name">Seat Numbers	:</span></label> 
+				<label class="username"><span class="value"></span></label>		
+			</div> 
+			
+			<div id="confirmDate" class="confirmItemHolder">
+				<label class="username"><span class="name">Show Date	:</span></label> 
+				<label class="username"><span class="value"></span></label>		
+			</div>
+			
+			<div id="confirmTime" class="confirmItemHolder">
+				<label class="username"><span class="name">Show Time	:</span></label> 
+				<label class="username"><span class="value"></span></label>		
+			</div>  
+			
+			<div id="confirmTotal" class="confirmItemHolder">
+				<label class="username"><span class="name">Total	:</span></label> 
+				<label class="username"><span class="value"></span></label>		
+			</div> 		
+		</div>
+		
+		<div class="confirmButtonHolder" align="center">
+			<button class="submit button" type="button"	onclick="btnConfirmOnClick()" style="float: left;clear: none;">Confirm</button>
+			<button class="submit button" type="button"	onclick="btnCancleBuyOnClick()" style="float: left;clear: none;margin-left: 60px;">Cancle</button>
+		</div>
+		
 </div>
 
 <div align="center" id="seatPlanHolder">

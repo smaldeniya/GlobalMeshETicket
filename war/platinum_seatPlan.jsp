@@ -16,7 +16,7 @@
 <div class="seat_plan_header">Majestic cinema - Platinum</div>
 <div class="clr"></div>
 
-<div class="infoMsg" style="margin-bottom:10px;" id="beforClickMsg">Please select a date and time to proceed with ticket booking.</div>
+<div class="infoMsg" style="margin-bottom:10px;" id="beforClickMsg">Please select a date and time to proceed with ticket booking. Note that you have <b>2 minutes</b> to select a date & time, select the seats, and pay for the selected seats.</div>
 
 <div id="ticketForm">
   	<form action="/book.do" method="post" id="filmBookForms" name="filmBookForms">
@@ -95,6 +95,26 @@
   			<span> - Reserved seats</span>
   		</div>
   	</div>  
+  	
+  	<div class="tLegend" style="float: left;height: 100px;padding: 10px;width: 180px;">
+  		<script type="text/javascript" src="js/countdown.js"></script>
+  		<script type="application/javascript">
+	  		var myCountdown2 = new Countdown({
+				time: 120, 
+				width:170, 
+				height:100, 
+				onComplete	: countDownOnComplete,
+				rangeHi:"minute"	// <- no comma on last item!
+				});
+	  		
+	  		function countDownOnComplete(){
+	  			cleanSeatsFromServer();	
+	  			cleanSeats();
+	  			seatListner();
+	  			getBookedSeats();
+	  		}
+  		</script>
+  	</div>
   
   	<div class="theater">
   	<div style="width:354px;height:224px;padding:8px 2px 6px 12px;">

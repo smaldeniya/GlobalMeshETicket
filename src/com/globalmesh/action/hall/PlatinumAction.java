@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.globalmesh.dao.HallDAO;
 import com.globalmesh.dao.MovieDetailDAO;
+import com.globalmesh.dto.Hall;
 import com.globalmesh.dto.MovieDetail;
 import com.globalmesh.util.Constants;
 import com.globalmesh.util.Utility;
@@ -90,6 +92,9 @@ public class PlatinumAction extends HttpServlet {
 					}
 				}
 
+				Hall h = HallDAO.INSTANCE.getHallById(hallName);
+				
+				req.setAttribute("hall", h);				
 				req.setAttribute("shows", showTimes);
 				req.getRequestDispatcher("/platinum_seatPlan.jsp").forward(req,
 						resp);

@@ -40,7 +40,7 @@ public class AfterPaymentServlet extends HttpServlet {
 			Sale sale = (Sale) session.getAttribute("sale");
 			session.removeAttribute("sale");
 			
-			//TODO check for status of payment. if success persist else send to error page.
+			//TODO check for status of payment. if success persist else send to error page. check for sale null.
 			
 			if(true) {
 				sale.setPaid(true);

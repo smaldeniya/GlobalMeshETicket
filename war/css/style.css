@@ -6,7 +6,7 @@ body {
 	width: 100%;
 	color: #aeaeae;
 	font: normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
-	background: #09607b;
+	background: url('http://www.ceylontheatres.com/images/mainbg_tile.jpg') repeat;
 }
 
 html,.main {
@@ -15,7 +15,7 @@ html,.main {
 }
 
 .main {
-	background: url(../images/header_bg.jpg) no-repeat center 51px;
+	/*background: url(../images/header_bg.jpg) no-repeat center 51px;*/
 }
 
 .clr {
@@ -240,7 +240,7 @@ nav ul ul li a {
 	margin: 0 auto;
 	padding: 18px 0 32px;
 	width: 960px;
-	background: #f0f0f0 repeat-x left bottom;
+	background: url('http://www.ceylontheatres.com/images/background_white.png') center repeat-y;
 	overflow: auto;
 	height: 1240px;
 }
@@ -909,7 +909,7 @@ div.reset_password p {
 	text-shadow: 0 -1px 0 #fff;
 	color: rgb(237, 28, 36);
 	font-weight: bolder;
-	margin: 15px 0px 50px;
+	margin: 8px 0px 40px;
 	width: 600px;
 	height: 0px;
 	text-align: center;
@@ -1012,7 +1012,7 @@ table.ultra_plan td:HOVER,table.platinum_plan td:HOVER {
 	background: url(../images/selected.png) no-repeat !important;
 }
 
-#ticketForm {
+#ticketForm{
 	width: 95%;
 	height: 150px;
 	background: #fff;
@@ -1557,4 +1557,73 @@ a.prev span, a.next span {
 }
 .CSSTableGenerator tr:first-child td:last-child{
 	border-width:0px 0px 1px 1px;
+}
+
+
+#confirmationBlock {
+	margin: 150px 160px 300px 160px;
+	position: static;
+	display: none;
+	width: 600px; 
+	height: 400px;
+	background: #fff;
+	padding: 10px;
+	box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* CSS3 */
+	-moz-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px 2px
+		rgba(208, 223, 226, 0.4) inset;
+	/* Firefox */
+	-webkit-box-shadow: 0pt 2px 3px rgba(105, 108, 109, 0.7), 0px 0px 4px
+		2px rgba(208, 223, 226, 0.4) inset;
+	/* Safari, Chrome */
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	/* Firefox */
+	-webkit-border-radius: 3px;
+	/* Safari, Chrome */;
+}
+
+#confirmationBlock .username span.name {
+	width: 180px;
+	height: 32px;
+	margin: 0px 20px 0px 20px;
+	font-family: "Droid Sans";
+    font-size: 23px;
+    color: #545454;
+    display: block;
+    font-weight: bold;
+    padding: 4px 5px 10px 4px;
+    float: left;
+    margin-right: 20px;
+}
+
+#confirmationBlock .username span.value {
+	width: 200px;
+	height: 32px;
+	margin: 0px 20px 0px 20px;
+	font-family: "Droid Sans";
+    font-size: 18px;
+    color: #545454;
+    display: block;
+    font-weight: bold;
+    padding: 4px 5px 10px 4px;
+    float: left;
+    text-align: center;
+}
+
+.confirmItemHolder{
+	width: 80%;
+	height: 40px;
+	position: relative;
+	clear: both;
+	padding: 5px;
+}
+
+.confirmButtonHolder{
+	margin: 10px 20px 20px 150px;
+	width: 100%;
+	height: 60px;
+	padding: 5px;
+	vertical-align: middle;
 }
