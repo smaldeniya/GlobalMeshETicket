@@ -6,7 +6,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>5</session-timeout>
     </session-config>
 
 	<servlet>

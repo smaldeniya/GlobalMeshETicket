@@ -24,8 +24,7 @@
 					<div class="menu_nav">
 					<nav>
 						<ul>
-							<li class="active"><a href="/init.do"><span>Home
-										Page</span></a></li>
+							<li class="active"><a href="/init.do"><span>Ticket Dashboard</span></a></li>
 							<li><a href="#" onclick="return false;"><span>Film Halls</span></a>
 								<ul>
 									<li style="width:152px"><a href="/gold.do"><span>Gold Cinema</span></a></li>
@@ -35,7 +34,7 @@
 									<li style="height:2px"></li>
 								</ul>
 							</li>
-							<li><a href="contact.html"><span>Contact Us</span></a></li>
+							<li><a href="http://www.ceylontheatres.com/"><span>Ceylon Theatres Home</span></a></li>
 						</ul>
 					</nav>
 
