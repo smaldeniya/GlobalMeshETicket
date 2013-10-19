@@ -98,7 +98,7 @@
   		</div>
   	</div>  
  	
- 	<div class="tLegend" style="float: left;height: 100px;padding: 10px;width: 180px;">
+ 	<div id="countDownDiv" class="tLegend" style="float: left;height: 100px;padding: 10px;width: 180px;">
   		<script type="text/javascript" src="js/countdown.js"></script>
   		<script type="application/javascript">
 	  		var myCountdown2 = new Countdown({

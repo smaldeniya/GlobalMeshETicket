@@ -80,6 +80,17 @@ $(".seatingArrangement").ready(function (){
 			$("#confirmDate .value").text("");
 			$("#confirmTime .value").text("");
 			$("#confirmTotal .value").text("");
+			
+			$("#countDownDiv").html("");
+			
+			myCountdown2 = new Countdown({
+				time: 120, 
+				target : "countDownDiv",
+				width:170, 
+				height:100, 
+				onComplete	: countDownOnComplete,
+				rangeHi:"minute"	// <- no comma on last item!
+				});
 		}
 		
 		function calculateTotal() {

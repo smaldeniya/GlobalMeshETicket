@@ -110,6 +110,8 @@ public class Constants {
 	
 	public static final String TICKET_RE_PRINT_FAIL = "sale.ticket.code.fail";
 	
+	public static final String SALE_DUPLICATE_MESSAGE = "sale.duplicate.message";
+	
 	public enum MovieStatus {
 		NowShowing, // 0
 		UpComing, // 1

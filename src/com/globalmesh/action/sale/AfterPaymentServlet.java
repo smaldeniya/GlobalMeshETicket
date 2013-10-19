@@ -40,25 +40,35 @@ public class AfterPaymentServlet extends HttpServlet {
 			Sale sale = (Sale) session.getAttribute("sale");
 			session.removeAttribute("sale");
 			
-			//TODO check for status of payment. if success persist else send to error page. check for sale null.
-			
-			if(true) {
-				sale.setPaid(true);
-				SaleDAO.INSTANCE.insertSale(sale);
-				MovieDetail movie = MovieDetailDAO.INSTANCE.getMovieById(sale.getMovie());
-				User u = UserDAO.INSTANCE.getUserById(sale.getUserId());
-				
-				String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_BODY), 
-						movie.getMovieName(), sale.getShowDate(), sale.getHall(), sale.getVeriFicationCode());
-			
-				Utility.sendEmail(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_SUBJECT), emailBody, u.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
-				
-				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
-				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.TICKET_RE_PRINT_SUCCESS));
+			Sale saleDuplicate = SaleDAO.INSTANCE.findDuplicateSale(sale.getShowDate(), 
+													sale.getSeats(), sale.getHall(), sale.getUserId(), sale.getMovie());
+			if(saleDuplicate != null) {
+				req.setAttribute("msgClass", Constants.MSG_CSS_WARNING);
+				req.setAttribute("message", Utility.getCONFG().getProperty(Constants.SALE_DUPLICATE_MESSAGE));
 				req.getRequestDispatcher("/messages.jsp").forward(req, resp);
 			} else {
-				//TODO custom error message.
+				
+				//TODO check for status of payment. if success persist else send to error page. check for sale null.
+				if(true) {
+					sale.setPaid(true);
+					SaleDAO.INSTANCE.insertSale(sale);
+					MovieDetail movie = MovieDetailDAO.INSTANCE.getMovieById(sale.getMovie());
+					User u = UserDAO.INSTANCE.getUserById(sale.getUserId());
+					
+					String emailBody = MessageFormat.format(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_BODY), 
+							movie.getMovieName(), sale.getShowDate(), sale.getHall(), sale.getVeriFicationCode());
+				
+					Utility.sendEmail(Utility.getCONFG().getProperty(Constants.SALE_VERI_CODE_EMAIL_SUBJECT), emailBody, u.getEmail(), Utility.getCONFG().getProperty(Constants.SITE_EMAIL));
+					
+					req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);
+					req.setAttribute("message", Utility.getCONFG().getProperty(Constants.TICKET_RE_PRINT_SUCCESS));
+					req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+				} else {
+					//TODO custom error message.
+				}
 			}
+			
+			
 		}
 		
 	}

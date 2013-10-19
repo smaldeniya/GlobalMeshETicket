@@ -189,6 +189,26 @@ public enum SaleDAO {
 		return returnList;
 	}
 	
+	public Sale findDuplicateSale(Date showDate, String seats, String hallId, String userId, String movieId){
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("Select s from  Sale s where s.UserId=:userId and s.showDate=:showDate and s.seats=:seats and s.movie=:movieId and s.hall=:hallId");
+		
+		q.setParameter("userId", userId);
+		q.setParameter("showDate", showDate);
+		q.setParameter("seats", seats);
+		q.setParameter("movieId", movieId);
+		q.setParameter("hallId", hallId);
+		
+		Sale sale = null;
+		
+		try {
+			sale = (Sale) q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+		}
+		em.close();
+		return sale;
+	}
+	
 	/**
 	 * Query that will fetch a lazy relationship Be carefull, with this kind of
 	 * query only those who have the relationship will come in the result
