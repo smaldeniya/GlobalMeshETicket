@@ -26,7 +26,7 @@ public class OnlineSalesReportPrinter {
 	private static Font font = new Font(FontFamily.TIMES_ROMAN, 10, Font.NORMAL);
 	private static Font fontBold = new Font(FontFamily.TIMES_ROMAN, 10, Font.BOLD);
 	
-	public static void generateOnlineSalesReport(Document document, String type, String fromDate, String toDate	, MovieDetail movie, Date showTime) throws ParseException{
+	public static void generateOnlineSalesReport(Document document, String type, String fromDate, String toDate	, MovieDetail movie) throws ParseException{
 		
 		DateFormat showFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date from = showFormat.parse(fromDate);
@@ -34,12 +34,12 @@ public class OnlineSalesReportPrinter {
 		
 		DateFormat showTimeFormat = new SimpleDateFormat("hh:mm a");
 		
-		List<Sale> saleList = SaleDAO.INSTANCE.listSalesFromTO(from, to, type, movie.getMovieId(), showTime);
+		List<Sale> saleList = SaleDAO.INSTANCE.listSalesFromTO(from, to, type, movie.getMovieId());
 		
 		if(saleList.size() > 0){
 			Sale sale = saleList.get(0);
 			
-			printHeaderInfo( document, fromDate, toDate, movie, showTimeFormat.format(showTime));
+			printHeaderInfo( document, fromDate, toDate, movie, showTimeFormat.format(sale.getShowDate()));
 			
 			printSummaryTbl( document, saleList);
 			
@@ -130,7 +130,7 @@ private static void printReportBody(Document document, List<Sale> salesList){
 				Chunk tab5 = new Chunk(new VerticalPositionMark(), 480, true);//seats - totalseats
 				Chunk tab6 = new Chunk(new VerticalPositionMark(), 540, true);//totalseats - totalrs
 				Chunk tab7 = new Chunk(new VerticalPositionMark(), 600, true);//totalrs - bookedby
-				Chunk tab8 = new Chunk(new VerticalPositionMark(), 660, true);//bookedby - transactionDate
+				Chunk tab8 = new Chunk(new VerticalPositionMark(), 670, true);//bookedby - transactionDate
 				
 				Paragraph para = null;
 

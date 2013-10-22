@@ -96,9 +96,11 @@
 				break;
 				
 			case "report":
-				$("#reportForm").attr("action", "/reportg.do");
-				$("#reportForm").attr("target", "_blank");
-				$("form")[4].submit();
+				if(validate('reportFormate', 'any')){
+					$("#reportForm").attr("action", "/reportg.do");
+					$("#reportForm").attr("target", "_blank");
+					$("form")[4].submit();
+				}
 				break;
 		}
 	}
@@ -272,6 +274,26 @@
 		}
 	}
 	
+	function reportFormateOnBlur() {
+		var showOption = parseInt($("#reportFormate :selected").val());
+		
+		if(showOption == 1){
+			$("#showTimeLabel").css("display", "none");
+			$("#reportShowParent").css("display", "none");
+			$("#fromDateReport span").text("From Date");
+			$("#toDateReport").css("display", "block");
+			$("#reportToDate").css("display", "block");
+		}
+		
+		if(showOption == 0){
+			$("#showTimeLabel").css("display", "block");
+			$("#reportShowParent").css("display", "block");
+			$("#fromDateReport span").text("Show Date");
+			$("#toDateReport").css("display", "none");
+			$("#reportToDate").css("display", "none");
+		}
+	}
+	
 	function validateReportDate(id) {
 		var message = "";
 		var value = $("#" + id).val();
@@ -421,18 +443,29 @@
 <div class="labelDetails">
 	<div>
 		<fieldset class="textbox">
+					<lable ><span>Report Type</span></lable>
 					<lable ><span>Theater</span></lable>
 					<lable ><span>Sales Type</span></lable>
-					<lable ><span>Show</span></lable>
-					<lable ><span>From Date</span></lable>
-					<lable ><span>To Date</span></lable>					
+					<lable id="showTimeLabel" style="display:none;"><span>Show</span></lable>
+					<lable id="fromDateReport"><span>From Date</span></lable>
+					<lable id="toDateReport"><span>To Date</span></lable>					
 		</fieldset>
 	</div>
 </div>
-<div class="devider" style="height:280px;"></div>
+<div class="devider" style="height:300px;"></div>
 
 <div class="userDetailsCommon">
 	<form action="/useru.do" id="reportForm" method="post">
+	
+		<label> 
+			<select name="reportFormate" id="reportFormate" style="margin-top:25px; float:left; clear:left; width:230px; height:45px;" class="styled-select" onblur="reportFormateOnBlur()" >
+				<option value="" selected="selected">Select Report Type</option>
+				<option value="0" >Show Time Based - CSV</option>
+				<option value="1" >Show Date Based - PDF</option>
+			</select>
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+	
 		
 		<label>			
 			<select name="reportHall" id="reportHall" style="margin-top:30px; float:left; clear:left; width:230px; height:45px;" class="styled-select" onblur="getShowTimesForReport();"> 
@@ -455,7 +488,7 @@
 			</select>
 		</label>
 		
-		<label> 
+		<label id="reportShowParent" style="display: none;"> 
 			<select name="reportShow" id="reportShow" style="margin-top:25px; float:left; clear:left; width:150px; height:45px;" class="styled-select">
 				
 			</select>

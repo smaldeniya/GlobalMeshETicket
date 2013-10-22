@@ -32,31 +32,30 @@ public class ReportRequestServlet extends HttpServlet {
 		String toDate = req.getParameter("reportToDate");
 		String reportType = req.getParameter("reqreportType");
 		String hall = req.getParameter("reportHall");
-		int showNumber = Integer.parseInt(req.getParameter("reportShow"));
+		//int showNumber = Integer.parseInt(req.getParameter("reportShow"));
 		
 		MovieDetail movie = MovieDetailDAO.INSTANCE.getNowShowingMovie(hall);
 		
-		int dateToday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-		Date showTime = null;
+//		int dateToday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+//		Date showTime = null;
 		
-		if(showNumber == 1 & movie.getMovieTime1() != null && movie.getMovieTime1().length > 0 ) {
-			showTime = movie.getMovieTime1()[dateToday];
-			
-		} else if(showNumber == 2 & movie.getMovieTime2() != null && movie.getMovieTime2().length > 0 ) {
-			showTime = movie.getMovieTime2()[dateToday];
-			
-		} else if(showNumber == 3 & movie.getMovieTime3() != null && movie.getMovieTime3().length > 0 ) {
-			showTime = movie.getMovieTime3()[dateToday];
-			
-		} else if(showNumber == 4 & movie.getMovieTime4() != null && movie.getMovieTime4().length > 0 ) {
-			showTime = movie.getMovieTime4()[dateToday];
-			
-		} else if(showNumber == 5 & movie.getMovieTime5() != null && movie.getMovieTime5().length > 0 ) {
-			showTime = movie.getMovieTime5()[dateToday];
-			
-		}
+//		if(showNumber == 1 & movie.getMovieTime1() != null && movie.getMovieTime1().length > 0 ) {
+//			showTime = movie.getMovieTime1()[dateToday];
+//			
+//		} else if(showNumber == 2 & movie.getMovieTime2() != null && movie.getMovieTime2().length > 0 ) {
+//			showTime = movie.getMovieTime2()[dateToday];
+//			
+//		} else if(showNumber == 3 & movie.getMovieTime3() != null && movie.getMovieTime3().length > 0 ) {
+//			showTime = movie.getMovieTime3()[dateToday];
+//			
+//		} else if(showNumber == 4 & movie.getMovieTime4() != null && movie.getMovieTime4().length > 0 ) {
+//			showTime = movie.getMovieTime4()[dateToday];
+//			
+//		} else if(showNumber == 5 & movie.getMovieTime5() != null && movie.getMovieTime5().length > 0 ) {
+//			showTime = movie.getMovieTime5()[dateToday];
+//			
+//		}
 		
-		System.out.println(showTime);
 		
 		resp.setContentType("application/pdf");	
 		Rectangle pagesize = new Rectangle(PageSize.A4.rotate());
@@ -67,7 +66,7 @@ public class ReportRequestServlet extends HttpServlet {
 			report.open();
 			List<Sale> sales = null;
 						
-			OnlineSalesReportPrinter.generateOnlineSalesReport(report, reportType, fromDate, toDate, movie, showTime);
+			OnlineSalesReportPrinter.generateOnlineSalesReport(report, reportType, fromDate, toDate, movie);
 			report.close();
 			
 		} catch (Exception e) {
