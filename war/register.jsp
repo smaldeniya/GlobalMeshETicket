@@ -54,12 +54,7 @@
 				&& validate('lastName', 'text') && validate('nic', 'nic')
 				&& validate('mobile', 'mobile') && validate('gender', 'gender')) {
 			$("#registerForm").attr("action", "/useri.do");
-
-			$('#mask , #register-box').fadeOut(1000, function() {
-				$('#mask').remove();
-			});
-
-			$("form")[1].submit();
+			$("form")[0].submit();
 
 		}
 	}
@@ -121,7 +116,7 @@
 							</div></td>
 						<td><div class="reg_input">
 								<input type="text" name="firstName" id="firstName" value=""
-									class="required" size="30" />
+									class="required" size="30" onblur="validate('firstName','text')"/>
 									<span class="regerrorMessage"></span>
 							</div></td>
 					</tr>
@@ -133,7 +128,7 @@
 								</label>
 							</div></td>
 						<td><div class="reg_input">
-								<input type="text" name="lastName" id="lastName"
+								<input type="text" name="lastName" id="lastName" onblur="validate('lastName','text')"
 									value="" class="required" size="30" />
 									<span class="regerrorMessage"></span>
 							</div></td>
@@ -146,9 +141,9 @@
 									class="star">&#160;*</span></label>
 							</div></td>
 						<td><div class="reg_input">
-								<select id="gender" name="gender" class="required">
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
+								<select id="gender" name="gender" class="required" onblur="validate('gender','gender')">
+									<option value="M">Male</option>
+									<option value="F">Female</option>
 								</select>
 								<span class="regerrorMessage"></span>
 							</div></td>
@@ -158,7 +153,7 @@
 								<label>Date of Birth:</label><span class="star">&nbsp;*</span>
 							</div></td>
 						<td><div class="reg_input">
-								<input type="date" id="birthday" name="birthday"/>
+								<input type="date" id="birthday" name="birthday" onblur="validate('birthday','birthday')"/>
 								<span class="small_text">(A person should be over 18
 									years of age at the date of registering)</span>
 									<span class="regerrorMessage"></span>
@@ -174,7 +169,7 @@
 							</div></td>
 						<td><div class="reg_input">
 								<input type="text" name="NIC" id="NIC"
-									value="" class="required" size="30" maxlength="10" />
+									value="" class="required" size="30" maxlength="10" onblur="validate('NIC','nic')"/>
 									<span class="regerrorMessage"></span>
 							</div></td>
 					</tr>
@@ -186,7 +181,7 @@
 								</label>
 							</div></td>
 						<td><div class="reg_input">
-								<input type="text" name="address" id="address"
+								<input type="text" name="address" id="address" onblur="validate('address','text')"
 									value="" class="required" size="30" />
 									<span class="regerrorMessage"></span>
 							</div></td>
@@ -199,7 +194,7 @@
 								</label>
 							</div></td>
 						<td><div class="reg_input">
-								<input type="text" name="city" id="city" value=""
+								<input type="text" name="city" id="city" value=""  onblur="validate('city','text')"
 									class="required" size="30" />
 									<span class="regerrorMessage"></span>
 							</div></td>
@@ -210,7 +205,7 @@
 									title="Enter Your Mobile Number">Mobile : </label>
 							</div></td>
 						<td><div class="reg_input">
-								<input type="text" name="mobile" id="mobile"
+								<input type="text" name="mobile" id="mobile"  onblur="validate('mobile','mobile')"
 									value="" size="30" maxlength="12" />
 									<span class="regerrorMessage"></span>
 							</div></td>
@@ -225,10 +220,10 @@
 						<td><div class="reg_input">
 								<input type="password" name="password"
 									id="password" value="" autocomplete="off"
-									class="validate-password required" size="30" />
+									class="validate-password required" size="30" onblur="validate('password','password')"/>
 									<span class="regerrorMessage"></span>
 							</div>
-							<span class="small_text">(Password length should be between 6 to 20 and include at least one lowercase and uppercase character and a number.)</span></td>
+							<span class="small_text" style="font-size: 10px">(Password length should be between 6 to 20 and include at least one lowercase and uppercase character and a number.)</span></td>
 					</tr>
 					<tr>
 						<td><div class="reg_label">
@@ -241,7 +236,7 @@
 						<td><div class="reg_input">
 								<input type="password" name="regpassword"
 									id="regpassword" value="" autocomplete="off"
-									class="validate-password required" size="30" />
+									class="validate-password required" size="30" onblur="retypePasswordValidate('password', 'regpassword')"/>
 									<span class="regerrorMessage"></span>
 							</div></td>
 					</tr>
@@ -253,9 +248,9 @@
 									Address:<span class="star">&#160;*</span>
 								</label>
 							</div></td>
-						<td><div class="reg_input">
+						<td><div class="reg_input"> 
 								<input type="text" name="email" id="email"
-									class="validate-email required" id="jform_email1" value=""
+									class="validate-email required" id="jform_email1" value="" onblur="validate('email','regEmail')" <%-- regEmail is a validation type --%>
 									size="30" />
 									<span class="regerrorMessage"></span>
 							</div></td>
@@ -284,7 +279,7 @@
 					<tr>
 						<td></td>
 						<td><div id="register-button">
-								<button class="submit button" type="button" id="registerButton" style="font-size: 14px;">Register</button>
+								<button class="submit button" type="button" id="registerButton" style="font-size: 14px;" onclick="registerOnClick()">Register</button>
 							</div></td>
 					</tr>
 				</table>

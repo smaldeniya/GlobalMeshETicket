@@ -35,7 +35,7 @@
 			case "password":
 				var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 				result = re.test(value);
-				message = "Password length should be between 6 to 20 and include atleast one lowercase and uppercase character and a number.";
+				message = "Password does not match the security criteria"; <%--"Password length should be between 6 to 20 and include atleast one lowercase and uppercase character and a number."; --%>
 				break;
 
 			case "text":
@@ -141,6 +141,12 @@
 				message = "Curruncy should only include numbers";
 				break;
 				
+			case "birthday":
+				var re = /\d{4}-\d{2}-\d{2}/;
+				result = re.test(value);
+				message = "Please enter a valid date. Eg: 2013-01-01";
+				break;
+				
 			case "date":
 				var re = /\d{4}-\d{2}-\d{2}/;
 				result = re.test(value);
@@ -188,9 +194,13 @@
 			$("#" + id).focus();
 			$("#" + id).parent().children("span[class=errorMessage]").text(
 					message);
+			$("#" + id).parent().children("span[class=regerrorMessage]").text(
+					message);
 		} else {
 			$("#" + id).parent().children("span[class=errorMessage]").html(
 					"<img src='../images/ok.png' height='16' width='16'/>");
+			$("#" + id).parent().children("span[class=regerrorMessage]").html(
+			"<img src='../images/ok.png' height='8' width='11'/>");
 		}
 
 		return result;
