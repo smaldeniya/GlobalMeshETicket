@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<html>
+
+<head>
+<title>NoQueue Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/login_page.css" rel="stylesheet" type="text/css" />
+<link href="css/register_page.css" rel="stylesheet" type="text/css" />
+<%@include file="commonRef.jsp"%>
+
+<script>
+	function retypePasswordValidate(password, retypePass) {
+		var result = false;
+		var message = "";
+		var passValue = $("#" + password).val();
+		var rePassValue = $("#" + retypePass).val();
+
+		if (!isEmpty(rePassValue)) {
+			if (passValue === rePassValue) {
+				result = true;
+			} else {
+				message = "Password should be match to re typed password";
+			}
+		} else {
+			message = "Field should not be empty";
+		}
+
+		if (!result) {
+			$("#" + retypePass).parent().children("span[class=errorMessage]")
+					.text(message);
+		} else {
+			$("#" + retypePass)
+					.parent()
+					.children("span[class=errorMessage]")
+					.html(
+							"<img src='../images/ok.png' height='16' width='16'/>");
+		}
+
+		return result;
+	}
+
+	function registerOnClick() {
+		if (validate('email', 'regEmail')
+				&& validate('regpassword', 'password')
+				&& retypePasswordValidate('regpassword', 'repassword')
+				&& validate('firstName', 'text')
+				&& validate('lastName', 'text') && validate('nic', 'nic')
+				&& validate('mobile', 'mobile') && validate('gender', 'gender')) {
+			$("#registerForm").attr("action", "/useri.do");
+
+			$('#mask , #register-box').fadeOut(1000, function() {
+				$('#mask').remove();
+			});
+
+			$("form")[1].submit();
+
+		}
+	}
+</script>
+
+</head>
+
+<body>
+
+	<div id="main" align="center" style="padding-bottom: 40px;">
+
+		<div id="banner" class="login_banner">
+			<div style="float: left; margin-top: 5px; margin-left: 20px">
+				<img src="../images/ceylon_logo.png" alt="" width="80px"
+					height="80px" />
+			</div>
+			<div style="float: left">
+				<h1 style="padding: 8px 0 0 50px;">
+					<a href="/init.do"><span>CEYLON </span>THEATRES <small>Bring
+							You the World of Entertainment.</small></a>
+				</h1>
+			</div>
+			<div style="float: right; padding: 35px 40px 0 0;">
+				<span
+					style="color: white; font-size: 35px; font-family: Liberation sans; font-variant: small-caps;">Advance
+					Ticket Booking</span>
+			</div>
+		</div>
+
+		<div id="login-form" class="login-popup" style="width: 650px; height:620px;padding: 10px;">
+		<div class="seat_plan_header">Register with Ceylon Theatres.</div>
+			<form method="post" class="signin" action="/login.do" id="loginForm"
+				style="margin-top: 5px">
+
+				<table>
+					<tr>
+						<td><div class="reg_label">
+								<label id="titleLable" class="hasTip required"
+									title="Please Select Your Title">Title :<span
+									class="star">&#160;*</span></label>
+							</div></td>
+						<td><div class="reg_input">
+								<select id="title" name="title" class="required">
+									<option value="Mr.">Mr.</option>
+									<option value="Ms.">Ms.</option>
+									<option value="Dr.">Dr.</option>
+									<option value="Prof.">Prof.</option>
+									<option value="Rev.">Rev.</option>
+								</select>
+								<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="firstNameLable"
+									class="hasTip required"
+									title="Enter Your First Name">First Name :<span
+									class="star">&#160;*</span></label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="text" name="firstName" id="firstName" value=""
+									class="required" size="30" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="lastNameLabel"
+									class="hasTip required" title="Last Name::Enter Your Last Name">Last
+									Name<span class="star">&#160;*</span>
+								</label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="text" name="lastName" id="lastName"
+									value="" class="required" size="30" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="genderLable"
+									class="hasTip required"
+									title="Gender ::Please Select Your Gender">Gender :<span
+									class="star">&#160;*</span></label>
+							</div></td>
+						<td><div class="reg_input">
+								<select id="gender" name="gender" class="required">
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+								</select>
+								<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label>Date of Birth:</label><span class="star">&nbsp;*</span>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="date" id="birthday" name="birthday"/>
+								<span class="small_text">(A person should be over 18
+									years of age at the date of registering)</span>
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="NICLabel"
+									class="hasTip required"
+									title="Enter Your National Identity Card Number">National
+									Identity Card No: <span class="star">&#160;*</span>
+								</label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="text" name="NIC" id="NIC"
+									value="" class="required" size="30" maxlength="10" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="addressLabel"
+									class="hasTip required" title="Enter Your Address">Address:
+									<span class="star">&#160;*</span>
+								</label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="text" name="address" id="address"
+									value="" class="required" size="30" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="cityLabel"
+									class="hasTip required" title="Enter Your City">City
+									: <span class="star">&#160;*</span>
+								</label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="text" name="city" id="city" value=""
+									class="required" size="30" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="mobileLable" class="hasTip"
+									title="Enter Your Mobile Number">Mobile : </label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="text" name="mobile" id="mobile"
+									value="" size="30" maxlength="12" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="passwordLable" 
+									class="hasTip required"
+									title="Enter your desired password - Password length should be between 6 to 20 and include atleast one lowercase and uppercase character and a number.">Password:<span
+									class="star">&#160;*</span></label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="password" name="password"
+									id="password" value="" autocomplete="off"
+									class="validate-password required" size="30" />
+									<span class="regerrorMessage"></span>
+							</div>
+							<span class="small_text">(Password length should be between 6 to 20 and include at least one lowercase and uppercase character and a number.)</span></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="regpasswordLable"
+									class="hasTip required"
+									title="Confirm your password">Confirm
+									Password:<span class="star">&#160;*</span>
+								</label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="password" name="regpassword"
+									id="regpassword" value="" autocomplete="off"
+									class="validate-password required" size="30" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label id="emailLable"
+									class="hasTip required"
+									title="Enter your email address">Email
+									Address:<span class="star">&#160;*</span>
+								</label>
+							</div></td>
+						<td><div class="reg_input">
+								<input type="text" name="email" id="email"
+									class="validate-email required" id="jform_email1" value=""
+									size="30" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="reg_label">
+								<label>Verification code:</label>
+							</div></td>
+						<td><div class="reg_input">
+								<label id="nums">6+2 = </label> <input class="required"
+									type="text" name="captchavalue" id="captchavalue"
+									onChange="checkCapture()" value="" />
+									<span class="regerrorMessage"></span>
+							</div></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><span id="ValidCheckbox"><input type="checkbox"
+								name="termscond" id="rg_termscond" /> <span class="agree">I
+									Agree to <a
+									href="http://eapmovies.com/index.php?option=com_content&view=article&layout=edit&id=45&Itemid=124">Terms
+										& Conditions</a>
+							</span></td>
+						</span>
+					</tr>
+					<tr>
+						<td></td>
+						<td><div id="register-button">
+								<button class="submit button" type="button" id="registerButton" style="font-size: 14px;">Register</button>
+							</div></td>
+					</tr>
+				</table>
+
+			</form>
+		</div>
+
+	</div>
+
+
+
+</body>
+
+</html>

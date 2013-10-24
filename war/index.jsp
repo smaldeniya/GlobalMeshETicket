@@ -5,7 +5,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="com.globalmesh.dto.MovieDetail"%>
 <%@include file="header.jsp" %>
-<%@include file="popup.jsp" %>
+<%--<%@include file="popup.jsp" --%>
 <!--  put the content in the middle -->
 <% MovieDetail[] mArr = (MovieDetail[])request.getAttribute("movieArray");
 	int today = (Integer)request.getAttribute("today");

@@ -41,8 +41,8 @@
 					<c:if test="${sessionScope['login'] == null }">
 						<div class="login">
 							<ul>
-								<li><a href="#login-box" id="loginButton"><span>Login</span></a></li>
-								<li><a href="#register-box" id="registerButton"><span>Register</span></a></li>
+								<li><a href="/loginPage.jsp" id="loginButton"><span>Login</span></a></li>
+								<li><a href="/register.jsp" id="registerButton"><span>Register</span></a></li>
 							</ul>
 						</div>
 					</c:if>
