@@ -87,15 +87,15 @@ public class UserUpdateAction extends HttpServlet {
 			String firstName = req.getParameter("firstNameU");
 			String lastName = req.getParameter("lastNameU");
 			String mobile = req.getParameter("mobileU");
-			String country = req.getParameter("countryU");
+			String city = req.getParameter("cityU");
 			String address = req.getParameter("addressU");
 
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
 			user.setMobileNo(mobile);
 
-			if (country != null && !country.equals("")) {
-				user.setCountry(country); // this will add later not need in
+			if (city != null && !city.equals("")) {
+				user.setCity(city); // this will add later not need in
 											// registration
 			}
 

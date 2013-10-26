@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+.login-popup form table {
+	border-collapse:separate;
+    border-spacing:0 5px;
+}
+
 .login-popup form table .reg_label{
 	width: 175px;
 	padding-left: 5px;
@@ -8,6 +13,34 @@
 
 .login-popup form table .reg_input {
 	margin-left: 10px;
+}
+
+.reg_input input {
+	display: inline;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #dedede;
+	color: #777;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;	
+	padding-left:5px;
+	width: 200px;
+	height: 22px;
+}
+
+.reg_input select {
+    border: 1px solid #dedede;
+    margin: 5px 0;
+    width: 210px;
+    border-radius: 3px 3px 3px 3px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;	
+	padding-left:5px;
+	height: 22px;
 }
 
 .login-popup form table .reg_label label {
@@ -26,11 +59,42 @@ span.regerrorMessage {
 	margin-left: 5px;
 	width: inherit;
 	float: left;
-	font-size: 12px !important;
 	font-weight: 80;
-	color: red !important;
-	font-style: italic;
 	vertical-align: middle;
 	height: inherit;
 	position: absolute;
+	display: inline-block;
+    font-size: 11px;
+    color: #D00 !important;
+    padding-left: 18px;
+/*    font-style: italic;*/
+	padding-top:3px;
+}
+
+span.agree a{
+	color: #9B0F0F;
+    text-decoration: none;
+    font-size: inherit;
+}
+
+span.agree a:HOVER {
+	text-decoration: underline;
+	font-size: inherit;
+}
+
+.login-popup form table span.agree {
+	color: #545454;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+span.star {
+    color: #FF0000;
+}
+
+.termAancor, .termAancor:HOVER {
+	color: #9B0F0F;
+    text-decoration: none;
+    font-size: inherit;
+    font-weight: normal;
 }

@@ -34,8 +34,8 @@ public class User implements Serializable{
 	private String gender;//M-Male F-Female
 	@Column(name = "DOB", nullable = true)
 	private Date dob;
-	@Column(name = "Country", nullable = true ,length = 20)
-	private String country;
+	@Column(name = "City", nullable = true ,length = 20)
+	private String city;
 	@Column(name = "Address", nullable = true,length = 80)
 	private String address;
 	@Column(name = "MobileNo", nullable = false,length = 12)
@@ -65,7 +65,7 @@ public class User implements Serializable{
 	 */
 	public User(final String userId,final String firstName,final String lastName,final String email,
 			final String password, final String gender, Date dob, final String nicNo,
-			final String country, final String address, final String mobileNo) {
+			final String city, final String address, final String mobileNo) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -74,7 +74,7 @@ public class User implements Serializable{
 		this.password = password;
 		this.gender = gender;
 		this.dob = dob;
-		this.country = country;
+		this.city = city;
 		this.address = address;
 		this.mobileNo = mobileNo;
 	}	
@@ -166,14 +166,14 @@ public class User implements Serializable{
 	/**
 	 * @return the country
 	 */	
-	public  String getCountry() {
-		return country;
+	public  String getCity() {
+		return city;
 	}
 	/**
 	 * @param country the country to set
 	 */
-	public  void setCountry( final String country) {
-		this.country = country;
+	public  void setCity( final String city) {
+		this.city = city;
 	}
 	/**
 	 * @return the address

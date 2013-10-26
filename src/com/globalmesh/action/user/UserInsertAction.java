@@ -34,15 +34,15 @@ public class UserInsertAction extends HttpServlet {
 		try {
 			User user = new User();
 
-			String nic = req.getParameter("nic");
+			String nic = req.getParameter("NIC");
 			String firstName = req.getParameter("firstName");
 			String lastName = req.getParameter("lastName");
 			String email = req.getParameter("email");
-			String password = MD5HashGenerator.md5(req.getParameter("regpassword"));
+			String password = MD5HashGenerator.md5(req.getParameter("password"));
 			String gender = req.getParameter("gender");
 			String mobile = req.getParameter("mobile");
-			String dob = req.getParameter("dob");
-			String country = req.getParameter("country");
+			String dob = req.getParameter("birthday");
+			String city = req.getParameter("city");
 			String address = req.getParameter("address");
 			
 			user.setUserId(nic) ; 
@@ -54,12 +54,12 @@ public class UserInsertAction extends HttpServlet {
 			user.setMobileNo(mobile);
 				
 			if (dob != null) {
-				user.setDob(new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH)
+				user.setDob(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
 						.parse(dob)); //this will not need in registration wil update later
 			}
 			
-			if(country != null) {
-				user.setCountry(country); //this will add later not need in registration 
+			if(city != null) {
+				user.setCity(city); //this will add later not need in registration 
 			}
 			
 			if(address != null){

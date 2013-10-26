@@ -265,6 +265,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/afterP.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>RecaptchaValidate</servlet-name>
+		<servlet-class>com.globalmesh.action.RecaptchaValidationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RecaptchaValidate</servlet-name>
+		<url-pattern>/recap.do</url-pattern>
+	</servlet-mapping>
+	
 	<!-- <servlet>
 		<servlet-name>RequestAnotherPrint</servlet-name>
 		<servlet-class>com.globalmesh.action.sale.RequestAnotherTicketPrintServlet</servlet-class>
