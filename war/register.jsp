@@ -18,7 +18,8 @@
 
 <%@include file="commonRef.jsp"%>
 <script type="text/javascript" src="js/messi.js"></script>
-<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+<script type="text/javascript" src="js/recaptcha_ajax.js"></script>
+<%-- <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script> --%>
 <script>
 	$(document).ready(function(){		
 		Recaptcha.create("6LffU-kSAAAAAPWLzGqr4cJtRKW2IvLHn0eq7Fo2", "captchaMy", {
