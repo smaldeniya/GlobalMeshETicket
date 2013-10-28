@@ -8,7 +8,7 @@
 <html>
 
 <head>
-<title>NoQueue Login</title>
+<title>Ceylon Theatres Registration</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/login_page.css" rel="stylesheet" type="text/css" />
