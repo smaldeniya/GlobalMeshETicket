@@ -138,7 +138,7 @@
 		if($("#rg_termscond").is(':checked')){
 			return true;
 		} else {
-			new Messi('Please read and accept the <a href="/terms.jsp" class="termAancor">Terms & Conditions</a> to proceed with registration', {title: 'Registration Abroted !', titleClass: 'anim error', buttons: [{id: 0, label: 'Close', val: 'X'}]});
+			new Messi('Please read and accept the <a href="/terms.jsp" class="termAancor" target="_blank">Terms & Conditions</a> to proceed with registration', {title: 'Registration Abroted !', titleClass: 'anim error', buttons: [{id: 0, label: 'Close', val: 'X'}]});
 			return false;
 		}
 	}
@@ -157,7 +157,7 @@
 			</div>
 			<div style="float: left">
 				<h1 style="padding: 8px 0 0 50px;">
-					<a href="/init.do"><span>CEYLON </span>THEATRES <small>Bring
+					<a href="/"><span>CEYLON </span>THEATRES <small>Bring
 							You the World of Entertainment.</small></a>
 				</h1>
 			</div>
@@ -348,7 +348,7 @@
 						<td></td>
 						<td><span id="ValidCheckbox"><input type="checkbox"
 								name="termscond" id="rg_termscond" /> <span class="agree">I
-									Agree to <a href="/terms.jsp">Terms & Conditions</a>
+									Agree to <a href="/terms.jsp" target="_blank">Terms & Conditions</a>
 							</span></td>
 						</span>
 					</tr>

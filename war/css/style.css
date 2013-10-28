@@ -658,6 +658,10 @@ a:HOVER {
 	font-size: 14px;
 	font-weight: bold;
 }
+
+.forgot a:HOVER {
+	
+}
 /* Mask for background, by default is not display */
 #mask {
 	display: none;
@@ -898,6 +902,7 @@ div.reset_password p {
 
 .forgot {
 	clear: both;
+	padding: 0px;
 }
 
 .forgot a {

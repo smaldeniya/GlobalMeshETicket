@@ -92,7 +92,7 @@
 			</div>
 			<div style="float: left">
 				<h1 style="padding: 8px 0 0 50px;">
-					<a href="/init.do"><span>CEYLON </span>THEATRES <small>Bring
+					<a href="/"><span>CEYLON </span>THEATRES <small>Bring
 							You the World of Entertainment.</small></a>
 				</h1>
 			</div>
@@ -103,14 +103,14 @@
 			</div>
 		</div>
 
-		<div id="login-form" class="login-popup">
+		<div id="login-form" class="login-popup" style="height: 320px">
 			<form method="post" class="signin" action="/login.do" id="loginForm"
 				style="margin-top: 5px">
 				<fieldset class="textbox">
 					<label class="username"> <span>Email</span> <input
 						id="username" name="username" value="" type="text"
 						onblur="validate('username','email')" /> <span
-						class="errorMessage"></span>
+						class="errorMessage" style="height: 10px;"></span>
 					</label> <label class="password"> <span>Password</span> <input
 						id="password" name="password" value="" type="password" /> <span
 						class="errorMessage"></span>
@@ -119,7 +119,7 @@
 					<button class="submit button" type="button"
 						onclick="loginOnClick()">Sign in</button>
 					<button class="submit button" type="button" id="registerButton"
-						onclick="" style="margin-left: 40px; clear: none;">Register</button>
+						onclick="" style="margin-left: 35px; clear: none;">Register</button>
 					<p class="forgot" style="float: right; clear: right; margin-top: 20px;">
 						<a href="resetPassword.jsp">Forgot your password?</a>
 					</p>
