@@ -27,7 +27,7 @@ public class GetHall extends HttpServlet {
 		
 		resp.setContentType("text/plain");
 		resp.setCharacterEncoding("UTF-8");
-		resp.getWriter().write(h.getNumOfSeats() + ";" + h.isThreeD() + ";" + h.getOdcFull() + ";" + h.getOdcHalf() + ";" + h.getPrice3D());
+		resp.getWriter().write(h.getNumOfSeats() + ";" + h.isThreeD() + ";" + h.getOdcFull() + ";" + h.getOdcHalf() + ";" + h.getPrice3D() + ";" + h.getSeatLimit() + ";" + h.getSeatPlanUrl());
 		
 	}
 	

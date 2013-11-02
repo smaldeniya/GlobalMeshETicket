@@ -37,6 +37,15 @@ public class InsertHallDetails extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		String userEmail = (String) req.getSession().getAttribute("email");
+		
+		if(userEmail == null) {
+			req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
+			req.setAttribute("message", Utility.getCONFG().getProperty(Constants.LOGIN_NEED_MESSAGE));
+			req.getRequestDispatcher("/messages.jsp").forward(req, resp);
+			
+		} 
+		
 		ServletFileUpload upload = new ServletFileUpload();
 		Blob image = null;
 		Map<String, String> formFields = new HashMap<String, String>();

@@ -198,13 +198,17 @@
 					
 					if(values[1] == "true") {
 						$("#is3D").prop('checked', true);
-						$("#priceAddition3D").val(values[3]);
+						$("#priceAddition3D").val(values[4]);
+						is3DonClick();
 					} else {
 						$("#is3D").prop('checked', false);
 						$("#priceAddition3D").val("0");
+						is3DonClick();
 					}
 					$("#odcTicketPrice").val(values[2]);
 					$("#odcHalfTicketPrice").val(values[3]);
+					$("#maxSeat").val(values[5]);
+					$("#hallUri").val(values[6]);
 				}
 			}
 		});

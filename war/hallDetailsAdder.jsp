@@ -17,7 +17,7 @@
 	</fieldset>
 	</div>
 </div>
-<div class="devider" style="height:460px; margin-left:350px"></div>
+<div class="devider" style="height:500px; margin-left:350px"></div>
 
 <div class="userDetailsCommon" style="margin-left:400px;">
 	<form action="/hallUnI.do" id="hallForm" method="post" enctype="multipart/form-data">
