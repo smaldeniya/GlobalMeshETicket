@@ -70,6 +70,13 @@ public class SalesServlet extends HttpServlet {
 				sale.setSeats(seatSelection);
 				sale.setFullTicketPrice(h.getOdcFull());					
 				sale.setHalfTicketPrice(h.getOdcHalf());
+				
+				//if hall is 3D add the 3D price to the ticket price.
+				
+				if(h.isThreeD()){
+					sale.setFullTicketPrice(sale.getFullTicketPrice() + h.getPrice3D());
+					sale.setFullTicketPrice(sale.getHalfTicketPrice() + h.getPrice3D());
+				}
 					
 				int numOfFullTickets = (seatCount - numOfHalfTickets);					
 				sale.setNumOfFullfTickets(numOfFullTickets);
@@ -123,7 +130,10 @@ public class SalesServlet extends HttpServlet {
 						
 				} else {
 					
-					today.add(Calendar.MINUTE, 30);
+					today.add(Calendar.MINUTE, 40);
+					/**
+					 * Add 40 minutes to current time and check whether this new time is before the show time.
+					 */
 						
 					if(today.before(show)){
 						

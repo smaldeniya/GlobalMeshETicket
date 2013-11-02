@@ -171,9 +171,15 @@
 	
 	function is3DonClick() {
 		if($("#is3D").is(":checked")){
-			$("#is3D").val("3D")
+			$("#is3D").val("3D");
+			$("[name='price3DLable']").css("display","block");
+			$("#priceAddition3D").parent().children("span[class=errorMessage]").text(
+					"");
 		} else {
-			$("#is3D").val("")
+			$("#is3D").val("");
+			$("[name='price3DLable']").css("display","none");
+			$("#priceAddition3D").parent().children("span[class=errorMessage]").text(
+			"");
 		}
 	}
 	
@@ -192,8 +198,10 @@
 					
 					if(values[1] == "true") {
 						$("#is3D").prop('checked', true);
+						$("#priceAddition3D").val(values[3]);
 					} else {
 						$("#is3D").prop('checked', false);
+						$("#priceAddition3D").val("0");
 					}
 					$("#odcTicketPrice").val(values[2]);
 					$("#odcHalfTicketPrice").val(values[3]);
@@ -350,7 +358,7 @@
 
 <div class="${requestScope['msgClass']}">${requestScope['message']}</div>
 
-<div id="userForm" align="center" style="marigin-top:20px;height:980px;">
+<div id="userForm" align="center" style="marigin-top:20px;height:1020px;">
 
 <div class="adminTabHeader">
 <nav id="adminNavigateion">

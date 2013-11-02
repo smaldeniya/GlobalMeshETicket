@@ -9,7 +9,8 @@
 		<lable ><span>Number Of Seats</span></lable>
 		<lable ><span>ODC FULL Ticket Price</span></lable>
 		<lable ><span>ODC HALF Ticket Price</span></lable>
-		<lable ><span>3D</span></lable>		
+		<lable ><span>3D</span></lable>	
+		<label name="price3DLable" style="display: none;"><span>3D Price Addition</span></label>	
 		<lable ><span>Front Page Banner</span></lable>
 		<lable ><span>Seat Limit</span></lable>
 		<lable ><span>Seat Plan URL</span></lable>
@@ -59,7 +60,12 @@
 		</label>
 		
 		<label>
-			<input type="checkbox" value='' onclick="is3DonClick()" id="is3D" name="is3D" class="css-checkbox" style="margin-top:20px" />
+			<input type="checkbox" value='' onchange="is3DonClick()" id="is3D" name="is3D" class="css-checkbox" style="margin-top:20px" /> 
+			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
+		</label>
+		
+		<label name="price3DLable" style="display: none;"> 
+			<input type="text" value="0" id="priceAddition3D" name="priceAddition3D" style="margin-top:30px; width: 40px;" onblur="validate('priceAddition3D', 'number')"/>
 			<span class="errorMessage" style="float:left; margin-left:5px;margin-top:35px;"></span>
 		</label>
 		

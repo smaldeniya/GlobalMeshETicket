@@ -69,6 +69,7 @@ public class InsertHallDetails extends HttpServlet {
 		double odcHalf = Double.parseDouble(formFields.get("odcHalfTicketPrice"));
 		int seatLimit = Integer.parseInt(formFields.get("maxSeat"));
 		String hallUri = formFields.get("hallUri");
+		double price3D = Double.parseDouble(formFields.get("priceAddition3D"));
 		
 		Hall h = HallDAO.INSTANCE.getHallById(hallName);
 		
@@ -79,6 +80,7 @@ public class InsertHallDetails extends HttpServlet {
 			h.setOdcHalf(odcHalf);
 			h.setSeatLimit(seatLimit);
 			h.setSeatPlanUrl(hallUri);
+			h.setPrice3D(price3D);
 			if(image != null) {
 				h.setMovieBanner(image);
 			}
@@ -104,6 +106,7 @@ public class InsertHallDetails extends HttpServlet {
 			h.setSeatLimit(seatLimit);
 			h.setSeatPlanUrl(hallUri);
 			h.setMovieBanner(image);
+			h.setPrice3D(price3D);
 			
 			if(HallDAO.INSTANCE.addHall(h)){
 				req.setAttribute("msgClass", Constants.MSG_CSS_SUCCESS);

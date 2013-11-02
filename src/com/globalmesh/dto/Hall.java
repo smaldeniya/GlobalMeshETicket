@@ -38,6 +38,25 @@ public class Hall implements Serializable{
 	@Column(name="SeatLimit", nullable=false)
 	private int seatLimit;
 	
+	@Column(name="3DPrice", nullable=false)
+	private double price3D;
+	
+	/**
+	 * 
+	 * @return 3D Price
+	 */
+	public double getPrice3D() {
+		return price3D;
+	}
+
+	/**
+	 * 
+	 * @param price3d value of 3D addition
+	 */
+	public void setPrice3D(double price3d) {
+		price3D = price3d;
+	}
+
 	/**
 	 * @return the hallId
 	 */
