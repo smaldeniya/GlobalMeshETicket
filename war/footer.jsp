@@ -34,7 +34,10 @@
 						<a href="#"><img src="../images/twitter.png" height="30px" width="30px" style="margin-bottom:2px"/></a>
 						<a href="#"><img src="../images/gplus.png" height="30px" width="30px" style="margin-bottom:2px"/></a>
 					</div>
-					
+					<div class="paymentLogoes">
+						<img src="../images/VbV_E_2CRev_sm.jpg"/>
+						<a href="http://www.mastercard.com/us/business/en/corporate/securecode/sc_popup.html?language=en" target="_blank"><img src="../images/master_card.gif" /></a>
+					</div>					
 				</div>
 				<div class="clr"></div>
 			</div>

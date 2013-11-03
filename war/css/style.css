@@ -1363,12 +1363,23 @@ cursor:pointer;
 		rgba(208, 223, 226, 0.4) inset;
 }
 .socialLinks {
-	margin:100px 20px 10px 30px;
-	padding: 10px;
+	margin:30px 20px 10px 0px;
+	padding: 5px;
 }
 .socialLinks a {
 	position: relative;
-	margin-right: 3px;
+	margin-right: 15px;
+}
+
+.paymentLogoes {
+	padding: 5px;
+	clear: both;
+	float: left;
+}
+
+.paymentLogoes img {
+	position: relative;
+	margin-right: 8px;
 }
 
 .image_carousel {

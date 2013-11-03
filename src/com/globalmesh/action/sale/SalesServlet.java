@@ -68,14 +68,15 @@ public class SalesServlet extends HttpServlet {
 				sale.setSeatCount(seatCount);
 				sale.setNumOfHalfTickets(numOfHalfTickets);
 				sale.setSeats(seatSelection);
-				sale.setFullTicketPrice(h.getOdcFull());					
-				sale.setHalfTicketPrice(h.getOdcHalf());
 				
 				//if hall is 3D add the 3D price to the ticket price.
 				
 				if(h.isThreeD()){
-					sale.setFullTicketPrice(sale.getFullTicketPrice() + h.getPrice3D());
-					sale.setFullTicketPrice(sale.getHalfTicketPrice() + h.getPrice3D());
+					sale.setFullTicketPrice(h.getOdcFull() + h.getPrice3D());
+					sale.setHalfTicketPrice(h.getOdcHalf() + h.getPrice3D());
+				} else {
+					sale.setFullTicketPrice(h.getOdcFull());					
+					sale.setHalfTicketPrice(h.getOdcHalf());
 				}
 					
 				int numOfFullTickets = (seatCount - numOfHalfTickets);					
