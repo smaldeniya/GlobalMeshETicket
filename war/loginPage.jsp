@@ -126,6 +126,8 @@
 				</fieldset>
 			</form>
 		</div>
+		
+		<div class="warningMsg" style="margin-top: 20px;">This system developed using latest cutting edge technologies. For this system to work effectively, your web browser should be Internet Explorer 9 or higher, Firefox 10 or higher, Opera 12 or higher, Google Chrome 17 or higher or; Safari 6 or higher. </div>
 
 	</div>
 
