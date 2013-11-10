@@ -150,9 +150,11 @@ public class SalesServlet extends HttpServlet {
 						
 						if(oldSale == null) {
 							session.setAttribute("sale", sale);
+							req.getRequestDispatcher("/pdetail.do").forward(req, resp);
 							//TODO payment gateway send verification code to user
-							req.getRequestDispatcher("/afterP.do").forward(req, resp); 
+							//req.getRequestDispatcher("/afterP.do").forward(req, resp); 
 						} else {
+							//do what ever with old sale object that does not persisted.							
 							req.setAttribute("msgClass", Constants.MSG_CSS_ERROR);
 							req.setAttribute("message",Utility.getCONFG().getProperty(Constants.SALE_FAIL));
 							req.getRequestDispatcher("/messages.jsp").forward(req, resp);

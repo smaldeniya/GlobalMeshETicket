@@ -274,6 +274,19 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/recap.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- ==============Payment Gateway Related JSP files==================== -->
+	
+	<servlet>
+	    <servlet-name>PaymentForm</servlet-name>
+	    <jsp-file>paymentDetail.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>PaymentForm</servlet-name>
+	    <url-pattern>/pdetail.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- =================================================================== -->
+	
 	<!-- <servlet>
 		<servlet-name>RequestAnotherPrint</servlet-name>
 		<servlet-class>com.globalmesh.action.sale.RequestAnotherTicketPrintServlet</servlet-class>
