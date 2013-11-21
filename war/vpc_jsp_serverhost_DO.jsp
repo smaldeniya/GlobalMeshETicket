@@ -225,11 +225,13 @@ NOTE:
     // *******************************************
 
     // The Page does a redirect to the Virtual Payment Client
-
-	// retrieve all the parameters into a hash map
+    
+	//TODO modify this with req attribute values
+	
+	// retrieve all the parameters into a hash map 
 	Map fields = new HashMap();
-	for (Enumeration enum = request.getParameterNames(); enum.hasMoreElements();) {
-		String fieldName = (String) enum.nextElement();
+	for (Enumeration enumi = request.getParameterNames(); enumi.hasMoreElements();) {
+		String fieldName = (String) enumi.nextElement();
 		String fieldValue = request.getParameter(fieldName);
 		if ((fieldValue != null) && (fieldValue.length() > 0)) {
 			fields.put(fieldName, fieldValue);

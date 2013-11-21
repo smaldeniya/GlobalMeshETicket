@@ -275,7 +275,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	</servlet-mapping>
 	
 	<!-- ==============Payment Gateway Related JSP files==================== -->
-	
+	<!-- 
 	<servlet>
 	    <servlet-name>PaymentForm</servlet-name>
 	    <jsp-file>paymentDetail.jsp</jsp-file>
@@ -284,7 +284,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	    <servlet-name>PaymentForm</servlet-name>
 	    <url-pattern>/pdetail.do</url-pattern>
 	</servlet-mapping>
-	
+	 -->
+	 <servlet>
+	    <servlet-name>VPCDO</servlet-name>
+	    <jsp-file>vpc_jsp_serverhost_DO.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>VPCDO</servlet-name>
+	    <url-pattern>/pdetail.do</url-pattern>
+	</servlet-mapping>
 	<!-- =================================================================== -->
 	
 	<!-- <servlet>

@@ -97,6 +97,14 @@ $(".seatingArrangement").ready(function (){
 			var fullTicketPrice = parseFloat(${requestScope['hall'].odcFull});
 			var halfTicketPrice = parseFloat(${requestScope['hall'].odcHalf});
 			
+			var is3D = ${requestScope['hall'].threeD};
+			var threeDPrice = ${requestScope['hall'].price3D};
+			
+			if(is3D) {
+				fullTicketPrice = fullTicketPrice + threeDPrice;
+				halfTicketPrice = halfTicketPrice + threeDPrice;
+			}
+			
 			var halfTickets = parseInt($("#halfTicket").val());
 			var totalTicket = parseInt($("#seatCount").val());
 			var fullTickets = totalTicket - halfTickets;

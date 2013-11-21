@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -150,7 +152,29 @@ public class SalesServlet extends HttpServlet {
 						
 						if(oldSale == null) {
 							session.setAttribute("sale", sale);
-							req.getRequestDispatcher("/pdetail.do").forward(req, resp);
+							
+							//payment gateway related fields set to table values should move to config file
+							String saledetail = sale.getHall() + "-" + sale.getTransactionDate() + "-" + sale.getShowDate() + sale.getId();
+							
+							Map<String, String> paymentGVal = new HashMap<String, String>();
+							
+							paymentGVal.put("Title", "JSP VPC 3-Party");
+							paymentGVal.put("virtualPaymentClientURL", "https://migs.mastercard.com.au/vpcpay");
+							paymentGVal.put("vpc_Version", "1");
+							paymentGVal.put("vpc_Command", "pay");
+							paymentGVal.put("vpc_AccessCode", "");
+							paymentGVal.put("vpc_MerchTxnRef", "");
+							paymentGVal.put("vpc_Merchant", "");							
+							paymentGVal.put("vpc_OrderInfo", saledetail);
+							paymentGVal.put("vpc_Amount", Double.toString(sale.getTotal()));
+							paymentGVal.put("vpc_ReturnURL", "https://localhost:8080/vpc_jsp_serverhost_DR.jsp");
+							paymentGVal.put("vpc_Locale", "en");
+							paymentGVal.put("vpc_TicketNo", sale.getId());
+							
+							req.setAttribute("payMap", paymentGVal);
+							req.getRequestDispatcher("/test.jsp").forward(req, resp);
+							//req.getRequestDispatcher("/pdetail.do").forward(req, resp); // pdetial = vpc-do jsp file
+							
 							//TODO payment gateway send verification code to user
 							//req.getRequestDispatcher("/afterP.do").forward(req, resp); 
 						} else {
