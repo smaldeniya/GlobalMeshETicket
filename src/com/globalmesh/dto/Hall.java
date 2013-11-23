@@ -41,6 +41,44 @@ public class Hall implements Serializable{
 	@Column(name="3DPrice", nullable=false)
 	private double price3D;
 	
+	@Column(name="BalconyFull", nullable=false)
+	private double balconyFull;	
+	
+	@Column(name="BalconyHalf", nullable=false)
+	private double balconyHalf;
+	
+	/**
+	 * 
+	 * @return Balcony Full Price
+	 */
+	public double getBalconyFull() {
+		return balconyFull;
+	}
+
+	/**
+	 * 
+	 * @param balconyFull price of the full balcony ticket
+	 */
+	public void setBalconyFull(double balconyFull) {
+		this.balconyFull = balconyFull;
+	}
+
+	/**
+	 * 
+	 * @return Half price of balcony tickets
+	 */
+	public double getBalconyHalf() {
+		return balconyHalf;
+	}
+
+	/**
+	 * 
+	 * @param balconyHalf half price of balcony ticket
+	 */
+	public void setBalconyHalf(double balconyHalf) {
+		this.balconyHalf = balconyHalf;
+	}
+	
 	/**
 	 * 
 	 * @return 3D Price

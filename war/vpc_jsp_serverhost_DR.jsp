@@ -393,8 +393,8 @@ NOTE:
 
     // retrieve all the incoming parameters into a hash map
     Map fields = new HashMap();
-    for (Enumeration enum = request.getParameterNames(); enum.hasMoreElements();) {
-        String fieldName = (String) enum.nextElement();
+    for (Enumeration enume = request.getParameterNames(); enume.hasMoreElements();) {
+        String fieldName = (String) enume.nextElement();
         String fieldValue = request.getParameter(fieldName);
         if ((fieldValue != null) && (fieldValue.length() > 0)) {
             fields.put(fieldName, fieldValue);

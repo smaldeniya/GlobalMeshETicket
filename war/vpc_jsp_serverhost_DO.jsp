@@ -226,17 +226,17 @@ NOTE:
 
     // The Page does a redirect to the Virtual Payment Client
     
-	//TODO modify this with req attribute values
 	
 	// retrieve all the parameters into a hash map 
-	Map fields = new HashMap();
+	Map fields = (Map) request.getAttribute("payMap");
+	/*Map fields = new HashMap();
 	for (Enumeration enumi = request.getParameterNames(); enumi.hasMoreElements();) {
 		String fieldName = (String) enumi.nextElement();
 		String fieldValue = request.getParameter(fieldName);
 		if ((fieldValue != null) && (fieldValue.length() > 0)) {
 			fields.put(fieldName, fieldValue);
 		}
-	}
+	} */
 	
 	// no need to send the vpc url, EnableAVSdata and submit button to the vpc
 	String vpcURL = (String) fields.remove("virtualPaymentClientURL");
