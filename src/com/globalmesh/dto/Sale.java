@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 public class Sale implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name="Id", nullable=false, length=100)
 	private String id;
 	
 	@Column(name="SeatArrangement", nullable=false, length=100)

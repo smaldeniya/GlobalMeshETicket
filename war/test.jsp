@@ -1,15 +1,8 @@
-<%@page import="java.util.Set"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.Enumeration"%>
+<%@page import="java.net.URLEncoder"%>
 <%
-
-Map<String, String> map = (Map<String, String>) request.getAttribute("payMap");
-
-Set<String> keySet = map.keySet();
-
-for(String s : keySet) {
-	out.println(s + " " + map.get(s));
-}
-
-
+	String sesid = session.getId();
+	String url = "http://localhost:8080/platinum.do"; //?jsessionid="+sesid;
+	String encodedUrl = URLEncoder.encode(url, "UTF-8");
 %>
+
+<a href='http://localhost:8081/TestRunner/test.jsp?path=<%=encodedUrl %>'><%=encodedUrl %></a>

@@ -122,8 +122,6 @@ public class Constants {
 	
 	public static final String PAYMENT_VPC_ACCESS_CODE = "payment.vpc.access.code";
 	
-	public static final String PAYMENT_MERCHANET_REF = "payment.vpc.merchant.ref";
-	
 	public static final String PAYMENT_VPC_MERCHANT = "payment.vpc.merchant";
 	
 	public static final String PAYMENT_RETURN_URL = "payment.vpc.return.url";

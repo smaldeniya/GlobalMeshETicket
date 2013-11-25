@@ -70,6 +70,7 @@ public class SalesServlet extends HttpServlet {
 				sale.setSeatCount(seatCount);
 				sale.setNumOfHalfTickets(numOfHalfTickets);
 				sale.setSeats(seatSelection);
+				sale.setId(Utility.shortUUID());
 				
 				//if hall is 3D add the 3D price to the ticket price.
 				
@@ -163,7 +164,7 @@ public class SalesServlet extends HttpServlet {
 							paymentGVal.put("vpc_Version", Utility.getCONFG().getProperty(Constants.PAYMENT_VPC_VERSION));
 							paymentGVal.put("vpc_Command", Utility.getCONFG().getProperty(Constants.PAYMENT_VPC_COMMAND));
 							paymentGVal.put("vpc_AccessCode", Utility.getCONFG().getProperty(Constants.PAYMENT_VPC_ACCESS_CODE));
-							paymentGVal.put("vpc_MerchTxnRef", Utility.getCONFG().getProperty(Constants.PAYMENT_MERCHANET_REF));
+							paymentGVal.put("vpc_MerchTxnRef", sale.getId());
 							paymentGVal.put("vpc_Merchant", Utility.getCONFG().getProperty(Constants.PAYMENT_VPC_MERCHANT));							
 							paymentGVal.put("vpc_OrderInfo", saledetail);
 							paymentGVal.put("vpc_Amount", Double.toString(sale.getTotal()));
@@ -172,7 +173,7 @@ public class SalesServlet extends HttpServlet {
 							/**
 							 * Sale id is null at the moment because this is not persisted. So the unique value will be sale detail
 							 **/
-							paymentGVal.put("vpc_TicketNo", saledetail);
+							paymentGVal.put("vpc_TicketNo", sale.getId());
 							
 							req.setAttribute("payMap", paymentGVal);
 							req.getRequestDispatcher("/pdetail.do").forward(req, resp); // pdetial = vpc-do jsp file
