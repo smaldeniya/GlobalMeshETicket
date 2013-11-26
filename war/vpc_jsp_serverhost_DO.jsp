@@ -262,5 +262,6 @@ NOTE:
 	appendQueryFields(buf, fields);
 
 	// Redirect to Virtual PaymentClient
-    response.sendRedirect(buf.toString());
+	String sendUrl = buf.toString();
+    response.sendRedirect(sendUrl);
 %>
