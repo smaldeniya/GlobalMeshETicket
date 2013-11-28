@@ -221,7 +221,7 @@ public class SalesServlet extends HttpServlet {
 		
 	}
 
-	static final String SECURE_SECRET = "6A92740F77EFF1C21DFF9281EC53C519";
+	static final String SECURE_SECRET = Utility.getCONFG().getProperty(Constants.PAYMENT_SECURE_HASH);
 	static final char[] HEX_TABLE = new char[] {
         '0', '1', '2', '3', '4', '5', '6', '7',
         '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};

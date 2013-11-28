@@ -29,7 +29,7 @@ import com.globalmesh.util.Utility;
 public class AfterPaymentServlet extends HttpServlet {
 
 	// This is secret for encoding the MD5 hash
-	static final String SECURE_SECRET = "";
+	static final String SECURE_SECRET = Utility.getCONFG().getProperty(Constants.PAYMENT_SECURE_HASH);
 	// This is an array for creating hex chars
     static final char[] HEX_TABLE = new char[] {
         '0', '1', '2', '3', '4', '5', '6', '7',

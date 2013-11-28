@@ -128,6 +128,8 @@ public class Constants {
 	
 	public static final String PAYMENT_LOCALE = "payment.vpc.locale";
 	
+	public static final String PAYMENT_SECURE_HASH = "payment.secure.hash";
+	
 	public enum MovieStatus {
 		NowShowing, // 0
 		UpComing, // 1
