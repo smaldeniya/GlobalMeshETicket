@@ -84,6 +84,10 @@ public class Constants {
 	
 	public static final String HALL_SUPERIOR = "hall.superior";
 	
+	public static final String HALL_REGAL_COL = "hall.regal.col";
+	
+	public static final String HALL_JAFNA = "hall.jafna";
+	
 	public static final String HALL_NO_FILM = "hall.no.film";
 
 	public static final String DATE_EXCEED = "sale.date.error.old";

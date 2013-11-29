@@ -73,10 +73,10 @@ public class RedeemServlet extends HttpServlet {
 				SaleDAO.INSTANCE.update(sale);
 						
 				resp.setContentType("application/pdf");
-				Rectangle pagesize = new Rectangle(Utility.mmToPt(78), Utility.mmToPt(158));	
+				Rectangle pagesize = new Rectangle(Utility.mmToPt(78), Utility.mmToPt(200));	
 				
-				Document ticket = new Document(pagesize, Utility.mmToPt(5), Utility.mmToPt(5),
-						Utility.mmToPt(5), Utility.mmToPt(5)); 
+				Document ticket = new Document(pagesize, Utility.mmToPt(3), Utility.mmToPt(3),
+						Utility.mmToPt(3), Utility.mmToPt(3)); 
 				try {
 					
 					PdfWriter writer = PdfWriter.getInstance(ticket, resp.getOutputStream());
